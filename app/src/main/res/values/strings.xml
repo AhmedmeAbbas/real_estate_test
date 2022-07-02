@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Real Estate App</string>
+    <string name="placeholder_text">Placeholder Text</string>
+
+            <!-- Bottom Navigation -->
+    <string name="bottom_nav_search_title">Search</string>
+    <string name="bottom_nav_saved_title">Saved</string>
+    <string name="bottom_nav_my_home_title">My Home</string>
+    <string name="bottom_nav_inbox_title">Inbox</string>
+    <string name="bottom_nav_account_title">Account</string>
+</resources>
