@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Real Estate App</string>
+    <string name="placeholder_text">Placeholder Text</string>
+
+            <!-- Bottom Navigation -->
+    <string name="bottom_nav_search_title">بحث</string>
+    <string name="bottom_nav_saved_title">المفضلة</string>
+    <string name="bottom_nav_my_home_title">منزلي</string>
+    <string name="bottom_nav_inbox_title">الوارد</string>
+    <string name="bottom_nav_account_title">الحساب</string>
+</resources>
