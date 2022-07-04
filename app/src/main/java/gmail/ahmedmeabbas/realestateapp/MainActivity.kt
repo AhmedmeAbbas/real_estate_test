@@ -2,7 +2,10 @@ package gmail.ahmedmeabbas.realestateapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.widget.Button
 import androidx.activity.viewModels
+import androidx.appcompat.widget.SearchView
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -23,12 +26,33 @@ class MainActivity : AppCompatActivity() {
         }
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setSupportActionBar(binding.toolbar)
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
 
         binding.bottomNavigation.setupWithNavController(navController)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.toolbar_menu, menu)
+        val searchMenuItem = menu?.findItem(R.id.actionSearch)
+        val searchView = searchMenuItem?.actionView as SearchView
+
+        searchView.setIconifiedByDefault(false)
+        searchView.queryHint = "Search city, area, address"
+        searchView.background = resources.getDrawable(R.drawable.search_view_background, theme)
+        searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return true
+            }
+        })
+
+        val listMenuItem = menu.findItem(R.id.actionList)
+        return super.onCreateOptionsMenu(menu)
     }
 }

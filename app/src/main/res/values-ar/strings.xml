@@ -9,4 +9,12 @@
     <string name="bottom_nav_my_home_title">منزلي</string>
     <string name="bottom_nav_inbox_title">الوارد</string>
     <string name="bottom_nav_account_title">الحساب</string>
+
+            <!-- Toolbar Menu -->
+    <string name="toolbar_list_title">قائمة</string>
+    <string name="toolbar_map_title">خريطة</string>
+    <string name="toolbar_filter_title">تصفية</string>
+    <string name="toolbar_sort_title">ترتيب</string>
+    <string name="toolbar_save_search_title">حفظ البحث</string>
+    <string name="search_query_hint">إبحث عن مدينة, منطقة أو حي</string>
 </resources>
