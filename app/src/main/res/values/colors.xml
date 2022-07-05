@@ -17,6 +17,7 @@
     <color name="logo_green">#28AA9A</color>
     <color name="logo_green_variant">#96EAE1</color>
     <color name="dark_background">#272727</color>
+    <color name="dark_background_variant">#333333</color>
     <color name="light_background">#FFFFFFFF</color>
     <color name="test">#645c64</color>
 </resources>

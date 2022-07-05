@@ -9,6 +9,8 @@
         <item name="colorSecondary">@color/white</item>
         <item name="colorSecondaryVariant">@color/teal_200</item>
         <item name="colorOnSecondary">@color/black</item>
+        <!-- Tertiary brand color -->
+        <item name="colorTertiary">@color/dark_background_variant</item>
         <!-- Status bar color. -->
         <item name="android:windowLightStatusBar">false</item>
         <item name="android:statusBarColor">@color/dark_background</item>
