@@ -9,12 +9,14 @@
     <color name="white">#FFFFFFFF</color>
     <color name="blue">#001BCD</color>
     <color name="red">#D50000</color>
+    <color name="dark_red">#ba000d</color>
+    <color name="light_red">#ff7961</color>
     <color name="hint_color">#757575</color>
     <color name="logo_blue">#001DB3</color>
     <color name="logo_blue_variant">#6A78C4</color>
     <color name="logo_green">#28AA9A</color>
     <color name="logo_green_variant">#96EAE1</color>
     <color name="dark_background">#272727</color>
-    <color name="light_background">#EDF3F3</color>
+    <color name="light_background">#FFFFFFFF</color>
     <color name="test">#645c64</color>
 </resources>

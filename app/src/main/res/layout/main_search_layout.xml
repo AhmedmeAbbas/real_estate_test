@@ -13,12 +13,12 @@
         android:layout_height="match_parent"
         android:layout_marginEnd="4dp"
         android:background="@drawable/search_view_background"
-        app:layout_constraintEnd_toStartOf="@+id/btnMap"
+        app:layout_constraintEnd_toStartOf="@+id/tvMap"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
     <Button
-        android:id="@+id/btnMap"
+        android:id="@+id/tvMap"
         android:layout_width="@dimen/_50sdp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -33,7 +33,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/clFilter"
+        android:id="@+id/clMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_14sdp"
@@ -44,7 +44,7 @@
         app:layout_constraintTop_toBottomOf="@+id/svSearchMain">
 
         <Button
-            android:id="@+id/btnFilterToolbar"
+            android:id="@+id/tvFilterToolbar"
             android:layout_width="@dimen/_60sdp"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
@@ -57,7 +57,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/btnSortToolbar"
+            android:id="@+id/tvSortToolbar"
             android:layout_width="@dimen/_60sdp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -67,12 +67,12 @@
             android:textAllCaps="false"
             android:textSize="@dimen/_14ssp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/btnSaveSearchToolbar"
-            app:layout_constraintStart_toEndOf="@id/btnFilterToolbar"
+            app:layout_constraintEnd_toStartOf="@id/tvSaveSearchToolbar"
+            app:layout_constraintStart_toEndOf="@id/tvFilterToolbar"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/btnSaveSearchToolbar"
+            android:id="@+id/tvSaveSearchToolbar"
             android:layout_width="@dimen/_110sdp"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"

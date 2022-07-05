@@ -26,14 +26,14 @@ class SearchFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnMap.setOnClickListener {
-            binding.btnMap.visibility = View.INVISIBLE
-            binding.btnList.visibility = View.VISIBLE
+        binding.tvMap.setOnClickListener {
+            binding.tvMap.visibility = View.INVISIBLE
+            binding.tvList.visibility = View.VISIBLE
         }
 
-        binding.btnList.setOnClickListener {
-            binding.btnList.visibility = View.INVISIBLE
-            binding.btnMap.visibility = View.VISIBLE
+        binding.tvList.setOnClickListener {
+            binding.tvList.visibility = View.INVISIBLE
+            binding.tvMap.visibility = View.VISIBLE
         }
     }
 
