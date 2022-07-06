@@ -20,7 +20,12 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
-    <style name="menuTextView" parent="TextAppearance.AppCompat">
+    <style name="MapToggleTextView" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="android:textSize">@dimen/_12ssp</item>
+    </style>
+
+    <style name="MenuTextView" parent="TextAppearance.AppCompat">
         <item name="android:textColor">?attr/colorSecondary</item>
         <item name="android:textSize">@dimen/_12ssp</item>
         <item name="android:clickable">true</item>
@@ -28,8 +33,13 @@
         <item name="android:foreground">?attr/selectableItemBackground</item>
     </style>
 
-    <style name="mapToggleTextView" parent="TextAppearance.AppCompat">
-        <item name="android:textColor">?attr/colorPrimary</item>
-        <item name="android:textSize">@dimen/_12ssp</item>
+    <style name="HeaderText" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">?attr/colorSecondary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/_20ssp</item>
+    </style>
+
+    <style name="SavedSubText" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/hint_color</item>
     </style>
 </resources>

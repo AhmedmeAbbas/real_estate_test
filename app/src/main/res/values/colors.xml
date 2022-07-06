@@ -12,6 +12,7 @@
     <color name="dark_red">#ba000d</color>
     <color name="light_red">#ff7961</color>
     <color name="hint_color">#757575</color>
+    <color name="light_hint_color">#C1BFBF</color>
     <color name="logo_blue">#001DB3</color>
     <color name="logo_blue_variant">#6A78C4</color>
     <color name="logo_green">#28AA9A</color>
