@@ -35,12 +35,12 @@
 
     <TextView
         android:id="@+id/tvSavedSub"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_18sdp"
         android:layout_marginEnd="@dimen/_18sdp"
         android:layout_marginTop="@dimen/_6sdp"
-        android:text="You have to be signed in to save and view your saved homes"
+        android:text="@string/saved_sub"
         style="@style/SavedSubText"
         android:textSize="@dimen/_14ssp"
         android:gravity="center"
