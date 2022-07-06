@@ -3,7 +3,7 @@
     <style name="Theme.RealEstateApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/dark_red</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimaryVariant">@color/dark_red_ripple</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/black</item>
@@ -15,9 +15,11 @@
         <!-- Status bar color. -->
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:statusBarColor">@color/light_background</item>
-        <!-- Customize your theme here. -->
+        <!-- Window -->
         <item name="android:windowBackground">@color/light_background</item>
+        <!-- Text -->
         <item name="android:textColor">@color/black</item>
+        <!-- Widget -->
     </style>
 
     <style name="MapToggleTextView" parent="TextAppearance.AppCompat">

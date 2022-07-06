@@ -33,26 +33,4 @@ class MainActivity : AppCompatActivity() {
 
         binding.bottomNavigation.setupWithNavController(navController)
     }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.toolbar_menu, menu)
-        val searchMenuItem = menu?.findItem(R.id.actionSearch)
-        val searchView = searchMenuItem?.actionView as SearchView
-
-        searchView.setIconifiedByDefault(false)
-        searchView.queryHint = "Search city, area, address"
-        searchView.background = resources.getDrawable(R.drawable.search_view_background, theme)
-        searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return true
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                return true
-            }
-        })
-
-        val listMenuItem = menu.findItem(R.id.actionList)
-        return super.onCreateOptionsMenu(menu)
-    }
 }

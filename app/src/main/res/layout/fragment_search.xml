@@ -42,10 +42,10 @@
 
                 <TextView
                     android:id="@+id/tvMap"
-                    android:layout_width="@dimen/_60sdp"
+                    android:layout_width="@dimen/_70sdp"
                     android:layout_height="@dimen/_35sdp"
-                    android:paddingStart="@dimen/_6sdp"
-                    android:paddingEnd="@dimen/_6sdp"
+                    android:paddingStart="@dimen/_7sdp"
+                    android:paddingEnd="@dimen/_7sdp"
                     android:background="@android:color/transparent"
                     app:drawableStartCompat="@drawable/ic_location"
                     app:drawableTint="?attr/colorPrimary"
@@ -59,10 +59,10 @@
 
                 <TextView
                     android:id="@+id/tvList"
-                    android:layout_width="@dimen/_60sdp"
+                    android:layout_width="@dimen/_70sdp"
                     android:layout_height="@dimen/_35sdp"
-                    android:paddingStart="@dimen/_6sdp"
-                    android:paddingEnd="@dimen/_6sdp"
+                    android:paddingStart="@dimen/_7sdp"
+                    android:paddingEnd="@dimen/_7sdp"
                     android:background="@android:color/transparent"
                     app:drawableStartCompat="@drawable/ic_list"
                     app:drawableTint="?attr/colorPrimary"
