@@ -17,7 +17,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/button_background_rounded"
+            android:background="@drawable/button_background_round"
             android:backgroundTint="@null"
             android:minHeight="50dp">
 

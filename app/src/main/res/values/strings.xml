@@ -18,9 +18,17 @@
     <string name="search_query_hint">Search city or area</string>
 
     <!-- Saved Fragment -->
-    <string name="saved_header">Save the homes you like</string>
-    <string name="saved_sub">You have to be signed in to save and view your favorite homes</string>
+    <string name="saved_homes_tab">Saved homes</string>
+    <string name="saved_searches_tab">Saved searches</string>
     <string name="go_to_sign_in">Go to sign in page</string>
+
+    <!-- Saved Homes Fragment -->
+    <string name="saved_homes_header">Save the homes you like</string>
+    <string name="saved_homes_sub">You have to be signed in to save and view your favorite homes</string>
+
+    <!-- Saved Searches Fragment -->
+    <string name="saved_searches_header">Save the areas you are interested in</string>
+    <string name="saved_searches_sub">You have to be signed in to save and view the areas you are interested in</string>
 
     <string name="dummy_text">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec posuere rhoncus aliquam. Vivamus luctus velit rhoncus felis rhoncus, a convallis diam sollicitudin. Donec vitae magna varius, congue ante quis, semper dui. Integer lectus sapien, convallis a purus ac, aliquet posuere lacus. Nam sed mauris at sapien convallis venenatis. Nullam at gravida dolor. Fusce scelerisque, ante finibus faucibus dictum, sem erat dignissim mi, vel tincidunt ante nisi ac magna. Pellentesque vestibulum placerat sapien, eu fringilla mi sodales ac. Fusce mi diam, volutpat sit amet faucibus quis, suscipit ut urna. Maecenas lacinia eleifend leo, sit amet mollis diam vestibulum vehicula. Suspendisse ullamcorper, arcu tempus ullamcorper luctus, sapien lectus tempor sem, eget mattis ipsum est in erat. In ut finibus nisi. Aliquam at tincidunt elit. Integer bibendum laoreet diam sed aliquam. Suspendisse gravida malesuada urna, vehicula sodales massa vestibulum non.

@@ -24,4 +24,12 @@
         android:id="@+id/accountFragment"
         android:name="gmail.ahmedmeabbas.realestateapp.account.presentation.AccountFragment"
         android:label="ProfileFragment" />
+    <fragment
+        android:id="@+id/savedHomesFragment"
+        android:name="gmail.ahmedmeabbas.realestateapp.saved.presentation.SavedHomesFragment"
+        android:label="SavedHomesFragment" />
+    <fragment
+        android:id="@+id/savedSearchesFragment"
+        android:name="gmail.ahmedmeabbas.realestateapp.saved.presentation.SavedSearchesFragment"
+        android:label="SavedSearchesFragment" />
 </navigation>
