@@ -5,23 +5,23 @@
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
+        android:id="@+id/guidelineSavedSearches"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.3" />
 
     <ImageView
-        android:id="@+id/ivMyHome"
+        android:id="@+id/ivSavedSearches"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/guideline"
+        app:layout_constraintTop_toTopOf="@id/guidelineSavedSearches"
         app:srcCompat="@drawable/map_search" />
 
     <TextView
-        android:id="@+id/tvMyHomeHeader"
+        android:id="@+id/tvSavedSearchesHeader"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_16sdp"
@@ -31,10 +31,10 @@
         style="@style/HeaderText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivMyHome" />
+        app:layout_constraintTop_toBottomOf="@+id/ivSavedSearches" />
 
     <TextView
-        android:id="@+id/tvMyHomeSub"
+        android:id="@+id/tvSavedSearchesSub"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_18sdp"
@@ -44,9 +44,10 @@
         style="@style/SavedSubText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvMyHomeHeader"/>
+        app:layout_constraintTop_toBottomOf="@+id/tvSavedSearchesHeader"/>
 
     <Button
+        android:id="@+id/btnSavedSearchesSignIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_16sdp"
@@ -61,5 +62,5 @@
         android:letterSpacing="0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvMyHomeSub"/>
+        app:layout_constraintTop_toBottomOf="@+id/tvSavedSearchesSub"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
