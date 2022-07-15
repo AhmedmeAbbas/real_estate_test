@@ -11,7 +11,7 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Tertiary brand color -->
         <item name="colorTertiary">@color/light_background</item>
-        <item name="colorOnTertiary">@color/light_background</item>
+        <item name="colorOnBackground">@color/light_background_variant</item>
         <!-- Status bar color. -->
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:statusBarColor">@color/light_background</item>
@@ -42,7 +42,7 @@
         <item name="android:gravity">center</item>
     </style>
 
-    <style name="SavedSubText" parent="TextAppearance.AppCompat">
+    <style name="SubText" parent="TextAppearance.AppCompat">
         <item name="android:textColor">@color/hint_color</item>
         <item name="android:textSize">@dimen/_14ssp</item>
         <item name="android:gravity">center</item>
@@ -55,5 +55,23 @@
     <style name="TabTextAppearance" parent="TextAppearance.Design.Tab">
         <item name="textAllCaps">false</item>
         <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="AccountItem" parent="TextAppearance.AppCompat">
+        <item name="android:layout_marginStart">@dimen/_14sdp</item>
+        <item name="android:layout_marginEnd">@dimen/_14sdp</item>
+        <item name="android:paddingStart">@dimen/_10sdp</item>
+        <item name="android:paddingEnd">@dimen/_10sdp</item>
+        <item name="android:paddingTop">@dimen/_14sdp</item>
+        <item name="android:paddingBottom">@dimen/_14sdp</item>
+        <item name="drawableEndCompat">@drawable/ic_arrow</item>
+        <item name="drawableTint">?attr/colorSecondary</item>
+        <item name="android:drawablePadding">@dimen/_12sdp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:textColor">?attr/colorSecondary</item>
+        <item name="android:textSize">@dimen/_13ssp</item>
     </style>
 </resources>

@@ -21,6 +21,22 @@ class AccountFragment: Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.btnAccountSignIn.setOnClickListener {
+            binding.apply {
+                clAccountHeader.background = null
+                tvAccountSignInSub.visibility = View.GONE
+                btnAccountSignIn.visibility = View.GONE
+                tvAccountSignInHeader.text = "Welcome"
+                tvAccountDisplayName.visibility = View.VISIBLE
+                tvAccountProfile.visibility = View.VISIBLE
+                tvAccountSignOut.visibility = View.VISIBLE
+            }
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

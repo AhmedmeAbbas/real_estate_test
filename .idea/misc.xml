@@ -10,19 +10,27 @@
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/drawable-v24/gradient_button_background_rectangle.xml" value="0.1695" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/drawable-v24/gradient_button_background_rounded.xml" value="0.2455" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/drawable-v24/ic_favorite_selected.xml" value="0.1695" />
+        <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/drawable-v24/ic_language.xml" value="0.1695" />
+        <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/drawable-v24/ic_messages.xml" value="0.1695" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/drawable-v24/ic_splash.xml" value="0.1695" />
+        <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/drawable-v24/ic_theme.xml" value="0.1695" />
+        <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/drawable/account_header_background.xml" value="0.1695" />
+        <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/drawable/account_item_background.xml" value="0.1695" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/drawable/custom_chat.xml" value="0.1695" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/drawable/custom_notification.xml" value="0.1695" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/drawable/favorite_button_icon.xml" value="0.1" />
+        <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/drawable/ic_account_selected.xml" value="0.1695" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1695" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/drawable/ic_list.xml" value="0.1695" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/drawable/ic_location.xml" value="0.1695" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/drawable/ic_sort2.xml" value="0.1695" />
+        <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/drawable/ic_tos.xml" value="0.1695" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/drawable/search_view_background.xml" value="0.1695" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/activity_test.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/button_with_image.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/custom_button.xml" value="0.25416666666666665" />
+        <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_account.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_chats.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_inbox.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_messages.xml" value="0.25416666666666665" />

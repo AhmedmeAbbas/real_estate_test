@@ -2,12 +2,14 @@
 <resources>
     <string name="app_name">Real Estate App</string>
     <string name="placeholder_text">Placeholder Text</string>
+    <string name="go_to_sign_in_page">الذهاب إلى صفحة تسجيل الدخول</string>
 
             <!-- Bottom Navigation -->
     <string name="bottom_nav_search_title">بحث</string>
     <string name="bottom_nav_saved_title">المفضلة</string>
     <string name="bottom_nav_my_home_title">منزلي</string>
     <string name="bottom_nav_inbox_title">الوارد</string>
+    <string name="bottom_nav_sign_in_title">سجل دخولك</string>
     <string name="bottom_nav_account_title">الحساب</string>
 
             <!-- Toolbar Menu -->
@@ -21,7 +23,6 @@
     <!-- Saved Fragment -->
     <string name="saved_homes_tab">العقارات المفضلة</string>
     <string name="saved_searches_tab">المناطق المفضلة</string>
-    <string name="go_to_sign_in">الذهاب إلى صفحة تسجيل الدخول</string>
 
     <!-- Saved Homes Fragment -->
     <string name="saved_homes_header">احفظ العقارات التي تعجبك</string>
@@ -46,6 +47,19 @@
     <!-- Notifications Fragment -->
     <string name="notifications_header">ابق على إطلاع!</string>
     <string name="notifications_sub">يتوجب عليك تسجيل الدخول لكي تتكمن من استقبال إشعارات حول عقاراتك ومناطقك المفضلة</string>
+
+    <!-- Account Fraggment -->
+    <string name="account_sign_in_header">سجل دخولك</string>
+    <string name="account_sign_in_sub">سجل دخولك لكي تتمكن من إضافة وإدارة عقاراتك, حفظ عقاراتك ومناطقك المفضلة و التواصل مع أصحاب العقارات</string>
+    <string name="account_profile_title">الملف الشخصي</string>
+    <string name="account_language_title">اللغة</string>
+    <string name="account_dark_mode_title">الوضع الليلي</string>
+    <string name="account_notifications_title">الإشعارات</string>
+    <string name="account_feedback_title">المشاكل والإقتراحات</string>
+    <string name="account_tos_title">شروط الخدمة</string>
+    <string name="account_privacy_policy_title">ينود الخصوصية</string>
+    <string name="account_sign_out_title">تسجيل خروج</string>
+    <string name="account_version">إصدار</string>
 
     <string name="dummy_text">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec posuere rhoncus aliquam. Vivamus luctus velit rhoncus felis rhoncus, a convallis diam sollicitudin. Donec vitae magna varius, congue ante quis, semper dui. Integer lectus sapien, convallis a purus ac, aliquet posuere lacus. Nam sed mauris at sapien convallis venenatis. Nullam at gravida dolor. Fusce scelerisque, ante finibus faucibus dictum, sem erat dignissim mi, vel tincidunt ante nisi ac magna. Pellentesque vestibulum placerat sapien, eu fringilla mi sodales ac. Fusce mi diam, volutpat sit amet faucibus quis, suscipit ut urna. Maecenas lacinia eleifend leo, sit amet mollis diam vestibulum vehicula. Suspendisse ullamcorper, arcu tempus ullamcorper luctus, sapien lectus tempor sem, eget mattis ipsum est in erat. In ut finibus nisi. Aliquam at tincidunt elit. Integer bibendum laoreet diam sed aliquam. Suspendisse gravida malesuada urna, vehicula sodales massa vestibulum non.

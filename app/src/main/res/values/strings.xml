@@ -1,12 +1,14 @@
 <resources>
     <string name="app_name">Real Estate App</string>
     <string name="placeholder_text">Placeholder Text</string>
+    <string name="go_to_sign_in_page">Go to sign in page</string>
 
     <!-- Bottom Navigation -->
     <string name="bottom_nav_search_title">Search</string>
     <string name="bottom_nav_saved_title">Saved</string>
     <string name="bottom_nav_my_home_title">My Home</string>
     <string name="bottom_nav_inbox_title">Inbox</string>
+    <string name="bottom_nav_sign_in_title">Sign In</string>
     <string name="bottom_nav_account_title">Account</string>
 
     <!-- Toolbar Menu -->
@@ -20,7 +22,6 @@
     <!-- Saved Fragment -->
     <string name="saved_homes_tab">Saved homes</string>
     <string name="saved_searches_tab">Saved searches</string>
-    <string name="go_to_sign_in">Go to sign in page</string>
 
     <!-- Saved Homes Fragment -->
     <string name="saved_homes_header">Save the homes you like</string>
@@ -45,6 +46,19 @@
     <!-- Notifications Fragment -->
     <string name="notifications_header">Stay updated!</string>
     <string name="notifications_sub">You have to be signed in to receive notifications about your favorite homes and areas</string>
+
+    <!-- Account Fraggment -->
+    <string name="account_sign_in_header">Sign In</string>
+    <string name="account_sign_in_sub">Sign in to add and manage listings, save your favorite homes and areas and contact homeowners</string>
+    <string name="account_profile_title">Profile</string>
+    <string name="account_language_title">Language</string>
+    <string name="account_dark_mode_title">Dark mode</string>
+    <string name="account_notifications_title">Notifications</string>
+    <string name="account_feedback_title">Issues and feedback</string>
+    <string name="account_tos_title">Terms of service</string>
+    <string name="account_privacy_policy_title">Privacy policy</string>
+    <string name="account_sign_out_title">Sign out</string>
+    <string name="account_version">Version</string>
 
     <string name="dummy_text">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec posuere rhoncus aliquam. Vivamus luctus velit rhoncus felis rhoncus, a convallis diam sollicitudin. Donec vitae magna varius, congue ante quis, semper dui. Integer lectus sapien, convallis a purus ac, aliquet posuere lacus. Nam sed mauris at sapien convallis venenatis. Nullam at gravida dolor. Fusce scelerisque, ante finibus faucibus dictum, sem erat dignissim mi, vel tincidunt ante nisi ac magna. Pellentesque vestibulum placerat sapien, eu fringilla mi sodales ac. Fusce mi diam, volutpat sit amet faucibus quis, suscipit ut urna. Maecenas lacinia eleifend leo, sit amet mollis diam vestibulum vehicula. Suspendisse ullamcorper, arcu tempus ullamcorper luctus, sapien lectus tempor sem, eget mattis ipsum est in erat. In ut finibus nisi. Aliquam at tincidunt elit. Integer bibendum laoreet diam sed aliquam. Suspendisse gravida malesuada urna, vehicula sodales massa vestibulum non.

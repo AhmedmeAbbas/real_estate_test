@@ -11,12 +11,15 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Tertiary brand color -->
         <item name="colorTertiary">@color/dark_background</item>
-        <item name="colorOnTertiary">@color/dark_background_variant</item>
+        <item name="colorOnBackground">@color/dark_background_variant</item>
         <!-- Status bar color. -->
         <item name="android:windowLightStatusBar">false</item>
         <item name="android:statusBarColor">@color/dark_background</item>
-        <!-- Customize your theme here. -->
+        <!-- Window -->
         <item name="android:windowBackground">@color/dark_background</item>
+        <!-- Text -->
+        <item name="android:textColor">@color/white</item>
+        <!-- Widget -->
     </style>
 
     <style name="MapToggleTextView" parent="TextAppearance.AppCompat">
@@ -39,9 +42,26 @@
         <item name="android:gravity">center</item>
     </style>
 
-    <style name="SavedSubText" parent="TextAppearance.AppCompat">
+    <style name="SubText" parent="TextAppearance.AppCompat">
         <item name="android:textColor">@color/light_hint_color</item>
         <item name="android:textSize">@dimen/_14ssp</item>
         <item name="android:gravity">center</item>
+    </style>
+
+    <style name="AccountItem" parent="TextAppearance.AppCompat">
+        <item name="android:layout_marginStart">@dimen/_14sdp</item>
+        <item name="android:layout_marginEnd">@dimen/_14sdp</item>
+        <item name="android:paddingStart">@dimen/_10sdp</item>
+        <item name="android:paddingEnd">@dimen/_10sdp</item>
+        <item name="android:paddingTop">@dimen/_14sdp</item>
+        <item name="android:paddingBottom">@dimen/_14sdp</item>
+        <item name="drawableEndCompat">@drawable/ic_arrow</item>
+        <item name="drawableTint">?attr/colorSecondary</item>
+        <item name="android:drawablePadding">@dimen/_12sdp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:textSize">@dimen/_13ssp</item>
     </style>
 </resources>

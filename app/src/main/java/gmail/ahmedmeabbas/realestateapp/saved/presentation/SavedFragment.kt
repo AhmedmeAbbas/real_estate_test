@@ -54,7 +54,7 @@ class SavedFragment : Fragment() {
                 tab.text = getString(R.string.saved_searches_tab)
                 tab.icon = ResourcesCompat.getDrawable(
                     requireActivity().resources,
-                    R.drawable.ic_search_selected,
+                    R.drawable.ic_search,
                     requireActivity().theme
                 )
             }
