@@ -19,7 +19,8 @@
         <item name="android:windowBackground">@color/dark_background</item>
         <!-- Text -->
         <item name="android:textColor">@color/white</item>
-        <!-- Widget -->
+        <!-- Dialog -->
+        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
     </style>
 
     <style name="MapToggleTextView" parent="TextAppearance.AppCompat">
@@ -64,7 +65,11 @@
         <item name="android:textSize">@dimen/_13ssp</item>
     </style>
 
-    <style name="MyDialogFragmentStyle" parent="ThemeOverlay.AppCompat.Dialog">
-        <item name="android:windowBackground">@drawable/dialog_background_round</item>
+    <style name="AppBottomSheetDialogTheme" parent="ThemeOverlay.MaterialComponents.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/BottomSheetBackground</item>
+    </style>
+
+    <style name="BottomSheetBackground" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/dialog_background_round</item>
     </style>
 </resources>
