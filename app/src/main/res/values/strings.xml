@@ -47,7 +47,7 @@
     <string name="notifications_header">Stay updated!</string>
     <string name="notifications_sub">You have to be signed in to receive notifications about your favorite homes and areas</string>
 
-    <!-- Account Fraggment -->
+    <!-- Account Fragment -->
     <string name="account_sign_in_header">Sign In</string>
     <string name="account_sign_in_sub">Sign in to add and manage listings, save your favorite homes and areas and contact homeowners</string>
     <string name="account_profile_title">Profile</string>
@@ -59,6 +59,9 @@
     <string name="account_privacy_policy_title">Privacy policy</string>
     <string name="account_sign_out_title">Sign out</string>
     <string name="account_version">Version</string>
+
+    <!-- Language Dialog -->
+    <string name="dialog_language_title">Language</string>
 
     <string name="dummy_text">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec posuere rhoncus aliquam. Vivamus luctus velit rhoncus felis rhoncus, a convallis diam sollicitudin. Donec vitae magna varius, congue ante quis, semper dui. Integer lectus sapien, convallis a purus ac, aliquet posuere lacus. Nam sed mauris at sapien convallis venenatis. Nullam at gravida dolor. Fusce scelerisque, ante finibus faucibus dictum, sem erat dignissim mi, vel tincidunt ante nisi ac magna. Pellentesque vestibulum placerat sapien, eu fringilla mi sodales ac. Fusce mi diam, volutpat sit amet faucibus quis, suscipit ut urna. Maecenas lacinia eleifend leo, sit amet mollis diam vestibulum vehicula. Suspendisse ullamcorper, arcu tempus ullamcorper luctus, sapien lectus tempor sem, eget mattis ipsum est in erat. In ut finibus nisi. Aliquam at tincidunt elit. Integer bibendum laoreet diam sed aliquam. Suspendisse gravida malesuada urna, vehicula sodales massa vestibulum non.

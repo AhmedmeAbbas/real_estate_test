@@ -23,13 +23,13 @@
     <fragment
         android:id="@+id/accountFragment"
         android:name="gmail.ahmedmeabbas.realestateapp.account.presentation.AccountFragment"
-        android:label="ProfileFragment" />
-    <fragment
-        android:id="@+id/savedHomesFragment"
-        android:name="gmail.ahmedmeabbas.realestateapp.saved.presentation.SavedHomesFragment"
-        android:label="SavedHomesFragment" />
-    <fragment
-        android:id="@+id/savedSearchesFragment"
-        android:name="gmail.ahmedmeabbas.realestateapp.saved.presentation.SavedSearchesFragment"
-        android:label="SavedSearchesFragment" />
+        android:label="ProfileFragment" >
+        <action
+            android:id="@+id/action_accountFragment_to_dialogLanguage"
+            app:destination="@id/dialogLanguage" />
+    </fragment>
+    <dialog
+        android:id="@+id/dialogLanguage"
+        android:name="gmail.ahmedmeabbas.realestateapp.account.presentation.DialogLanguage"
+        android:label="DialogLanguage" />
 </navigation>
