@@ -1,12 +1,15 @@
 package gmail.ahmedmeabbas.realestateapp.account.presentation
 
 import android.content.res.Configuration
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import gmail.ahmedmeabbas.realestateapp.R
@@ -29,12 +32,23 @@ class AccountFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setUpDarkModeTextView()
-        setUpLanguageListener()
         setUpSignInClickListener()
+        setUpLanguageListener()
+        setUpDarkModeListener()
+    }
+
+    private fun setUpDarkModeListener() {
+        binding.switchDarkMode.setOnCheckedChangeListener { switch, isChecked ->
+            if (isChecked) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                return@setOnCheckedChangeListener
+            }
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
     }
 
     private fun setUpDarkModeTextView() {
+        // Check after implementation
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
             binding.tvAccountDarkMode.visibility = View.GONE
             binding.switchDarkMode.visibility = View.GONE
@@ -43,6 +57,9 @@ class AccountFragment: Fragment() {
 
     override fun onResume() {
         super.onResume()
+        /**
+         set up an observer for this
+         */
         setUpDarkModeSwitchState()
     }
 

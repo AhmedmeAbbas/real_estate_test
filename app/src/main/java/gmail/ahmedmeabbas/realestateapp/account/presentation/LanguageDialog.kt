@@ -34,6 +34,9 @@ class LanguageDialog: BottomSheetDialogFragment() {
 
     override fun onResume() {
         super.onResume()
+        /**
+        set up an observer for this
+         */
         setUpCheckedRadioButton()
     }
 
