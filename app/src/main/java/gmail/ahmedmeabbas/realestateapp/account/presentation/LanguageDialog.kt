@@ -30,7 +30,11 @@ class LanguageDialog: BottomSheetDialogFragment() {
         binding.tvCancel.setOnClickListener {
             dialog?.cancel()
         }
-            setUpCheckedRadioButton()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        setUpCheckedRadioButton()
     }
 
     private fun setUpCheckedRadioButton() {

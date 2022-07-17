@@ -1,5 +1,6 @@
 package gmail.ahmedmeabbas.realestateapp.account.presentation
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -38,9 +39,28 @@ class AccountFragment: Fragment() {
             }
         }
 
+        setUpLanguageListener()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        setUpDarkModeSwitchState()
+    }
+
+    private fun setUpDarkModeSwitchState() {
+        binding.switchDarkMode.isChecked = isDarkModeOn()
+    }
+
+    private fun setUpLanguageListener() {
         binding.tvAccountLanguage.setOnClickListener {
             findNavController().navigate(R.id.action_accountFragment_to_dialogLanguage)
         }
+    }
+
+    private fun isDarkModeOn(): Boolean {
+        val nightModeFlags =
+            requireContext().resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+        return nightModeFlags == Configuration.UI_MODE_NIGHT_YES
     }
 
     override fun onDestroyView() {
