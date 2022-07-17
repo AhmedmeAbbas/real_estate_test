@@ -2,15 +2,12 @@ package gmail.ahmedmeabbas.realestateapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.widget.Button
 import androidx.activity.viewModels
-import androidx.appcompat.widget.SearchView
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import gmail.ahmedmeabbas.realestateapp.databinding.ActivityMainBinding
-import gmail.ahmedmeabbas.realestateapp.splash_screen.SplashScreenViewModel
+import gmail.ahmedmeabbas.realestateapp.splashscreen.SplashScreenViewModel
 
 class MainActivity : AppCompatActivity() {
 

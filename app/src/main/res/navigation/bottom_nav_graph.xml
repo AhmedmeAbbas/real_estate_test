@@ -30,6 +30,6 @@
     </fragment>
     <dialog
         android:id="@+id/dialogLanguage"
-        android:name="gmail.ahmedmeabbas.realestateapp.account.presentation.DialogLanguage"
+        android:name="gmail.ahmedmeabbas.realestateapp.account.presentation.LanguageDialog"
         android:label="DialogLanguage" />
 </navigation>

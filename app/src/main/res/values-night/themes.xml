@@ -15,11 +15,13 @@
         <!-- Status bar color. -->
         <item name="android:windowLightStatusBar">false</item>
         <item name="android:statusBarColor">@color/dark_background</item>
+        <!-- Other colors-->
+        <item name="colorControlActivated">?attr/colorPrimary</item>
         <!-- Window -->
         <item name="android:windowBackground">@color/dark_background</item>
         <!-- Text -->
         <item name="android:textColor">@color/white</item>
-        <!-- Dialog -->
+        <!-- Bottom sheet dialog -->
         <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
     </style>
 

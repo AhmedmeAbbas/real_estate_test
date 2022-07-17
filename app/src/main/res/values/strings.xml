@@ -1,8 +1,10 @@
 <resources>
+    <!-- General -->
     <string name="app_name">Real Estate App</string>
     <string name="placeholder_text">Placeholder Text</string>
     <string name="go_to_sign_in_page">Go to sign in page</string>
     <string name="cancel">Cancel</string>
+    <string name="ok">Ok</string>
 
     <!-- Bottom Navigation -->
     <string name="bottom_nav_search_title">Search</string>

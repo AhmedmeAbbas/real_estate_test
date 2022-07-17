@@ -1,4 +1,4 @@
-package gmail.ahmedmeabbas.realestateapp.splash_screen
+package gmail.ahmedmeabbas.realestateapp.splashscreen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
