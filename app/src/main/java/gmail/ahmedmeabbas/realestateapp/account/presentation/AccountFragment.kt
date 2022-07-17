@@ -47,14 +47,6 @@ class AccountFragment: Fragment() {
         }
     }
 
-    private fun setUpDarkModeTextView() {
-        // Check after implementation
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
-            binding.tvAccountDarkMode.visibility = View.GONE
-            binding.switchDarkMode.visibility = View.GONE
-        }
-    }
-
     override fun onResume() {
         super.onResume()
         /**
@@ -76,7 +68,7 @@ class AccountFragment: Fragment() {
     private fun isDarkModeOn(): Boolean {
         val nightModeFlags =
             requireContext().resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
-        return nightModeFlags == Configuration.UI_MODE_NIGHT_YES
+        return nightModeFlags == UI_MODE_NIGHT_YES
     }
 
     private fun setUpSignInClickListener() {

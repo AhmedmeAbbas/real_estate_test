@@ -1,4 +1,4 @@
-package gmail.ahmedmeabbas.realestateapp.account.util
+package gmail.ahmedmeabbas.realestateapp.util
 
 import android.content.Context
 import android.content.ContextWrapper

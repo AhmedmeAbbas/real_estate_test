@@ -15,6 +15,8 @@
         <!-- Status bar color. -->
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:statusBarColor">@color/light_background</item>
+        <!-- Other colors-->
+        <item name="colorControlActivated">?attr/colorPrimary</item>
         <!-- Window -->
         <item name="android:windowBackground">@color/light_background</item>
         <!-- Text -->
