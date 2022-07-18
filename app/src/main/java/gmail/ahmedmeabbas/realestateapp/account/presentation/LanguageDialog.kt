@@ -8,8 +8,9 @@ import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import gmail.ahmedmeabbas.realestateapp.R
 import gmail.ahmedmeabbas.realestateapp.databinding.DialogLanguageBinding
-import gmail.ahmedmeabbas.realestateapp.util.DataStoreManager
-import gmail.ahmedmeabbas.realestateapp.util.DataStoreManager.Companion.APP_LANGUAGE
+import gmail.ahmedmeabbas.realestateapp.userpreferences.DataStoreKeys.KEY_APP_LANGUAGE
+import gmail.ahmedmeabbas.realestateapp.userpreferences.UserPreferencesDataSource
+import gmail.ahmedmeabbas.realestateapp.userpreferences.UserPreferencesDataSourceImpl
 import kotlinx.coroutines.launch
 import java.util.*
 
@@ -17,7 +18,7 @@ class LanguageDialog: BottomSheetDialogFragment() {
 
     private var _binding: DialogLanguageBinding? = null
     private val binding get() = _binding!!
-    private lateinit var dataStoreManager: DataStoreManager
+    private lateinit var dataStoreManager: UserPreferencesDataSource
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,20 +32,20 @@ class LanguageDialog: BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         dialog?.setCancelable(true)
-        dataStoreManager = DataStoreManager(requireContext())
+        dataStoreManager = UserPreferencesDataSourceImpl(requireContext())
 
         setUpRadioGroupCheckedListener()
         setUpCancelTextView()
     }
 
     private fun setUpRadioGroupCheckedListener() {
-        binding.rgLanguage.setOnCheckedChangeListener { radioGroup, checkedId ->
+        binding.rgLanguage.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
                 R.id.rbArabic -> viewLifecycleOwner.lifecycleScope.launch {
-                    dataStoreManager.writeString(APP_LANGUAGE, "ar")
+                    dataStoreManager.writeString(KEY_APP_LANGUAGE, "ar")
                 }
                 R.id.rbEnglish -> viewLifecycleOwner.lifecycleScope.launch {
-                    dataStoreManager.writeString(APP_LANGUAGE, "en")
+                    dataStoreManager.writeString(KEY_APP_LANGUAGE, "en")
                 }
             }
         }

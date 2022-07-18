@@ -1,21 +1,20 @@
 package gmail.ahmedmeabbas.realestateapp
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import gmail.ahmedmeabbas.realestateapp.databinding.ActivityMainBinding
 import gmail.ahmedmeabbas.realestateapp.splashscreen.SplashScreenViewModel
-import gmail.ahmedmeabbas.realestateapp.util.DataStoreManager
-import gmail.ahmedmeabbas.realestateapp.util.DataStoreManager.Companion.APP_LANGUAGE
+import gmail.ahmedmeabbas.realestateapp.userpreferences.DataStoreKeys.KEY_APP_LANGUAGE
+import gmail.ahmedmeabbas.realestateapp.userpreferences.UserPreferencesDataSourceImpl
 import gmail.ahmedmeabbas.realestateapp.util.MyContextWrapper
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withTimeoutOrNull
 import java.util.*
-import kotlin.math.log
 
 class MainActivity : AppCompatActivity() {
 
@@ -44,12 +43,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun attachBaseContext(newBase: Context?) {
-        val dataStoreManager = DataStoreManager(newBase!!)
+        val userPreferencesDataSource = UserPreferencesDataSourceImpl(newBase!!)
         runBlocking {
-            setAppLanguage(dataStoreManager.readString(APP_LANGUAGE))
+            withTimeoutOrNull(1000) {
+                setAppLanguage(userPreferencesDataSource.readString(KEY_APP_LANGUAGE))
+            }
         }
         val language = appLanguage ?: Locale.getDefault().language
 
-        super.attachBaseContext(MyContextWrapper(newBase!!).wrap(newBase, language))
+        super.attachBaseContext(MyContextWrapper(newBase).wrap(newBase, language))
     }
 }

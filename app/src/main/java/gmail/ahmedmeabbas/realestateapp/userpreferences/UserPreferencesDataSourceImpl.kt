@@ -1,4 +1,4 @@
-package gmail.ahmedmeabbas.realestateapp.util
+package gmail.ahmedmeabbas.realestateapp.userpreferences
 
 import android.content.Context
 import androidx.datastore.core.DataStore
@@ -11,35 +11,33 @@ import kotlinx.coroutines.flow.first
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore("settings")
 
-class DataStoreManager(private val context: Context) {
+class UserPreferencesDataSourceImpl(
+    private val context: Context
+) : UserPreferencesDataSource {
 
-    suspend fun readBoolean(key: String): Boolean? {
+    override suspend fun readBoolean(key: String): Boolean? {
         val dataStoreKey = booleanPreferencesKey(key)
         val settings = context.dataStore.data.first()
         return settings[dataStoreKey]
     }
 
-    suspend fun readString(key: String): String? {
+    override suspend fun readString(key: String): String? {
         val dataStoreKey = stringPreferencesKey(key)
         val settings = context.dataStore.data.first()
         return settings[dataStoreKey]
     }
 
-    suspend fun writeBoolean(key: String, value: Boolean) {
+    override suspend fun writeBoolean(key: String, value: Boolean) {
         val dataStoreKey = booleanPreferencesKey(key)
         context.dataStore.edit { settings ->
             settings[dataStoreKey] = value
         }
     }
 
-    suspend fun writeString(key: String, value: String) {
+    override suspend fun writeString(key: String, value: String) {
         val dataStoreKey = stringPreferencesKey(key)
         context.dataStore.edit { settings ->
             settings[dataStoreKey] = value
         }
-    }
-
-    companion object {
-        const val APP_LANGUAGE = "appLanguage"
     }
 }
