@@ -1,24 +1,23 @@
-package gmail.ahmedmeabbas.realestateapp.account.presentation
+package gmail.ahmedmeabbas.realestateapp.account.presentation.language
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import gmail.ahmedmeabbas.realestateapp.R
 import gmail.ahmedmeabbas.realestateapp.databinding.DialogLanguageBinding
-import gmail.ahmedmeabbas.realestateapp.userpreferences.DataStoreKeys.KEY_APP_LANGUAGE
-import gmail.ahmedmeabbas.realestateapp.userpreferences.UserPreferencesDataSource
-import gmail.ahmedmeabbas.realestateapp.userpreferences.UserPreferencesDataSourceImpl
 import kotlinx.coroutines.launch
-import java.util.*
 
 class LanguageDialog: BottomSheetDialogFragment() {
 
     private var _binding: DialogLanguageBinding? = null
     private val binding get() = _binding!!
-    private lateinit var dataStoreManager: UserPreferencesDataSource
+    private val languageDialogViewModel: LanguageDialogViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,22 +31,33 @@ class LanguageDialog: BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         dialog?.setCancelable(true)
-        dataStoreManager = UserPreferencesDataSourceImpl(requireContext())
 
         setUpRadioGroupCheckedListener()
         setUpCancelTextView()
+        observeLanguageChange()
+    }
+
+    private fun observeLanguageChange() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                languageDialogViewModel.uiState.collect {
+                    if (it.languageCode == "en") {
+                        binding.rgLanguage.check(R.id.rbEnglish)
+                    } else {
+                        binding.rgLanguage.check(R.id.rbArabic)
+                    }
+                }
+            }
+        }
     }
 
     private fun setUpRadioGroupCheckedListener() {
         binding.rgLanguage.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
-                R.id.rbArabic -> viewLifecycleOwner.lifecycleScope.launch {
-                    dataStoreManager.writeString(KEY_APP_LANGUAGE, "ar")
-                }
-                R.id.rbEnglish -> viewLifecycleOwner.lifecycleScope.launch {
-                    dataStoreManager.writeString(KEY_APP_LANGUAGE, "en")
-                }
+                R.id.rbArabic -> languageDialogViewModel.changeLanguageCode("ar")
+                R.id.rbEnglish -> languageDialogViewModel.changeLanguageCode("en")
             }
+            cancelDialog()
         }
     }
 
@@ -55,22 +65,6 @@ class LanguageDialog: BottomSheetDialogFragment() {
         binding.tvCancel.setOnClickListener {
             cancelDialog()
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        /**
-        set up an observer for this
-         */
-        setUpCheckedRadioButton()
-    }
-
-    private fun setUpCheckedRadioButton() {
-        if (Locale.getDefault().language == "en") {
-            binding.rgLanguage.check(R.id.rbEnglish)
-            return
-        }
-        binding.rgLanguage.check(R.id.rbArabic)
     }
 
     private fun cancelDialog() {

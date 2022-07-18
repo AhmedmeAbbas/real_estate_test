@@ -1,6 +1,6 @@
 package gmail.ahmedmeabbas.realestateapp.userpreferences
 
-interface UserPreferencesDataSource {
+interface UserPreferencesRepository {
 
     suspend fun writeString(key:String, value: String)
 
