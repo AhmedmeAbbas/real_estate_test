@@ -1,21 +1,20 @@
 package gmail.ahmedmeabbas.realestateapp.account.presentation.language
 
 import androidx.lifecycle.ViewModel
-import gmail.ahmedmeabbas.realestateapp.userpreferences.DataStoreKeys.KEY_APP_LANGUAGE
 import gmail.ahmedmeabbas.realestateapp.userpreferences.UserPreferencesRepository
 import java.util.*
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 data class LanguageDialogUiState(
     val languageCode: String = Locale.getDefault().language
 )
 
-class LanguageDialogViewModel(
+@HiltViewModel
+class LanguageDialogViewModel @Inject constructor(
     private val userPreferencesRepository: UserPreferencesRepository
 ): ViewModel() {
 
@@ -24,10 +23,10 @@ class LanguageDialogViewModel(
 
     fun changeLanguageCode(languageCode: String) {
         viewModelScope.launch {
-            userPreferencesRepository.writeString(KEY_APP_LANGUAGE, languageCode)
+            userPreferencesRepository.writeAppLanguage(languageCode)
             _uiState.update {
                 it.copy(
-                    languageCode = userPreferencesRepository.readString(KEY_APP_LANGUAGE)
+                    languageCode = userPreferencesRepository.fetchAppLanguage()
                         ?: Locale.getDefault().language
                 )
             }

@@ -2,13 +2,10 @@ package gmail.ahmedmeabbas.realestateapp.account.presentation
 
 import android.content.res.Configuration
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
-import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -38,7 +35,7 @@ class AccountFragment: Fragment() {
     }
 
     private fun setUpDarkModeListener() {
-        binding.switchDarkMode.setOnCheckedChangeListener { switch, isChecked ->
+        binding.switchDarkMode.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 return@setOnCheckedChangeListener

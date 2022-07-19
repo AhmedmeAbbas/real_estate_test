@@ -11,9 +11,10 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import gmail.ahmedmeabbas.realestateapp.R
 import gmail.ahmedmeabbas.realestateapp.databinding.DialogLanguageBinding
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
-class LanguageDialog: BottomSheetDialogFragment() {
+class LanguageDialog : BottomSheetDialogFragment() {
 
     private var _binding: DialogLanguageBinding? = null
     private val binding get() = _binding!!
@@ -40,16 +41,20 @@ class LanguageDialog: BottomSheetDialogFragment() {
     private fun observeLanguageChange() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                languageDialogViewModel.uiState.collect {
-                    if (it.languageCode == "en") {
-                        binding.rgLanguage.check(R.id.rbEnglish)
-                    } else {
-                        binding.rgLanguage.check(R.id.rbArabic)
-                    }
+                languageDialogViewModel.uiState.map { uiState ->
+                    uiState.languageCode
                 }
+                    .collect { language ->
+                        if (language == "en") {
+                            binding.rgLanguage.check(R.id.rbEnglish)
+                        } else {
+                            binding.rgLanguage.check(R.id.rbArabic)
+                        }
+                    }
             }
         }
     }
+
 
     private fun setUpRadioGroupCheckedListener() {
         binding.rgLanguage.setOnCheckedChangeListener { _, checkedId ->
@@ -57,7 +62,6 @@ class LanguageDialog: BottomSheetDialogFragment() {
                 R.id.rbArabic -> languageDialogViewModel.changeLanguageCode("ar")
                 R.id.rbEnglish -> languageDialogViewModel.changeLanguageCode("en")
             }
-            cancelDialog()
         }
     }
 
@@ -74,5 +78,9 @@ class LanguageDialog: BottomSheetDialogFragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        private const val TAG = "LanguageDialog"
     }
 }

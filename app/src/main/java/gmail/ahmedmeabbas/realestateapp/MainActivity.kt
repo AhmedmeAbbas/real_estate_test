@@ -5,26 +5,24 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.preferencesDataStore
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.EntryPointAccessors
 import gmail.ahmedmeabbas.realestateapp.databinding.ActivityMainBinding
 import gmail.ahmedmeabbas.realestateapp.splashscreen.SplashScreenViewModel
 import gmail.ahmedmeabbas.realestateapp.util.MyContextWrapper
+import gmail.ahmedmeabbas.realestateapp.util.UserPrefsEntryPoint
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.withTimeoutOrNull
 import java.util.*
 
-val Context.dataStore: DataStore<Preferences> by preferencesDataStore("settings")
-
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private val splashScreenViewModel: SplashScreenViewModel by viewModels()
     private val mainViewModel: MainViewModel by viewModels()
-    private var appLanguage: String? = null
+    private var savedLanguage: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,19 +40,20 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigation.setupWithNavController(navController)
     }
 
-    private fun setAppLanguage(newLang: String) {
-        appLanguage = newLang
+    private fun setAppLanguage(newLang: String?) {
+        savedLanguage = newLang
     }
 
     override fun attachBaseContext(newBase: Context?) {
-        runBlocking {
-            withTimeoutOrNull(1000) {
-                val savedLanguage = mainViewModel.uiState.value.appLanguage
-                setAppLanguage(savedLanguage)
-            }
-        }
-        val language = appLanguage ?: Locale.getDefault().language
+        val userPrefsRepo = EntryPointAccessors.fromApplication(
+            newBase!!, UserPrefsEntryPoint::class.java
+        )
+            .userPrefsRepo
 
-        super.attachBaseContext(MyContextWrapper(newBase!!).wrap(newBase, language))
+        runBlocking {
+            setAppLanguage(userPrefsRepo.fetchAppLanguage())
+        }
+        val language = savedLanguage ?: Locale.getDefault().language
+        super.attachBaseContext(MyContextWrapper(newBase).wrap(newBase, language))
     }
 }

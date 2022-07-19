@@ -2,9 +2,9 @@ package gmail.ahmedmeabbas.realestateapp.userpreferences
 
 interface UserPreferencesRepository {
 
-    suspend fun writeString(key:String, value: String)
+    suspend fun writeAppLanguage(value: String)
 
-    suspend fun readString(key: String): String?
+    suspend fun fetchAppLanguage(): String?
 
     suspend fun writeBoolean(key:String, value: Boolean)
 
