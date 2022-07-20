@@ -2,7 +2,6 @@ package gmail.ahmedmeabbas.realestateapp
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -17,7 +16,6 @@ import gmail.ahmedmeabbas.realestateapp.databinding.ActivityMainBinding
 import gmail.ahmedmeabbas.realestateapp.splashscreen.SplashScreenViewModel
 import gmail.ahmedmeabbas.realestateapp.util.MyContextWrapper
 import gmail.ahmedmeabbas.realestateapp.util.UserPrefsEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
@@ -57,8 +55,6 @@ class MainActivity : AppCompatActivity() {
                     .map { it.savedLanguage }
                     .distinctUntilChanged()
                     .collect { savedLanguage ->
-                        Log.d(TAG, "observeLanguageChange: saved language: $savedLanguage")
-                        Log.d(TAG, "observeLanguageChange: app language: $appLanguage")
                         if (savedLanguage.isNullOrEmpty()) {
                             return@collect
                         }
@@ -71,7 +67,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setAppLanguage(newLang: String?) {
-        Log.d(TAG, "setAppLanguage: new lang: $newLang")
         newLang?.let { 
             appLanguage = newLang
         }
@@ -85,7 +80,6 @@ class MainActivity : AppCompatActivity() {
         runBlocking {
             setAppLanguage(userPrefsRepo.fetchAppLanguage())
         }
-        Log.d(TAG, "attachBaseContext: app language: $appLanguage")
         super.attachBaseContext(MyContextWrapper(newBase).wrap(newBase, appLanguage))
     }
 

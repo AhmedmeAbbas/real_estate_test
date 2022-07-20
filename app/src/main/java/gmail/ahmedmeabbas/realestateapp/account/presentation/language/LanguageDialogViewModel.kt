@@ -21,13 +21,12 @@ class LanguageDialogViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(LanguageDialogUiState())
     val uiState: StateFlow<LanguageDialogUiState> = _uiState.asStateFlow()
 
-    fun changeLanguageCode(languageCode: String) {
+    fun changeAppLanguage(languageCode: String) {
         viewModelScope.launch {
             userPreferencesRepository.writeAppLanguage(languageCode)
             _uiState.update {
                 it.copy(
-                    languageCode = userPreferencesRepository.fetchAppLanguage()
-                        ?: Locale.getDefault().language
+                    languageCode = userPreferencesRepository.fetchAppLanguage() ?: return@launch
                 )
             }
         }

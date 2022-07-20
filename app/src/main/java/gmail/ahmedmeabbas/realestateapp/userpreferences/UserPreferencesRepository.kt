@@ -1,6 +1,5 @@
 package gmail.ahmedmeabbas.realestateapp.userpreferences
 
-import androidx.datastore.preferences.core.Preferences
 import kotlinx.coroutines.flow.Flow
 
 interface UserPreferencesRepository {
@@ -13,7 +12,7 @@ interface UserPreferencesRepository {
 
     suspend fun fetchAppLanguage(): String?
 
-    suspend fun writeBoolean(key:String, value: Boolean)
+    suspend fun writeNightModeBoolean(value: Boolean)
 
-    suspend fun readBoolean(key: String): Boolean?
+    suspend fun fetchNightModeBoolean(): Boolean?
 }

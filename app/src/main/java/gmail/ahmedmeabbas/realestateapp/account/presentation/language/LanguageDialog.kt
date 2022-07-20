@@ -62,8 +62,8 @@ class LanguageDialog : BottomSheetDialogFragment() {
     private fun setUpRadioGroupCheckedListener() {
         binding.rgLanguage.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
-                R.id.rbArabic -> languageDialogViewModel.changeLanguageCode("ar")
-                R.id.rbEnglish -> languageDialogViewModel.changeLanguageCode("en")
+                R.id.rbArabic -> languageDialogViewModel.changeAppLanguage("ar")
+                R.id.rbEnglish -> languageDialogViewModel.changeAppLanguage("en")
             }
         }
     }

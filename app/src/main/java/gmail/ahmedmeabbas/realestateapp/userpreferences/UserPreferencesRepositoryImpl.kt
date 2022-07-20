@@ -3,6 +3,7 @@ package gmail.ahmedmeabbas.realestateapp.userpreferences
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.*
 import gmail.ahmedmeabbas.realestateapp.userpreferences.UserPreferencesRepositoryImpl.PreferencesKeys.APP_LANGUAGE
+import gmail.ahmedmeabbas.realestateapp.userpreferences.UserPreferencesRepositoryImpl.PreferencesKeys.NIGHT_MODE
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
@@ -17,6 +18,7 @@ class UserPreferencesRepositoryImpl @Inject constructor(
 
     private object PreferencesKeys {
         val APP_LANGUAGE = stringPreferencesKey("app_language")
+        val NIGHT_MODE = booleanPreferencesKey("night_mode")
     }
 
     override val userPreferencesFlow: Flow<UserPreferences> = dataStore.data
@@ -30,10 +32,9 @@ class UserPreferencesRepositoryImpl @Inject constructor(
             mapUserPreferences(preferences)
         }
 
-    override suspend fun readBoolean(key: String): Boolean? {
-        val dataStoreKey = booleanPreferencesKey(key)
+    override suspend fun fetchNightModeBoolean(): Boolean? {
         val settings = dataStore.data.first()
-        return settings[dataStoreKey]
+        return settings[NIGHT_MODE]
     }
 
     override suspend fun fetchAppLanguage(): String? {
@@ -41,10 +42,9 @@ class UserPreferencesRepositoryImpl @Inject constructor(
         return settings[APP_LANGUAGE]
     }
 
-    override suspend fun writeBoolean(key: String, value: Boolean) {
-        val dataStoreKey = booleanPreferencesKey(key)
+    override suspend fun writeNightModeBoolean(value: Boolean) {
         dataStore.edit { settings ->
-            settings[dataStoreKey] = value
+            settings[NIGHT_MODE] = value
         }
     }
 
