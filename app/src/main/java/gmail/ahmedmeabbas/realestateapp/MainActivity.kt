@@ -1,9 +1,12 @@
 package gmail.ahmedmeabbas.realestateapp
 
 import android.content.Context
+import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -39,13 +42,38 @@ class MainActivity : AppCompatActivity() {
         }
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        Log.d(TAG, "onCreate: ${AppCompatDelegate.getDefaultNightMode()}")
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
         binding.bottomNavigation.setupWithNavController(navController)
 
         observeLanguageChange()
+        observeNightModeChange()
+    }
+
+    private fun observeNightModeChange() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                mainViewModel.uiState
+                    .map { it.nightModeFlag }
+                    .distinctUntilChanged()
+                    .collect { nightModeFlag ->
+                        Log.d(TAG, "observeNightModeChange: $nightModeFlag")
+                        when (nightModeFlag) {
+                            AppCompatDelegate.MODE_NIGHT_YES ->
+                                toggleNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                            AppCompatDelegate.MODE_NIGHT_NO ->
+                                toggleNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                            else -> toggleNightMode(AppCompatDelegate.MODE_NIGHT_UNSPECIFIED)
+                        }
+                    }
+            }
+        }
+    }
+
+    private fun toggleNightMode(nightModeFlag: Int) {
+        AppCompatDelegate.setDefaultNightMode(nightModeFlag)
     }
 
     private fun observeLanguageChange() {
@@ -78,9 +106,25 @@ class MainActivity : AppCompatActivity() {
         ).userPrefsRepo
 
         runBlocking {
-            setAppLanguage(userPrefsRepo.fetchAppLanguage())
+            val userPrefs = userPrefsRepo.fetchInitialPreferences()
+            val savedLanguage = userPrefs.language
+            val nightModeFlag = userPrefs.nightModeFlag
+            Log.d(TAG, "attachBaseContext: $nightModeFlag")
+            setAppLanguage(savedLanguage)
+            checkNightModeFlagAndApply(nightModeFlag)
         }
+
         super.attachBaseContext(MyContextWrapper(newBase).wrap(newBase, appLanguage))
+    }
+
+    private fun checkNightModeFlagAndApply(nightModeFlag: Int) {
+        when (nightModeFlag) {
+            AppCompatDelegate.MODE_NIGHT_YES ->
+                toggleNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            AppCompatDelegate.MODE_NIGHT_NO ->
+                toggleNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            else -> toggleNightMode(AppCompatDelegate.MODE_NIGHT_UNSPECIFIED)
+        }
     }
 
     companion object {

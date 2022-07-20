@@ -125,7 +125,7 @@
         app:layout_constraintTop_toBottomOf="@id/tvAccountLanguage" />
 
     <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/switchDarkMode"
+        android:id="@+id/switchNightMode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/_10sdp"

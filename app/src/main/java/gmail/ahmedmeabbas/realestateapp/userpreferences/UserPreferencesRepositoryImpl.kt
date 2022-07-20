@@ -1,5 +1,6 @@
 package gmail.ahmedmeabbas.realestateapp.userpreferences
 
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.*
 import gmail.ahmedmeabbas.realestateapp.userpreferences.UserPreferencesRepositoryImpl.PreferencesKeys.APP_LANGUAGE
@@ -18,7 +19,7 @@ class UserPreferencesRepositoryImpl @Inject constructor(
 
     private object PreferencesKeys {
         val APP_LANGUAGE = stringPreferencesKey("app_language")
-        val NIGHT_MODE = booleanPreferencesKey("night_mode")
+        val NIGHT_MODE = intPreferencesKey("night_mode")
     }
 
     override val userPreferencesFlow: Flow<UserPreferences> = dataStore.data
@@ -32,7 +33,7 @@ class UserPreferencesRepositoryImpl @Inject constructor(
             mapUserPreferences(preferences)
         }
 
-    override suspend fun fetchNightModeBoolean(): Boolean? {
+    override suspend fun fetchNightModeFlag(): Int? {
         val settings = dataStore.data.first()
         return settings[NIGHT_MODE]
     }
@@ -42,7 +43,7 @@ class UserPreferencesRepositoryImpl @Inject constructor(
         return settings[APP_LANGUAGE]
     }
 
-    override suspend fun writeNightModeBoolean(value: Boolean) {
+    override suspend fun writeNightModeFlag(value: Int) {
         dataStore.edit { settings ->
             settings[NIGHT_MODE] = value
         }
@@ -60,6 +61,7 @@ class UserPreferencesRepositoryImpl @Inject constructor(
 
     private fun mapUserPreferences(preferences: Preferences): UserPreferences {
         val language = preferences[APP_LANGUAGE] ?: Locale.getDefault().language
-        return UserPreferences(language)
+        val nightModeFlag = preferences[NIGHT_MODE] ?: AppCompatDelegate.MODE_NIGHT_UNSPECIFIED
+        return UserPreferences(language, nightModeFlag)
     }
 }

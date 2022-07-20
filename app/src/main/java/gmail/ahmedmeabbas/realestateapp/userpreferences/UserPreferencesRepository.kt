@@ -12,7 +12,7 @@ interface UserPreferencesRepository {
 
     suspend fun fetchAppLanguage(): String?
 
-    suspend fun writeNightModeBoolean(value: Boolean)
+    suspend fun writeNightModeFlag(value: Int)
 
-    suspend fun fetchNightModeBoolean(): Boolean?
+    suspend fun fetchNightModeFlag(): Int?
 }

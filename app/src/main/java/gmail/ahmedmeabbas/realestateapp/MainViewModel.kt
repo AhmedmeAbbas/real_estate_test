@@ -1,5 +1,6 @@
 package gmail.ahmedmeabbas.realestateapp
 
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import gmail.ahmedmeabbas.realestateapp.userpreferences.DataStoreKeys.KEY_APP_LANGUAGE
@@ -11,7 +12,8 @@ import java.util.*
 import javax.inject.Inject
 
 data class MainActivityUiState(
-    var savedLanguage: String? = null
+    val savedLanguage: String? = null,
+    val nightModeFlag: Int = AppCompatDelegate.MODE_NIGHT_UNSPECIFIED
 )
 
 @HiltViewModel
@@ -26,8 +28,6 @@ class MainViewModel @Inject constructor(
         emit(userPreferencesRepository.fetchInitialPreferences())
     }
 
-    val savedLanguage = initialUserPrefs.map { it.language }
-
     init {
         fetchInitialState()
     }
@@ -35,11 +35,11 @@ class MainViewModel @Inject constructor(
     private fun fetchInitialState() {
         viewModelScope.launch {
             userPreferencesRepository.userPreferencesFlow
-                .map { preferences ->
-                preferences.language
-            }.collect { language ->
+                .collect { userPrefs ->
                 _uiState.update {
-                    it.copy(savedLanguage = language)
+                    it.copy(savedLanguage = userPrefs.language,
+                        nightModeFlag = userPrefs.nightModeFlag
+                    )
                 }
             }
         }

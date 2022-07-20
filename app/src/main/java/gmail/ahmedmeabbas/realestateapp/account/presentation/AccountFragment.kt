@@ -1,12 +1,13 @@
 package gmail.ahmedmeabbas.realestateapp.account.presentation
 
 import android.content.res.Configuration
-import android.content.res.Configuration.UI_MODE_NIGHT_YES
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
@@ -37,10 +38,9 @@ class AccountFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        accountViewModel.setNightMode(isNightMode())
         setUpSignInClickListener()
         setUpLanguageTextViewListener()
-        setUpNightModeListener()
+        setUpNightModeSwitchListener()
         setUpNightModeChangeListener()
     }
 
@@ -48,21 +48,23 @@ class AccountFragment: Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 accountViewModel.uiState
-                    .map { uiState -> uiState.isNightMode}
+                    .map { uiState -> uiState.nightModeFlag}
                     .distinctUntilChanged()
-                    .collect {
-                        binding.switchDarkMode.isChecked = it
+                    .collect { nightModeFlag ->
+                        Log.d(TAG, "setUpNightModeChangeListener: $nightModeFlag")
+                        binding.switchNightMode.isChecked =
+                            nightModeFlag == AppCompatDelegate.MODE_NIGHT_YES
                     }
             }
         }
     }
 
-    private fun setUpNightModeListener() {
-        binding.switchDarkMode.setOnCheckedChangeListener { _, isChecked ->
+    private fun setUpNightModeSwitchListener() {
+        binding.switchNightMode.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                accountViewModel.toggleNightMode(true)
+                accountViewModel.toggleNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             } else {
-                accountViewModel.toggleNightMode(false)
+                accountViewModel.toggleNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
         }
     }
@@ -71,12 +73,6 @@ class AccountFragment: Fragment() {
         binding.tvAccountLanguage.setOnClickListener {
             findNavController().navigate(R.id.action_accountFragment_to_dialogLanguage)
         }
-    }
-
-    private fun isNightMode(): Boolean {
-        val nightModeFlags =
-            requireContext().resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
-        return nightModeFlags == UI_MODE_NIGHT_YES
     }
 
     private fun setUpSignInClickListener() {
@@ -91,6 +87,12 @@ class AccountFragment: Fragment() {
                 tvAccountSignOut.visibility = View.VISIBLE
             }
         }
+    }
+
+    private fun isNightMode(): Boolean {
+        val nightModeFlags =
+            requireContext().resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+        return nightModeFlags == Configuration.UI_MODE_NIGHT_YES
     }
 
     override fun onDestroyView() {
