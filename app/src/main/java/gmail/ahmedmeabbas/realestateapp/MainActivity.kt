@@ -2,9 +2,13 @@ package gmail.ahmedmeabbas.realestateapp
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
@@ -13,6 +17,10 @@ import gmail.ahmedmeabbas.realestateapp.databinding.ActivityMainBinding
 import gmail.ahmedmeabbas.realestateapp.splashscreen.SplashScreenViewModel
 import gmail.ahmedmeabbas.realestateapp.util.MyContextWrapper
 import gmail.ahmedmeabbas.realestateapp.util.UserPrefsEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import java.util.*
 
@@ -22,7 +30,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val splashScreenViewModel: SplashScreenViewModel by viewModels()
     private val mainViewModel: MainViewModel by viewModels()
-    private var savedLanguage: String? = null
+    private var appLanguage: String = Locale.getDefault().language
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,22 +46,50 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
         binding.bottomNavigation.setupWithNavController(navController)
+
+        observeLanguageChange()
+    }
+
+    private fun observeLanguageChange() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                mainViewModel.uiState
+                    .map { it.savedLanguage }
+                    .distinctUntilChanged()
+                    .collect { savedLanguage ->
+                        Log.d(TAG, "observeLanguageChange: saved language: $savedLanguage")
+                        Log.d(TAG, "observeLanguageChange: app language: $appLanguage")
+                        if (savedLanguage.isNullOrEmpty()) {
+                            return@collect
+                        }
+                        if (savedLanguage != appLanguage) {
+                            this@MainActivity.recreate()
+                        }
+                    }
+            }
+        }
     }
 
     private fun setAppLanguage(newLang: String?) {
-        savedLanguage = newLang
+        Log.d(TAG, "setAppLanguage: new lang: $newLang")
+        newLang?.let { 
+            appLanguage = newLang
+        }
     }
 
     override fun attachBaseContext(newBase: Context?) {
         val userPrefsRepo = EntryPointAccessors.fromApplication(
             newBase!!, UserPrefsEntryPoint::class.java
-        )
-            .userPrefsRepo
+        ).userPrefsRepo
 
         runBlocking {
             setAppLanguage(userPrefsRepo.fetchAppLanguage())
         }
-        val language = savedLanguage ?: Locale.getDefault().language
-        super.attachBaseContext(MyContextWrapper(newBase).wrap(newBase, language))
+        Log.d(TAG, "attachBaseContext: app language: $appLanguage")
+        super.attachBaseContext(MyContextWrapper(newBase).wrap(newBase, appLanguage))
+    }
+
+    companion object {
+        private const val TAG = "MainActivity"
     }
 }

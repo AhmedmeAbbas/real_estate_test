@@ -1,21 +1,17 @@
 package gmail.ahmedmeabbas.realestateapp
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import gmail.ahmedmeabbas.realestateapp.userpreferences.DataStoreKeys.KEY_APP_LANGUAGE
 import gmail.ahmedmeabbas.realestateapp.userpreferences.UserPreferencesRepository
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
 
 data class MainActivityUiState(
-    val appLanguage: String = Locale.getDefault().language
+    var savedLanguage: String? = null
 )
 
 @HiltViewModel
@@ -26,6 +22,30 @@ class MainViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(MainActivityUiState())
     val uiState: StateFlow<MainActivityUiState> = _uiState.asStateFlow()
 
+    val initialUserPrefs = flow {
+        emit(userPreferencesRepository.fetchInitialPreferences())
+    }
+
+    val savedLanguage = initialUserPrefs.map { it.language }
+
+    init {
+        fetchInitialState()
+    }
+
+    private fun fetchInitialState() {
+        viewModelScope.launch {
+            userPreferencesRepository.userPreferencesFlow
+                .map { preferences ->
+                preferences.language
+            }.collect { language ->
+                _uiState.update {
+                    it.copy(savedLanguage = language)
+                }
+            }
+        }
+    }
+
+    /*
     private var fetchJob: Job? = null
 
     fun fetchAppLanguage() {
@@ -37,4 +57,10 @@ class MainViewModel @Inject constructor(
             }
         }
     }
+     */
+
+    private fun mapUserPreferences() {
+
+    }
+
 }

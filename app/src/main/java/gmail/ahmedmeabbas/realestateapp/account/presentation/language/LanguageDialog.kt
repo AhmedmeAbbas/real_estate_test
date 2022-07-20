@@ -1,6 +1,7 @@
 package gmail.ahmedmeabbas.realestateapp.account.presentation.language
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -46,8 +47,10 @@ class LanguageDialog : BottomSheetDialogFragment() {
                 }
                     .collect { language ->
                         if (language == "en") {
+                            Log.d(TAG, "observeLanguageChange: en triggered")
                             binding.rgLanguage.check(R.id.rbEnglish)
                         } else {
+                            Log.d(TAG, "observeLanguageChange: ar triggered")
                             binding.rgLanguage.check(R.id.rbArabic)
                         }
                     }
