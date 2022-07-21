@@ -1,7 +1,6 @@
 package gmail.ahmedmeabbas.realestateapp
 
 import android.content.Context
-import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
@@ -42,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         }
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        Log.d(TAG, "onCreate: ${AppCompatDelegate.getDefaultNightMode()}")
+
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
@@ -59,14 +58,7 @@ class MainActivity : AppCompatActivity() {
                     .map { it.nightModeFlag }
                     .distinctUntilChanged()
                     .collect { nightModeFlag ->
-                        Log.d(TAG, "observeNightModeChange: $nightModeFlag")
-                        when (nightModeFlag) {
-                            AppCompatDelegate.MODE_NIGHT_YES ->
-                                toggleNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                            AppCompatDelegate.MODE_NIGHT_NO ->
-                                toggleNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                            else -> toggleNightMode(AppCompatDelegate.MODE_NIGHT_UNSPECIFIED)
-                        }
+                        toggleNightMode(nightModeFlag)
                     }
             }
         }
@@ -95,7 +87,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setAppLanguage(newLang: String?) {
-        newLang?.let { 
+        newLang?.let {
             appLanguage = newLang
         }
     }
@@ -109,7 +101,7 @@ class MainActivity : AppCompatActivity() {
             val userPrefs = userPrefsRepo.fetchInitialPreferences()
             val savedLanguage = userPrefs.language
             val nightModeFlag = userPrefs.nightModeFlag
-            Log.d(TAG, "attachBaseContext: $nightModeFlag")
+
             setAppLanguage(savedLanguage)
             toggleNightMode(nightModeFlag)
         }

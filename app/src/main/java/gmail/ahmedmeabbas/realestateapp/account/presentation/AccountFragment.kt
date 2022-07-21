@@ -1,24 +1,16 @@
 package gmail.ahmedmeabbas.realestateapp.account.presentation
 
 import android.content.res.Configuration
-import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import gmail.ahmedmeabbas.realestateapp.R
 import gmail.ahmedmeabbas.realestateapp.databinding.FragmentAccountBinding
-import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.launch
 
 class AccountFragment: Fragment() {
 
@@ -41,44 +33,15 @@ class AccountFragment: Fragment() {
         setUpSignInClickListener()
         setUpLanguageTextViewListener()
         setUpNightModeSwitchListener()
-        //setUpNightModeChangeListener()
     }
 
     override fun onStart() {
         super.onStart()
         binding.switchNightMode.isChecked = isNightModeOn()
-        Log.d(TAG, "onStart: ${binding.switchNightMode.isChecked}")
-        Log.d(TAG, "onStart: ${accountViewModel.uiState.value.nightModeFlag}")
     }
-
-    /*
-    private fun setUpNightModeChangeListener() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                accountViewModel.uiState
-                    .map { uiState -> uiState.nightModeFlag}
-                    .distinctUntilChanged()
-                    .collect { nightModeFlag ->
-                        Log.d(TAG, "setUpNightModeChangeListener: $nightModeFlag before")
-                        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
-                            binding.switchNightMode.isChecked =
-                                nightModeFlag == AppCompatDelegate.MODE_NIGHT_YES || isNightModeOn()
-                        } else {
-                            binding.switchNightMode.isChecked =
-                                nightModeFlag == AppCompatDelegate.MODE_NIGHT_YES
-                        }
-                        Log.d(TAG, "setUpNightModeChangeListener: ${binding.switchNightMode.isChecked}")
-                        Log.d(TAG, "setUpNightModeChangeListener: $nightModeFlag after")
-                    }
-            }
-        }
-    }
-     */
-    
 
     private fun setUpNightModeSwitchListener() {
         binding.switchNightMode.setOnCheckedChangeListener { _, isChecked ->
-            Log.d(TAG, "setUpNightModeSwitchListener: $isChecked")
             if (isChecked) {
                 accountViewModel.toggleNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             } else {
