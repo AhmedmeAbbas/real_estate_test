@@ -111,20 +111,10 @@ class MainActivity : AppCompatActivity() {
             val nightModeFlag = userPrefs.nightModeFlag
             Log.d(TAG, "attachBaseContext: $nightModeFlag")
             setAppLanguage(savedLanguage)
-            checkNightModeFlagAndApply(nightModeFlag)
+            toggleNightMode(nightModeFlag)
         }
 
         super.attachBaseContext(MyContextWrapper(newBase).wrap(newBase, appLanguage))
-    }
-
-    private fun checkNightModeFlagAndApply(nightModeFlag: Int) {
-        when (nightModeFlag) {
-            AppCompatDelegate.MODE_NIGHT_YES ->
-                toggleNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            AppCompatDelegate.MODE_NIGHT_NO ->
-                toggleNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            else -> toggleNightMode(AppCompatDelegate.MODE_NIGHT_UNSPECIFIED)
-        }
     }
 
     companion object {

@@ -41,9 +41,17 @@ class AccountFragment: Fragment() {
         setUpSignInClickListener()
         setUpLanguageTextViewListener()
         setUpNightModeSwitchListener()
-        setUpNightModeChangeListener()
+        //setUpNightModeChangeListener()
     }
 
+    override fun onStart() {
+        super.onStart()
+        binding.switchNightMode.isChecked = isNightModeOn()
+        Log.d(TAG, "onStart: ${binding.switchNightMode.isChecked}")
+        Log.d(TAG, "onStart: ${accountViewModel.uiState.value.nightModeFlag}")
+    }
+
+    /*
     private fun setUpNightModeChangeListener() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -51,16 +59,26 @@ class AccountFragment: Fragment() {
                     .map { uiState -> uiState.nightModeFlag}
                     .distinctUntilChanged()
                     .collect { nightModeFlag ->
-                        Log.d(TAG, "setUpNightModeChangeListener: $nightModeFlag")
-                        binding.switchNightMode.isChecked =
-                            nightModeFlag == AppCompatDelegate.MODE_NIGHT_YES
+                        Log.d(TAG, "setUpNightModeChangeListener: $nightModeFlag before")
+                        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
+                            binding.switchNightMode.isChecked =
+                                nightModeFlag == AppCompatDelegate.MODE_NIGHT_YES || isNightModeOn()
+                        } else {
+                            binding.switchNightMode.isChecked =
+                                nightModeFlag == AppCompatDelegate.MODE_NIGHT_YES
+                        }
+                        Log.d(TAG, "setUpNightModeChangeListener: ${binding.switchNightMode.isChecked}")
+                        Log.d(TAG, "setUpNightModeChangeListener: $nightModeFlag after")
                     }
             }
         }
     }
+     */
+    
 
     private fun setUpNightModeSwitchListener() {
         binding.switchNightMode.setOnCheckedChangeListener { _, isChecked ->
+            Log.d(TAG, "setUpNightModeSwitchListener: $isChecked")
             if (isChecked) {
                 accountViewModel.toggleNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             } else {
@@ -89,7 +107,7 @@ class AccountFragment: Fragment() {
         }
     }
 
-    private fun isNightMode(): Boolean {
+    private fun isNightModeOn(): Boolean {
         val nightModeFlags =
             requireContext().resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
         return nightModeFlags == Configuration.UI_MODE_NIGHT_YES

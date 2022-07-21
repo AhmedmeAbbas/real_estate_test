@@ -16,18 +16,35 @@ data class AccountUiState(
 @HiltViewModel
 class AccountViewModel @Inject constructor(
     private val userPreferencesRepository: UserPreferencesRepository
-): ViewModel() {
+) : ViewModel() {
 
     private val _uiState = MutableStateFlow(AccountUiState())
     val uiState: StateFlow<AccountUiState> = _uiState.asStateFlow()
+
+    init {
+        fetchInitialState()
+    }
+
+    private fun fetchInitialState() {
+        viewModelScope.launch {
+            userPreferencesRepository.userPreferencesFlow
+                .collect { userPrefs ->
+                    _uiState.update {
+                        it.copy(nightModeFlag = userPrefs.nightModeFlag)
+                    }
+                }
+        }
+    }
 
     fun toggleNightMode(nightModeFlag: Int) {
         viewModelScope.launch {
             userPreferencesRepository.writeNightModeFlag(nightModeFlag)
             _uiState.update {
-                it.copy(nightModeFlag =
-                userPreferencesRepository.fetchNightModeFlag()
-                    ?: AppCompatDelegate.MODE_NIGHT_UNSPECIFIED)
+                it.copy(
+                    nightModeFlag =
+                    userPreferencesRepository.fetchNightModeFlag()
+                        ?: AppCompatDelegate.MODE_NIGHT_UNSPECIFIED
+                )
             }
         }
     }
