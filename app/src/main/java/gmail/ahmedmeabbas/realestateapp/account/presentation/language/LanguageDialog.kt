@@ -47,10 +47,8 @@ class LanguageDialog : BottomSheetDialogFragment() {
                 }
                     .collect { language ->
                         if (language == "en") {
-                            Log.d(TAG, "observeLanguageChange: en triggered")
                             binding.rgLanguage.check(R.id.rbEnglish)
                         } else {
-                            Log.d(TAG, "observeLanguageChange: ar triggered")
                             binding.rgLanguage.check(R.id.rbArabic)
                         }
                     }

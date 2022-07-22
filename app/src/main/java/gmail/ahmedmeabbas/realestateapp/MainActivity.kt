@@ -2,7 +2,6 @@ package gmail.ahmedmeabbas.realestateapp
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -17,7 +16,7 @@ import dagger.hilt.android.EntryPointAccessors
 import gmail.ahmedmeabbas.realestateapp.databinding.ActivityMainBinding
 import gmail.ahmedmeabbas.realestateapp.splashscreen.SplashScreenViewModel
 import gmail.ahmedmeabbas.realestateapp.util.MyContextWrapper
-import gmail.ahmedmeabbas.realestateapp.util.UserPrefsEntryPoint
+import gmail.ahmedmeabbas.realestateapp.userpreferences.UserPrefsEntryPoint
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
@@ -75,10 +74,9 @@ class MainActivity : AppCompatActivity() {
                     .map { it.savedLanguage }
                     .distinctUntilChanged()
                     .collect { savedLanguage ->
-                        if (savedLanguage.isNullOrEmpty()) {
+                        if (savedLanguage == appLanguage) {
                             return@collect
-                        }
-                        if (savedLanguage != appLanguage) {
+                        } else {
                             this@MainActivity.recreate()
                         }
                     }

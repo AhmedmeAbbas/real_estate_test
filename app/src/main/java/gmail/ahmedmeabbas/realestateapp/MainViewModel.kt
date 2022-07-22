@@ -6,10 +6,11 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import gmail.ahmedmeabbas.realestateapp.userpreferences.UserPreferencesRepository
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import java.util.*
 import javax.inject.Inject
 
 data class MainActivityUiState(
-    val savedLanguage: String? = null,
+    val savedLanguage: String = Locale.getDefault().language,
     val nightModeFlag: Int = AppCompatDelegate.MODE_NIGHT_UNSPECIFIED
 )
 
@@ -25,7 +26,7 @@ class MainViewModel @Inject constructor(
         fetchInitialState()
     }
 
-    private fun fetchInitialState() {
+    fun fetchInitialState() {
         viewModelScope.launch {
             userPreferencesRepository.userPreferencesFlow
                 .collect { userPrefs ->

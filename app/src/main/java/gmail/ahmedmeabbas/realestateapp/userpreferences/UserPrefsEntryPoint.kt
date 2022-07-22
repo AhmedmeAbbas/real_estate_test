@@ -1,4 +1,4 @@
-package gmail.ahmedmeabbas.realestateapp.util
+package gmail.ahmedmeabbas.realestateapp.userpreferences
 
 import dagger.hilt.EntryPoint
 import dagger.hilt.InstallIn

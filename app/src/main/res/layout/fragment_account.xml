@@ -111,7 +111,7 @@
         app:layout_constraintTop_toBottomOf="@id/tvAccountNotifications" />
 
     <TextView
-        android:id="@+id/tvAccountDarkMode"
+        android:id="@+id/tvAccountNightMode"
         style="@style/AccountItem"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -129,9 +129,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/_10sdp"
-        app:layout_constraintBottom_toBottomOf="@id/tvAccountDarkMode"
-        app:layout_constraintEnd_toEndOf="@id/tvAccountDarkMode"
-        app:layout_constraintTop_toTopOf="@id/tvAccountDarkMode" />
+        app:layout_constraintBottom_toBottomOf="@id/tvAccountNightMode"
+        app:layout_constraintEnd_toEndOf="@id/tvAccountNightMode"
+        app:layout_constraintTop_toTopOf="@id/tvAccountNightMode" />
 
     <TextView
         android:id="@+id/tvAccountFeedback"
@@ -143,7 +143,7 @@
         app:drawableStartCompat="@drawable/ic_feedback"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvAccountDarkMode" />
+        app:layout_constraintTop_toBottomOf="@id/tvAccountNightMode" />
 
     <TextView
         android:id="@+id/tvAccountToS"
