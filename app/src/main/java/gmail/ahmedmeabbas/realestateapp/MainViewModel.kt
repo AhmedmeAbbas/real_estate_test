@@ -26,7 +26,7 @@ class MainViewModel @Inject constructor(
         fetchInitialState()
     }
 
-    fun fetchInitialState() {
+    private fun fetchInitialState() {
         viewModelScope.launch {
             userPreferencesRepository.userPreferencesFlow
                 .collect { userPrefs ->

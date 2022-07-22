@@ -2,6 +2,7 @@ package gmail.ahmedmeabbas.realestateapp
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -41,6 +42,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        Log.d(TAG, "onCreate: app language: $appLanguage")
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
@@ -74,19 +76,16 @@ class MainActivity : AppCompatActivity() {
                     .map { it.savedLanguage }
                     .distinctUntilChanged()
                     .collect { savedLanguage ->
+                        Log.d(TAG, "observeLanguageChange: prefs language: $savedLanguage")
                         if (savedLanguage == appLanguage) {
+                            Log.d(TAG, "observeLanguageChange: return triggered")
                             return@collect
                         } else {
+                            Log.d(TAG, "observeLanguageChange: recreate triggered")
                             this@MainActivity.recreate()
                         }
                     }
             }
-        }
-    }
-
-    private fun setAppLanguage(newLang: String?) {
-        newLang?.let {
-            appLanguage = newLang
         }
     }
 
@@ -95,16 +94,31 @@ class MainActivity : AppCompatActivity() {
             newBase!!, UserPrefsEntryPoint::class.java
         ).userPrefsRepo
 
+        checkLocale()
         runBlocking {
             val userPrefs = userPrefsRepo.fetchInitialPreferences()
             val savedLanguage = userPrefs.language
             val nightModeFlag = userPrefs.nightModeFlag
 
+            Log.d(TAG, "attachBaseContext: saved language: $savedLanguage")
             setAppLanguage(savedLanguage)
             toggleNightMode(nightModeFlag)
         }
 
         super.attachBaseContext(MyContextWrapper(newBase).wrap(newBase, appLanguage))
+    }
+
+    private fun checkLocale() {
+        val supportedLanguages = listOf("ar", "en")
+        if (Locale.getDefault().language !in supportedLanguages) {
+            Locale.setDefault(Locale("en"))
+        }
+    }
+
+    private fun setAppLanguage(newLang: String?) {
+        newLang?.let {
+            appLanguage = newLang
+        }
     }
 
     companion object {

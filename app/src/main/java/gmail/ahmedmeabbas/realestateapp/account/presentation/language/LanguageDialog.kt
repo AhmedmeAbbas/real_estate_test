@@ -1,7 +1,6 @@
 package gmail.ahmedmeabbas.realestateapp.account.presentation.language
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +11,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import gmail.ahmedmeabbas.realestateapp.R
 import gmail.ahmedmeabbas.realestateapp.databinding.DialogLanguageBinding
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 
 class LanguageDialog : BottomSheetDialogFragment() {
@@ -42,20 +41,17 @@ class LanguageDialog : BottomSheetDialogFragment() {
     private fun observeLanguageChange() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                languageDialogViewModel.uiState.map { uiState ->
-                    uiState.languageCode
-                }
-                    .collect { language ->
-                        if (language == "en") {
-                            binding.rgLanguage.check(R.id.rbEnglish)
-                        } else {
+                languageDialogViewModel.uiState
+                    .collect { uiState ->
+                        if (uiState.languageCode == "ar") {
                             binding.rgLanguage.check(R.id.rbArabic)
+                        } else {
+                            binding.rgLanguage.check(R.id.rbEnglish)
                         }
                     }
             }
         }
     }
-
 
     private fun setUpRadioGroupCheckedListener() {
         binding.rgLanguage.setOnCheckedChangeListener { _, checkedId ->

@@ -12,7 +12,7 @@ import androidx.navigation.fragment.findNavController
 import gmail.ahmedmeabbas.realestateapp.R
 import gmail.ahmedmeabbas.realestateapp.databinding.FragmentAccountBinding
 
-class AccountFragment: Fragment() {
+class AccountFragment : Fragment() {
 
     private var _binding: FragmentAccountBinding? = null
     private val binding get() = _binding!!
@@ -31,6 +31,7 @@ class AccountFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setUpSignInClickListener()
+        setUpNotificationsTextViewListener()
         setUpLanguageTextViewListener()
         setUpNightModeSwitchListener()
     }
@@ -40,6 +41,18 @@ class AccountFragment: Fragment() {
         binding.switchNightMode.isChecked = isNightModeOn()
     }
 
+    private fun setUpNotificationsTextViewListener() {
+        binding.tvAccountNotifications.setOnClickListener {
+            navigateTo(R.id.action_accountFragment_to_notificationSettingsFragment)
+        }
+    }
+
+    private fun setUpLanguageTextViewListener() {
+        binding.tvAccountLanguage.setOnClickListener {
+            navigateTo(R.id.action_accountFragment_to_dialogLanguage)
+        }
+    }
+
     private fun setUpNightModeSwitchListener() {
         binding.switchNightMode.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
@@ -47,12 +60,6 @@ class AccountFragment: Fragment() {
             } else {
                 accountViewModel.toggleNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
-        }
-    }
-
-    private fun setUpLanguageTextViewListener() {
-        binding.tvAccountLanguage.setOnClickListener {
-            findNavController().navigate(R.id.action_accountFragment_to_dialogLanguage)
         }
     }
 
@@ -68,6 +75,10 @@ class AccountFragment: Fragment() {
                 tvAccountSignOut.visibility = View.VISIBLE
             }
         }
+    }
+
+    private fun navigateTo(actionId: Int) {
+        findNavController().navigate(actionId)
     }
 
     private fun isNightModeOn(): Boolean {

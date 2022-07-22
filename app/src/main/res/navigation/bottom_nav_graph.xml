@@ -25,9 +25,20 @@
         android:name="gmail.ahmedmeabbas.realestateapp.account.presentation.AccountFragment"
         android:label="ProfileFragment" >
         <action
+            android:id="@+id/action_accountFragment_to_notificationSettingsFragment"
+            app:destination="@id/notificationSettingsFragment"
+            app:enterAnim="@anim/slide_in_end"
+            app:exitAnim="@anim/slide_out_start"
+            app:popEnterAnim="@anim/slide_in_start"
+            app:popExitAnim="@anim/slide_out_end"/>
+        <action
             android:id="@+id/action_accountFragment_to_dialogLanguage"
             app:destination="@id/dialogLanguage" />
     </fragment>
+    <fragment
+        android:id="@+id/notificationSettingsFragment"
+        android:name="gmail.ahmedmeabbas.realestateapp.account.presentation.notifications.NotificationSettingsFragment"
+        android:label="NotificationSettingsFragment" />
     <dialog
         android:id="@+id/dialogLanguage"
         android:name="gmail.ahmedmeabbas.realestateapp.account.presentation.language.LanguageDialog"
