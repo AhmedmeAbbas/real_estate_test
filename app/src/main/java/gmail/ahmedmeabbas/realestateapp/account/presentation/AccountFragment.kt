@@ -49,7 +49,7 @@ class AccountFragment : Fragment() {
 
     private fun setUpLanguageTextViewListener() {
         binding.tvAccountLanguage.setOnClickListener {
-            navigateTo(R.id.action_accountFragment_to_dialogLanguage)
+            navigateTo(R.id.action_accountFragment_to_languageDialog)
         }
     }
 

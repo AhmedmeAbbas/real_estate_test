@@ -6,7 +6,7 @@
     <string name="cancel">Cancel</string>
     <string name="ok">Ok</string>
 
-    <!-- Bottom Navigation -->
+    <!-- Bottom navigation -->
     <string name="bottom_nav_search_title">Search</string>
     <string name="bottom_nav_saved_title">Saved</string>
     <string name="bottom_nav_my_home_title">My Home</string>
@@ -14,7 +14,7 @@
     <string name="bottom_nav_sign_in_title">Sign In</string>
     <string name="bottom_nav_account_title">Account</string>
 
-    <!-- Toolbar Menu -->
+    <!-- Toolbar menu -->
     <string name="toolbar_list_title">List</string>
     <string name="toolbar_map_title">Map</string>
     <string name="toolbar_filter_title">Filter</string>
@@ -22,35 +22,35 @@
     <string name="toolbar_save_search_title">Save Search</string>
     <string name="search_query_hint">Search city or area</string>
 
-    <!-- Saved Fragment -->
+    <!-- Saved fragment -->
     <string name="saved_homes_tab">Saved homes</string>
     <string name="saved_searches_tab">Saved searches</string>
 
-    <!-- Saved Homes Fragment -->
+    <!-- Saved homes fragment -->
     <string name="saved_homes_header">Save the homes you like</string>
     <string name="saved_homes_sub">You have to be signed in to save and view your favorite homes</string>
 
-    <!-- Saved Searches Fragment -->
+    <!-- Saved searches fragment -->
     <string name="saved_searches_header">Save the areas you are interested in</string>
     <string name="saved_searches_sub">You have to be signed in to save and view the areas you are interested in</string>
 
-    <!-- My Home Fragment -->
+    <!-- My home fragment -->
     <string name="my_home_header">All your listings in one place</string>
     <string name="my_home_sub">You have to be signed in to manage and keep track of your listings</string>
 
-    <!-- Inbox Fragment -->
+    <!-- Inbox fragment -->
     <string name="chats_tab">Chats</string>
     <string name="notifications_tab">Notifications</string>
 
-    <!-- Chats Fragment -->
+    <!-- Chats fragment -->
     <string name="chats_header">Connect with homeowners</string>
     <string name="chats_sub">You have to be signed in to send and receive messages</string>
 
-    <!-- Notifications Fragment -->
+    <!-- Notifications fragment -->
     <string name="notifications_header">Stay updated!</string>
     <string name="notifications_sub">You have to be signed in to receive notifications about your favorite homes and areas</string>
 
-    <!-- Account Fragment -->
+    <!-- Account fragment -->
     <string name="account_sign_in_header">Sign In</string>
     <string name="account_sign_in_sub">Sign in to add and manage listings, save your favorite homes and areas and contact homeowners</string>
     <string name="account_profile_title">Profile</string>
@@ -63,17 +63,24 @@
     <string name="account_sign_out_title">Sign out</string>
     <string name="account_version">Version</string>
 
-    <!-- Language Dialog -->
+    <!-- Language dialog -->
     <string name="dialog_language_title">Choose a language</string>
 
-    <!-- Notification Settings -->
+    <!-- Notification settings -->
     <string name="notif_settings_toolbar_title">Notification settings</string>
     <string name="notif_settings_new_listings_header">New listings</string>
-    <string name="notif_settings_new_listings_sub">Receive notifications when new listings are added in your saved areas</string>
+    <string name="notif_settings_new_listings_sub">Get notified when new listings are added in your saved areas</string>
     <string name="notif_settings_status_update_header">Listing status update</string>
-    <string name="notif_settings_status_update_sub">Receive notifications when any of your saved homes is updated (eg. price or availability)</string>
+    <string name="notif_settings_status_update_sub">Get notified when any of your saved homes is updated (eg. price or availability)</string>
     <string name="notif_settings_messages_header">Messages</string>
-    <string name="notif_settings_messages_sub">Receive notifications about incoming messages from homeowners and buyers</string>
+    <string name="notif_settings_messages_sub">Get notified about incoming messages from homeowners and buyers</string>
+
+    <!-- Notification settings dialogs-->
+    <string name="dialog_new_listings_title">New listings notifications</string>
+    <string name="dialog_status_update_title">Status update notifications</string>
+    <string name="dialog_messages_title">Messages notifications</string>
+    <string name="dialog_push_notifications">Push notifications</string>
+    <string name="dialog_email_notifications">Email notifications</string>
 
     <string name="dummy_text">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec posuere rhoncus aliquam. Vivamus luctus velit rhoncus felis rhoncus, a convallis diam sollicitudin. Donec vitae magna varius, congue ante quis, semper dui. Integer lectus sapien, convallis a purus ac, aliquet posuere lacus. Nam sed mauris at sapien convallis venenatis. Nullam at gravida dolor. Fusce scelerisque, ante finibus faucibus dictum, sem erat dignissim mi, vel tincidunt ante nisi ac magna. Pellentesque vestibulum placerat sapien, eu fringilla mi sodales ac. Fusce mi diam, volutpat sit amet faucibus quis, suscipit ut urna. Maecenas lacinia eleifend leo, sit amet mollis diam vestibulum vehicula. Suspendisse ullamcorper, arcu tempus ullamcorper luctus, sapien lectus tempor sem, eget mattis ipsum est in erat. In ut finibus nisi. Aliquam at tincidunt elit. Integer bibendum laoreet diam sed aliquam. Suspendisse gravida malesuada urna, vehicula sodales massa vestibulum non.

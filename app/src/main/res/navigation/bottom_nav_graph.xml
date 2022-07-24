@@ -32,15 +32,37 @@
             app:popEnterAnim="@anim/slide_in_start"
             app:popExitAnim="@anim/slide_out_end"/>
         <action
-            android:id="@+id/action_accountFragment_to_dialogLanguage"
-            app:destination="@id/dialogLanguage" />
+            android:id="@+id/action_accountFragment_to_languageDialog"
+            app:destination="@id/languageDialog" />
     </fragment>
     <fragment
         android:id="@+id/notificationSettingsFragment"
         android:name="gmail.ahmedmeabbas.realestateapp.account.presentation.notifications.NotificationSettingsFragment"
-        android:label="NotificationSettingsFragment" />
+        android:label="NotificationSettingsFragment" >
+        <action
+            android:id="@+id/action_notificationSettingsFragment_to_newListingsDialog"
+            app:destination="@id/newListingsDialog" />
+        <action
+            android:id="@+id/action_notificationSettingsFragment_to_statusUpdateDialog"
+            app:destination="@id/statusUpdateDialog" />
+        <action
+            android:id="@+id/action_notificationSettingsFragment_to_messagesDialog"
+            app:destination="@id/messagesDialog" />
+    </fragment>
     <dialog
-        android:id="@+id/dialogLanguage"
+        android:id="@+id/languageDialog"
         android:name="gmail.ahmedmeabbas.realestateapp.account.presentation.language.LanguageDialog"
         android:label="DialogLanguage" />
+    <dialog
+        android:id="@+id/newListingsDialog"
+        android:name="gmail.ahmedmeabbas.realestateapp.account.presentation.notifications.NewListingsDialog"
+        android:label="NewListingsDialog" />
+    <dialog
+        android:id="@+id/statusUpdateDialog"
+        android:name="gmail.ahmedmeabbas.realestateapp.account.presentation.notifications.StatusUpdateDialog"
+        android:label="StatusUpdateDialog" />
+    <dialog
+        android:id="@+id/messagesDialog"
+        android:name="gmail.ahmedmeabbas.realestateapp.account.presentation.notifications.MessagesDialog"
+        android:label="MessagesDialog" />
 </navigation>

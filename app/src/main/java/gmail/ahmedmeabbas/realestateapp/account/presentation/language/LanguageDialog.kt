@@ -11,7 +11,6 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import gmail.ahmedmeabbas.realestateapp.R
 import gmail.ahmedmeabbas.realestateapp.databinding.DialogLanguageBinding
-import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 
 class LanguageDialog : BottomSheetDialogFragment() {
@@ -64,12 +63,8 @@ class LanguageDialog : BottomSheetDialogFragment() {
 
     private fun setUpCancelTextView() {
         binding.tvCancel.setOnClickListener {
-            cancelDialog()
+            dialog?.cancel()
         }
-    }
-
-    private fun cancelDialog() {
-        dialog?.cancel()
     }
 
     override fun onDestroyView() {

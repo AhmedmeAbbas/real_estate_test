@@ -7,7 +7,7 @@
     <string name="cancel">إلغاء</string>
     <string name="ok">موافق</string>
 
-            <!-- Bottom Navigation -->
+    <!-- Bottom navigation -->
     <string name="bottom_nav_search_title">بحث</string>
     <string name="bottom_nav_saved_title">المفضلة</string>
     <string name="bottom_nav_my_home_title">منزلي</string>
@@ -15,7 +15,7 @@
     <string name="bottom_nav_sign_in_title">سجل دخولك</string>
     <string name="bottom_nav_account_title">الحساب</string>
 
-            <!-- Toolbar Menu -->
+    <!-- Toolbar menu -->
     <string name="toolbar_list_title">قائمة</string>
     <string name="toolbar_map_title">خريطة</string>
     <string name="toolbar_filter_title">تصفية</string>
@@ -23,35 +23,35 @@
     <string name="toolbar_save_search_title">حفظ البحث</string>
     <string name="search_query_hint">إبحث عن مدينة, منطقة أو حي</string>
 
-    <!-- Saved Fragment -->
+    <!-- Saved fragment -->
     <string name="saved_homes_tab">العقارات المفضلة</string>
     <string name="saved_searches_tab">المناطق المفضلة</string>
 
-    <!-- Saved Homes Fragment -->
+    <!-- Saved homes fragment -->
     <string name="saved_homes_header">احفظ العقارات التي تعجبك</string>
     <string name="saved_homes_sub">يتوجب عليك تسجيل الدخول لكي تتمكن من حفظ و عرض عقاراتك المفضلة</string>
 
-    <!-- Saved Searches Fragment -->
+    <!-- Saved searches fragment -->
     <string name="saved_searches_header">احفظ المناطق التي تهمك</string>
     <string name="saved_searches_sub">يتوجب عليك تسجيل الدخول لكي تتمكن من حفظ و عرض المناطق التي تهمك</string>
 
-    <!-- My Home Fragment -->
+    <!-- My home fragment -->
     <string name="my_home_header">جميع عقاراتك في مكان واحد</string>
     <string name="my_home_sub">يتوجب عليك تسجيل الدخول لكي تتمكن من إدارة ومتابعة عقاراتك</string>
 
-    <!-- Inbox Fragment -->
+    <!-- Inbox fragment -->
     <string name="chats_tab">المحادثات</string>
     <string name="notifications_tab">الإشعارات</string>
 
-    <!-- Chats Fragment -->
+    <!-- Chats fragment -->
     <string name="chats_header">تواصل مع اصحاب العقارات</string>
     <string name="chats_sub">يتوجب عليك تسجيل الدخول لكي تتمكن من إرسال واستقبال الرسائل</string>
 
-    <!-- Notifications Fragment -->
+    <!-- Notifications fragment -->
     <string name="notifications_header">ابق على إطلاع!</string>
     <string name="notifications_sub">يتوجب عليك تسجيل الدخول لكي تتكمن من استقبال إشعارات حول عقاراتك ومناطقك المفضلة</string>
 
-    <!-- Account Fragment -->
+    <!-- Account fragment -->
     <string name="account_sign_in_header">سجل دخولك</string>
     <string name="account_sign_in_sub">سجل دخولك لكي تتمكن من إضافة وإدارة عقاراتك, حفظ عقاراتك ومناطقك المفضلة و التواصل مع أصحاب العقارات</string>
     <string name="account_profile_title">الملف الشخصي</string>
@@ -64,10 +64,10 @@
     <string name="account_sign_out_title">تسجيل خروج</string>
     <string name="account_version">إصدار</string>
 
-    <!-- Language Dialog -->
+    <!-- Language dialog -->
     <string name="dialog_language_title">اختر اللغة</string>
 
-    <!-- Notification Settings -->
+    <!-- Notification settings -->
     <string name="notif_settings_toolbar_title">إعدادات الإشعارات</string>
     <string name="notif_settings_new_listings_header">العقارات الجديدة</string>
     <string name="notif_settings_new_listings_sub">استقبل إشعارات عندما تتم إضافة عقارات جديدة في مناطقك المحفوطة</string>
@@ -75,6 +75,13 @@
     <string name="notif_settings_status_update_sub">استقبل إشعارات في حالة تغيير حالة أي من عقاراتك المحفوظة (مثال. السعر أو التوفر)</string>
     <string name="notif_settings_messages_header">الرسائل</string>
     <string name="notif_settings_messages_sub">استقبل إشعارات حول الرسائل القادمة من أصحاب العقارات والمشترين</string>
+
+    <!-- Notification settings dialogs-->
+    <string name="dialog_new_listings_title">إشعارات العقارات الجديدة</string>
+    <string name="dialog_status_update_title">إشعارات تحديث الحالة</string>
+    <string name="dialog_messages_title">إشعارات الرسائل</string>
+    <string name="dialog_push_notifications">إشعارات الهاتف</string>
+    <string name="dialog_email_notifications">إشعارات البريد الإلكتروني</string>
 
     <string name="dummy_text">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec posuere rhoncus aliquam. Vivamus luctus velit rhoncus felis rhoncus, a convallis diam sollicitudin. Donec vitae magna varius, congue ante quis, semper dui. Integer lectus sapien, convallis a purus ac, aliquet posuere lacus. Nam sed mauris at sapien convallis venenatis. Nullam at gravida dolor. Fusce scelerisque, ante finibus faucibus dictum, sem erat dignissim mi, vel tincidunt ante nisi ac magna. Pellentesque vestibulum placerat sapien, eu fringilla mi sodales ac. Fusce mi diam, volutpat sit amet faucibus quis, suscipit ut urna. Maecenas lacinia eleifend leo, sit amet mollis diam vestibulum vehicula. Suspendisse ullamcorper, arcu tempus ullamcorper luctus, sapien lectus tempor sem, eget mattis ipsum est in erat. In ut finibus nisi. Aliquam at tincidunt elit. Integer bibendum laoreet diam sed aliquam. Suspendisse gravida malesuada urna, vehicula sodales massa vestibulum non.

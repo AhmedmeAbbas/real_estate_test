@@ -45,7 +45,7 @@
             android:id="@+id/tvNewListingsSub"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_4sdp"
+            android:layout_marginTop="@dimen/_3sdp"
             android:text="@string/notif_settings_new_listings_sub"
             style="@style/SubText"
             android:textSize="@dimen/_12ssp"
@@ -82,7 +82,7 @@
             android:id="@+id/tvStatusUpdateSub"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_4sdp"
+            android:layout_marginTop="@dimen/_3sdp"
             android:text="@string/notif_settings_status_update_sub"
             style="@style/SubText"
             android:textSize="@dimen/_12ssp"
@@ -119,7 +119,7 @@
             android:id="@+id/tvMessagesSub"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_4sdp"
+            android:layout_marginTop="@dimen/_3sdp"
             android:text="@string/notif_settings_messages_sub"
             style="@style/SubText"
             android:textSize="@dimen/_12ssp"
@@ -128,5 +128,4 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
