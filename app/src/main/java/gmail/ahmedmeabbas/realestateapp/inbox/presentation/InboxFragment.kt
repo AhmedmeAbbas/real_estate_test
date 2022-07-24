@@ -12,9 +12,9 @@ import com.google.android.material.tabs.TabLayoutMediator
 import gmail.ahmedmeabbas.realestateapp.R
 import gmail.ahmedmeabbas.realestateapp.databinding.FragmentInboxBinding
 
-private const val NUM_TABS = 2
+private const val NUM_TABS = 3
 
-class InboxFragment: Fragment() {
+class InboxFragment : Fragment() {
 
     private var _binding: FragmentInboxBinding? = null
     private val binding get() = _binding!!
@@ -43,20 +43,31 @@ class InboxFragment: Fragment() {
 
     private fun setUpTabLayoutMediator() {
         TabLayoutMediator(binding.inboxTabLayout, binding.inboxViewPager) { tab, position ->
-            if (position == 0) {
-                tab.text = getString(R.string.chats_tab)
-                tab.icon = ResourcesCompat.getDrawable(
-                    requireActivity().resources,
-                    R.drawable.custom_chat,
-                    requireActivity().theme
-                )
-            } else {
-                tab.text = getString(R.string.notifications_tab)
-                tab.icon = ResourcesCompat.getDrawable(
-                    requireActivity().resources,
-                    R.drawable.custom_notification,
-                    requireActivity().theme
-                )
+            when (position) {
+                0 -> {
+                    tab.text = getString(R.string.requests_tab)
+                    tab.icon = ResourcesCompat.getDrawable(
+                        requireActivity().resources,
+                        R.drawable.custom_requests,
+                        requireActivity().theme
+                    )
+                }
+                1 -> {
+                    tab.text = getString(R.string.chats_tab)
+                    tab.icon = ResourcesCompat.getDrawable(
+                        requireActivity().resources,
+                        R.drawable.custom_chat,
+                        requireActivity().theme
+                    )
+                }
+                2 -> {
+                    tab.text = getString(R.string.notifications_tab)
+                    tab.icon = ResourcesCompat.getDrawable(
+                        requireActivity().resources,
+                        R.drawable.custom_notification,
+                        requireActivity().theme
+                    )
+                }
             }
         }.attach()
     }
@@ -88,9 +99,10 @@ class InboxFragment: Fragment() {
 
         override fun createFragment(position: Int): Fragment {
             return when (position) {
-                0 -> ChatsFragment()
-                1 -> NotificationsFragment()
-                else -> ChatsFragment()
+                0 -> RequestsFragment()
+                1 -> ChatsFragment()
+                2 -> NotificationsFragment()
+                else -> RequestsFragment()
             }
         }
     }

@@ -4,12 +4,12 @@
     <string name="placeholder_text">Placeholder Text</string>
     <string name="go_to_sign_in_page">Go to sign in page</string>
     <string name="cancel">Cancel</string>
-    <string name="ok">Ok</string>
+    <string name="ok">OK</string>
 
     <!-- Bottom navigation -->
     <string name="bottom_nav_search_title">Search</string>
     <string name="bottom_nav_saved_title">Saved</string>
-    <string name="bottom_nav_my_home_title">My Home</string>
+    <string name="bottom_nav_my_listings_title">My Listings</string>
     <string name="bottom_nav_inbox_title">Inbox</string>
     <string name="bottom_nav_sign_in_title">Sign In</string>
     <string name="bottom_nav_account_title">Account</string>
@@ -36,15 +36,20 @@
 
     <!-- My home fragment -->
     <string name="my_home_header">All your listings in one place</string>
-    <string name="my_home_sub">You have to be signed in to manage and keep track of your listings</string>
+    <string name="my_home_sub">You have to be signed in to add and manage your listings</string>
 
     <!-- Inbox fragment -->
     <string name="chats_tab">Chats</string>
+    <string name="requests_tab">Requests</string>
     <string name="notifications_tab">Notifications</string>
 
     <!-- Chats fragment -->
     <string name="chats_header">Connect with homeowners</string>
     <string name="chats_sub">You have to be signed in to send and receive messages</string>
+
+    <!-- Requests fragment-->
+    <string name="requests_header">Follow your requests</string>
+    <string name="requests_sub">You have to be signed in to follow and manage your requests</string>
 
     <!-- Notifications fragment -->
     <string name="notifications_header">Stay updated!</string>

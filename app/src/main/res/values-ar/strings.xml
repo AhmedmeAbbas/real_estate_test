@@ -10,7 +10,7 @@
     <!-- Bottom navigation -->
     <string name="bottom_nav_search_title">بحث</string>
     <string name="bottom_nav_saved_title">المفضلة</string>
-    <string name="bottom_nav_my_home_title">منزلي</string>
+    <string name="bottom_nav_my_listings_title">عقاراتي</string>
     <string name="bottom_nav_inbox_title">الوارد</string>
     <string name="bottom_nav_sign_in_title">سجل دخولك</string>
     <string name="bottom_nav_account_title">الحساب</string>
@@ -37,15 +37,20 @@
 
     <!-- My home fragment -->
     <string name="my_home_header">جميع عقاراتك في مكان واحد</string>
-    <string name="my_home_sub">يتوجب عليك تسجيل الدخول لكي تتمكن من إدارة ومتابعة عقاراتك</string>
+    <string name="my_home_sub">يتوجب عليك تسجيل الدخول لكي تتمكن من إضافة و إدارة عقاراتك</string>
 
     <!-- Inbox fragment -->
     <string name="chats_tab">المحادثات</string>
     <string name="notifications_tab">الإشعارات</string>
+    <string name="requests_tab">الطلبات</string>
 
     <!-- Chats fragment -->
     <string name="chats_header">تواصل مع اصحاب العقارات</string>
     <string name="chats_sub">يتوجب عليك تسجيل الدخول لكي تتمكن من إرسال واستقبال الرسائل</string>
+
+    <!-- Requests fragment-->
+    <string name="requests_header">تابع طلباتك</string>
+    <string name="requests_sub">يتوجب عليك تسجيل الدخول لكي تتمكن من متابعة وإدارة طلباتك</string>
 
     <!-- Notifications fragment -->
     <string name="notifications_header">ابق على إطلاع!</string>
