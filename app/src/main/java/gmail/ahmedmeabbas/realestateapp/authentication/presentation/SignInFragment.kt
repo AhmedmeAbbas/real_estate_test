@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import gmail.ahmedmeabbas.realestateapp.R
 import gmail.ahmedmeabbas.realestateapp.databinding.FragmentSignInBinding
 
 class SignInFragment: Fragment() {
@@ -27,6 +28,10 @@ class SignInFragment: Fragment() {
 
         binding.toolbarSignIn.setNavigationOnClickListener {
             findNavController().navigateUp()
+        }
+
+        binding.btnSignInEmail.setOnClickListener {
+            findNavController().navigate(R.id.action_signInFragment_to_emailSignInFragment)
         }
     }
 

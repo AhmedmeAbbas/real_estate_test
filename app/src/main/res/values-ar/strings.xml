@@ -25,6 +25,13 @@
     <string name="or">أو</string>
     <string name="sign_in_tos">بقيامك بتسجيل الدخول أنت توافق على شروط الخدمة و سياسة الخصوصية الخاصة بنا</string>
 
+    <!-- Email sign in fragment -->
+    <string name="email_sign_in_header">سجل دخولك عبر البريد الإلكتروني</string>
+    <string name="email_hint">البريد الإلكتروني</string>
+    <string name="password_hint">كلمة المرور</string>
+    <string name="forgot_password">هل نسيت كلمة المرور؟</string>
+    <string name="sign_in_button">Sign In</string>
+
     <!-- Search fragment -->
     <string name="toolbar_list_title">قائمة</string>
     <string name="toolbar_map_title">خريطة</string>

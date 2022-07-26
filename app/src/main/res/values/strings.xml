@@ -24,6 +24,13 @@
     <string name="or">Or</string>
     <string name="sign_in_tos">By signing in you agree to out Terms of Service and Privacy Policy</string>
 
+    <!-- Email sign in fragment -->
+    <string name="email_sign_in_header">Sign in with email</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="forgot_password">Forgot your password?</string>
+    <string name="sign_in_button">Sign In</string>
+
     <!-- Search fragment -->
     <string name="toolbar_list_title">List</string>
     <string name="toolbar_map_title">Map</string>
