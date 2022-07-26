@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.AttrRes
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import gmail.ahmedmeabbas.realestateapp.R
@@ -37,29 +38,40 @@ class EmailSignInFragment: Fragment() {
             findNavController().navigateUp()
         }
 
-
+        binding.btnEmailSignIn.tvButton.text = getString(R.string.sign_in_button)
 
         binding.btnEmailSignIn.root.setOnClickListener {
             binding.btnEmailSignIn.progressBar.visibility = View.VISIBLE
             binding.btnEmailSignIn.tvButton.visibility = View.GONE
+            binding.btnEmailSignIn.root.isEnabled = false
         }
     }
 
     private fun setUpEditTextColor() {
-        val primaryColor = requireContext().getColorFromAttr(androidx.appcompat.R.attr.colorPrimary)
+        val colorSecondary = requireContext().getColorFromAttr(com.google.android.material.R.attr.colorSecondary)
         val hintColor = ContextCompat.getColor(requireContext(), R.color.hint_color)
         binding.etEmailSignIn.setOnFocusChangeListener { _, hasFocus ->
-            val color = if (hasFocus) primaryColor else hintColor
+            val color = if (hasFocus) colorSecondary else hintColor
             binding.emailSignInTIL.apply {
-                setStartIconDrawable(R.drawable.ic_mail_selected)
+                val mailOutlined =
+                    ResourcesCompat.getDrawable(requireContext().resources, R.drawable.ic_mail, null)
+                val mailFilled =
+                    ResourcesCompat.getDrawable(requireContext().resources, R.drawable.ic_mail_selected, null)
+                val drawable = if (hasFocus) mailFilled else mailOutlined
+                startIconDrawable = drawable
                 setStartIconTintList(ColorStateList.valueOf(color))
             }
         }
 
         binding.etPasswordSignIn.setOnFocusChangeListener { _, hasFocus ->
-            val color = if (hasFocus) primaryColor else hintColor
+            val color = if (hasFocus) colorSecondary else hintColor
+            val lockOutlined =
+                ResourcesCompat.getDrawable(requireContext().resources, R.drawable.ic_lock, null)
+            val lockFilled =
+                ResourcesCompat.getDrawable(requireContext().resources, R.drawable.ic_lock_selected, null)
+            val drawable = if (hasFocus) lockFilled else lockOutlined
             binding.passwordSignInTIL.apply {
-                setStartIconDrawable(R.drawable.ic_lock_selected)
+                startIconDrawable = drawable
                 setStartIconTintList(ColorStateList.valueOf(color))
                 setEndIconTintList(ColorStateList.valueOf(color))
             }

@@ -20,8 +20,9 @@
         style="@style/HeaderText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_35sdp"
         android:text="@string/email_sign_in_header"
+        android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbarEmailSignIn" />
@@ -31,11 +32,12 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_30sdp"
-        android:layout_marginTop="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_50sdp"
         android:layout_marginEnd="@dimen/_30sdp"
         android:scrollbarSize="25dp"
         android:scrollbarThumbHorizontal="@color/hint_color"
         android:textColorHint="@color/hint_color"
+        app:hintTextColor="@color/hint_color"
         app:boxStrokeWidth="0dp"
         app:boxStrokeWidthFocused="0dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -60,11 +62,12 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_30sdp"
-        android:layout_marginTop="@dimen/_18sdp"
+        android:layout_marginTop="@dimen/_15sdp"
         android:layout_marginEnd="@dimen/_30sdp"
         android:scrollbarSize="25dp"
         android:scrollbarThumbHorizontal="@color/hint_color"
         android:textColorHint="@color/hint_color"
+        app:hintTextColor="@color/hint_color"
         app:boxStrokeWidth="0dp"
         app:boxStrokeWidthFocused="0dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -86,27 +89,27 @@
             android:minHeight="48dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:id="@+id/tvForgotPassword"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_6sdp"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:text="@string/forgot_password"
-        android:textSize="@dimen/_13ssp"
-        app:layout_constraintEnd_toEndOf="@id/passwordSignInTIL"
-        app:layout_constraintStart_toStartOf="@id/passwordSignInTIL"
-        app:layout_constraintTop_toBottomOf="@id/passwordSignInTIL" />
-
     <include
         android:id="@+id/btnEmailSignIn"
         layout="@layout/loading_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_24sdp"
-        android:layout_marginStart="@dimen/_40sdp"
-        android:layout_marginEnd="@dimen/_40sdp"
-        app:layout_constraintTop_toBottomOf="@id/tvForgotPassword"
+        android:layout_marginTop="@dimen/_25sdp"
+        android:layout_marginStart="@dimen/_30sdp"
+        android:layout_marginEnd="@dimen/_30sdp"
+        app:layout_constraintTop_toBottomOf="@id/passwordSignInTIL"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvForgotPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:text="@string/forgot_password"
+        android:textSize="@dimen/_13ssp"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/btnEmailSignIn"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

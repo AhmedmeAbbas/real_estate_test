@@ -142,6 +142,7 @@
                 android:layout_marginEnd="@dimen/_30sdp"
                 android:text="@string/sign_in_tos"
                 style="@style/SubText"
+                android:textSize="@dimen/_13ssp"
                 app:layout_constraintTop_toBottomOf="@id/btnSignInCreateAccount"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>

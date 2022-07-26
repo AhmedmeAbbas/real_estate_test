@@ -29,8 +29,8 @@
     <string name="email_sign_in_header">سجل دخولك عبر البريد الإلكتروني</string>
     <string name="email_hint">البريد الإلكتروني</string>
     <string name="password_hint">كلمة المرور</string>
-    <string name="forgot_password">هل نسيت كلمة المرور؟</string>
-    <string name="sign_in_button">Sign In</string>
+    <string name="forgot_password">نسيت كلمة المرور؟</string>
+    <string name="sign_in_button">تسجيل دخول</string>
 
     <!-- Search fragment -->
     <string name="toolbar_list_title">قائمة</string>

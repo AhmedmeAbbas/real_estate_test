@@ -5,8 +5,7 @@
     android:layout_height="wrap_content"
     android:paddingTop="@dimen/_14sdp"
     android:paddingBottom="@dimen/_14sdp"
-    android:background="@drawable/ripple_round_transparent"
-    android:elevation="@dimen/_6sdp">
+    android:background="@drawable/ripple_round_primary">
 
     <TextView
         android:id="@+id/tvButton"
@@ -15,6 +14,8 @@
         android:gravity="center"
         android:text="@string/placeholder_text"
         android:textSize="@dimen/_14ssp"
+        android:textColor="?attr/colorTertiary"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,7 +26,7 @@
         style="?android:attr/progressBarStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:indeterminateTint="?attr/colorSecondary"
+        android:indeterminateTint="?attr/colorTertiary"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
