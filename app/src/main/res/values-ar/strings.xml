@@ -15,7 +15,17 @@
     <string name="bottom_nav_sign_in_title">سجل دخولك</string>
     <string name="bottom_nav_account_title">الحساب</string>
 
-    <!-- Toolbar menu -->
+    <!-- Sign in fragment-->
+    <string name="sign_in_header">تسجيل دخول أو إنشاء حساب</string>
+    <string name="sign_in_sub">اختر أحد الخيارات في الأسفل</string>
+    <string name="sign_in_email">تسجيل دخول عبر البريد الإلكتروني</string>
+    <string name="sign_in_facebook">تسجيل دخول عبر فيسبوك</string>
+    <string name="sign_in_google">تسجيل دخول عبر جوجل</string>
+    <string name="sign_in_create_account">إنشاء حساب</string>
+    <string name="or">أو</string>
+    <string name="sign_in_tos">بقيامك بتسجيل الدخول أنت توافق على شروط الخدمة و سياسة الخصوصية الخاصة بنا</string>
+
+    <!-- Search fragment -->
     <string name="toolbar_list_title">قائمة</string>
     <string name="toolbar_map_title">خريطة</string>
     <string name="toolbar_filter_title">تصفية</string>

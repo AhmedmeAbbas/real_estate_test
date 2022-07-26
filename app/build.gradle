@@ -77,6 +77,10 @@ dependencies {
     // Firebase Crashlytics
     implementation 'com.google.firebase:firebase-crashlytics-ktx'
 
+    // Facebook
+    implementation 'com.facebook.android:facebook-android-sdk:latest.release'
+    //implementation 'com.facebook.android:facebook-login:4.42.0'
+
     // ViewBinding
     implementation 'com.android.databinding:viewbinding:7.2.1'
 

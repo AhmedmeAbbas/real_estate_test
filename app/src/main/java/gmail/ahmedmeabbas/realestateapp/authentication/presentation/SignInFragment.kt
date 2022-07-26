@@ -1,4 +1,4 @@
-package gmail.ahmedmeabbas.realestateapp.my_home.presentation
+package gmail.ahmedmeabbas.realestateapp.authentication.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,12 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import gmail.ahmedmeabbas.realestateapp.R
-import gmail.ahmedmeabbas.realestateapp.databinding.FragmentMyHomeBinding
+import gmail.ahmedmeabbas.realestateapp.databinding.FragmentSignInBinding
 
-class MyHomeFragment: Fragment() {
+class SignInFragment: Fragment() {
 
-    private var _binding: FragmentMyHomeBinding? = null
+    private var _binding: FragmentSignInBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -19,15 +18,15 @@ class MyHomeFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentMyHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentSignInBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnMyHomeSignIn.setOnClickListener {
-            findNavController().navigate(R.id.action_myHomeFragment_to_signInFragment)
+        binding.toolbarSignIn.setNavigationOnClickListener {
+            findNavController().navigateUp()
         }
     }
 

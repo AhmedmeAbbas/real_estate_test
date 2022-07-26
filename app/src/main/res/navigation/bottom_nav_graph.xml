@@ -15,7 +15,11 @@
     <fragment
         android:id="@+id/myHomeFragment"
         android:name="gmail.ahmedmeabbas.realestateapp.my_home.presentation.MyHomeFragment"
-        android:label="MyHomeFragment" />
+        android:label="MyHomeFragment" >
+        <action
+            android:id="@+id/action_myHomeFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+    </fragment>
     <fragment
         android:id="@+id/inboxFragment"
         android:name="gmail.ahmedmeabbas.realestateapp.inbox.presentation.InboxFragment"
@@ -65,4 +69,8 @@
         android:id="@+id/messagesDialog"
         android:name="gmail.ahmedmeabbas.realestateapp.account.presentation.notifications.MessagesDialog"
         android:label="MessagesDialog" />
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="gmail.ahmedmeabbas.realestateapp.authentication.presentation.SignInFragment"
+        android:label="SignInFragment" />
 </navigation>
