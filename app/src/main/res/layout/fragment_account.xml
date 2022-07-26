@@ -81,7 +81,7 @@
             style="@style/AccountItem"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_26sdp"
+            android:layout_marginTop="@dimen/_40sdp"
             android:background="@drawable/account_item_background"
             android:text="@string/account_profile_title"
             android:visibility="gone"
