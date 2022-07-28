@@ -1,19 +1,17 @@
 package gmail.ahmedmeabbas.realestateapp.authentication.presentation
 
-import android.content.Context
 import android.content.res.ColorStateList
 import android.os.Bundle
-import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.AttrRes
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import gmail.ahmedmeabbas.realestateapp.R
 import gmail.ahmedmeabbas.realestateapp.databinding.FragmentEmailSignInBinding
+import gmail.ahmedmeabbas.realestateapp.util.ColorUtils.getColorFromAttr
 
 class EmailSignInFragment: Fragment() {
 
@@ -32,18 +30,26 @@ class EmailSignInFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setUpToolbar()
+        setUpSignInButton()
         setUpEditTextColor()
+    }
 
+    private fun setUpToolbar() {
         binding.toolbarEmailSignIn.setNavigationOnClickListener {
             findNavController().navigateUp()
         }
+    }
 
+    private fun setUpSignInButton() {
         binding.btnEmailSignIn.tvButton.text = getString(R.string.sign_in_button)
 
         binding.btnEmailSignIn.root.setOnClickListener {
-            binding.btnEmailSignIn.progressBar.visibility = View.VISIBLE
-            binding.btnEmailSignIn.tvButton.visibility = View.GONE
-            binding.btnEmailSignIn.root.isEnabled = false
+            binding.btnEmailSignIn.apply {
+                progressBar.visibility = View.VISIBLE
+                tvButton.visibility = View.GONE
+                root.isEnabled = false
+            }
         }
     }
 
@@ -76,15 +82,6 @@ class EmailSignInFragment: Fragment() {
                 setEndIconTintList(ColorStateList.valueOf(color))
             }
         }
-    }
-
-    private fun Context.getColorFromAttr(
-        @AttrRes attrColor: Int,
-        typedValue: TypedValue = TypedValue(),
-        resolveRefs: Boolean = true
-    ): Int {
-        theme.resolveAttribute(attrColor, typedValue, resolveRefs)
-        return typedValue.data
     }
 
     override fun onDestroyView() {

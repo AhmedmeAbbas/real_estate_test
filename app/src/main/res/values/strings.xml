@@ -22,7 +22,7 @@
     <string name="sign_in_google">Sign in with Google</string>
     <string name="sign_in_create_account">Create an account</string>
     <string name="or">Or</string>
-    <string name="sign_in_tos">By signing in you agree to out Terms of Service and Privacy Policy</string>
+    <string name="sign_in_tos">By signing in you agree to our Terms of Service and Privacy Policy</string>
 
     <!-- Email sign in fragment -->
     <string name="email_sign_in_header">Sign in with email</string>
@@ -30,6 +30,12 @@
     <string name="password_hint">Password</string>
     <string name="forgot_password">Forgot your password?</string>
     <string name="sign_in_button">Sign In</string>
+
+    <!-- Create account fragment -->
+    <string name="create_account_header">Create an account</string>
+    <string name="create_account_confirm_password">Confirm password</string>
+    <string name="create_account_button">Create Account</string>
+    <string name="create_account_tos">By creating an account you agree to our Terms of Service and Privacy Policy</string>
 
     <!-- Search fragment -->
     <string name="toolbar_list_title">List</string>
@@ -85,9 +91,6 @@
     <string name="account_sign_out_title">Sign out</string>
     <string name="account_version">Version</string>
 
-    <!-- Language dialog -->
-    <string name="dialog_language_title">Choose a language</string>
-
     <!-- Notification settings -->
     <string name="notif_settings_toolbar_title">Notification settings</string>
     <string name="notif_settings_new_listings_header">New listings</string>
@@ -103,6 +106,13 @@
     <string name="dialog_messages_title">Messages notifications</string>
     <string name="dialog_push_notifications">Push notifications</string>
     <string name="dialog_email_notifications">Email notifications</string>
+
+    <!-- Language dialog -->
+    <string name="dialog_language_title">Choose a language</string>
+
+    <!-- Terms and Privacy -->
+    <string name="terms_title">Terms of service</string>
+    <string name="privacy_title">Privacy policy</string>
 
     <string name="dummy_text">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec posuere rhoncus aliquam. Vivamus luctus velit rhoncus felis rhoncus, a convallis diam sollicitudin. Donec vitae magna varius, congue ante quis, semper dui. Integer lectus sapien, convallis a purus ac, aliquet posuere lacus. Nam sed mauris at sapien convallis venenatis. Nullam at gravida dolor. Fusce scelerisque, ante finibus faucibus dictum, sem erat dignissim mi, vel tincidunt ante nisi ac magna. Pellentesque vestibulum placerat sapien, eu fringilla mi sodales ac. Fusce mi diam, volutpat sit amet faucibus quis, suscipit ut urna. Maecenas lacinia eleifend leo, sit amet mollis diam vestibulum vehicula. Suspendisse ullamcorper, arcu tempus ullamcorper luctus, sapien lectus tempor sem, eget mattis ipsum est in erat. In ut finibus nisi. Aliquam at tincidunt elit. Integer bibendum laoreet diam sed aliquam. Suspendisse gravida malesuada urna, vehicula sodales massa vestibulum non.

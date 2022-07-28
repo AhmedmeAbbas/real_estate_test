@@ -76,9 +76,37 @@
         <action
             android:id="@+id/action_signInFragment_to_emailSignInFragment"
             app:destination="@id/emailSignInFragment" />
+        <action
+            android:id="@+id/action_signInFragment_to_createAccountFragment"
+            app:destination="@id/createAccountFragment" />
+        <action
+            android:id="@+id/action_signInFragment_to_termsFragment"
+            app:destination="@id/termsFragment" />
+        <action
+            android:id="@+id/action_signInFragment_to_privacyFragment"
+            app:destination="@id/privacyFragment" />
     </fragment>
     <fragment
         android:id="@+id/emailSignInFragment"
         android:name="gmail.ahmedmeabbas.realestateapp.authentication.presentation.EmailSignInFragment"
         android:label="EmailSignInFragment" />
+    <fragment
+        android:id="@+id/createAccountFragment"
+        android:name="gmail.ahmedmeabbas.realestateapp.authentication.presentation.CreateAccountFragment"
+        android:label="CreateAccountFragment" >
+        <action
+            android:id="@+id/action_createAccountFragment_to_termsFragment"
+            app:destination="@id/termsFragment" />
+        <action
+            android:id="@+id/action_createAccountFragment_to_privacyFragment"
+            app:destination="@id/privacyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/termsFragment"
+        android:name="gmail.ahmedmeabbas.realestateapp.account.presentation.termsandprivacy.TermsFragment"
+        android:label="TermsFragment" />
+    <fragment
+        android:id="@+id/privacyFragment"
+        android:name="gmail.ahmedmeabbas.realestateapp.account.presentation.termsandprivacy.PrivacyFragment"
+        android:label="PrivacyFragment" />
 </navigation>

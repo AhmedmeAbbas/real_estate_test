@@ -113,6 +113,7 @@
                 android:padding="@dimen/_10sdp"
                 android:background="?attr/colorTertiary"
                 android:text="@string/or"
+                android:textColor="@android:color/darker_gray"
                 app:layout_constraintStart_toStartOf="@id/line"
                 app:layout_constraintEnd_toEndOf="@id/line"
                 app:layout_constraintTop_toTopOf="@id/line"
@@ -135,17 +136,20 @@
                 app:layout_constraintTop_toBottomOf="@id/tvSignInOr"/>
 
             <TextView
+                android:id="@+id/tvToSSignIn"
+                style="@style/SubText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:layout_marginBottom="@dimen/_30sdp"
                 android:layout_marginStart="@dimen/_30sdp"
                 android:layout_marginEnd="@dimen/_30sdp"
                 android:text="@string/sign_in_tos"
-                style="@style/SubText"
                 android:textSize="@dimen/_13ssp"
-                app:layout_constraintTop_toBottomOf="@id/btnSignInCreateAccount"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@id/btnSignInCreateAccount" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
