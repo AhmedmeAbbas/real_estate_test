@@ -85,7 +85,7 @@
     <string name="account_language_title">Language</string>
     <string name="account_dark_mode_title">Night mode</string>
     <string name="account_notifications_title">Notifications</string>
-    <string name="account_feedback_title">Issues and feedback</string>
+    <string name="account_feedback_title">Help and feedback</string>
     <string name="account_tos_title">Terms of service</string>
     <string name="account_privacy_policy_title">Privacy policy</string>
     <string name="account_sign_out_title">Sign out</string>
@@ -109,6 +109,13 @@
 
     <!-- Language dialog -->
     <string name="dialog_language_title">Choose a language</string>
+
+    <!-- Help fragment-->
+    <string name="help_title">Help and feedback</string>
+    <string name="help_issues_header">Report an issue</string>
+    <string name="help_issues_sub">Facing a problem with the app or one of our services?</string>
+    <string name="help_feedback_header">Send us feedback</string>
+    <string name="help_feedback_sub">Have a suggestion on how we can improve our services?</string>
 
     <!-- Terms and Privacy -->
     <string name="terms_title">Terms of service</string>

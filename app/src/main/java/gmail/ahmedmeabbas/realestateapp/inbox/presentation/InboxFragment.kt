@@ -48,7 +48,7 @@ class InboxFragment : Fragment() {
                     tab.text = getString(R.string.requests_tab)
                     tab.icon = ResourcesCompat.getDrawable(
                         requireActivity().resources,
-                        R.drawable.custom_requests,
+                        R.drawable.ic_request,
                         requireActivity().theme
                     )
                 }

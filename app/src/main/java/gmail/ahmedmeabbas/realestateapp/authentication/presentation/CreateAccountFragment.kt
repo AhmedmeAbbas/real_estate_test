@@ -70,7 +70,7 @@ class CreateAccountFragment: Fragment() {
         if (Locale.getDefault().language.equals("en")) {
             click1Span1 = 40; click1Span2 = 56; click2Span1 = 61; click2Span2 = 75
         } else if (Locale.getDefault().language.equals("ar")) {
-            click1Span1 = 33; click1Span2 = 44; click2Span1 = 47; click2Span2 = 61
+            click1Span1 = 33; click1Span2 = 44; click2Span1 = 46; click2Span2 = 60
         }
         val spannableString = SpannableString(text)
         val clickableSpan1 = object : ClickableSpan() {

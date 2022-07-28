@@ -34,6 +34,7 @@ class AccountFragment : Fragment() {
         setUpNotificationsTextViewListener()
         setUpLanguageTextViewListener()
         setUpNightModeSwitchListener()
+        setUpIssuesAndFeedbackListener()
     }
 
     override fun onStart() {
@@ -60,6 +61,12 @@ class AccountFragment : Fragment() {
             } else {
                 accountViewModel.toggleNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
+        }
+    }
+
+    private fun setUpIssuesAndFeedbackListener() {
+        binding.tvAccountFeedback.setOnClickListener {
+            navigateTo(R.id.action_accountFragment_to_helpFragment)
         }
     }
 

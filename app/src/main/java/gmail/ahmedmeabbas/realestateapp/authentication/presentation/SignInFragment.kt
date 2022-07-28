@@ -64,7 +64,7 @@ class SignInFragment: Fragment() {
         if (Locale.getDefault().language.equals("en")) {
             click1Span1 = 31; click1Span2 = 47; click2Span1 = 52; click2Span2 = 66
         } else if (Locale.getDefault().language.equals("ar")) {
-            click1Span1 = 35; click1Span2 = 46; click2Span1 = 49; click2Span2 = 63
+            click1Span1 = 35; click1Span2 = 46; click2Span1 = 48; click2Span2 = 62
         }
         val spannableString = SpannableString(text)
         val clickableSpan1 = object : ClickableSpan() {

@@ -23,7 +23,7 @@
     <string name="sign_in_google">تسجيل دخول عبر جوجل</string>
     <string name="sign_in_create_account">إنشاء حساب</string>
     <string name="or">أو</string>
-    <string name="sign_in_tos">بقيامك بتسجيل الدخول أنت توافق على شروط الخدمة و سياسة الخصوصية الخاصة بنا</string>
+    <string name="sign_in_tos">بقيامك بتسجيل الدخول أنت توافق على شروط الخدمة وسياسة الخصوصية الخاصة بنا</string>
 
     <!-- Email sign in fragment -->
     <string name="email_sign_in_header">سجل دخولك عبر البريد الإلكتروني</string>
@@ -36,7 +36,7 @@
     <string name="create_account_header">أنشئ حسابك</string>
     <string name="create_account_confirm_password">تأكيد كلمة المرور</string>
     <string name="create_account_button">إنشاء حساب</string>
-    <string name="create_account_tos">بقيامك بإنشاء حساب أنت توافق على شروط الخدمة و سياسة الخصوصية الخاصة بنا</string>
+    <string name="create_account_tos">بقيامك بإنشاء حساب أنت توافق على شروط الخدمة وسياسة الخصوصية الخاصة بنا</string>
 
     <!-- Search fragment -->
     <string name="toolbar_list_title">قائمة</string>
@@ -52,15 +52,15 @@
 
     <!-- Saved homes fragment -->
     <string name="saved_homes_header">احفظ العقارات التي تعجبك</string>
-    <string name="saved_homes_sub">يتوجب عليك تسجيل الدخول لكي تتمكن من حفظ و عرض عقاراتك المفضلة</string>
+    <string name="saved_homes_sub">يتوجب عليك تسجيل الدخول لكي تتمكن من حفظ وعرض عقاراتك المفضلة</string>
 
     <!-- Saved searches fragment -->
     <string name="saved_searches_header">احفظ المناطق التي تهمك</string>
-    <string name="saved_searches_sub">يتوجب عليك تسجيل الدخول لكي تتمكن من حفظ و عرض المناطق التي تهمك</string>
+    <string name="saved_searches_sub">يتوجب عليك تسجيل الدخول لكي تتمكن من حفظ وعرض المناطق التي تهمك</string>
 
     <!-- My home fragment -->
     <string name="my_home_header">جميع عقاراتك في مكان واحد</string>
-    <string name="my_home_sub">يتوجب عليك تسجيل الدخول لكي تتمكن من إضافة و إدارة عقاراتك</string>
+    <string name="my_home_sub">يتوجب عليك تسجيل الدخول لكي تتمكن من إضافة وإدارة عقاراتك</string>
 
     <!-- Inbox fragment -->
     <string name="chats_tab">المحادثات</string>
@@ -81,12 +81,12 @@
 
     <!-- Account fragment -->
     <string name="account_sign_in_header">سجل دخولك</string>
-    <string name="account_sign_in_sub">سجل دخولك لكي تتمكن من إضافة وإدارة عقاراتك, حفظ عقاراتك ومناطقك المفضلة و التواصل مع أصحاب العقارات</string>
+    <string name="account_sign_in_sub">سجل دخولك لكي تتمكن من إضافة وإدارة عقاراتك, حفظ عقاراتك ومناطقك المفضلة والتواصل مع أصحاب العقارات</string>
     <string name="account_profile_title">الملف الشخصي</string>
     <string name="account_language_title">اللغة</string>
     <string name="account_dark_mode_title">الوضع الليلي</string>
     <string name="account_notifications_title">الإشعارات</string>
-    <string name="account_feedback_title">المشاكل والإقتراحات</string>
+    <string name="account_feedback_title">المساعدة والإقتراحات</string>
     <string name="account_tos_title">شروط الخدمة</string>
     <string name="account_privacy_policy_title">بنود الخصوصية</string>
     <string name="account_sign_out_title">تسجيل خروج</string>
@@ -110,6 +110,13 @@
 
     <!-- Language dialog -->
     <string name="dialog_language_title">اختر اللغة</string>
+
+    <!-- Help fragment-->
+    <string name="help_title">المساعدة والإقتراحات</string>
+    <string name="help_issues_header">أبلغ عن مشكلة</string>
+    <string name="help_issues_sub">هل تواجهك مشكلة في التطبيق أو أحد خدماتنا؟</string>
+    <string name="help_feedback_header">أرسل اقتراحك</string>
+    <string name="help_feedback_sub">هل تملك اقتراحا حول كيفية تطوير خدماتنا؟</string>
 
     <!-- Terms and Privacy -->
     <string name="terms_title">شروط الخدمة</string>

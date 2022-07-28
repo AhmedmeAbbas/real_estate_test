@@ -66,7 +66,7 @@
                     android:hint="@string/email_hint"
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
-                    android:minHeight="48dp" />
+                    android:minHeight="@dimen/_48sdp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -98,7 +98,7 @@
                     android:hint="@string/password_hint"
                     android:inputType="textPassword"
                     android:maxLines="1"
-                    android:minHeight="48dp" />
+                    android:minHeight="@dimen/_48sdp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -130,14 +130,14 @@
                     android:hint="@string/create_account_confirm_password"
                     android:inputType="textPassword"
                     android:maxLines="1"
-                    android:minHeight="48dp" />
+                    android:minHeight="@dimen/_48sdp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <include
                 android:id="@+id/btnCreateAccount"
                 layout="@layout/loading_button"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_48sdp"
                 android:layout_marginTop="@dimen/_25sdp"
                 android:layout_marginStart="@dimen/_30sdp"
                 android:layout_marginEnd="@dimen/_30sdp"
