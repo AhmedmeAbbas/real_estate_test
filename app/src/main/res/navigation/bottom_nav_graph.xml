@@ -18,7 +18,11 @@
         android:label="MyHomeFragment" >
         <action
             android:id="@+id/action_myHomeFragment_to_signInFragment"
-            app:destination="@id/signInFragment" />
+            app:destination="@id/signInFragment"
+            app:enterAnim="@anim/slide_in_bottom"
+            app:exitAnim="@anim/slide_out_top"
+            app:popEnterAnim="@anim/slide_in_top"
+            app:popExitAnim="@anim/slide_out_bottom"/>
     </fragment>
     <fragment
         android:id="@+id/inboxFragment"
@@ -82,16 +86,32 @@
         android:label="SignInFragment" >
         <action
             android:id="@+id/action_signInFragment_to_emailSignInFragment"
-            app:destination="@id/emailSignInFragment" />
+            app:destination="@id/emailSignInFragment"
+            app:enterAnim="@anim/slide_in_end"
+            app:exitAnim="@anim/slide_out_start"
+            app:popEnterAnim="@anim/slide_in_start"
+            app:popExitAnim="@anim/slide_out_end"/>
         <action
             android:id="@+id/action_signInFragment_to_createAccountFragment"
-            app:destination="@id/createAccountFragment" />
+            app:destination="@id/createAccountFragment"
+            app:enterAnim="@anim/slide_in_end"
+            app:exitAnim="@anim/slide_out_start"
+            app:popEnterAnim="@anim/slide_in_start"
+            app:popExitAnim="@anim/slide_out_end"/>
         <action
             android:id="@+id/action_signInFragment_to_termsFragment"
-            app:destination="@id/termsFragment" />
+            app:destination="@id/termsFragment"
+            app:enterAnim="@anim/slide_in_end"
+            app:exitAnim="@anim/slide_out_start"
+            app:popEnterAnim="@anim/slide_in_start"
+            app:popExitAnim="@anim/slide_out_end"/>
         <action
             android:id="@+id/action_signInFragment_to_privacyFragment"
-            app:destination="@id/privacyFragment" />
+            app:destination="@id/privacyFragment"
+            app:enterAnim="@anim/slide_in_end"
+            app:exitAnim="@anim/slide_out_start"
+            app:popEnterAnim="@anim/slide_in_start"
+            app:popExitAnim="@anim/slide_out_end"/>
     </fragment>
     <fragment
         android:id="@+id/emailSignInFragment"
@@ -103,10 +123,18 @@
         android:label="CreateAccountFragment" >
         <action
             android:id="@+id/action_createAccountFragment_to_termsFragment"
-            app:destination="@id/termsFragment" />
+            app:destination="@id/termsFragment"
+            app:enterAnim="@anim/slide_in_end"
+            app:exitAnim="@anim/slide_out_start"
+            app:popEnterAnim="@anim/slide_in_start"
+            app:popExitAnim="@anim/slide_out_end"/>
         <action
             android:id="@+id/action_createAccountFragment_to_privacyFragment"
-            app:destination="@id/privacyFragment" />
+            app:destination="@id/privacyFragment"
+            app:enterAnim="@anim/slide_in_end"
+            app:exitAnim="@anim/slide_out_start"
+            app:popEnterAnim="@anim/slide_in_start"
+            app:popExitAnim="@anim/slide_out_end"/>
     </fragment>
     <fragment
         android:id="@+id/termsFragment"

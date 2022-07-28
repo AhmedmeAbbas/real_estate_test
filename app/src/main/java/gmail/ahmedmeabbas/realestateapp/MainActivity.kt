@@ -1,8 +1,13 @@
 package gmail.ahmedmeabbas.realestateapp
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
+import android.animation.ObjectAnimator
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.view.animation.Animation
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -10,6 +15,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,6 +36,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val splashScreenViewModel: SplashScreenViewModel by viewModels()
     private val mainViewModel: MainViewModel by viewModels()
+    private lateinit var navController: NavController
     private var appLanguage: String = Locale.getDefault().language
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,14 +49,47 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        Log.d(TAG, "onCreate: app language: $appLanguage")
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        val navController = navHostFragment.navController
+        navController = navHostFragment.navController
         binding.bottomNavigation.setupWithNavController(navController)
 
+        Log.d(TAG, "onCreate: ${navController.currentDestination}")
+        setUpBottomNavigationVisibilityListener()
         observeLanguageChange()
         observeNightModeChange()
+    }
+
+    private fun setUpBottomNavigationVisibilityListener() {
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.searchFragment -> showBottomNav()
+                R.id.savedFragment -> showBottomNav()
+                R.id.myHomeFragment -> showBottomNav()
+                R.id.inboxFragment -> showBottomNav()
+                R.id.accountFragment -> showBottomNav()
+                R.id.signInFragment -> fadeOutBottomNav()
+                else -> fadeOutBottomNav()
+            }
+        }
+    }
+
+    private fun fadeOutBottomNav() {
+        binding.bottomNavigation.animate()
+            .alpha(0f)
+            .setDuration(300L)
+            .setListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator?) {
+                    binding.bottomNavigation.visibility = View.GONE
+                }
+            })
+    }
+
+    private fun showBottomNav() {
+        binding.bottomNavigation.apply {
+            alpha = 1f
+            visibility = View.VISIBLE
+        }
     }
 
     private fun observeNightModeChange() {
@@ -76,12 +116,9 @@ class MainActivity : AppCompatActivity() {
                     .map { it.savedLanguage }
                     .distinctUntilChanged()
                     .collect { savedLanguage ->
-                        Log.d(TAG, "observeLanguageChange: prefs language: $savedLanguage")
                         if (savedLanguage == appLanguage) {
-                            Log.d(TAG, "observeLanguageChange: return triggered")
                             return@collect
                         } else {
-                            Log.d(TAG, "observeLanguageChange: recreate triggered")
                             this@MainActivity.recreate()
                         }
                     }
@@ -100,7 +137,6 @@ class MainActivity : AppCompatActivity() {
             val savedLanguage = userPrefs.language
             val nightModeFlag = userPrefs.nightModeFlag
 
-            Log.d(TAG, "attachBaseContext: saved language: $savedLanguage")
             setAppLanguage(savedLanguage)
             toggleNightMode(nightModeFlag)
         }

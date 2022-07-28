@@ -3,7 +3,7 @@
     <!-- General -->
     <string name="app_name">Real Estate App</string>
     <string name="placeholder_text">Placeholder Text</string>
-    <string name="go_to_sign_in_page">الذهاب إلى صفحة تسجيل الدخول</string>
+    <string name="go_to_sign_in_page">اذهب إلى صفحة تسجيل الدخول</string>
     <string name="cancel">إلغاء</string>
     <string name="ok">موافق</string>
 
