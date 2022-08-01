@@ -1,15 +1,15 @@
-package gmail.ahmedmeabbas.realestateapp.account.presentation.notifications
+package gmail.ahmedmeabbas.realestateapp.account.notifications
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import gmail.ahmedmeabbas.realestateapp.databinding.DialogStatusUpdateBinding
+import gmail.ahmedmeabbas.realestateapp.databinding.DialogNewListingsBinding
 
-class StatusUpdateDialog: BottomSheetDialogFragment() {
+class NewListingsDialog: BottomSheetDialogFragment() {
 
-    private var _binding: DialogStatusUpdateBinding? = null
+    private var _binding: DialogNewListingsBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -17,7 +17,7 @@ class StatusUpdateDialog: BottomSheetDialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = DialogStatusUpdateBinding.inflate(inflater, container, false)
+        _binding = DialogNewListingsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -25,11 +25,11 @@ class StatusUpdateDialog: BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         dialog?.setCancelable(true)
 
-        setUpCancelTextViewListener()
+        setUpCancelTextView()
     }
 
-    private fun setUpCancelTextViewListener() {
-        binding.tvCancelStatusUpdate.setOnClickListener {
+    private fun setUpCancelTextView() {
+        binding.tvCancelNewListings.setOnClickListener {
             dialog?.cancel()
         }
     }

@@ -1,4 +1,4 @@
-package gmail.ahmedmeabbas.realestateapp.account.presentation.termsandprivacy
+package gmail.ahmedmeabbas.realestateapp.account.termsandprivacy
 
 import android.os.Bundle
 import android.view.LayoutInflater

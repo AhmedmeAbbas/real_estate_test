@@ -66,13 +66,13 @@
     <string name="requests_tab">Requests</string>
     <string name="notifications_tab">Notifications</string>
 
-    <!-- Chats fragment -->
-    <string name="chats_header">Connect with homeowners</string>
-    <string name="chats_sub">You have to be signed in to send and receive messages</string>
-
     <!-- Requests fragment-->
     <string name="requests_header">Follow your requests</string>
     <string name="requests_sub">You have to be signed in to follow and manage your requests</string>
+
+    <!-- Chats fragment -->
+    <string name="chats_header">Connect with homeowners</string>
+    <string name="chats_sub">You have to be signed in to send and receive messages</string>
 
     <!-- Notifications fragment -->
     <string name="notifications_header">Stay updated!</string>
@@ -90,6 +90,15 @@
     <string name="account_privacy_policy_title">Privacy policy</string>
     <string name="account_sign_out_title">Sign out</string>
     <string name="account_version">Version</string>
+
+    <!-- Profile fragment -->
+    <string name="profile_title">Profile</string>
+    <string name="profile_personal_info_header">Personal information</string>
+    <string name="profile_personal_info_sub">Edit your personal information</string>
+    <string name="profile_email_header">Email</string>
+    <string name="profile_email_sub">Change your email</string>
+    <string name="profile_password_header">Password</string>
+    <string name="profile_password_sub">Change your password</string>
 
     <!-- Notification settings -->
     <string name="notif_settings_toolbar_title">Notification settings</string>

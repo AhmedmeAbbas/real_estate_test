@@ -1,4 +1,4 @@
-package gmail.ahmedmeabbas.realestateapp.account.presentation.notifications
+package gmail.ahmedmeabbas.realestateapp.account.notifications
 
 import android.os.Bundle
 import android.view.LayoutInflater

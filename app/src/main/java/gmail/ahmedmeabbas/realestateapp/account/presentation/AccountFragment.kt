@@ -36,6 +36,10 @@ class AccountFragment : Fragment() {
     }
 
     private fun setUpItemClickListeners() {
+        binding.tvAccountProfile.setOnClickListener {
+            navigateTo(R.id.action_accountFragment_to_profileFragment)
+        }
+
         binding.tvAccountNotifications.setOnClickListener {
             navigateTo(R.id.action_global_notificationSettingsFragment)
         }

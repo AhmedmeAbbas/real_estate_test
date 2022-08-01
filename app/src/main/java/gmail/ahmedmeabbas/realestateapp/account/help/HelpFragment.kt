@@ -1,4 +1,4 @@
-package gmail.ahmedmeabbas.realestateapp.account.presentation.help
+package gmail.ahmedmeabbas.realestateapp.account.help
 
 import android.os.Bundle
 import android.view.LayoutInflater

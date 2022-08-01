@@ -67,13 +67,13 @@
     <string name="notifications_tab">الإشعارات</string>
     <string name="requests_tab">الطلبات</string>
 
-    <!-- Chats fragment -->
-    <string name="chats_header">تواصل مع اصحاب العقارات</string>
-    <string name="chats_sub">يتوجب عليك تسجيل الدخول لكي تتمكن من إرسال واستقبال الرسائل</string>
-
     <!-- Requests fragment-->
     <string name="requests_header">تابع طلباتك</string>
     <string name="requests_sub">يتوجب عليك تسجيل الدخول لكي تتمكن من متابعة وإدارة طلباتك</string>
+
+    <!-- Chats fragment -->
+    <string name="chats_header">تواصل مع اصحاب العقارات</string>
+    <string name="chats_sub">يتوجب عليك تسجيل الدخول لكي تتمكن من إرسال واستقبال الرسائل</string>
 
     <!-- Notifications fragment -->
     <string name="notifications_header">ابق على إطلاع!</string>
@@ -91,6 +91,15 @@
     <string name="account_privacy_policy_title">بنود الخصوصية</string>
     <string name="account_sign_out_title">تسجيل خروج</string>
     <string name="account_version">إصدار</string>
+
+    <!-- Profile fragment -->
+    <string name="profile_title">الحساب الشخصي</string>
+    <string name="profile_personal_info_header">المعلومات الشخصية</string>
+    <string name="profile_personal_info_sub">تعديل المعلومات الشخصية</string>
+    <string name="profile_email_header">البريد الإلكتروني</string>
+    <string name="profile_email_sub">تغيير البريد الإلكتروني</string>
+    <string name="profile_password_header">كلمة المرور</string>
+    <string name="profile_password_sub">تغيير كلمة المرور</string>
 
     <!-- Notification settings -->
     <string name="notif_settings_toolbar_title">إعدادات الإشعارات</string>

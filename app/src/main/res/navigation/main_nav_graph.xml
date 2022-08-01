@@ -25,6 +25,13 @@
         android:name="gmail.ahmedmeabbas.realestateapp.account.presentation.AccountFragment"
         android:label="ProfileFragment" >
         <action
+            android:id="@+id/action_accountFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:enterAnim="@anim/slide_in_end"
+            app:exitAnim="@anim/slide_out_start"
+            app:popEnterAnim="@anim/slide_in_start"
+            app:popExitAnim="@anim/slide_out_end"/>
+        <action
             android:id="@+id/action_accountFragment_to_languageDialog"
             app:destination="@id/languageDialog" />
         <action
@@ -37,7 +44,7 @@
     </fragment>
     <fragment
         android:id="@+id/notificationSettingsFragment"
-        android:name="gmail.ahmedmeabbas.realestateapp.account.presentation.notifications.NotificationSettingsFragment"
+        android:name="gmail.ahmedmeabbas.realestateapp.account.notifications.NotificationSettingsFragment"
         android:label="NotificationSettingsFragment" >
         <action
             android:id="@+id/action_notificationSettingsFragment_to_newListingsDialog"
@@ -51,31 +58,31 @@
     </fragment>
     <dialog
         android:id="@+id/languageDialog"
-        android:name="gmail.ahmedmeabbas.realestateapp.account.presentation.language.LanguageDialog"
+        android:name="gmail.ahmedmeabbas.realestateapp.account.language.LanguageDialog"
         android:label="DialogLanguage" />
     <dialog
         android:id="@+id/newListingsDialog"
-        android:name="gmail.ahmedmeabbas.realestateapp.account.presentation.notifications.NewListingsDialog"
+        android:name="gmail.ahmedmeabbas.realestateapp.account.notifications.NewListingsDialog"
         android:label="NewListingsDialog" />
     <dialog
         android:id="@+id/statusUpdateDialog"
-        android:name="gmail.ahmedmeabbas.realestateapp.account.presentation.notifications.StatusUpdateDialog"
+        android:name="gmail.ahmedmeabbas.realestateapp.account.notifications.StatusUpdateDialog"
         android:label="StatusUpdateDialog" />
     <dialog
         android:id="@+id/messagesDialog"
-        android:name="gmail.ahmedmeabbas.realestateapp.account.presentation.notifications.MessagesDialog"
+        android:name="gmail.ahmedmeabbas.realestateapp.account.notifications.MessagesDialog"
         android:label="MessagesDialog" />
     <fragment
         android:id="@+id/termsFragment"
-        android:name="gmail.ahmedmeabbas.realestateapp.account.presentation.termsandprivacy.TermsFragment"
+        android:name="gmail.ahmedmeabbas.realestateapp.account.termsandprivacy.TermsFragment"
         android:label="TermsFragment" />
     <fragment
         android:id="@+id/privacyFragment"
-        android:name="gmail.ahmedmeabbas.realestateapp.account.presentation.termsandprivacy.PrivacyFragment"
+        android:name="gmail.ahmedmeabbas.realestateapp.account.termsandprivacy.PrivacyFragment"
         android:label="PrivacyFragment" />
     <fragment
         android:id="@+id/helpFragment"
-        android:name="gmail.ahmedmeabbas.realestateapp.account.presentation.help.HelpFragment"
+        android:name="gmail.ahmedmeabbas.realestateapp.account.help.HelpFragment"
         android:label="IssuesAndFeedbackFragment" />
     <navigation android:id="@+id/authGraph"
         app:startDestination="@id/signInFragment">
@@ -135,4 +142,8 @@
         app:exitAnim="@anim/slide_out_start"
         app:popEnterAnim="@anim/slide_in_start"
         app:popExitAnim="@anim/slide_out_end"/>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="gmail.ahmedmeabbas.realestateapp.account.profile.ProfileFragment"
+        android:label="ProfileFragment" />
 </navigation>
