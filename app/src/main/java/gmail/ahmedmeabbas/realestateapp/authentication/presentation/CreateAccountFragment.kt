@@ -63,19 +63,19 @@ class CreateAccountFragment: Fragment() {
     private fun setUpToSText() {
         val text = resources.getString(R.string.create_account_tos)
         val textColor = requireContext().getColorFromAttr(androidx.appcompat.R.attr.colorPrimary)
-        var click1Span1 = 0
-        var click1Span2 = 0
-        var click2Span1 = 0
-        var click2Span2 = 0
+        var click1Start = 0
+        var click1End = 0
+        var click2Start = 0
+        var click2End = 0
         if (Locale.getDefault().language.equals("en")) {
-            click1Span1 = 40; click1Span2 = 56; click2Span1 = 61; click2Span2 = 75
+            click1Start = 40; click1End = 56; click2Start = 61; click2End = 75
         } else if (Locale.getDefault().language.equals("ar")) {
-            click1Span1 = 33; click1Span2 = 44; click2Span1 = 46; click2Span2 = 60
+            click1Start = 33; click1End = 44; click2Start = 46; click2End = 60
         }
         val spannableString = SpannableString(text)
         val clickableSpan1 = object : ClickableSpan() {
             override fun onClick(p0: View) {
-                navigateTo(R.id.action_createAccountFragment_to_termsFragment)
+                navigateTo(R.id.action_global_termsFragment)
             }
 
             override fun updateDrawState(ds: TextPaint) {
@@ -85,7 +85,7 @@ class CreateAccountFragment: Fragment() {
         }
         val clickableSpan2 = object : ClickableSpan() {
             override fun onClick(p0: View) {
-                navigateTo(R.id.action_createAccountFragment_to_privacyFragment)
+                navigateTo(R.id.action_global_privacyFragment)
             }
 
             override fun updateDrawState(ds: TextPaint) {
@@ -93,8 +93,8 @@ class CreateAccountFragment: Fragment() {
                 ds.color = textColor
             }
         }
-        spannableString.setSpan(clickableSpan1, click1Span1, click1Span2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-        spannableString.setSpan(clickableSpan2, click2Span1, click2Span2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        spannableString.setSpan(clickableSpan1, click1Start, click1End, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        spannableString.setSpan(clickableSpan2, click2Start, click2End, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         binding.tvToSCreateAccount.text = spannableString
         binding.tvToSCreateAccount.movementMethod = LinkMovementMethod.getInstance()
     }

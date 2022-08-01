@@ -27,7 +27,7 @@ class MyHomeFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnMyHomeSignIn.setOnClickListener {
-            findNavController().navigate(R.id.action_myHomeFragment_to_signInFragment)
+            findNavController().navigate(R.id.action_global_authGraph)
         }
     }
 

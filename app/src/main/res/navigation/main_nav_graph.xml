@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/bottom_nav_graph"
+    android:id="@+id/main_nav_graph"
     app:startDestination="@id/searchFragment">
 
     <fragment
@@ -15,15 +15,7 @@
     <fragment
         android:id="@+id/myHomeFragment"
         android:name="gmail.ahmedmeabbas.realestateapp.my_home.presentation.MyHomeFragment"
-        android:label="MyHomeFragment" >
-        <action
-            android:id="@+id/action_myHomeFragment_to_signInFragment"
-            app:destination="@id/signInFragment"
-            app:enterAnim="@anim/slide_in_bottom"
-            app:exitAnim="@anim/slide_out_top"
-            app:popEnterAnim="@anim/slide_in_top"
-            app:popExitAnim="@anim/slide_out_bottom"/>
-    </fragment>
+        android:label="MyHomeFragment" />
     <fragment
         android:id="@+id/inboxFragment"
         android:name="gmail.ahmedmeabbas.realestateapp.inbox.presentation.InboxFragment"
@@ -32,13 +24,6 @@
         android:id="@+id/accountFragment"
         android:name="gmail.ahmedmeabbas.realestateapp.account.presentation.AccountFragment"
         android:label="ProfileFragment" >
-        <action
-            android:id="@+id/action_accountFragment_to_notificationSettingsFragment"
-            app:destination="@id/notificationSettingsFragment"
-            app:enterAnim="@anim/slide_in_end"
-            app:exitAnim="@anim/slide_out_start"
-            app:popEnterAnim="@anim/slide_in_start"
-            app:popExitAnim="@anim/slide_out_end"/>
         <action
             android:id="@+id/action_accountFragment_to_languageDialog"
             app:destination="@id/languageDialog" />
@@ -81,62 +66,6 @@
         android:name="gmail.ahmedmeabbas.realestateapp.account.presentation.notifications.MessagesDialog"
         android:label="MessagesDialog" />
     <fragment
-        android:id="@+id/signInFragment"
-        android:name="gmail.ahmedmeabbas.realestateapp.authentication.presentation.SignInFragment"
-        android:label="SignInFragment" >
-        <action
-            android:id="@+id/action_signInFragment_to_emailSignInFragment"
-            app:destination="@id/emailSignInFragment"
-            app:enterAnim="@anim/slide_in_end"
-            app:exitAnim="@anim/slide_out_start"
-            app:popEnterAnim="@anim/slide_in_start"
-            app:popExitAnim="@anim/slide_out_end"/>
-        <action
-            android:id="@+id/action_signInFragment_to_createAccountFragment"
-            app:destination="@id/createAccountFragment"
-            app:enterAnim="@anim/slide_in_end"
-            app:exitAnim="@anim/slide_out_start"
-            app:popEnterAnim="@anim/slide_in_start"
-            app:popExitAnim="@anim/slide_out_end"/>
-        <action
-            android:id="@+id/action_signInFragment_to_termsFragment"
-            app:destination="@id/termsFragment"
-            app:enterAnim="@anim/slide_in_end"
-            app:exitAnim="@anim/slide_out_start"
-            app:popEnterAnim="@anim/slide_in_start"
-            app:popExitAnim="@anim/slide_out_end"/>
-        <action
-            android:id="@+id/action_signInFragment_to_privacyFragment"
-            app:destination="@id/privacyFragment"
-            app:enterAnim="@anim/slide_in_end"
-            app:exitAnim="@anim/slide_out_start"
-            app:popEnterAnim="@anim/slide_in_start"
-            app:popExitAnim="@anim/slide_out_end"/>
-    </fragment>
-    <fragment
-        android:id="@+id/emailSignInFragment"
-        android:name="gmail.ahmedmeabbas.realestateapp.authentication.presentation.EmailSignInFragment"
-        android:label="EmailSignInFragment" />
-    <fragment
-        android:id="@+id/createAccountFragment"
-        android:name="gmail.ahmedmeabbas.realestateapp.authentication.presentation.CreateAccountFragment"
-        android:label="CreateAccountFragment" >
-        <action
-            android:id="@+id/action_createAccountFragment_to_termsFragment"
-            app:destination="@id/termsFragment"
-            app:enterAnim="@anim/slide_in_end"
-            app:exitAnim="@anim/slide_out_start"
-            app:popEnterAnim="@anim/slide_in_start"
-            app:popExitAnim="@anim/slide_out_end"/>
-        <action
-            android:id="@+id/action_createAccountFragment_to_privacyFragment"
-            app:destination="@id/privacyFragment"
-            app:enterAnim="@anim/slide_in_end"
-            app:exitAnim="@anim/slide_out_start"
-            app:popEnterAnim="@anim/slide_in_start"
-            app:popExitAnim="@anim/slide_out_end"/>
-    </fragment>
-    <fragment
         android:id="@+id/termsFragment"
         android:name="gmail.ahmedmeabbas.realestateapp.account.presentation.termsandprivacy.TermsFragment"
         android:label="TermsFragment" />
@@ -148,4 +77,62 @@
         android:id="@+id/helpFragment"
         android:name="gmail.ahmedmeabbas.realestateapp.account.presentation.help.HelpFragment"
         android:label="IssuesAndFeedbackFragment" />
+    <navigation android:id="@+id/authGraph"
+        app:startDestination="@id/signInFragment">
+        <fragment
+            android:id="@+id/emailSignInFragment"
+            android:name="gmail.ahmedmeabbas.realestateapp.authentication.presentation.EmailSignInFragment"
+            android:label="EmailSignInFragment" />
+        <fragment
+            android:id="@+id/signInFragment"
+            android:name="gmail.ahmedmeabbas.realestateapp.authentication.presentation.SignInFragment"
+            android:label="SignInFragment">
+            <action
+                android:id="@+id/action_signInFragment_to_emailSignInFragment"
+                app:destination="@id/emailSignInFragment"
+                app:enterAnim="@anim/slide_in_end"
+                app:exitAnim="@anim/slide_out_start"
+                app:popEnterAnim="@anim/slide_in_start"
+                app:popExitAnim="@anim/slide_out_end" />
+            <action
+                android:id="@+id/action_signInFragment_to_createAccountFragment"
+                app:destination="@id/createAccountFragment"
+                app:enterAnim="@anim/slide_in_end"
+                app:exitAnim="@anim/slide_out_start"
+                app:popEnterAnim="@anim/slide_in_start"
+                app:popExitAnim="@anim/slide_out_end" />
+        </fragment>
+        <fragment
+            android:id="@+id/createAccountFragment"
+            android:name="gmail.ahmedmeabbas.realestateapp.authentication.presentation.CreateAccountFragment"
+            android:label="CreateAccountFragment"/>
+    </navigation>
+    <action
+        android:id="@+id/action_global_termsFragment"
+        app:destination="@id/termsFragment"
+        app:enterAnim="@anim/slide_in_end"
+        app:exitAnim="@anim/slide_out_start"
+        app:popEnterAnim="@anim/slide_in_start"
+        app:popExitAnim="@anim/slide_out_end" />
+    <action
+        android:id="@+id/action_global_privacyFragment"
+        app:destination="@id/privacyFragment"
+        app:enterAnim="@anim/slide_in_end"
+        app:exitAnim="@anim/slide_out_start"
+        app:popEnterAnim="@anim/slide_in_start"
+        app:popExitAnim="@anim/slide_out_end"/>
+    <action
+        android:id="@+id/action_global_authGraph"
+        app:destination="@id/authGraph"
+        app:enterAnim="@anim/slide_in_bottom"
+        app:exitAnim="@anim/slide_out_bottom"
+        app:popEnterAnim="@anim/slide_in_bottom"
+        app:popExitAnim="@anim/slide_out_bottom"/>
+    <action
+        android:id="@+id/action_global_notificationSettingsFragment"
+        app:destination="@id/notificationSettingsFragment"
+        app:enterAnim="@anim/slide_in_end"
+        app:exitAnim="@anim/slide_out_start"
+        app:popEnterAnim="@anim/slide_in_start"
+        app:popExitAnim="@anim/slide_out_end"/>
 </navigation>

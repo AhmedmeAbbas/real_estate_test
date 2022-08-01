@@ -113,7 +113,7 @@
                 android:padding="@dimen/_10sdp"
                 android:background="?attr/colorTertiary"
                 android:text="@string/or"
-                android:textColor="@android:color/darker_gray"
+                android:gravity="center"
                 app:layout_constraintStart_toStartOf="@id/line"
                 app:layout_constraintEnd_toEndOf="@id/line"
                 app:layout_constraintTop_toTopOf="@id/line"

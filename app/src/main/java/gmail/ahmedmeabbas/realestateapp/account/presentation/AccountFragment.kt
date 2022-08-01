@@ -31,27 +31,35 @@ class AccountFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setUpSignInClickListener()
-        setUpNotificationsTextViewListener()
-        setUpLanguageTextViewListener()
+        setUpItemClickListeners()
         setUpNightModeSwitchListener()
-        setUpIssuesAndFeedbackListener()
+    }
+
+    private fun setUpItemClickListeners() {
+        binding.tvAccountNotifications.setOnClickListener {
+            navigateTo(R.id.action_global_notificationSettingsFragment)
+        }
+
+        binding.tvAccountLanguage.setOnClickListener {
+            navigateTo(R.id.action_accountFragment_to_languageDialog)
+        }
+
+        binding.tvAccountFeedback.setOnClickListener {
+            navigateTo(R.id.action_accountFragment_to_helpFragment)
+        }
+
+        binding.tvAccountToS.setOnClickListener {
+            navigateTo(R.id.action_global_termsFragment)
+        }
+
+        binding.tvAccountPrivacyPolicy.setOnClickListener {
+            navigateTo(R.id.action_global_privacyFragment)
+        }
     }
 
     override fun onStart() {
         super.onStart()
         binding.switchNightMode.isChecked = isNightModeOn()
-    }
-
-    private fun setUpNotificationsTextViewListener() {
-        binding.tvAccountNotifications.setOnClickListener {
-            navigateTo(R.id.action_accountFragment_to_notificationSettingsFragment)
-        }
-    }
-
-    private fun setUpLanguageTextViewListener() {
-        binding.tvAccountLanguage.setOnClickListener {
-            navigateTo(R.id.action_accountFragment_to_languageDialog)
-        }
     }
 
     private fun setUpNightModeSwitchListener() {
@@ -61,12 +69,6 @@ class AccountFragment : Fragment() {
             } else {
                 accountViewModel.toggleNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
-        }
-    }
-
-    private fun setUpIssuesAndFeedbackListener() {
-        binding.tvAccountFeedback.setOnClickListener {
-            navigateTo(R.id.action_accountFragment_to_helpFragment)
         }
     }
 

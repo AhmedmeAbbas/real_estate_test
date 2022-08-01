@@ -57,19 +57,19 @@ class SignInFragment: Fragment() {
     private fun setUpToSText() {
         val text = resources.getString(R.string.sign_in_tos)
         val textColor = requireContext().getColorFromAttr(androidx.appcompat.R.attr.colorPrimary)
-        var click1Span1 = 0
-        var click1Span2 = 0
-        var click2Span1 = 0
-        var click2Span2 = 0
+        var click1Start = 0
+        var click1End = 0
+        var click2Start = 0
+        var click2End = 0
         if (Locale.getDefault().language.equals("en")) {
-            click1Span1 = 31; click1Span2 = 47; click2Span1 = 52; click2Span2 = 66
+            click1Start = 31; click1End = 47; click2Start = 52; click2End = 66
         } else if (Locale.getDefault().language.equals("ar")) {
-            click1Span1 = 35; click1Span2 = 46; click2Span1 = 48; click2Span2 = 62
+            click1Start = 35; click1End = 46; click2Start = 48; click2End = 62
         }
         val spannableString = SpannableString(text)
         val clickableSpan1 = object : ClickableSpan() {
             override fun onClick(p0: View) {
-                navigateTo(R.id.action_signInFragment_to_termsFragment)
+                navigateTo(R.id.action_global_termsFragment)
             }
 
             override fun updateDrawState(ds: TextPaint) {
@@ -79,7 +79,7 @@ class SignInFragment: Fragment() {
         }
         val clickableSpan2 = object : ClickableSpan() {
             override fun onClick(p0: View) {
-                navigateTo(R.id.action_signInFragment_to_privacyFragment)
+                navigateTo(R.id.action_global_privacyFragment)
             }
 
             override fun updateDrawState(ds: TextPaint) {
@@ -87,8 +87,8 @@ class SignInFragment: Fragment() {
                 ds.color = textColor
             }
         }
-        spannableString.setSpan(clickableSpan1, click1Span1, click1Span2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-        spannableString.setSpan(clickableSpan2, click2Span1, click2Span2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        spannableString.setSpan(clickableSpan1, click1Start, click1End, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        spannableString.setSpan(clickableSpan2, click2Start, click2End, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         binding.tvToSSignIn.text = spannableString
         binding.tvToSSignIn.movementMethod = LinkMovementMethod.getInstance()
     }
