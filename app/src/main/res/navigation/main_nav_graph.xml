@@ -157,10 +157,24 @@
             <action
                 android:id="@+id/action_profileFragment_to_displayNameDialog"
                 app:destination="@id/displayNameDialog" />
+            <action
+                android:id="@+id/action_profileFragment_to_editEmailDialog"
+                app:destination="@id/editEmailDialog" />
+            <action
+                android:id="@+id/action_profileFragment_to_editPasswordDialog"
+                app:destination="@id/editPasswordDialog" />
         </fragment>
         <dialog
             android:id="@+id/displayNameDialog"
             android:name="gmail.ahmedmeabbas.realestateapp.account.profile.DisplayNameDialog"
             android:label="DisplayNameDialog" />
+        <dialog
+            android:id="@+id/editEmailDialog"
+            android:name="gmail.ahmedmeabbas.realestateapp.account.profile.EditEmailDialog"
+            android:label="EditEmailDialog" />
+        <dialog
+            android:id="@+id/editPasswordDialog"
+            android:name="gmail.ahmedmeabbas.realestateapp.account.profile.EditPasswordDialog"
+            android:label="EditPasswordDialog" />
     </navigation>
 </navigation>

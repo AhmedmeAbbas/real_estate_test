@@ -40,6 +40,14 @@ class ProfileFragment: Fragment() {
         binding.clDisplayName.setOnClickListener {
             navigateTo(R.id.action_profileFragment_to_displayNameDialog)
         }
+
+        binding.clEmail.setOnClickListener {
+            navigateTo(R.id.action_profileFragment_to_editEmailDialog)
+        }
+
+        binding.clPassword.setOnClickListener {
+            navigateTo(R.id.action_profileFragment_to_editPasswordDialog)
+        }
     }
 
     private fun navigateTo(actionId: Int) {

@@ -30,8 +30,8 @@ class DisplayNameDialog: BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setUpEditText()
-        setUpCancelButton()
         setUpSaveButton()
+        setUpCancelButton()
     }
 
     private fun setUpEditText() {
@@ -51,12 +51,6 @@ class DisplayNameDialog: BottomSheetDialogFragment() {
         }
     }
 
-    private fun setUpCancelButton() {
-        binding.btnDisplayNameCancel.setOnClickListener {
-            dialog?.cancel()
-        }
-    }
-
     private fun setUpSaveButton() {
         binding.btnDisplayNameSave.tvButton.text = getString(R.string.save)
 
@@ -66,6 +60,12 @@ class DisplayNameDialog: BottomSheetDialogFragment() {
                 tvButton.visibility = View.GONE
                 progressBar.visibility = View.VISIBLE
             }
+        }
+    }
+
+    private fun setUpCancelButton() {
+        binding.btnDisplayNameCancel.setOnClickListener {
+            dialog?.cancel()
         }
     }
 

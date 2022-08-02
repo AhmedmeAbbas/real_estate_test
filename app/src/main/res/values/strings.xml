@@ -6,6 +6,7 @@
     <string name="cancel">Cancel</string>
     <string name="ok">OK</string>
     <string name="save">Save</string>
+    <string name="button_continue">Continue</string>
 
     <!-- Bottom navigation -->
     <string name="bottom_nav_search_title">Search</string>
@@ -100,8 +101,23 @@
     <string name="profile_email_sub">Change your email</string>
     <string name="profile_password_header">Password</string>
     <string name="profile_password_sub">Change your password</string>
-    <string name="profile_edit_display_name">Edit display name</string>
-    <string name="profile_edit_display_name_hint">Display name</string>
+
+    <!-- Edit display name dialog -->
+    <string name="edit_display_name_title">Edit display name</string>
+    <string name="edit_display_name_hint">Display name</string>
+    <string name="edit_display_name_sub">This name will appear in your chats and requests to other users</string>
+
+    <!-- Edit email dialog -->
+    <string name="edit_email_title">Change email</string>
+    <string name="edit_email_current_hint">Current email</string>
+    <string name="edit_email_new_hint">Enter your new email</string>
+
+    <!-- Edit password dialog -->
+    <string name="edit_password_title">Change password</string>
+    <string name="edit_password_current_hint">Current password</string>
+    <string name="edit_password_new_hint">New password</string>
+    <string name="edit_password_confirm_hint">Confirm new password</string>
+    <string name="edit_password_min_chars">Must be at least 6 characters long</string>
 
     <!-- Notification settings -->
     <string name="notif_settings_toolbar_title">Notification settings</string>

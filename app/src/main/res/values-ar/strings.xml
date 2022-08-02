@@ -7,6 +7,7 @@
     <string name="cancel">إلغاء</string>
     <string name="ok">موافق</string>
     <string name="save">حفظ</string>
+    <string name="button_continue">استمر</string>
 
     <!-- Bottom navigation -->
     <string name="bottom_nav_search_title">بحث</string>
@@ -101,8 +102,23 @@
     <string name="profile_email_sub">تغيير البريد الإلكتروني</string>
     <string name="profile_password_header">كلمة المرور</string>
     <string name="profile_password_sub">تغيير كلمة المرور</string>
-    <string name="profile_edit_display_name">تعديل اسم العرض</string>
-    <string name="profile_edit_display_name_hint">اسم العرض</string>
+
+    <!-- Edit display name dialog -->
+    <string name="edit_display_name_title">تعديل اسم العرض</string>
+    <string name="edit_display_name_hint">اسم العرض</string>
+    <string name="edit_display_name_sub">هذا الإسم سيظهر في محادثاتك وطلباتك للمستخدمين الاخرين</string>
+
+    <!-- Edit email dialog -->
+    <string name="edit_email_title">تغيير البريد الإلكتروني</string>
+    <string name="edit_email_current_hint">البريد الإلكتروني الحالي</string>
+    <string name="edit_email_new_hint">أدخل بريدك الإلكتروني الجديد</string>
+
+    <!-- Edit password dialog -->
+    <string name="edit_password_title">تغيير كلمة المرور</string>
+    <string name="edit_password_current_hint">كلمة المرور الحالية</string>
+    <string name="edit_password_new_hint">كلمة المرور الجديدة</string>
+    <string name="edit_password_confirm_hint">تأكيد كلمة المرور الجديدة</string>
+    <string name="edit_password_min_chars">يجب أن تتكون من 6 أحرف على الأقل</string>
 
     <!-- Notification settings -->
     <string name="notif_settings_toolbar_title">إعدادات الإشعارات</string>
