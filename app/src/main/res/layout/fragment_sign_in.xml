@@ -61,7 +61,7 @@
                 app:drawableStartCompat="@drawable/ic_mail_selected"
                 app:drawableTint="?attr/colorSecondary"
                 android:text="@string/sign_in_email"
-                android:elevation="@dimen/_6sdp"
+                android:elevation="@dimen/_4sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvSignInSub"/>
@@ -75,7 +75,7 @@
                 android:background="@drawable/ripple_round_transparent"
                 app:drawableStartCompat="@drawable/ic_facebook"
                 android:text="@string/sign_in_facebook"
-                android:elevation="@dimen/_6sdp"
+                android:elevation="@dimen/_4sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/btnSignInEmail" />
@@ -89,7 +89,7 @@
                 android:background="@drawable/ripple_round_transparent"
                 app:drawableStartCompat="@drawable/ic_google"
                 android:text="@string/sign_in_google"
-                android:elevation="@dimen/_6sdp"
+                android:elevation="@dimen/_4sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/btnSignInFacebook"/>
@@ -113,6 +113,7 @@
                 android:padding="@dimen/_10sdp"
                 android:background="?attr/colorTertiary"
                 android:text="@string/or"
+                android:textSize="@dimen/_13ssp"
                 android:gravity="center"
                 app:layout_constraintStart_toStartOf="@id/line"
                 app:layout_constraintEnd_toEndOf="@id/line"
@@ -127,7 +128,7 @@
                 style="@style/BigButton"
                 android:background="@drawable/ripple_round_transparent"
                 android:text="@string/sign_in_create_account"
-                android:elevation="@dimen/_6sdp"
+                android:elevation="@dimen/_4sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvSignInOr"/>

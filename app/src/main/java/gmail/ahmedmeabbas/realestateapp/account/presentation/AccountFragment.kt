@@ -37,11 +37,11 @@ class AccountFragment : Fragment() {
 
     private fun setUpItemClickListeners() {
         binding.tvAccountProfile.setOnClickListener {
-            navigateTo(R.id.action_accountFragment_to_profileFragment)
+            navigateTo(R.id.action_accountFragment_to_profileGraph)
         }
 
         binding.tvAccountNotifications.setOnClickListener {
-            navigateTo(R.id.action_global_notificationSettingsFragment)
+            navigateTo(R.id.action_global_notificationsGraph)
         }
 
         binding.tvAccountLanguage.setOnClickListener {

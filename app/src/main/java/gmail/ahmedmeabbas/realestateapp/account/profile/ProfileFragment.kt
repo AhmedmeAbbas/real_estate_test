@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import gmail.ahmedmeabbas.realestateapp.R
 import gmail.ahmedmeabbas.realestateapp.databinding.FragmentProfileBinding
 
 class ProfileFragment: Fragment() {
@@ -25,9 +26,24 @@ class ProfileFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setUpToolbar()
+        setUpClickListeners()
+    }
+
+    private fun setUpToolbar() {
         binding.toolbarProfile.setNavigationOnClickListener {
             findNavController().navigateUp()
         }
+    }
+
+    private fun setUpClickListeners() {
+        binding.clDisplayName.setOnClickListener {
+            navigateTo(R.id.action_profileFragment_to_displayNameDialog)
+        }
+    }
+
+    private fun navigateTo(actionId: Int) {
+        findNavController().navigate(actionId)
     }
 
     override fun onDestroyView() {

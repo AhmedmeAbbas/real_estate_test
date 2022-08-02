@@ -33,7 +33,7 @@ class LanguageDialog : BottomSheetDialogFragment() {
         dialog?.setCancelable(true)
 
         setUpRadioGroupCheckedListener()
-        setUpCancelTextView()
+        setUpCancelButton()
         observeLanguageChange()
     }
 
@@ -61,7 +61,7 @@ class LanguageDialog : BottomSheetDialogFragment() {
         }
     }
 
-    private fun setUpCancelTextView() {
+    private fun setUpCancelButton() {
         binding.tvCancel.setOnClickListener {
             dialog?.cancel()
         }

@@ -5,6 +5,7 @@
     <string name="go_to_sign_in_page">Go to sign in page</string>
     <string name="cancel">Cancel</string>
     <string name="ok">OK</string>
+    <string name="save">Save</string>
 
     <!-- Bottom navigation -->
     <string name="bottom_nav_search_title">Search</string>
@@ -93,12 +94,14 @@
 
     <!-- Profile fragment -->
     <string name="profile_title">Profile</string>
-    <string name="profile_personal_info_header">Personal information</string>
-    <string name="profile_personal_info_sub">Edit your personal information</string>
+    <string name="profile_display_name_header">Display name</string>
+    <string name="profile_display_name_sub">The name that will appear to other users</string>
     <string name="profile_email_header">Email</string>
     <string name="profile_email_sub">Change your email</string>
     <string name="profile_password_header">Password</string>
     <string name="profile_password_sub">Change your password</string>
+    <string name="profile_edit_display_name">Edit display name</string>
+    <string name="profile_edit_display_name_hint">Display name</string>
 
     <!-- Notification settings -->
     <string name="notif_settings_toolbar_title">Notification settings</string>

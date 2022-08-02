@@ -19,7 +19,7 @@
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/clPersonalInfo"
+        android:id="@+id/clDisplayName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_10sdp"
@@ -35,7 +35,7 @@
             android:id="@+id/tvPersonalInfoHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/profile_personal_info_header"
+            android:text="@string/profile_display_name_header"
             android:textStyle="bold"
             android:textSize="@dimen/_15ssp"
             app:layout_constraintTop_toTopOf="parent"
@@ -47,21 +47,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_3sdp"
-            android:text="@string/profile_personal_info_sub"
+            android:text="@string/profile_display_name_sub"
             style="@style/SubText"
             android:textSize="@dimen/_12ssp"
             android:gravity="start"
             app:layout_constraintTop_toBottomOf="@id/tvPersonalInfoHeader"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_arrow"
-            app:tint="?attr/colorSecondary"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -73,7 +64,7 @@
         android:foreground="?attr/selectableItemBackground"
         android:clickable="true"
         android:focusable="true"
-        app:layout_constraintTop_toBottomOf="@id/clPersonalInfo"
+        app:layout_constraintTop_toBottomOf="@id/clDisplayName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
@@ -99,15 +90,6 @@
             android:gravity="start"
             app:layout_constraintTop_toBottomOf="@id/tvEmailHeader"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_arrow"
-            app:tint="?attr/colorSecondary"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -145,15 +127,6 @@
             android:gravity="start"
             app:layout_constraintTop_toBottomOf="@id/tvPasswordHeader"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_arrow"
-            app:tint="?attr/colorSecondary"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

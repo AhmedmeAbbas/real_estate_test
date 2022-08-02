@@ -6,6 +6,7 @@
     <string name="go_to_sign_in_page">اذهب إلى صفحة تسجيل الدخول</string>
     <string name="cancel">إلغاء</string>
     <string name="ok">موافق</string>
+    <string name="save">حفظ</string>
 
     <!-- Bottom navigation -->
     <string name="bottom_nav_search_title">بحث</string>
@@ -94,12 +95,14 @@
 
     <!-- Profile fragment -->
     <string name="profile_title">الحساب الشخصي</string>
-    <string name="profile_personal_info_header">المعلومات الشخصية</string>
-    <string name="profile_personal_info_sub">تعديل المعلومات الشخصية</string>
+    <string name="profile_display_name_header">اسم العرض</string>
+    <string name="profile_display_name_sub">الإسم الذي سيظهر للمستخدمين الاخرين</string>
     <string name="profile_email_header">البريد الإلكتروني</string>
     <string name="profile_email_sub">تغيير البريد الإلكتروني</string>
     <string name="profile_password_header">كلمة المرور</string>
     <string name="profile_password_sub">تغيير كلمة المرور</string>
+    <string name="profile_edit_display_name">تعديل اسم العرض</string>
+    <string name="profile_edit_display_name_hint">اسم العرض</string>
 
     <!-- Notification settings -->
     <string name="notif_settings_toolbar_title">إعدادات الإشعارات</string>
