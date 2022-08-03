@@ -9,6 +9,7 @@
     <string name="ok">موافق</string>
     <string name="save">حفظ</string>
     <string name="button_continue">استمر</string>
+    <string name="required">مطلوب</string>
 
     <!-- Bottom navigation -->
     <string name="bottom_nav_search_title">بحث</string>

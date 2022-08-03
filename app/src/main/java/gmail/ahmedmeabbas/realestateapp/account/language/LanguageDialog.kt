@@ -39,7 +39,7 @@ class LanguageDialog : BottomSheetDialogFragment() {
 
     private fun observeLanguageChange() {
         viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 languageDialogViewModel.uiState
                     .collect { uiState ->
                         if (uiState.languageCode == "ar") {

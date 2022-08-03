@@ -8,6 +8,7 @@ import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.preferencesDataStoreFile
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import dagger.Module
@@ -15,6 +16,9 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepository
+import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl
+import gmail.ahmedmeabbas.realestateapp.authentication.domain.UserSignedInUseCase
 import gmail.ahmedmeabbas.realestateapp.userpreferences.UserPreferencesRepository
 import gmail.ahmedmeabbas.realestateapp.userpreferences.UserPreferencesRepositoryImpl
 import kotlinx.coroutines.CoroutineScope
@@ -54,4 +58,20 @@ object AppModule {
     @Singleton
     @Provides
     fun provideFirebaseAuth() = Firebase.auth
+
+    @Singleton
+    @Provides
+    fun provideAuthRepository(
+        auth: FirebaseAuth
+    ): AuthRepository {
+        return AuthRepositoryImpl(auth)
+    }
+
+    @Singleton
+    @Provides
+    fun provideUserSignedInUseCase(
+        authRepository: AuthRepository
+    ): UserSignedInUseCase {
+        return UserSignedInUseCase(authRepository)
+    }
 }
