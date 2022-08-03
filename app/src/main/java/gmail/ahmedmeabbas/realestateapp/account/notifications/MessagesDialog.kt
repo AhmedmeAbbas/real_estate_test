@@ -29,8 +29,8 @@ class MessagesDialog: BottomSheetDialogFragment() {
     }
 
     private fun setUpCancelTextViewListener() {
-        binding.tvCancelMessages.setOnClickListener {
-            dialog?.cancel()
+        binding.tvDismissMessages.setOnClickListener {
+            dialog?.dismiss()
         }
     }
 

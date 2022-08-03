@@ -2,12 +2,9 @@ package gmail.ahmedmeabbas.realestateapp
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
-import android.animation.ObjectAnimator
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.view.animation.Animation
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -54,7 +51,6 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
         binding.bottomNavigation.setupWithNavController(navController)
 
-        Log.d(TAG, "onCreate: ${navController.currentDestination}")
         setUpBottomNavigationVisibilityListener()
         observeLanguageChange()
         observeNightModeChange()

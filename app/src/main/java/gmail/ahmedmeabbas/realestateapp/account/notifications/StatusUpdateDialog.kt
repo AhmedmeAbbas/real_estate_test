@@ -29,8 +29,8 @@ class StatusUpdateDialog: BottomSheetDialogFragment() {
     }
 
     private fun setUpCancelTextViewListener() {
-        binding.tvCancelStatusUpdate.setOnClickListener {
-            dialog?.cancel()
+        binding.tvDismissStatusUpdate.setOnClickListener {
+            dialog?.dismiss()
         }
     }
 

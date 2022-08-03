@@ -5,6 +5,7 @@
     <string name="placeholder_text">Placeholder Text</string>
     <string name="go_to_sign_in_page">اذهب إلى صفحة تسجيل الدخول</string>
     <string name="cancel">إلغاء</string>
+    <string name="dismiss">إخفاء</string>
     <string name="ok">موافق</string>
     <string name="save">حفظ</string>
     <string name="button_continue">استمر</string>
@@ -130,11 +131,8 @@
     <string name="notif_settings_messages_sub">استقبل إشعارات حول الرسائل القادمة من أصحاب العقارات والمشترين</string>
 
     <!-- Notification settings dialogs-->
-    <string name="dialog_new_listings_title">إشعارات العقارات الجديدة</string>
-    <string name="dialog_status_update_title">إشعارات تحديث الحالة</string>
-    <string name="dialog_messages_title">إشعارات الرسائل</string>
     <string name="dialog_push_notifications">إشعارات الهاتف</string>
-    <string name="dialog_email_notifications">إشعارات البريد الإلكتروني</string>
+    <string name="dialog_email_notifications">البريد الإلكتروني</string>
 
     <!-- Language dialog -->
     <string name="dialog_language_title">اختر اللغة</string>

@@ -62,8 +62,8 @@ class LanguageDialog : BottomSheetDialogFragment() {
     }
 
     private fun setUpCancelButton() {
-        binding.tvCancel.setOnClickListener {
-            dialog?.cancel()
+        binding.tvDismiss.setOnClickListener {
+            dialog?.dismiss()
         }
     }
 

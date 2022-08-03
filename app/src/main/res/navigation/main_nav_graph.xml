@@ -63,7 +63,7 @@
         app:startDestination="@id/signInFragment">
         <fragment
             android:id="@+id/emailSignInFragment"
-            android:name="gmail.ahmedmeabbas.realestateapp.authentication.presentation.EmailSignInFragment"
+            android:name="gmail.ahmedmeabbas.realestateapp.authentication.presentation.email.EmailSignInFragment"
             android:label="EmailSignInFragment" />
         <fragment
             android:id="@+id/signInFragment"

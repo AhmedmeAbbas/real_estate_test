@@ -1,4 +1,4 @@
-package gmail.ahmedmeabbas.realestateapp.authentication.presentation
+package gmail.ahmedmeabbas.realestateapp.authentication.presentation.email
 
 import android.content.res.ColorStateList
 import android.os.Bundle

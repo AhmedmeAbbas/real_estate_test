@@ -58,13 +58,13 @@
     </RadioGroup>
 
     <TextView
-        android:id="@+id/tvCancel"
+        android:id="@+id/tvDismiss"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_4sdp"
         android:paddingTop="@dimen/_10sdp"
         android:paddingBottom="@dimen/_10sdp"
-        android:text="@string/cancel"
+        android:text="@string/dismiss"
         android:textSize="@dimen/_14ssp"
         android:gravity="center"
         android:foreground="?attr/selectableItemBackground"

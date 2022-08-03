@@ -4,6 +4,7 @@
     <string name="placeholder_text">Placeholder Text</string>
     <string name="go_to_sign_in_page">Go to sign in page</string>
     <string name="cancel">Cancel</string>
+    <string name="dismiss">Dismiss</string>
     <string name="ok">OK</string>
     <string name="save">Save</string>
     <string name="button_continue">Continue</string>
@@ -129,11 +130,8 @@
     <string name="notif_settings_messages_sub">Get notified about incoming messages from homeowners and buyers</string>
 
     <!-- Notification settings dialogs-->
-    <string name="dialog_new_listings_title">New listings notifications</string>
-    <string name="dialog_status_update_title">Status update notifications</string>
-    <string name="dialog_messages_title">Messages notifications</string>
     <string name="dialog_push_notifications">Push notifications</string>
-    <string name="dialog_email_notifications">Email notifications</string>
+    <string name="dialog_email_notifications">Email</string>
 
     <!-- Language dialog -->
     <string name="dialog_language_title">Choose a language</string>
