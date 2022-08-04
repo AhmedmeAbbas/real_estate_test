@@ -59,6 +59,10 @@ class AccountFragment : Fragment() {
         binding.tvAccountPrivacyPolicy.setOnClickListener {
             navigateTo(R.id.action_global_privacyFragment)
         }
+
+        binding.tvAccountSignOut.setOnClickListener {
+            accountViewModel.signOut()
+        }
     }
 
     override fun onStart() {

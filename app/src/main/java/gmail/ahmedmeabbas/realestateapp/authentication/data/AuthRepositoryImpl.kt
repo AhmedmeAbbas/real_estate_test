@@ -11,10 +11,10 @@ class AuthRepositoryImpl @Inject constructor(
     private val auth: FirebaseAuth
 ) : AuthRepository {
 
-    private var user: FirebaseUser? = null
+    private var user: FirebaseUser? = auth.currentUser
     override val userFlow: Flow<FirebaseUser?> = flow {
         Log.d(TAG, "user flow: emitted")
-        emit(auth.currentUser)
+        emit(user)
     }
 
     override suspend fun signInWithEmailAndPassword(email: String, password: String) {
@@ -22,10 +22,17 @@ class AuthRepositoryImpl @Inject constructor(
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Log.d(TAG, "signInWithEmailAndPassword: auth success")
+                    user = auth.currentUser
                 } else {
                     Log.d(TAG, "signInWithEmailAndPassword: ${task.exception}")
                 }
             }
+    }
+
+    override suspend fun signOut() {
+        auth.signOut()
+        Log.d(TAG, "signOut: ${auth.currentUser}")
+        user = null
     }
 
     companion object {

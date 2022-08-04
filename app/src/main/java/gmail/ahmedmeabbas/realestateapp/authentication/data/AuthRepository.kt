@@ -8,4 +8,6 @@ interface AuthRepository {
     val userFlow: Flow<FirebaseUser?>
 
     suspend fun signInWithEmailAndPassword(email: String, password: String)
+
+    suspend fun signOut()
 }

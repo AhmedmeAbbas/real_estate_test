@@ -31,8 +31,10 @@ class EmailSignInViewModel @Inject constructor(
 
     private fun fetchInitialState() {
         viewModelScope.launch {
-            _uiState.update { uiState ->
-                uiState.copy(signInSuccess = userSignedInUseCase.isUserSignedIn.first())
+            userSignedInUseCase.isUserSignedIn.collect { isSignedIn ->
+                _uiState.update { uiState ->
+                    uiState.copy(signInSuccess = isSignedIn)
+                }
             }
             Log.d(TAG, "fetchInitialState: fetched")
         }
