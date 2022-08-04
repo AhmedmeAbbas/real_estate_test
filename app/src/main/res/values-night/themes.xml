@@ -46,7 +46,7 @@
 
     <style name="SubText" parent="TextAppearance.AppCompat">
         <item name="android:textColor">@color/light_hint_color</item>
-        <item name="android:textSize">@dimen/_14ssp</item>
+        <item name="android:textSize">@dimen/_13ssp</item>
         <item name="android:gravity">center</item>
     </style>
 

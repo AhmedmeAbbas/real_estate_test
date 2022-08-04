@@ -4,6 +4,7 @@
     <string name="app_name">Real Estate App</string>
     <string name="placeholder_text">Placeholder Text</string>
     <string name="go_to_sign_in_page">اذهب إلى صفحة تسجيل الدخول</string>
+    <string name="go_to_search_page">اذهب إلى صفحة البحث</string>
     <string name="cancel">إلغاء</string>
     <string name="dismiss">إخفاء</string>
     <string name="ok">موافق</string>
@@ -56,11 +57,11 @@
 
     <!-- Saved homes fragment -->
     <string name="saved_homes_header">احفظ العقارات التي تعجبك</string>
-    <string name="saved_homes_sub">يتوجب عليك تسجيل الدخول لكي تتمكن من حفظ وعرض عقاراتك المفضلة</string>
+    <string name="saved_homes_sub">وجدت عقاراً يعجبك؟ اضغط على زر الحفظ لتتمكن من إضافته ومتابعته هنا</string>
 
     <!-- Saved searches fragment -->
     <string name="saved_searches_header">احفظ المناطق التي تهمك</string>
-    <string name="saved_searches_sub">يتوجب عليك تسجيل الدخول لكي تتمكن من حفظ وعرض المناطق التي تهمك</string>
+    <string name="saved_searches_sub">تمكن من الوصول بسرعة ومتابعة العقارات الجديدة في مناطقك المفضلة</string>
 
     <!-- My home fragment -->
     <string name="my_home_header">جميع عقاراتك في مكان واحد</string>
@@ -73,15 +74,15 @@
 
     <!-- Requests fragment-->
     <string name="requests_header">تابع طلباتك</string>
-    <string name="requests_sub">يتوجب عليك تسجيل الدخول لكي تتمكن من متابعة وإدارة طلباتك</string>
+    <string name="requests_sub">إدارة الطلبات الواردة ومتابعة طلباتك الصادرة</string>
 
     <!-- Chats fragment -->
     <string name="chats_header">تواصل مع اصحاب العقارات</string>
-    <string name="chats_sub">يتوجب عليك تسجيل الدخول لكي تتمكن من إرسال واستقبال الرسائل</string>
+    <string name="chats_sub">لا تريد مشاركة رقم هاتفك مع الجميع؟ يمكنك استخدام خاصية المحادثات داخل التطبيق</string>
 
     <!-- Notifications fragment -->
     <string name="notifications_header">ابق على إطلاع!</string>
-    <string name="notifications_sub">يتوجب عليك تسجيل الدخول لكي تتكمن من استقبال إشعارات حول عقاراتك ومناطقك المفضلة</string>
+    <string name="notifications_sub">احصل على إشعارات الطلبات والتحديثات على عقاراتك ومناطقك المفضلة</string>
 
     <!-- Account fragment -->
     <string name="account_sign_in_header">سجل دخولك</string>
@@ -127,11 +128,11 @@
     <!-- Notification settings -->
     <string name="notif_settings_toolbar_title">إعدادات الإشعارات</string>
     <string name="notif_settings_new_listings_header">العقارات الجديدة</string>
-    <string name="notif_settings_new_listings_sub">استقبل إشعارات عندما تتم إضافة عقارات جديدة في مناطقك المحفوطة</string>
+    <string name="notif_settings_new_listings_sub">احصل على إشعارات عندما تتم إضافة عقارات جديدة في مناطقك المحفوطة</string>
     <string name="notif_settings_status_update_header">تحديث حالة العقار</string>
-    <string name="notif_settings_status_update_sub">استقبل إشعارات في حالة تغيير حالة أي من عقاراتك المحفوظة (مثال. السعر أو التوفر)</string>
-    <string name="notif_settings_messages_header">الرسائل</string>
-    <string name="notif_settings_messages_sub">استقبل إشعارات حول الرسائل القادمة من أصحاب العقارات والمشترين</string>
+    <string name="notif_settings_status_update_sub">احصل على إشعارات في حالة تغيير حالة أي من عقاراتك المحفوظة (مثال. السعر أو التوفر)</string>
+    <string name="notif_settings_messages_header">الطلبات</string>
+    <string name="notif_settings_messages_sub">احصل على إشعارات حول الطلبات الصادرة والواردة</string>
 
     <!-- Notification settings dialogs-->
     <string name="dialog_push_notifications">إشعارات الهاتف</string>

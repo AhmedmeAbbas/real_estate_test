@@ -3,6 +3,7 @@
     <string name="app_name">Real Estate App</string>
     <string name="placeholder_text">Placeholder Text</string>
     <string name="go_to_sign_in_page">Go to sign in page</string>
+    <string name="go_to_search_page">Go to search page</string>
     <string name="cancel">Cancel</string>
     <string name="dismiss">Dismiss</string>
     <string name="ok">OK</string>
@@ -55,11 +56,11 @@
 
     <!-- Saved homes fragment -->
     <string name="saved_homes_header">Save the homes you like</string>
-    <string name="saved_homes_sub">You have to be signed in to save and view your favorite homes</string>
+    <string name="saved_homes_sub">Found a home you like? click the favorite button to add it and keep track of it here</string>
 
     <!-- Saved searches fragment -->
     <string name="saved_searches_header">Save the areas you are interested in</string>
-    <string name="saved_searches_sub">You have to be signed in to save and view the areas you are interested in</string>
+    <string name="saved_searches_sub">Quickly access and keep track of new listings in your favorite areas</string>
 
     <!-- My home fragment -->
     <string name="my_home_header">All your listings in one place</string>
@@ -72,15 +73,15 @@
 
     <!-- Requests fragment-->
     <string name="requests_header">Follow your requests</string>
-    <string name="requests_sub">You have to be signed in to follow and manage your requests</string>
+    <string name="requests_sub">Manage incoming requests and keep track of your outgoing requests</string>
 
     <!-- Chats fragment -->
     <string name="chats_header">Connect with homeowners</string>
-    <string name="chats_sub">You have to be signed in to send and receive messages</string>
+    <string name="chats_sub">Don\'t want to share your phone number with everyone? you can use our in-app messaging feature</string>
 
     <!-- Notifications fragment -->
     <string name="notifications_header">Stay updated!</string>
-    <string name="notifications_sub">You have to be signed in to receive notifications about your favorite homes and areas</string>
+    <string name="notifications_sub">Get notified about requests and updates to your saved homes and areas</string>
 
     <!-- Account fragment -->
     <string name="account_sign_in_header">Sign In</string>
@@ -129,8 +130,8 @@
     <string name="notif_settings_new_listings_sub">Get notified when new listings are added in your saved areas</string>
     <string name="notif_settings_status_update_header">Listing status update</string>
     <string name="notif_settings_status_update_sub">Get notified when any of your saved homes is updated (eg. price or availability)</string>
-    <string name="notif_settings_messages_header">Messages</string>
-    <string name="notif_settings_messages_sub">Get notified about incoming messages from homeowners and buyers</string>
+    <string name="notif_settings_messages_header">Requests</string>
+    <string name="notif_settings_messages_sub">Get notified about outgoing and incoming requests</string>
 
     <!-- Notification settings dialogs-->
     <string name="dialog_push_notifications">Push notifications</string>

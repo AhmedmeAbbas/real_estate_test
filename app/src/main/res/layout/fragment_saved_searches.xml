@@ -4,6 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvSavedSearches"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineSavedSearches"
         android:layout_width="wrap_content"
@@ -53,7 +59,7 @@
         android:layout_marginTop="@dimen/_16sdp"
         style="@style/BigButton"
         android:background="@drawable/ripple_round_primary"
-        android:text="@string/go_to_sign_in_page"
+        android:text="@string/go_to_search_page"
         android:textColor="?attr/colorTertiary"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
