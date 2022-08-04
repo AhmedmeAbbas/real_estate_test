@@ -5,9 +5,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepository
-import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl
-import gmail.ahmedmeabbas.realestateapp.authentication.domain.UserSignedInUseCase
-import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
