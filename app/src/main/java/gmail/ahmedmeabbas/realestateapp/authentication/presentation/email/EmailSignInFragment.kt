@@ -3,7 +3,6 @@ package gmail.ahmedmeabbas.realestateapp.authentication.presentation.email
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,16 +10,10 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.snackbar.Snackbar
 import gmail.ahmedmeabbas.realestateapp.R
 import gmail.ahmedmeabbas.realestateapp.databinding.FragmentEmailSignInBinding
 import gmail.ahmedmeabbas.realestateapp.util.ColorUtils.getColorFromAttr
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.launch
 
 class EmailSignInFragment : Fragment() {
 
@@ -43,30 +36,6 @@ class EmailSignInFragment : Fragment() {
         setUpToolbar()
         setUpSignInButton()
         setUpEditTextColor()
-        observeSignIn()
-    }
-
-    private fun observeSignIn() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                emailViewModel.uiState.map { it.signInSuccess }
-                    .collect { signInSuccess ->
-                        Log.d(TAG, "observeSignIn: $signInSuccess")
-                        if (signInSuccess == null) return@collect
-                        if (signInSuccess) {
-                            showMessage("Success")
-                        } else {
-                            showMessage("Authentication failed")
-                        }
-                    }
-            }
-        }
-    }
-
-    private fun showMessage(message: String) {
-        Log.d(TAG, "showErrorMessage: triggered")
-        Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
-        Log.d(TAG, "showErrorMessage: shown")
     }
 
     private fun setUpToolbar() {

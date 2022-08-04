@@ -1,8 +1,6 @@
 package gmail.ahmedmeabbas.realestateapp.authentication.data
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.liveData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.flow.*

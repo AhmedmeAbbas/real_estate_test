@@ -65,12 +65,4 @@ object AppModule {
     ): AuthRepository {
         return AuthRepositoryImpl(auth)
     }
-
-    @Singleton
-    @Provides
-    fun provideUserSignedInUseCase(
-        authRepository: AuthRepository
-    ): UserSignedInUseCase {
-        return UserSignedInUseCase(authRepository)
-    }
 }

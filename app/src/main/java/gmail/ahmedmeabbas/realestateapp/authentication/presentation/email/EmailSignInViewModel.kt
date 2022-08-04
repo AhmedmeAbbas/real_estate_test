@@ -1,6 +1,5 @@
 package gmail.ahmedmeabbas.realestateapp.authentication.presentation.email
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,27 +14,11 @@ data class EmailSignInUiState(
 
 @HiltViewModel
 class EmailSignInViewModel @Inject constructor(
-    private val authRepository: AuthRepository,
-    private val userSignedInUseCase: UserSignedInUseCase
+    private val authRepository: AuthRepository
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(EmailSignInUiState())
     val uiState: StateFlow<EmailSignInUiState> = _uiState.asStateFlow()
-
-    init {
-        fetchInitialState()
-    }
-
-    private fun fetchInitialState() {
-        viewModelScope.launch {
-            userSignedInUseCase.isUserSignedIn.collect { isSignedIn ->
-                _uiState.update { uiState ->
-                    uiState.copy(signInSuccess = isSignedIn)
-                }
-            }
-            Log.d(TAG, "fetchInitialState: fetched")
-        }
-    }
 
     fun signInWithEmailAndPassword(email: String, password: String) {
         viewModelScope.launch() {
