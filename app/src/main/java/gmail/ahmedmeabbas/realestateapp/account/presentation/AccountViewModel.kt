@@ -1,6 +1,5 @@
 package gmail.ahmedmeabbas.realestateapp.account.presentation
 
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -11,7 +10,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 data class AccountUiState(
-    val nightModeFlag: Int = AppCompatDelegate.MODE_NIGHT_UNSPECIFIED
+    var isUserSignedIn: Boolean = false
 )
 
 @HiltViewModel
@@ -29,25 +28,17 @@ class AccountViewModel @Inject constructor(
 
     private fun fetchInitialState() {
         viewModelScope.launch {
-            userPreferencesRepository.userPreferencesFlow
-                .collect { userPrefs ->
-                    _uiState.update {
-                        it.copy(nightModeFlag = userPrefs.nightModeFlag)
-                    }
+            authRepository.isUserSignedInFlow.collect { isSignedIn ->
+                _uiState.update {
+                    it.copy(isUserSignedIn = isSignedIn)
                 }
+            }
         }
     }
 
     fun toggleNightMode(nightModeFlag: Int) {
         viewModelScope.launch {
             userPreferencesRepository.writeNightModeFlag(nightModeFlag)
-            _uiState.update {
-                it.copy(
-                    nightModeFlag =
-                    userPreferencesRepository.fetchNightModeFlag()
-                        ?: AppCompatDelegate.MODE_NIGHT_UNSPECIFIED
-                )
-            }
         }
     }
 

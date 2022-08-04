@@ -37,19 +37,6 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tvAccountDisplayName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_4sdp"
-                android:text="@string/placeholder_text"
-                android:textColor="?attr/colorSecondary"
-                android:textSize="@dimen/_24ssp"
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvAccountSignInHeader" />
-
-            <TextView
                 android:id="@+id/tvAccountSignInSub"
                 style="@style/SubText"
                 android:layout_width="0dp"
@@ -79,18 +66,42 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
+            android:id="@+id/tvAccountGreeting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:text="@string/account_greeting"
+            android:textSize="@dimen/_24ssp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/clAccountHeader" />
+
+        <TextView
+            android:id="@+id/tvAccountDisplayName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:text="@string/account_display_name"
+            android:textSize="@dimen/_24ssp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvAccountGreeting" />
+
+        <TextView
             android:id="@+id/tvAccountProfile"
             style="@style/AccountItem"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_30sdp"
             android:background="@drawable/account_item_background"
             android:text="@string/account_profile_title"
             android:visibility="gone"
             app:drawableStartCompat="@drawable/ic_person"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/clAccountHeader" />
+            app:layout_constraintTop_toBottomOf="@id/tvAccountDisplayName" />
 
         <TextView
             android:id="@+id/tvAccountNotifications"
@@ -103,7 +114,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvAccountProfile"
-            app:layout_goneMarginTop="@dimen/_26sdp" />
+            app:layout_goneMarginTop="@dimen/_170sdp" />
 
         <TextView
             android:id="@+id/tvAccountLanguage"

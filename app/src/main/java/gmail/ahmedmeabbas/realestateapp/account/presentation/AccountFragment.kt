@@ -8,9 +8,14 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import gmail.ahmedmeabbas.realestateapp.R
 import gmail.ahmedmeabbas.realestateapp.databinding.FragmentAccountBinding
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 
 class AccountFragment : Fragment() {
 
@@ -33,35 +38,67 @@ class AccountFragment : Fragment() {
         setUpSignInClickListener()
         setUpItemClickListeners()
         setUpNightModeSwitchListener()
+        observeAuthState()
+    }
+
+    private fun observeAuthState() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                accountViewModel.uiState
+                    .map { it.isUserSignedIn }
+                    .collect {
+                        updateViews(it)
+                    }
+            }
+        }
+    }
+
+    private fun updateViews(isSignedIn: Boolean) {
+        val show = if (isSignedIn) View.VISIBLE else View.GONE
+        val hide = if (isSignedIn) View.GONE else View.VISIBLE
+        with(binding) {
+            clAccountHeader.visibility = hide
+            tvAccountGreeting.visibility = show
+            tvAccountDisplayName.visibility = show
+            tvAccountProfile.visibility = show
+            tvAccountSignOut.visibility = show
+        }
     }
 
     private fun setUpItemClickListeners() {
-        binding.tvAccountProfile.setOnClickListener {
-            navigateTo(R.id.action_accountFragment_to_profileGraph)
-        }
+        with(binding) {
 
-        binding.tvAccountNotifications.setOnClickListener {
-            navigateTo(R.id.action_global_notificationsGraph)
-        }
+            btnAccountSignIn.setOnClickListener {
+                navigateTo(R.id.action_global_authGraph)
+            }
 
-        binding.tvAccountLanguage.setOnClickListener {
-            navigateTo(R.id.action_accountFragment_to_languageDialog)
-        }
+            tvAccountProfile.setOnClickListener {
+                navigateTo(R.id.action_accountFragment_to_profileGraph)
+            }
 
-        binding.tvAccountFeedback.setOnClickListener {
-            navigateTo(R.id.action_accountFragment_to_helpFragment)
-        }
+            tvAccountNotifications.setOnClickListener {
+                navigateTo(R.id.action_global_notificationsGraph)
+            }
 
-        binding.tvAccountToS.setOnClickListener {
-            navigateTo(R.id.action_global_termsFragment)
-        }
+            tvAccountLanguage.setOnClickListener {
+                navigateTo(R.id.action_accountFragment_to_languageDialog)
+            }
 
-        binding.tvAccountPrivacyPolicy.setOnClickListener {
-            navigateTo(R.id.action_global_privacyFragment)
-        }
+            tvAccountFeedback.setOnClickListener {
+                navigateTo(R.id.action_accountFragment_to_helpFragment)
+            }
 
-        binding.tvAccountSignOut.setOnClickListener {
-            accountViewModel.signOut()
+            tvAccountToS.setOnClickListener {
+                navigateTo(R.id.action_global_termsFragment)
+            }
+
+            tvAccountPrivacyPolicy.setOnClickListener {
+                navigateTo(R.id.action_global_privacyFragment)
+            }
+
+            tvAccountSignOut.setOnClickListener {
+                accountViewModel.signOut()
+            }
         }
     }
 

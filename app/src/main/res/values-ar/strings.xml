@@ -85,7 +85,9 @@
 
     <!-- Account fragment -->
     <string name="account_sign_in_header">سجل دخولك</string>
-    <string name="account_sign_in_sub">سجل دخولك لكي تتمكن من إضافة وإدارة عقاراتك, حفظ عقاراتك ومناطقك المفضلة والتواصل مع أصحاب العقارات</string>
+    <string name="account_sign_in_sub">سجل دخولك لكي تتمكن من إضافة وإدارة عقاراتك, إرسال واستقبال الطلبات والتواصل مع أصحاب العقارات</string>
+    <string name="account_display_name">Display Name</string>
+    <string name="account_greeting">Greeting</string>
     <string name="account_profile_title">الملف الشخصي</string>
     <string name="account_language_title">اللغة</string>
     <string name="account_dark_mode_title">الوضع الليلي</string>

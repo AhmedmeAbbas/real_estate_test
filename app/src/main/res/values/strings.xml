@@ -84,7 +84,9 @@
 
     <!-- Account fragment -->
     <string name="account_sign_in_header">Sign In</string>
-    <string name="account_sign_in_sub">Sign in to add and manage listings, save your favorite homes and areas and contact homeowners</string>
+    <string name="account_sign_in_sub">Sign in to add and manage listings, send and receive requests and contact homeowners</string>
+    <string name="account_display_name">Display Name</string>
+    <string name="account_greeting">Greeting</string>
     <string name="account_profile_title">Profile</string>
     <string name="account_language_title">Language</string>
     <string name="account_dark_mode_title">Night mode</string>
