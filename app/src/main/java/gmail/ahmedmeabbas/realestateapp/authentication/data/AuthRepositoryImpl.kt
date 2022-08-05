@@ -38,7 +38,6 @@ class AuthRepositoryImpl @Inject constructor(
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Log.d(TAG, "signInWithEmailAndPassword: auth success")
-                    user = auth.currentUser
                 } else {
                     Log.d(TAG, "signInWithEmailAndPassword: ${task.exception}")
                     val e = task.exception
@@ -47,18 +46,22 @@ class AuthRepositoryImpl @Inject constructor(
                     ) {
                         Log.d(TAG, "signInWithEmailAndPassword: if triggered")
                         scope.launch {
-                            _errorMessagesFlow.emit(ErrorMessage(
-                                ErrorMessageType.EMAIL_SIGN_IN,
-                                "Invalid email or password"
-                            ))
+                            _errorMessagesFlow.emit(
+                                ErrorMessage(
+                                    ErrorMessageType.EMAIL_SIGN_IN,
+                                    "Invalid email or password"
+                                )
+                            )
                         }
                     } else {
                         Log.d(TAG, "signInWithEmailAndPassword: else triggered")
                         scope.launch {
-                            _errorMessagesFlow.emit(ErrorMessage(
-                                ErrorMessageType.EMAIL_SIGN_IN,
-                                task.exception?.message.toString()
-                            ))
+                            _errorMessagesFlow.emit(
+                                ErrorMessage(
+                                    ErrorMessageType.EMAIL_SIGN_IN,
+                                    task.exception?.message.toString()
+                                )
+                            )
                         }
                     }
                 }

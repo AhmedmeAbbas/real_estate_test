@@ -44,6 +44,37 @@ class EmailSignInFragment : Fragment() {
         setUpSignInButton()
         setUpEditTextColor()
         observeErrorMessages()
+        observeSignInState()
+        observeLoadingState()
+    }
+
+    private fun observeLoadingState() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                emailViewModel.uiState
+                    .map { it.isLoading }
+                    .collect { isLoading ->
+                        updateViews(isLoading)
+                    }
+            }
+        }
+    }
+
+    private fun updateViews(isLoading: Boolean) {
+        val show = if (isLoading) View.VISIBLE else View.GONE
+        val hide = if (isLoading) View.GONE else View.VISIBLE
+        binding.btnEmailSignIn.tvButton.visibility = hide
+        binding.btnEmailSignIn.progressBar.visibility = show
+        binding.btnEmailSignIn.root.isEnabled = !isLoading
+    }
+
+    private fun observeSignInState() {
+        emailViewModel.isUserSignedIn.observe(viewLifecycleOwner) { isSignedIn ->
+            if (isSignedIn) {
+                findNavController().navigate(R.id.searchFragment)
+                emailViewModel.stopLoading()
+            }
+        }
     }
 
     private fun observeErrorMessages() {
