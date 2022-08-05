@@ -3,6 +3,7 @@ package gmail.ahmedmeabbas.realestateapp.authentication.presentation.email
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,10 +11,16 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import gmail.ahmedmeabbas.realestateapp.R
 import gmail.ahmedmeabbas.realestateapp.databinding.FragmentEmailSignInBinding
 import gmail.ahmedmeabbas.realestateapp.util.ColorUtils.getColorFromAttr
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 
 class EmailSignInFragment : Fragment() {
 
@@ -36,6 +43,26 @@ class EmailSignInFragment : Fragment() {
         setUpToolbar()
         setUpSignInButton()
         setUpEditTextColor()
+        observeErrorMessages()
+    }
+
+    private fun observeErrorMessages() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                emailViewModel.uiState
+                    .map { it.errorMessage }
+                    .collect { errorMessage ->
+                        Log.d(TAG, "observeErrorMessages: $errorMessage")
+                        if (errorMessage.isEmpty()) return@collect
+                            showMessage(errorMessage)
+                            emailViewModel.clearMessages()
+                    }
+            }
+        }
+    }
+
+    private fun showMessage(message: String) {
+        Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG).show()
     }
 
     private fun setUpToolbar() {
