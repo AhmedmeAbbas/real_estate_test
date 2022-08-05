@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepository
-import gmail.ahmedmeabbas.realestateapp.authentication.data.ErrorMessageType
+import gmail.ahmedmeabbas.realestateapp.authentication.util.ErrorMessageType
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject

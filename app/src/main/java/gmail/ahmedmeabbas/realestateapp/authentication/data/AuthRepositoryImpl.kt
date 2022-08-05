@@ -5,23 +5,13 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthInvalidUserException
 import com.google.firebase.auth.FirebaseUser
+import gmail.ahmedmeabbas.realestateapp.authentication.util.ErrorMessage
+import gmail.ahmedmeabbas.realestateapp.authentication.util.ErrorMessageType
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-
-enum class ErrorMessageType {
-    EMAIL_SIGN_IN,
-    FACEBOOK_SIGN_IN,
-    GOOGLE_SIGN_IN,
-    CREATE_ACCOUNT
-}
-
-data class ErrorMessage(
-    val type: ErrorMessageType,
-    val message: String
-)
 
 class AuthRepositoryImpl @Inject constructor(
     private val auth: FirebaseAuth
