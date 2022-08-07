@@ -15,6 +15,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navOptions
 import com.google.android.material.snackbar.Snackbar
 import gmail.ahmedmeabbas.realestateapp.R
 import gmail.ahmedmeabbas.realestateapp.databinding.FragmentEmailSignInBinding
@@ -71,7 +72,7 @@ class EmailSignInFragment : Fragment() {
     private fun observeSignInState() {
         emailViewModel.isUserSignedIn.observe(viewLifecycleOwner) { isSignedIn ->
             if (isSignedIn) {
-                findNavController().navigate(R.id.searchFragment)
+                findNavController().navigate(R.id.action_global_searchFragment)
                 emailViewModel.stopLoading()
             }
         }

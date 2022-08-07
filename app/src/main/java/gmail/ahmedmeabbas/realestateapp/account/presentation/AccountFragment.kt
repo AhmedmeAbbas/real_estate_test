@@ -38,16 +38,16 @@ class AccountFragment : Fragment() {
         setUpSignInClickListener()
         setUpItemClickListeners()
         setUpNightModeSwitchListener()
-        observeAuthState()
+        observeSignInState()
     }
 
-    private fun observeAuthState() {
+    private fun observeSignInState() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 accountViewModel.uiState
                     .map { it.isUserSignedIn }
-                    .collect {
-                        updateViews(it)
+                    .collect { isSignedIn ->
+                        updateViews(isSignedIn)
                     }
             }
         }

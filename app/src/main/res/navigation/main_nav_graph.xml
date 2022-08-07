@@ -177,4 +177,11 @@
             android:name="gmail.ahmedmeabbas.realestateapp.account.profile.EditPasswordDialog"
             android:label="EditPasswordDialog" />
     </navigation>
+    <action
+        android:id="@+id/action_global_searchFragment"
+        app:destination="@id/searchFragment"
+        app:enterAnim="@anim/fade_in"
+        app:exitAnim="@anim/fade_out"
+        app:popUpTo="@id/searchFragment"
+        app:popUpToInclusive="true"/>
 </navigation>

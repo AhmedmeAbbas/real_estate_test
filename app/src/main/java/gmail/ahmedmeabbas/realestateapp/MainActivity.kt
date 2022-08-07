@@ -21,6 +21,7 @@ import gmail.ahmedmeabbas.realestateapp.databinding.ActivityMainBinding
 import gmail.ahmedmeabbas.realestateapp.splashscreen.SplashScreenViewModel
 import gmail.ahmedmeabbas.realestateapp.util.MyContextWrapper
 import gmail.ahmedmeabbas.realestateapp.userpreferences.UserPrefsEntryPoint
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
@@ -54,6 +55,7 @@ class MainActivity : AppCompatActivity() {
         setUpBottomNavigationVisibilityListener()
         observeLanguageChange()
         observeNightModeChange()
+        observeSignInState()
     }
 
     private fun setUpBottomNavigationVisibilityListener() {
@@ -119,6 +121,28 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
             }
+        }
+    }
+
+    private fun observeSignInState() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                mainViewModel.uiState
+                    .map { it.isUserSignedIn }
+                    .collect { isSignedIn ->
+                        updateViews(isSignedIn)
+                    }
+            }
+        }
+    }
+
+    private fun updateViews(isSignedIn: Boolean) {
+        if (isSignedIn) {
+            binding.bottomNavigation.menu.findItem(R.id.accountFragment).title =
+                getString(R.string.bottom_nav_account_title)
+        } else {
+            binding.bottomNavigation.menu.findItem(R.id.accountFragment).title =
+                getString(R.string.bottom_nav_sign_in_title)
         }
     }
 
