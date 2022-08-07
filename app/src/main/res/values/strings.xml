@@ -98,6 +98,11 @@
     <string name="account_sign_out_title">Sign out</string>
     <string name="account_version">Version</string>
 
+    <!-- Greetings -->
+    <string name="greeting_good_morning">Good morning</string>
+    <string name="greeting_good_afternoon">Good afternoon</string>
+    <string name="greeting_good_evening">Good evening</string>
+
     <!-- Profile fragment -->
     <string name="profile_title">Profile</string>
     <string name="profile_display_name_header">Display name</string>

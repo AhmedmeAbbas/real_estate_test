@@ -2,6 +2,7 @@ package gmail.ahmedmeabbas.realestateapp.account.presentation
 
 import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +17,7 @@ import gmail.ahmedmeabbas.realestateapp.R
 import gmail.ahmedmeabbas.realestateapp.databinding.FragmentAccountBinding
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
+import java.util.*
 
 class AccountFragment : Fragment() {
 
@@ -35,10 +37,21 @@ class AccountFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setUpSignInClickListener()
         setUpItemClickListeners()
         setUpNightModeSwitchListener()
         observeSignInState()
+    }
+
+    private fun setUpGreeting() {
+        Log.d(TAG, "setUpGreeting: ${Calendar.getInstance().get(Calendar.HOUR_OF_DAY)}")
+        when (Calendar.getInstance().get(Calendar.HOUR_OF_DAY)) {
+            in 0..11 ->
+                binding.tvAccountGreeting.text = getString(R.string.greeting_good_morning)
+            in 12..17 ->
+                binding.tvAccountGreeting.text = getString(R.string.greeting_good_afternoon)
+            in 18..24 ->
+                binding.tvAccountGreeting.text = getString(R.string.greeting_good_evening)
+        }
     }
 
     private fun observeSignInState() {
@@ -105,6 +118,7 @@ class AccountFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         binding.switchNightMode.isChecked = isNightModeOn()
+        setUpGreeting()
     }
 
     private fun setUpNightModeSwitchListener() {
@@ -113,20 +127,6 @@ class AccountFragment : Fragment() {
                 accountViewModel.toggleNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             } else {
                 accountViewModel.toggleNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            }
-        }
-    }
-
-    private fun setUpSignInClickListener() {
-        binding.btnAccountSignIn.setOnClickListener {
-            binding.apply {
-                clAccountHeader.background = null
-                tvAccountSignInSub.visibility = View.GONE
-                btnAccountSignIn.visibility = View.GONE
-                tvAccountSignInHeader.text = "Welcome"
-                tvAccountDisplayName.visibility = View.VISIBLE
-                tvAccountProfile.visibility = View.VISIBLE
-                tvAccountSignOut.visibility = View.VISIBLE
             }
         }
     }
