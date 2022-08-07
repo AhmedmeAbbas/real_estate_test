@@ -19,32 +19,37 @@ class AuthRepositoryImpl @Inject constructor(
 
     private val _isUserSignedInFlow = MutableStateFlow(auth.currentUser != null)
     override val isUserSignedInFlow: StateFlow<Boolean> = _isUserSignedInFlow.asStateFlow()
-    private val _errorMessagesFlow: MutableSharedFlow<ErrorMessage> = MutableSharedFlow()
+    private val _errorMessagesFlow = MutableSharedFlow<ErrorMessage>()
     override val errorMessageFlow: SharedFlow<ErrorMessage> = _errorMessagesFlow.asSharedFlow()
-    private var user: FirebaseUser? = auth.currentUser
-    override val userFlow: Flow<FirebaseUser?> = flowOf(user)
+    private val _userFlow = MutableSharedFlow<FirebaseUser?>()
+    override val userFlow: SharedFlow<FirebaseUser?> = _userFlow.asSharedFlow()
+    private val _displayNameFlow = MutableSharedFlow<String?>()
+    override val displayNameFlow: SharedFlow<String?> = _displayNameFlow.asSharedFlow()
     private val scope = CoroutineScope(Dispatchers.IO)
 
     init {
         observeAuthStateChange()
     }
 
-    override suspend fun getCurrentUser(): FirebaseUser? {
-        return auth.currentUser
-    }
-
     override suspend fun signInWithEmailAndPassword(email: String, password: String) {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Log.d(TAG, "signInWithEmailAndPassword: auth success")
+                    val user = auth.currentUser
+                    val _displayName = user?.displayName
+                    val nameFromEmail = user?.email?.substringBefore("@")
+                    val displayName = if (_displayName.isNullOrEmpty()) nameFromEmail else _displayName
+                    scope.launch {
+                        _userFlow.emit(user)
+                    }
+                    scope.launch {
+                        _displayNameFlow.emit(displayName)
+                    }
                 } else {
-                    Log.d(TAG, "signInWithEmailAndPassword: ${task.exception}")
                     val e = task.exception
                     if (e is FirebaseAuthInvalidUserException ||
                         e is FirebaseAuthInvalidCredentialsException
                     ) {
-                        Log.d(TAG, "signInWithEmailAndPassword: if triggered")
                         scope.launch {
                             _errorMessagesFlow.emit(
                                 ErrorMessage(
@@ -54,7 +59,6 @@ class AuthRepositoryImpl @Inject constructor(
                             )
                         }
                     } else {
-                        Log.d(TAG, "signInWithEmailAndPassword: else triggered")
                         scope.launch {
                             _errorMessagesFlow.emit(
                                 ErrorMessage(
@@ -70,15 +74,11 @@ class AuthRepositoryImpl @Inject constructor(
 
     override suspend fun signOut() {
         auth.signOut()
-        Log.d(TAG, "signOut: ${auth.currentUser}")
-        user = null
     }
 
     private fun observeAuthStateChange() {
         auth.addAuthStateListener { firebaseAuth ->
-            Log.d(TAG, "observeAuthStateChange: auth state changed")
             _isUserSignedInFlow.value = firebaseAuth.currentUser != null
-            Log.d(TAG, "observeAuthStateChange: signed in: ${_isUserSignedInFlow.value}")
         }
     }
 

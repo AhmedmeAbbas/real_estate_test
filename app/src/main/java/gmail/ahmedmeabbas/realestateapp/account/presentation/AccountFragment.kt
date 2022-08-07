@@ -15,6 +15,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import gmail.ahmedmeabbas.realestateapp.R
 import gmail.ahmedmeabbas.realestateapp.databinding.FragmentAccountBinding
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import java.util.*
@@ -40,42 +41,7 @@ class AccountFragment : Fragment() {
         setUpItemClickListeners()
         setUpNightModeSwitchListener()
         observeSignInState()
-    }
-
-    private fun setUpGreeting() {
-        Log.d(TAG, "setUpGreeting: ${Calendar.getInstance().get(Calendar.HOUR_OF_DAY)}")
-        when (Calendar.getInstance().get(Calendar.HOUR_OF_DAY)) {
-            in 0..11 ->
-                binding.tvAccountGreeting.text = getString(R.string.greeting_good_morning)
-            in 12..17 ->
-                binding.tvAccountGreeting.text = getString(R.string.greeting_good_afternoon)
-            in 18..24 ->
-                binding.tvAccountGreeting.text = getString(R.string.greeting_good_evening)
-        }
-    }
-
-    private fun observeSignInState() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                accountViewModel.uiState
-                    .map { it.isUserSignedIn }
-                    .collect { isSignedIn ->
-                        updateViews(isSignedIn)
-                    }
-            }
-        }
-    }
-
-    private fun updateViews(isSignedIn: Boolean) {
-        val show = if (isSignedIn) View.VISIBLE else View.GONE
-        val hide = if (isSignedIn) View.GONE else View.VISIBLE
-        with(binding) {
-            clAccountHeader.visibility = hide
-            tvAccountGreeting.visibility = show
-            tvAccountDisplayName.visibility = show
-            tvAccountProfile.visibility = show
-            tvAccountSignOut.visibility = show
-        }
+        observeDisplayName()
     }
 
     private fun setUpItemClickListeners() {
@@ -115,12 +81,6 @@ class AccountFragment : Fragment() {
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-        binding.switchNightMode.isChecked = isNightModeOn()
-        setUpGreeting()
-    }
-
     private fun setUpNightModeSwitchListener() {
         binding.switchNightMode.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
@@ -128,6 +88,63 @@ class AccountFragment : Fragment() {
             } else {
                 accountViewModel.toggleNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
+        }
+    }
+
+    private fun observeSignInState() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                accountViewModel.uiState
+                    .map { it.isUserSignedIn }
+                    .collect { isSignedIn ->
+                        updateViews(isSignedIn)
+                    }
+            }
+        }
+    }
+
+    private fun updateViews(isSignedIn: Boolean) {
+        val show = if (isSignedIn) View.VISIBLE else View.GONE
+        val hide = if (isSignedIn) View.GONE else View.VISIBLE
+        with(binding) {
+            clAccountHeader.visibility = hide
+            tvAccountGreeting.visibility = show
+            tvAccountDisplayName.visibility = show
+            tvAccountProfile.visibility = show
+            tvAccountSignOut.visibility = show
+        }
+    }
+
+    private fun observeDisplayName() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                accountViewModel.uiState.map { it.displayName }
+                    .collect { displayName ->
+                        if (displayName.isNullOrEmpty()) {
+                            binding.tvAccountDisplayName.visibility = View.GONE
+                        } else {
+                            binding.tvAccountDisplayName.text = displayName
+                        }
+                    }
+            }
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        binding.switchNightMode.isChecked = isNightModeOn()
+        setUpGreeting()
+    }
+
+    private fun setUpGreeting() {
+        Log.d(TAG, "setUpGreeting: ${Calendar.getInstance().get(Calendar.HOUR_OF_DAY)}")
+        when (Calendar.getInstance().get(Calendar.HOUR_OF_DAY)) {
+            in 0..11 ->
+                binding.tvAccountGreeting.text = getString(R.string.greeting_good_morning)
+            in 12..17 ->
+                binding.tvAccountGreeting.text = getString(R.string.greeting_good_afternoon)
+            in 18..24 ->
+                binding.tvAccountGreeting.text = getString(R.string.greeting_good_evening)
         }
     }
 

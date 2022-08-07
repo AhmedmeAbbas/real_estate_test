@@ -10,7 +10,8 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 data class AccountUiState(
-    var isUserSignedIn: Boolean = false
+    var isUserSignedIn: Boolean = false,
+    val displayName: String? = null
 )
 
 @HiltViewModel
@@ -24,6 +25,17 @@ class AccountViewModel @Inject constructor(
 
     init {
         fetchInitialState()
+        fetchDisplayName()
+    }
+
+    private fun fetchDisplayName() {
+        viewModelScope.launch {
+            authRepository.displayNameFlow.collect { displayName ->
+                    _uiState.update {
+                        it.copy(displayName = displayName)
+                    }
+                }
+        }
     }
 
     private fun fetchInitialState() {

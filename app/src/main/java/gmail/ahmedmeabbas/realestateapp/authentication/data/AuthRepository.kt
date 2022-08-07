@@ -8,13 +8,12 @@ import kotlinx.coroutines.flow.StateFlow
 
 interface AuthRepository {
 
-    val userFlow: Flow<FirebaseUser?>
+    val userFlow: SharedFlow<FirebaseUser?>
+    val displayNameFlow: SharedFlow<String?>
     val isUserSignedInFlow: StateFlow<Boolean>
     val errorMessageFlow: SharedFlow<ErrorMessage>
 
     suspend fun signInWithEmailAndPassword(email: String, password: String)
 
     suspend fun signOut()
-
-    suspend fun getCurrentUser(): FirebaseUser?
 }
