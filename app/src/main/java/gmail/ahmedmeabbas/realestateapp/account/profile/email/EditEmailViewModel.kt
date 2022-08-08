@@ -1,4 +1,4 @@
-package gmail.ahmedmeabbas.realestateapp.account.profile.displayname
+package gmail.ahmedmeabbas.realestateapp.account.profile.email
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -9,35 +9,32 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-data class DisplayNameDialogUiState(
-    val displayName: String = "",
+data class EditEmailUiState(
+    val currentEmail: String? = null,
     val isLoading: Boolean = false,
     val userMessage: String = ""
 )
 
 @HiltViewModel
-class DisplayNameViewModel @Inject constructor(
+class EditEmailViewModel @Inject constructor(
     private val authRepository: AuthRepository
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow(DisplayNameDialogUiState())
+    private val _uiState = MutableStateFlow(EditEmailUiState())
     val uiState = _uiState.asStateFlow()
 
     init {
-        fetchDisplayName()
         observeMessages()
+        fetchCurrentEmail()
     }
 
-    fun fetchDisplayName() {
+    private fun fetchCurrentEmail() {
         viewModelScope.launch {
             authRepository.userFlow
-                .collect { user ->
-                    val nameFromEmail = user?.email?.substringBefore("@")
+                .map { it?.email }
+                .collect { email ->
                     _uiState.update {
-                        it.copy(
-                            displayName = user?.displayName ?: nameFromEmail ?: "",
-                            isLoading = false
-                        )
+                        it.copy(currentEmail = email)
                     }
                 }
         }
@@ -46,32 +43,23 @@ class DisplayNameViewModel @Inject constructor(
     private fun observeMessages() {
         viewModelScope.launch {
             authRepository.authMessagesFlow
-                .filter { it.type == AuthMessageType.DISPLAY_NAME }
+                .filter { it.type == AuthMessageType.EDIT_EMAIL }
                 .collect { authMessage ->
                     _uiState.update {
-                        it.copy(
-                            userMessage = authMessage.message,
-                            isLoading = false
-                        )
+                        it.copy(userMessage = authMessage.message, isLoading = false)
                     }
                 }
         }
     }
 
-    fun updateDisplayName(displayName: String) {
+    fun updateEmail(email: String) {
         _uiState.update { it.copy(isLoading = true) }
         viewModelScope.launch {
-            authRepository.updateDisplayName(displayName)
+            authRepository.updateEmail(email)
         }
     }
 
     fun clearMessages() {
-        _uiState.update {
-            it.copy(userMessage = "")
-        }
-    }
-
-    companion object {
-        private const val TAG = "DisplayNameViewModel"
+        _uiState.update { it.copy(userMessage = "") }
     }
 }

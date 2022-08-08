@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 data class AccountUiState(
     var isUserSignedIn: Boolean = false,
-    val displayName: String? = null
+    val displayName: String = ""
 )
 
 @HiltViewModel
@@ -24,21 +24,23 @@ class AccountViewModel @Inject constructor(
     val uiState: StateFlow<AccountUiState> = _uiState.asStateFlow()
 
     init {
-        fetchInitialState()
+        observeSignInState()
         fetchDisplayName()
     }
 
     private fun fetchDisplayName() {
         viewModelScope.launch {
-            authRepository.displayNameFlow.collect { displayName ->
+            authRepository.userFlow
+                .collect { user ->
+                    val nameFromEmail = user?.email?.substringBefore("@")
                     _uiState.update {
-                        it.copy(displayName = displayName)
+                        it.copy(displayName = user?.displayName ?: nameFromEmail ?: "")
                     }
                 }
         }
     }
 
-    private fun fetchInitialState() {
+    private fun observeSignInState() {
         viewModelScope.launch {
             authRepository.isUserSignedInFlow.collect { isSignedIn ->
                 _uiState.update {

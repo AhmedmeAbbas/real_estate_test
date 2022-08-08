@@ -2,23 +2,33 @@ package gmail.ahmedmeabbas.realestateapp.account.profile.email
 
 import android.content.res.ColorStateList
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.android.material.snackbar.Snackbar
 import gmail.ahmedmeabbas.realestateapp.R
+import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl.Companion.EDIT_EMAIL_FAILURE
+import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl.Companion.EDIT_EMAIL_SUCCESS
 import gmail.ahmedmeabbas.realestateapp.databinding.DialogEditEmailBinding
 import gmail.ahmedmeabbas.realestateapp.util.ColorUtils.getColorFromAttr
-import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 class EditEmailDialog : BottomSheetDialogFragment() {
 
     private var _binding: DialogEditEmailBinding? = null
     private val binding get() = _binding!!
+    private val editEmailViewModel: EditEmailViewModel by activityViewModels()
+    private var currentEmail: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,8 +43,68 @@ class EditEmailDialog : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setUpEditTexts()
-        setUpSaveButton()
+        setUpContinueButton()
         setUpCancelButton()
+        observeCurrentEmail()
+        observeLoading()
+        observeMessages()
+    }
+
+    private fun observeCurrentEmail() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                editEmailViewModel.uiState
+                    .map { it.currentEmail }
+                    .collect {
+                        currentEmail = it
+                    }
+            }
+        }
+    }
+
+    private fun observeLoading() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                editEmailViewModel.uiState
+                    .map { it.isLoading }
+                    .collect { isLoading ->
+                        updateViews(isLoading)
+                    }
+            }
+        }
+    }
+
+    private fun updateViews(isLoading: Boolean) {
+        Log.d(TAG, "updateViews: $isLoading")
+        val show = if (isLoading) View.VISIBLE else View.GONE
+        val hide = if (isLoading) View.GONE else View.VISIBLE
+        binding.btnEmailSave.tvButton.visibility = hide
+        binding.btnEmailSave.progressBar.visibility = show
+        binding.btnEmailSave.root.isEnabled = !isLoading
+    }
+
+    private fun observeMessages() {
+        val failureMessage = getString(R.string.edit_email_error)
+        val successMessage = getString(R.string.edit_email_success)
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                editEmailViewModel.uiState
+                    .map { it.userMessage }
+                    .collect { userMessage ->
+                        if (userMessage.isEmpty()) return@collect
+                        when (userMessage) {
+                            EDIT_EMAIL_SUCCESS -> showMessage(successMessage)
+                            EDIT_EMAIL_FAILURE -> showMessage(failureMessage)
+                            else -> return@collect
+                        }
+                        editEmailViewModel.clearMessages()
+                    }
+            }
+        }
+    }
+
+    private fun showMessage(message: String) {
+        Toast.makeText(requireContext(),message, Toast.LENGTH_SHORT).show()
     }
 
     private fun setUpEditTexts() {
@@ -84,21 +154,36 @@ class EditEmailDialog : BottomSheetDialogFragment() {
         }
     }
 
-    private fun setUpSaveButton() {
-        binding.btnEmailSave.tvButton.text = getString(R.string.button_continue)
-
-        binding.btnEmailSave.root.setOnClickListener {
-            viewLifecycleOwner.lifecycleScope.launch {
-                binding.btnEmailSave.tvButton.visibility = View.GONE
-                binding.btnEmailSave.progressBar.visibility = View.VISIBLE
-                delay(1000)
-                binding.currentEmailTIL.visibility = View.GONE
-                binding.newEmailTIL.visibility = View.VISIBLE
-                binding.btnEmailSave.tvButton.visibility = View.VISIBLE
-                binding.btnEmailSave.progressBar.visibility = View.GONE
-                binding.btnEmailSave.tvButton.text = getString(R.string.save)
+    private fun setUpContinueButton() {
+        binding.btnEmailContinue.tvButton.text = getString(R.string.button_continue)
+        binding.btnEmailContinue.root.setOnClickListener {
+            val inputCurrentEmail = binding.etCurrentEmail.text.toString()
+            if (!validateEmail(inputCurrentEmail)) return@setOnClickListener
+            if (inputCurrentEmail != currentEmail) {
+                showMessage(getString(R.string.error_invalid_email))
+                return@setOnClickListener
             }
+            setUpSaveButton()
+            binding.btnEmailContinue.root.visibility = View.GONE
+            binding.currentEmailTIL.visibility = View.GONE
+            binding.newEmailTIL.visibility = View.VISIBLE
         }
+    }
+
+    private fun setUpSaveButton() {
+        binding.btnEmailSave.root.visibility = View.VISIBLE
+        binding.btnEmailSave.tvButton.text = getString(R.string.save)
+        binding.btnEmailSave.root.setOnClickListener {
+            val newEmail = binding.etNewEmail.text.toString()
+            editEmailViewModel.updateEmail(newEmail)
+        }
+    }
+
+    private fun validateEmail(email: String): Boolean {
+        return if (email.isEmpty()) {
+            binding.etCurrentEmail.error = null
+            false
+        } else true
     }
 
     private fun setUpCancelButton() {
@@ -110,5 +195,9 @@ class EditEmailDialog : BottomSheetDialogFragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+    
+    companion object {
+        private const val TAG = "EditEmailDialog"
     }
 }

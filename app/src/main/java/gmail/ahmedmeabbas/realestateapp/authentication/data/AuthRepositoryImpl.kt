@@ -1,9 +1,8 @@
 package gmail.ahmedmeabbas.realestateapp.authentication.data
 
-import android.util.Log
 import com.google.firebase.auth.*
-import gmail.ahmedmeabbas.realestateapp.authentication.util.ErrorMessage
-import gmail.ahmedmeabbas.realestateapp.authentication.util.ErrorMessageType
+import gmail.ahmedmeabbas.realestateapp.authentication.util.AuthMessage
+import gmail.ahmedmeabbas.realestateapp.authentication.util.AuthMessageType
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
@@ -16,12 +15,10 @@ class AuthRepositoryImpl @Inject constructor(
 
     private val _isUserSignedInFlow = MutableStateFlow(auth.currentUser != null)
     override val isUserSignedInFlow: StateFlow<Boolean> = _isUserSignedInFlow.asStateFlow()
-    private val _errorMessagesFlow = MutableSharedFlow<ErrorMessage>()
-    override val errorMessageFlow: SharedFlow<ErrorMessage> = _errorMessagesFlow.asSharedFlow()
-    private val _userFlow = MutableSharedFlow<FirebaseUser?>()
-    override val userFlow: SharedFlow<FirebaseUser?> = _userFlow.asSharedFlow()
-    private val _displayNameFlow = MutableSharedFlow<String?>()
-    override val displayNameFlow: SharedFlow<String?> = _displayNameFlow.asSharedFlow()
+    private val _authMessagesFlow = MutableSharedFlow<AuthMessage>()
+    override val authMessagesFlow: SharedFlow<AuthMessage> = _authMessagesFlow.asSharedFlow()
+    private val _userFlow = MutableStateFlow(auth.currentUser)
+    override val userFlow= _userFlow.asStateFlow()
     private val scope = CoroutineScope(Dispatchers.IO)
 
     init {
@@ -38,35 +35,25 @@ class AuthRepositoryImpl @Inject constructor(
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    val user = auth.currentUser
-                    val _displayName = user?.displayName
-                    val nameFromEmail = user?.email?.substringBefore("@")
-                    val displayName =
-                        if (_displayName.isNullOrEmpty()) nameFromEmail else _displayName
-                    scope.launch {
-                        _userFlow.emit(user)
-                    }
-                    scope.launch {
-                        _displayNameFlow.emit(displayName)
-                    }
+                    _userFlow.value = auth.currentUser
                 } else {
                     val e = task.exception
                     if (e is FirebaseAuthInvalidUserException ||
                         e is FirebaseAuthInvalidCredentialsException
                     ) {
                         scope.launch {
-                            _errorMessagesFlow.emit(
-                                ErrorMessage(
-                                    ErrorMessageType.EMAIL_SIGN_IN,
+                            _authMessagesFlow.emit(
+                                AuthMessage(
+                                    AuthMessageType.EMAIL_SIGN_IN,
                                     INVALID_CREDENTIALS
                                 )
                             )
                         }
                     } else {
                         scope.launch {
-                            _errorMessagesFlow.emit(
-                                ErrorMessage(
-                                    ErrorMessageType.EMAIL_SIGN_IN,
+                            _authMessagesFlow.emit(
+                                AuthMessage(
+                                    AuthMessageType.EMAIL_SIGN_IN,
                                     task.exception?.message.toString()
                                 )
                             )
@@ -89,14 +76,45 @@ class AuthRepositoryImpl @Inject constructor(
             ?.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     scope.launch {
-                        _displayNameFlow.emit(user.displayName)
+                        _authMessagesFlow.emit(
+                            AuthMessage(
+                                AuthMessageType.DISPLAY_NAME,
+                                DISPLAY_NAME_SUCCESS
+                            )
+                        )
                     }
                 } else {
                     scope.launch {
-                        _errorMessagesFlow.emit(
-                            ErrorMessage(
-                                ErrorMessageType.DISPLAY_NAME,
+                        _authMessagesFlow.emit(
+                            AuthMessage(
+                                AuthMessageType.DISPLAY_NAME,
                                 DISPLAY_NAME_ERROR
+                            )
+                        )
+                    }
+                }
+            }
+    }
+
+    override suspend fun updateEmail(email: String) {
+        val user = auth.currentUser
+        user?.updateEmail(email)
+            ?.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    scope.launch {
+                        _authMessagesFlow.emit(
+                            AuthMessage(
+                                AuthMessageType.EDIT_EMAIL,
+                                EDIT_EMAIL_SUCCESS
+                            )
+                        )
+                    }
+                } else {
+                    scope.launch {
+                        _authMessagesFlow.emit(
+                            AuthMessage(
+                                AuthMessageType.EDIT_EMAIL,
+                                EDIT_EMAIL_FAILURE
                             )
                         )
                     }
@@ -106,7 +124,10 @@ class AuthRepositoryImpl @Inject constructor(
 
     companion object {
         const val INVALID_CREDENTIALS = "invalid_credentials"
+        const val DISPLAY_NAME_SUCCESS = "display_name_success"
         const val DISPLAY_NAME_ERROR = "display_name_error"
+        const val EDIT_EMAIL_SUCCESS = "edit_email_success"
+        const val EDIT_EMAIL_FAILURE = "edit_email_failure"
         private const val TAG = "AuthRepositoryImpl"
     }
 }

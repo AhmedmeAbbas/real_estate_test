@@ -3,7 +3,6 @@ package gmail.ahmedmeabbas.realestateapp.authentication.presentation.email
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +14,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.navOptions
 import com.google.android.material.snackbar.Snackbar
 import gmail.ahmedmeabbas.realestateapp.R
 import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl.Companion.INVALID_CREDENTIALS
@@ -84,7 +82,7 @@ class EmailSignInFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 emailViewModel.uiState
-                    .map { it.errorMessage }
+                    .map { it.userMessage }
                     .collect { errorMessage ->
                         if (errorMessage.isEmpty()) return@collect
                         val message =

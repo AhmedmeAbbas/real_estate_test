@@ -6,13 +6,13 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepository
-import gmail.ahmedmeabbas.realestateapp.authentication.util.ErrorMessageType
+import gmail.ahmedmeabbas.realestateapp.authentication.util.AuthMessageType
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 data class EmailSignInUiState(
-    var errorMessage: String = "",
+    var userMessage: String = "",
     var isLoading: Boolean = false
 )
 
@@ -27,16 +27,16 @@ class EmailSignInViewModel @Inject constructor(
     val isUserSignedIn: LiveData<Boolean> = authRepository.isUserSignedInFlow.asLiveData()
 
     init {
-        observeErrorMessages()
+        observeMessages()
     }
 
-    private fun observeErrorMessages() {
+    private fun observeMessages() {
         viewModelScope.launch {
-            authRepository.errorMessageFlow
-                .filter { it.type == ErrorMessageType.EMAIL_SIGN_IN }
-                .collect { errorMessage ->
+            authRepository.authMessagesFlow
+                .filter { it.type == AuthMessageType.EMAIL_SIGN_IN }
+                .collect { authMessage ->
                     _uiState.update { it.copy(
-                        errorMessage = errorMessage.message,
+                        userMessage = authMessage.message,
                         isLoading = false
                     ) }
                 }
@@ -51,7 +51,7 @@ class EmailSignInViewModel @Inject constructor(
     }
 
     fun clearMessages() {
-        _uiState.update { it.copy(errorMessage = "") }
+        _uiState.update { it.copy(userMessage = "") }
     }
 
     fun stopLoading() {

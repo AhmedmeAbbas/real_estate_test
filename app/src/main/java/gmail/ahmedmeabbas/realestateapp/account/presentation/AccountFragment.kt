@@ -2,7 +2,6 @@ package gmail.ahmedmeabbas.realestateapp.account.presentation
 
 import android.content.res.Configuration
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +14,6 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import gmail.ahmedmeabbas.realestateapp.R
 import gmail.ahmedmeabbas.realestateapp.databinding.FragmentAccountBinding
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import java.util.*
@@ -120,7 +118,7 @@ class AccountFragment : Fragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 accountViewModel.uiState.map { it.displayName }
                     .collect { displayName ->
-                        if (displayName.isNullOrEmpty()) {
+                        if (displayName.isEmpty()) {
                             binding.tvAccountDisplayName.visibility = View.GONE
                         } else {
                             binding.tvAccountDisplayName.text = displayName
@@ -137,7 +135,6 @@ class AccountFragment : Fragment() {
     }
 
     private fun setUpGreeting() {
-        Log.d(TAG, "setUpGreeting: ${Calendar.getInstance().get(Calendar.HOUR_OF_DAY)}")
         when (Calendar.getInstance().get(Calendar.HOUR_OF_DAY)) {
             in 0..11 ->
                 binding.tvAccountGreeting.text = getString(R.string.greeting_good_morning)

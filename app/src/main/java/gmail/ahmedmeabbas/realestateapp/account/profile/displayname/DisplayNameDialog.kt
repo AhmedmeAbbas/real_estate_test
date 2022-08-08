@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.activityViewModels
@@ -13,6 +14,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import gmail.ahmedmeabbas.realestateapp.R
+import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl
 import gmail.ahmedmeabbas.realestateapp.databinding.DialogDisplayNameBinding
 import gmail.ahmedmeabbas.realestateapp.util.ColorUtils.getColorFromAttr
 import kotlinx.coroutines.flow.map
@@ -41,6 +43,7 @@ class DisplayNameDialog : BottomSheetDialogFragment() {
         setUpCancelButton()
         observeDisplayName()
         observeLoading()
+        observeMessages()
     }
 
     private fun observeLoading() {
@@ -74,6 +77,33 @@ class DisplayNameDialog : BottomSheetDialogFragment() {
                 }
             }
         }
+    }
+
+    private fun observeMessages() {
+        val failureMessage = getString(R.string.display_name_error)
+        val successMessage = getString(R.string.display_name_success)
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                displayNameViewModel.uiState
+                    .map { it.userMessage }
+                    .collect { userMessage ->
+                        if (userMessage.isEmpty()) return@collect
+                        when (userMessage) {
+                            AuthRepositoryImpl.DISPLAY_NAME_SUCCESS -> {
+                                displayNameViewModel.fetchDisplayName()
+                                showMessage(successMessage)
+                            }
+                            AuthRepositoryImpl.DISPLAY_NAME_ERROR -> showMessage(failureMessage)
+                            else -> return@collect
+                        }
+                        displayNameViewModel.clearMessages()
+                    }
+            }
+        }
+    }
+
+    private fun showMessage(message: String) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 
     private fun setUpEditText() {
@@ -113,7 +143,7 @@ class DisplayNameDialog : BottomSheetDialogFragment() {
     }
 
     private fun validateName(name: String): Boolean {
-        return if (name.isNullOrEmpty()) {
+        return if (name.isEmpty()) {
             binding.etEditDisplayName.error = getString(R.string.required)
             false
         } else true
@@ -128,5 +158,9 @@ class DisplayNameDialog : BottomSheetDialogFragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        private const val TAG = "DisplayNameDialog"
     }
 }

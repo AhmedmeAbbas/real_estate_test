@@ -32,7 +32,11 @@
     <!-- Error messages -->
     <string name="error_occurred">An error occurred. Please try again later</string>
     <string name="error_invalid_credentials">Invalid email or password</string>
-    <string name="error_diplay_name">Failed to update the display name</string>
+    <string name="display_name_error">Failed to update the display name</string>
+    <string name="display_name_success">Display name updated</string>
+    <string name="edit_email_error">Failed to update email</string>
+    <string name="edit_email_success">Email updated</string>
+    <string name="error_invalid_email">Invalid email</string>
 
     <!-- Email sign in fragment -->
     <string name="email_sign_in_header">Sign in with email</string>

@@ -1,20 +1,22 @@
 package gmail.ahmedmeabbas.realestateapp.authentication.util
 
-sealed class AuthResource<T>(val data: T? = null, val message: ErrorMessage? = null) {
+sealed class AuthResource<T>(val data: T? = null, val message: AuthMessage? = null) {
     class Success<T>(data: T?): AuthResource<T>(data)
-    class Error<T>(message: ErrorMessage?, data: T?): AuthResource<T>(data, message)
+    class Error<T>(message: AuthMessage?, data: T?): AuthResource<T>(data, message)
 }
 
-data class ErrorMessage(
-    val type: ErrorMessageType,
+data class AuthMessage(
+    val type: AuthMessageType,
     val message: String
 )
 
-enum class ErrorMessageType {
+enum class AuthMessageType {
     ERROR_OCCURRED,
     EMAIL_SIGN_IN,
     FACEBOOK_SIGN_IN,
     GOOGLE_SIGN_IN,
     CREATE_ACCOUNT,
-    DISPLAY_NAME
+    DISPLAY_NAME,
+    EDIT_EMAIL,
+    EDIT_PASSWORD
 }

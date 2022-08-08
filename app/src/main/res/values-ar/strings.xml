@@ -33,7 +33,11 @@
     <!-- Error messages -->
     <string name="error_occurred">حدث خطأ. الرجاء المحاولة لاحقا</string>
     <string name="error_invalid_credentials">خطأ في البريد الإلكتروني أو كلمة المرور</string>
-    <string name="error_diplay_name">فشل تحديث اسم العرض</string>
+    <string name="display_name_error">فشل تحديث اسم العرض</string>
+    <string name="display_name_success">تم تحديث اسم العرض</string>
+    <string name="edit_email_error">فشل تحديث البريد الإلكتروني</string>
+    <string name="edit_email_success">تم تحديث بريدك الإلكتروني</string>
+    <string name="error_invalid_email">البريد الإلكتروني غير صحيح</string>
 
     <!-- Email sign in fragment -->
     <string name="email_sign_in_header">سجل دخولك بالبريد الإلكتروني</string>
