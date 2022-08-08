@@ -1,5 +1,6 @@
 package gmail.ahmedmeabbas.realestateapp.authentication.data
 
+import android.util.Log
 import com.google.firebase.auth.*
 import gmail.ahmedmeabbas.realestateapp.authentication.util.AuthMessage
 import gmail.ahmedmeabbas.realestateapp.authentication.util.AuthMessageType
@@ -18,7 +19,7 @@ class AuthRepositoryImpl @Inject constructor(
     private val _authMessagesFlow = MutableSharedFlow<AuthMessage>()
     override val authMessagesFlow: SharedFlow<AuthMessage> = _authMessagesFlow.asSharedFlow()
     private val _userFlow = MutableStateFlow(auth.currentUser)
-    override val userFlow= _userFlow.asStateFlow()
+    override val userFlow = _userFlow.asStateFlow()
     private val scope = CoroutineScope(Dispatchers.IO)
 
     init {
@@ -98,6 +99,7 @@ class AuthRepositoryImpl @Inject constructor(
 
     override suspend fun updateEmail(email: String) {
         val user = auth.currentUser
+        Log.d(TAG, "auth repo: user: $user")
         user?.updateEmail(email)
             ?.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
@@ -110,13 +112,28 @@ class AuthRepositoryImpl @Inject constructor(
                         )
                     }
                 } else {
-                    scope.launch {
-                        _authMessagesFlow.emit(
-                            AuthMessage(
-                                AuthMessageType.EDIT_EMAIL,
-                                EDIT_EMAIL_FAILURE
-                            )
-                        )
+                    Log.d(TAG, "auth repo: exception: ${task.exception}")
+                    when (task.exception) {
+                        is FirebaseAuthRecentLoginRequiredException -> {
+                            scope.launch {
+                                _authMessagesFlow.emit(
+                                    AuthMessage(
+                                        AuthMessageType.EDIT_EMAIL,
+                                        LOGIN_REQUIRED
+                                    )
+                                )
+                            }
+                        }
+                        else -> {
+                            scope.launch {
+                                _authMessagesFlow.emit(
+                                    AuthMessage(
+                                        AuthMessageType.EDIT_EMAIL,
+                                        EDIT_EMAIL_FAILURE
+                                    )
+                                )
+                            }
+                        }
                     }
                 }
             }
@@ -128,6 +145,7 @@ class AuthRepositoryImpl @Inject constructor(
         const val DISPLAY_NAME_ERROR = "display_name_error"
         const val EDIT_EMAIL_SUCCESS = "edit_email_success"
         const val EDIT_EMAIL_FAILURE = "edit_email_failure"
+        const val LOGIN_REQUIRED = "login_required"
         private const val TAG = "AuthRepositoryImpl"
     }
 }

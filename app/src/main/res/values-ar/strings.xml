@@ -5,7 +5,7 @@
     <string name="placeholder_text">Placeholder Text</string>
     <string name="go_to_sign_in_page">اذهب إلى صفحة تسجيل الدخول</string>
     <string name="go_to_search_page">اذهب إلى صفحة البحث</string>
-    <string name="cancel">إلغاء</string>
+    <string name="close">إغلاق</string>
     <string name="dismiss">إخفاء</string>
     <string name="ok">موافق</string>
     <string name="save">حفظ</string>
@@ -38,6 +38,7 @@
     <string name="edit_email_error">فشل تحديث البريد الإلكتروني</string>
     <string name="edit_email_success">تم تحديث بريدك الإلكتروني</string>
     <string name="error_invalid_email">البريد الإلكتروني غير صحيح</string>
+    <string name="error_recent_login_required">الرجاء تسجيل الدخول مرة أخرى</string>
 
     <!-- Email sign in fragment -->
     <string name="email_sign_in_header">سجل دخولك بالبريد الإلكتروني</string>
@@ -116,7 +117,7 @@
     <!-- Profile fragment -->
     <string name="profile_title">الحساب الشخصي</string>
     <string name="profile_display_name_header">اسم العرض</string>
-    <string name="profile_display_name_sub">الإسم الذي سيظهر للمستخدمين الاخرين</string>
+    <string name="profile_display_name_sub">تعديل اسم العرض الخاص بك</string>
     <string name="profile_email_header">البريد الإلكتروني</string>
     <string name="profile_email_sub">تغيير البريد الإلكتروني</string>
     <string name="profile_password_header">كلمة المرور</string>
@@ -125,13 +126,14 @@
     <!-- Edit display name dialog -->
     <string name="edit_display_name_title">تعديل اسم العرض</string>
     <string name="edit_display_name_hint">اسم العرض</string>
-    <string name="edit_display_name_sub">هذا الإسم سيظهر في محادثاتك وطلباتك للمستخدمين الاخرين</string>
+    <string name="edit_display_name_sub">هذ الإسم سيظهر في طلباتك ومحادثاتك مع المستخدمين الاخرين</string>
     <string name="edit_display_name_current">اسم العرض الحالي: <b>%1$s</b></string>
 
     <!-- Edit email dialog -->
     <string name="edit_email_title">تغيير البريد الإلكتروني</string>
     <string name="edit_email_current_hint">البريد الإلكتروني الحالي</string>
     <string name="edit_email_new_hint">أدخل بريدك الإلكتروني الجديد</string>
+    <string name="edit_email_sub">ملحوظة: تغيير البريد الإلكتروني عملية حساسة. الرجاء تسجيل الخروج ثم تسجيل الدخول مرة أخرى إذا طلب منك ذلك</string>
 
     <!-- Edit password dialog -->
     <string name="edit_password_title">تغيير كلمة المرور</string>

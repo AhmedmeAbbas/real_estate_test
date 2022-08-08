@@ -28,13 +28,17 @@ class AccountViewModel @Inject constructor(
         fetchDisplayName()
     }
 
-    private fun fetchDisplayName() {
+    fun fetchDisplayName() {
         viewModelScope.launch {
             authRepository.userFlow
-                .collect { user ->
-                    val nameFromEmail = user?.email?.substringBefore("@")
+                .map { it?.displayName }
+                .collect { displayName ->
                     _uiState.update {
-                        it.copy(displayName = user?.displayName ?: nameFromEmail ?: "")
+                        it.copy(
+                            displayName = displayName
+                                ?: authRepository.userFlow.value?.email?.substringBefore("@")
+                                ?: ""
+                        )
                     }
                 }
         }

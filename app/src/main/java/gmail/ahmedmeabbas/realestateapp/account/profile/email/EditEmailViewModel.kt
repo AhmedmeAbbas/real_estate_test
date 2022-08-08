@@ -1,6 +1,7 @@
 package gmail.ahmedmeabbas.realestateapp.account.profile.email
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepository
@@ -10,7 +11,6 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 data class EditEmailUiState(
-    val currentEmail: String? = null,
     val isLoading: Boolean = false,
     val userMessage: String = ""
 )
@@ -23,21 +23,10 @@ class EditEmailViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(EditEmailUiState())
     val uiState = _uiState.asStateFlow()
 
+    val currentEmailLiveData = authRepository.userFlow.map { it?.email }.asLiveData()
+
     init {
         observeMessages()
-        fetchCurrentEmail()
-    }
-
-    private fun fetchCurrentEmail() {
-        viewModelScope.launch {
-            authRepository.userFlow
-                .map { it?.email }
-                .collect { email ->
-                    _uiState.update {
-                        it.copy(currentEmail = email)
-                    }
-                }
-        }
     }
 
     private fun observeMessages() {

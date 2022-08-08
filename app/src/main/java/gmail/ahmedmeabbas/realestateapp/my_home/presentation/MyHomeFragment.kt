@@ -37,8 +37,6 @@ class MyHomeFragment: Fragment() {
 
     private fun observeAuthState() {
         myHomeViewModel.isUserSignedIn.observe(viewLifecycleOwner) {
-            Log.d(TAG, "observeAuthState: collected")
-            Log.d(TAG, "observeAuthState: it : $it")
             binding.btnMyHomeSignIn.isEnabled = !it
         }
     }

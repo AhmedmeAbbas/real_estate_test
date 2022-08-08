@@ -29,6 +29,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/line" />
 
+    <TextView
+        android:id="@+id/tvEditEmailSub"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_6sdp"
+        android:layout_marginStart="@dimen/_14sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        style="@style/SubText"
+        android:text="@string/edit_email_sub"
+        android:textSize="@dimen/_12ssp"
+        android:gravity="start"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvDialogEmailTitle"/>
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/currentEmailTIL"
         android:layout_width="match_parent"
@@ -75,7 +91,7 @@
         app:hintTextColor="@color/hint_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvDialogEmailTitle"
+        app:layout_constraintTop_toBottomOf="@id/tvEditEmailSub"
         app:startIconDrawable="@drawable/ic_mail"
         app:startIconTint="@color/hint_color">
 
@@ -101,10 +117,10 @@
         android:background="@drawable/ripple_round_transparent"
         android:elevation="@dimen/_2sdp"
         android:gravity="center"
-        android:text="@string/cancel"
+        android:text="@string/close"
         android:textSize="@dimen/_13ssp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/btnEmailContinue"
+        app:layout_constraintEnd_toStartOf="@id/guideline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/newEmailTIL"
         app:layout_goneMarginTop="@dimen/_70sdp" />
@@ -118,9 +134,10 @@
         android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginEnd="@dimen/_5sdp"
         android:layout_marginBottom="@dimen/_14sdp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/btnEmailCancel"
+        app:layout_constraintStart_toEndOf="@id/guideline"
         app:layout_constraintTop_toBottomOf="@id/newEmailTIL"
         app:layout_goneMarginTop="@dimen/_70sdp" />
 
@@ -135,7 +152,14 @@
         android:layout_marginBottom="@dimen/_14sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/btnEmailCancel"
+        app:layout_constraintStart_toEndOf="@id/guideline"
         app:layout_constraintTop_toBottomOf="@id/newEmailTIL"
         app:layout_goneMarginTop="@dimen/_70sdp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
 </androidx.constraintlayout.widget.ConstraintLayout>

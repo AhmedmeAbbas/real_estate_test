@@ -72,9 +72,9 @@ class DisplayNameDialog : BottomSheetDialogFragment() {
                 displayNameViewModel.uiState
                     .map { it.displayName }
                     .collect {
-                    binding.tvDialogCurrentDisplayName.text =
-                        getString(R.string.edit_display_name_current, it)
-                }
+                        binding.tvDialogCurrentDisplayName.text =
+                            getString(R.string.edit_display_name_current, it)
+                    }
             }
         }
     }
@@ -137,7 +137,8 @@ class DisplayNameDialog : BottomSheetDialogFragment() {
 
         binding.btnDisplayNameSave.root.setOnClickListener {
             val newName = binding.etEditDisplayName.text.toString()
-            if(!validateName(newName)) return@setOnClickListener
+            if (!validateName(newName)) return@setOnClickListener
+            binding.etEditDisplayName.clearFocus()
             displayNameViewModel.updateDisplayName(newName)
         }
     }

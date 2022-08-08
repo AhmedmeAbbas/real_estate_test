@@ -2,6 +2,7 @@ package gmail.ahmedmeabbas.realestateapp.account.presentation
 
 import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -118,6 +119,7 @@ class AccountFragment : Fragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 accountViewModel.uiState.map { it.displayName }
                     .collect { displayName ->
+                        Log.d(TAG, "account fragment: display name: $displayName")
                         if (displayName.isEmpty()) {
                             binding.tvAccountDisplayName.visibility = View.GONE
                         } else {
@@ -132,6 +134,7 @@ class AccountFragment : Fragment() {
         super.onStart()
         binding.switchNightMode.isChecked = isNightModeOn()
         setUpGreeting()
+        accountViewModel.fetchDisplayName()
     }
 
     private fun setUpGreeting() {
