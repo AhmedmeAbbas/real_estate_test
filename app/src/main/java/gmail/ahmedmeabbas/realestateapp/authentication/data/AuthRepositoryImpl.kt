@@ -1,10 +1,7 @@
 package gmail.ahmedmeabbas.realestateapp.authentication.data
 
 import android.util.Log
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
-import com.google.firebase.auth.FirebaseAuthInvalidUserException
-import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.*
 import gmail.ahmedmeabbas.realestateapp.authentication.util.ErrorMessage
 import gmail.ahmedmeabbas.realestateapp.authentication.util.ErrorMessageType
 import kotlinx.coroutines.CoroutineScope
@@ -31,6 +28,12 @@ class AuthRepositoryImpl @Inject constructor(
         observeAuthStateChange()
     }
 
+    private fun observeAuthStateChange() {
+        auth.addAuthStateListener { firebaseAuth ->
+            _isUserSignedInFlow.value = firebaseAuth.currentUser != null
+        }
+    }
+
     override suspend fun signInWithEmailAndPassword(email: String, password: String) {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
@@ -38,7 +41,8 @@ class AuthRepositoryImpl @Inject constructor(
                     val user = auth.currentUser
                     val _displayName = user?.displayName
                     val nameFromEmail = user?.email?.substringBefore("@")
-                    val displayName = if (_displayName.isNullOrEmpty()) nameFromEmail else _displayName
+                    val displayName =
+                        if (_displayName.isNullOrEmpty()) nameFromEmail else _displayName
                     scope.launch {
                         _userFlow.emit(user)
                     }
@@ -54,7 +58,7 @@ class AuthRepositoryImpl @Inject constructor(
                             _errorMessagesFlow.emit(
                                 ErrorMessage(
                                     ErrorMessageType.EMAIL_SIGN_IN,
-                                    "Invalid email or password"
+                                    INVALID_CREDENTIALS
                                 )
                             )
                         }
@@ -76,13 +80,33 @@ class AuthRepositoryImpl @Inject constructor(
         auth.signOut()
     }
 
-    private fun observeAuthStateChange() {
-        auth.addAuthStateListener { firebaseAuth ->
-            _isUserSignedInFlow.value = firebaseAuth.currentUser != null
-        }
+    override suspend fun updateDisplayName(displayName: String) {
+        val user = auth.currentUser
+        val profileUpdates = UserProfileChangeRequest.Builder()
+            .setDisplayName(displayName)
+            .build()
+        user?.updateProfile(profileUpdates)
+            ?.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    scope.launch {
+                        _displayNameFlow.emit(user.displayName)
+                    }
+                } else {
+                    scope.launch {
+                        _errorMessagesFlow.emit(
+                            ErrorMessage(
+                                ErrorMessageType.DISPLAY_NAME,
+                                DISPLAY_NAME_ERROR
+                            )
+                        )
+                    }
+                }
+            }
     }
 
     companion object {
+        const val INVALID_CREDENTIALS = "invalid_credentials"
+        const val DISPLAY_NAME_ERROR = "display_name_error"
         private const val TAG = "AuthRepositoryImpl"
     }
 }

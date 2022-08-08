@@ -1,6 +1,5 @@
 package gmail.ahmedmeabbas.realestateapp.authentication.presentation.email
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
@@ -28,15 +27,14 @@ class EmailSignInViewModel @Inject constructor(
     val isUserSignedIn: LiveData<Boolean> = authRepository.isUserSignedInFlow.asLiveData()
 
     init {
-        fetchInitialState()
+        observeErrorMessages()
     }
 
-    private fun fetchInitialState() {
+    private fun observeErrorMessages() {
         viewModelScope.launch {
             authRepository.errorMessageFlow
                 .filter { it.type == ErrorMessageType.EMAIL_SIGN_IN }
                 .collect { errorMessage ->
-                    Log.d(TAG, "viewModel: error message: $errorMessage")
                     _uiState.update { it.copy(
                         errorMessage = errorMessage.message,
                         isLoading = false

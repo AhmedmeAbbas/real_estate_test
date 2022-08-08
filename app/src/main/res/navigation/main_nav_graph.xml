@@ -166,15 +166,15 @@
         </fragment>
         <dialog
             android:id="@+id/displayNameDialog"
-            android:name="gmail.ahmedmeabbas.realestateapp.account.profile.DisplayNameDialog"
+            android:name="gmail.ahmedmeabbas.realestateapp.account.profile.displayname.DisplayNameDialog"
             android:label="DisplayNameDialog" />
         <dialog
             android:id="@+id/editEmailDialog"
-            android:name="gmail.ahmedmeabbas.realestateapp.account.profile.EditEmailDialog"
+            android:name="gmail.ahmedmeabbas.realestateapp.account.profile.email.EditEmailDialog"
             android:label="EditEmailDialog" />
         <dialog
             android:id="@+id/editPasswordDialog"
-            android:name="gmail.ahmedmeabbas.realestateapp.account.profile.EditPasswordDialog"
+            android:name="gmail.ahmedmeabbas.realestateapp.account.profile.password.EditPasswordDialog"
             android:label="EditPasswordDialog" />
     </navigation>
     <action

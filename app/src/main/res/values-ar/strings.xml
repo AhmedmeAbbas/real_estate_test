@@ -30,6 +30,11 @@
     <string name="or">أو</string>
     <string name="sign_in_tos">بقيامك بتسجيل الدخول أنت توافق على شروط الخدمة وسياسة الخصوصية الخاصة بنا</string>
 
+    <!-- Error messages -->
+    <string name="error_occurred">حدث خطأ. الرجاء المحاولة لاحقا</string>
+    <string name="error_invalid_credentials">خطأ في البريد الإلكتروني أو كلمة المرور</string>
+    <string name="error_diplay_name">فشل تحديث اسم العرض</string>
+
     <!-- Email sign in fragment -->
     <string name="email_sign_in_header">سجل دخولك بالبريد الإلكتروني</string>
     <string name="email_hint">البريد الإلكتروني</string>
@@ -117,6 +122,7 @@
     <string name="edit_display_name_title">تعديل اسم العرض</string>
     <string name="edit_display_name_hint">اسم العرض</string>
     <string name="edit_display_name_sub">هذا الإسم سيظهر في محادثاتك وطلباتك للمستخدمين الاخرين</string>
+    <string name="edit_display_name_current">اسم العرض الحالي: <b>%1$s</b></string>
 
     <!-- Edit email dialog -->
     <string name="edit_email_title">تغيير البريد الإلكتروني</string>

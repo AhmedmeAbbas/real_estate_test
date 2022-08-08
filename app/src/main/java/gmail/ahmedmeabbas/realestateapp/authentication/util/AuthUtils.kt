@@ -11,8 +11,10 @@ data class ErrorMessage(
 )
 
 enum class ErrorMessageType {
+    ERROR_OCCURRED,
     EMAIL_SIGN_IN,
     FACEBOOK_SIGN_IN,
     GOOGLE_SIGN_IN,
-    CREATE_ACCOUNT
+    CREATE_ACCOUNT,
+    DISPLAY_NAME
 }

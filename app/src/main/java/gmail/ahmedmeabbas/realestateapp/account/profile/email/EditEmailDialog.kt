@@ -1,4 +1,4 @@
-package gmail.ahmedmeabbas.realestateapp.account.profile
+package gmail.ahmedmeabbas.realestateapp.account.profile.email
 
 import android.content.res.ColorStateList
 import android.os.Bundle

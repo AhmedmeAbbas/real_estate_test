@@ -18,6 +18,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import com.google.android.material.snackbar.Snackbar
 import gmail.ahmedmeabbas.realestateapp.R
+import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl.Companion.INVALID_CREDENTIALS
 import gmail.ahmedmeabbas.realestateapp.databinding.FragmentEmailSignInBinding
 import gmail.ahmedmeabbas.realestateapp.util.ColorUtils.getColorFromAttr
 import kotlinx.coroutines.flow.map
@@ -79,15 +80,17 @@ class EmailSignInFragment : Fragment() {
     }
 
     private fun observeErrorMessages() {
+        val invalidCredsMessage = getString(R.string.error_invalid_credentials)
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 emailViewModel.uiState
                     .map { it.errorMessage }
                     .collect { errorMessage ->
-                        Log.d(TAG, "observeErrorMessages: $errorMessage")
                         if (errorMessage.isEmpty()) return@collect
-                            showMessage(errorMessage)
-                            emailViewModel.clearMessages()
+                        val message =
+                            if (errorMessage == INVALID_CREDENTIALS) invalidCredsMessage else errorMessage
+                        showMessage(message)
+                        emailViewModel.clearMessages()
                     }
             }
         }
@@ -110,7 +113,6 @@ class EmailSignInFragment : Fragment() {
             val email = binding.etEmailSignIn.text.toString()
             val password = binding.etPasswordSignIn.text.toString()
             if (!validateForm(email, password)) return@setOnClickListener
-
             emailViewModel.signInWithEmailAndPassword(email, password)
         }
     }
