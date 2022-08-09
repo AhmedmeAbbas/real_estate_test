@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_6sdp"
         android:text="@string/edit_email_title"
         android:textSize="@dimen/_17ssp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,14 +33,13 @@
         android:id="@+id/tvEditEmailSub"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_6sdp"
+        android:layout_marginTop="@dimen/_12sdp"
         android:layout_marginStart="@dimen/_14sdp"
         android:layout_marginEnd="@dimen/_10sdp"
         style="@style/SubText"
-        android:text="@string/edit_email_sub"
+        android:text="@string/edit_email_sub_current"
         android:textSize="@dimen/_12ssp"
         android:gravity="start"
-        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvDialogEmailTitle"/>
@@ -60,7 +59,7 @@
         app:hintTextColor="@color/hint_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvDialogEmailTitle"
+        app:layout_constraintTop_toBottomOf="@id/tvEditEmailSub"
         app:startIconDrawable="@drawable/ic_mail"
         app:startIconTint="@color/hint_color">
 
@@ -71,6 +70,38 @@
             android:background="@drawable/edit_text_background"
             android:hint="@string/edit_email_current_hint"
             android:inputType="textEmailAddress"
+            android:maxLines="1"
+            android:minHeight="@dimen/_48sdp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/currentPasswordTIL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:scrollbarSize="25dp"
+        android:scrollbarThumbHorizontal="@color/hint_color"
+        android:textColorHint="@color/hint_color"
+        app:hintTextColor="@color/hint_color"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/currentEmailTIL"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/hint_color"
+        app:startIconDrawable="@drawable/ic_lock"
+        app:startIconTint="@color/hint_color">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etCurrentPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_background"
+            android:hint="@string/edit_password_current_hint"
+            android:inputType="textPassword"
             android:maxLines="1"
             android:minHeight="@dimen/_48sdp" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -123,7 +154,7 @@
         app:layout_constraintEnd_toStartOf="@id/guideline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/newEmailTIL"
-        app:layout_goneMarginTop="@dimen/_70sdp" />
+        app:layout_goneMarginTop="@dimen/_127sdp" />
 
     <include
         android:id="@+id/btnEmailSave"
@@ -139,7 +170,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/guideline"
         app:layout_constraintTop_toBottomOf="@id/newEmailTIL"
-        app:layout_goneMarginTop="@dimen/_70sdp" />
+        app:layout_goneMarginTop="@dimen/_127sdp" />
 
     <include
         android:id="@+id/btnEmailContinue"
@@ -154,7 +185,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/guideline"
         app:layout_constraintTop_toBottomOf="@id/newEmailTIL"
-        app:layout_goneMarginTop="@dimen/_70sdp" />
+        app:layout_goneMarginTop="@dimen/_127sdp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"

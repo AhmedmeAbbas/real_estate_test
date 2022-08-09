@@ -1,11 +1,13 @@
 package gmail.ahmedmeabbas.realestateapp.authentication.presentation.email
 
+import android.content.Context
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
@@ -111,6 +113,9 @@ class EmailSignInFragment : Fragment() {
             val email = binding.etEmailSignIn.text.toString()
             val password = binding.etPasswordSignIn.text.toString()
             if (!validateForm(email, password)) return@setOnClickListener
+            val view = binding.root.findFocus()
+            val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(view.windowToken, 0)
             emailViewModel.signInWithEmailAndPassword(email, password)
         }
     }

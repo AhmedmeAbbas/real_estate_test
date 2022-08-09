@@ -16,6 +16,7 @@ enum class AuthMessageType {
     FACEBOOK_SIGN_IN,
     GOOGLE_SIGN_IN,
     CREATE_ACCOUNT,
+    RE_AUTHENTICATE,
     DISPLAY_NAME,
     EDIT_EMAIL,
     EDIT_PASSWORD

@@ -97,6 +97,34 @@ class AuthRepositoryImpl @Inject constructor(
             }
     }
 
+    override suspend fun reAuthenticateUser(email: String, password: String) {
+        val user = auth.currentUser
+        val credential = EmailAuthProvider.getCredential(email, password)
+        user?.reauthenticate(credential)
+            ?.addOnCompleteListener { task ->
+                Log.d(TAG, "reAuthenticateUser: auth repo task: ${task.isSuccessful}")
+                if (task.isSuccessful) {
+                    scope.launch {
+                        _authMessagesFlow.emit(
+                            AuthMessage(
+                                AuthMessageType.RE_AUTHENTICATE,
+                                RE_AUTHENTICATE_SUCCESS
+                            )
+                        )
+                    }
+                } else {
+                    scope.launch {
+                        _authMessagesFlow.emit(
+                            AuthMessage(
+                                AuthMessageType.RE_AUTHENTICATE,
+                                RE_AUTHENTICATE_FAILURE
+                            )
+                        )
+                    }
+                }
+            }
+    }
+
     override suspend fun updateEmail(email: String) {
         val user = auth.currentUser
         Log.d(TAG, "auth repo: user: $user")
@@ -112,40 +140,27 @@ class AuthRepositoryImpl @Inject constructor(
                         )
                     }
                 } else {
-                    Log.d(TAG, "auth repo: exception: ${task.exception}")
-                    when (task.exception) {
-                        is FirebaseAuthRecentLoginRequiredException -> {
-                            scope.launch {
-                                _authMessagesFlow.emit(
-                                    AuthMessage(
-                                        AuthMessageType.EDIT_EMAIL,
-                                        LOGIN_REQUIRED
-                                    )
-                                )
-                            }
-                        }
-                        else -> {
-                            scope.launch {
-                                _authMessagesFlow.emit(
-                                    AuthMessage(
-                                        AuthMessageType.EDIT_EMAIL,
-                                        EDIT_EMAIL_FAILURE
-                                    )
-                                )
-                            }
-                        }
+                    scope.launch {
+                        _authMessagesFlow.emit(
+                            AuthMessage(
+                                AuthMessageType.EDIT_EMAIL,
+                                EDIT_EMAIL_FAILURE
+                            )
+                        )
                     }
+
                 }
             }
     }
 
     companion object {
         const val INVALID_CREDENTIALS = "invalid_credentials"
+        const val RE_AUTHENTICATE_SUCCESS = "re_auth_success"
+        const val RE_AUTHENTICATE_FAILURE = "re_auth_failure"
         const val DISPLAY_NAME_SUCCESS = "display_name_success"
         const val DISPLAY_NAME_ERROR = "display_name_error"
         const val EDIT_EMAIL_SUCCESS = "edit_email_success"
         const val EDIT_EMAIL_FAILURE = "edit_email_failure"
-        const val LOGIN_REQUIRED = "login_required"
         private const val TAG = "AuthRepositoryImpl"
     }
 }

@@ -129,11 +129,13 @@
     <string name="edit_display_name_sub">هذ الإسم سيظهر في طلباتك ومحادثاتك مع المستخدمين الاخرين</string>
     <string name="edit_display_name_current">اسم العرض الحالي: <b>%1$s</b></string>
 
+
     <!-- Edit email dialog -->
     <string name="edit_email_title">تغيير البريد الإلكتروني</string>
     <string name="edit_email_current_hint">البريد الإلكتروني الحالي</string>
-    <string name="edit_email_new_hint">أدخل بريدك الإلكتروني الجديد</string>
-    <string name="edit_email_sub">ملحوظة: تغيير البريد الإلكتروني عملية حساسة. الرجاء تسجيل الخروج ثم تسجيل الدخول مرة أخرى إذا طلب منك ذلك</string>
+    <string name="edit_email_new_hint">البريد الإلكتروني الجديد</string>
+    <string name="edit_email_sub_new">أدخل بريدك الإلكتروني الجديد</string>
+    <string name="edit_email_sub_current">للإستمرار أدخل بريدك الإلكتروني وكلمة المرور الحاليين</string>
 
     <!-- Edit password dialog -->
     <string name="edit_password_title">تغيير كلمة المرور</string>
@@ -141,6 +143,8 @@
     <string name="edit_password_new_hint">كلمة المرور الجديدة</string>
     <string name="edit_password_confirm_hint">تأكيد كلمة المرور الجديدة</string>
     <string name="edit_password_min_chars">يجب أن تتكون من 6 أحرف على الأقل</string>
+    <string name="edit_password_sub_new">أدخل كلمة المرور الجديدة</string>
+    <string name="edit_password_sub_current">للإستمرار أدخل بريدك الإلكتروني وكلمة المرور الحاليين</string>
 
     <!-- Notification settings -->
     <string name="notif_settings_toolbar_title">إعدادات الإشعارات</string>

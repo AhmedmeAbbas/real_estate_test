@@ -126,7 +126,7 @@
             android:label="NewListingsDialog" />
         <dialog
             android:id="@+id/messagesDialog"
-            android:name="gmail.ahmedmeabbas.realestateapp.account.notifications.MessagesDialog"
+            android:name="gmail.ahmedmeabbas.realestateapp.account.notifications.RequestsDialog"
             android:label="MessagesDialog" />
         <fragment
             android:id="@+id/notificationSettingsFragment"

@@ -18,4 +18,6 @@ interface AuthRepository {
     suspend fun updateDisplayName(displayName: String)
 
     suspend fun updateEmail(email: String)
+
+    suspend fun reAuthenticateUser(email: String, password: String)
 }

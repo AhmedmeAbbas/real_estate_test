@@ -1,5 +1,6 @@
 package gmail.ahmedmeabbas.realestateapp.account.profile.email
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
@@ -29,10 +30,12 @@ class EditEmailViewModel @Inject constructor(
         observeMessages()
     }
 
+    private val messageTypes = listOf(AuthMessageType.RE_AUTHENTICATE, AuthMessageType.EDIT_EMAIL)
+
     private fun observeMessages() {
         viewModelScope.launch {
             authRepository.authMessagesFlow
-                .filter { it.type == AuthMessageType.EDIT_EMAIL }
+                .filter { it.type in messageTypes }
                 .collect { authMessage ->
                     _uiState.update {
                         it.copy(userMessage = authMessage.message, isLoading = false)
@@ -48,7 +51,19 @@ class EditEmailViewModel @Inject constructor(
         }
     }
 
+    fun reAuthenticateUser(email: String, password: String) {
+        _uiState.update { it.copy(isLoading = true) }
+        viewModelScope.launch {
+            Log.d(TAG, "reAuthenticateUser: re auth triggered")
+            authRepository.reAuthenticateUser(email, password)
+        }
+    }
+
     fun clearMessages() {
         _uiState.update { it.copy(userMessage = "") }
+    }
+
+    companion object {
+        private const val TAG = "EditEmailViewModel"
     }
 }

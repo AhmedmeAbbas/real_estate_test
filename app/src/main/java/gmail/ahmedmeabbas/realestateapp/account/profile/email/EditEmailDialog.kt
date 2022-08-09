@@ -2,6 +2,7 @@ package gmail.ahmedmeabbas.realestateapp.account.profile.email
 
 import android.content.res.ColorStateList
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +17,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import gmail.ahmedmeabbas.realestateapp.R
 import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl.Companion.EDIT_EMAIL_FAILURE
 import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl.Companion.EDIT_EMAIL_SUCCESS
-import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl.Companion.LOGIN_REQUIRED
+import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl.Companion.RE_AUTHENTICATE_FAILURE
+import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl.Companion.RE_AUTHENTICATE_SUCCESS
 import gmail.ahmedmeabbas.realestateapp.databinding.DialogEditEmailBinding
 import gmail.ahmedmeabbas.realestateapp.util.ColorUtils.getColorFromAttr
 import kotlinx.coroutines.flow.map
@@ -73,6 +75,9 @@ class EditEmailDialog : BottomSheetDialogFragment() {
     private fun updateViews(isLoading: Boolean) {
         val show = if (isLoading) View.VISIBLE else View.GONE
         val hide = if (isLoading) View.GONE else View.VISIBLE
+        binding.btnEmailContinue.tvButton.visibility = hide
+        binding.btnEmailContinue.progressBar.visibility = show
+        binding.btnEmailContinue.root.isEnabled = !isLoading
         binding.btnEmailSave.tvButton.visibility = hide
         binding.btnEmailSave.progressBar.visibility = show
         binding.btnEmailSave.root.isEnabled = !isLoading
@@ -89,8 +94,9 @@ class EditEmailDialog : BottomSheetDialogFragment() {
                     .collect { userMessage ->
                         if (userMessage.isEmpty()) return@collect
                         when (userMessage) {
+                            RE_AUTHENTICATE_SUCCESS -> setUpNewEmailViews()
+                            RE_AUTHENTICATE_FAILURE -> showMessage(getString(R.string.error_invalid_credentials))
                             EDIT_EMAIL_SUCCESS -> showMessage(successMessage)
-                            LOGIN_REQUIRED -> showMessage(loginRequired)
                             EDIT_EMAIL_FAILURE -> showMessage(failureMessage)
                             else -> return@collect
                         }
@@ -129,6 +135,24 @@ class EditEmailDialog : BottomSheetDialogFragment() {
             }
         }
 
+        binding.etCurrentPassword.setOnFocusChangeListener { _, hasFocus ->
+            val color = if (hasFocus) colorSecondary else hintColor
+            val lockOutlined =
+                ResourcesCompat.getDrawable(requireContext().resources, R.drawable.ic_lock, null)
+            val lockFilled =
+                ResourcesCompat.getDrawable(
+                    requireContext().resources,
+                    R.drawable.ic_lock_selected,
+                    null
+                )
+            val drawable = if (hasFocus) lockFilled else lockOutlined
+            binding.currentPasswordTIL.apply {
+                startIconDrawable = drawable
+                setStartIconTintList(ColorStateList.valueOf(color))
+                setEndIconTintList(ColorStateList.valueOf(color))
+            }
+        }
+
         binding.etNewEmail.setOnFocusChangeListener { _, hasFocus ->
             val color = if (hasFocus) colorSecondary else hintColor
             binding.newEmailTIL.apply {
@@ -155,18 +179,22 @@ class EditEmailDialog : BottomSheetDialogFragment() {
         binding.btnEmailContinue.tvButton.text = getString(R.string.button_continue)
         binding.btnEmailContinue.root.setOnClickListener {
             val inputCurrentEmail = binding.etCurrentEmail.text.toString()
-            if (!validateEmail(inputCurrentEmail)) return@setOnClickListener
-            if (inputCurrentEmail != currentEmail) {
-                showMessage(getString(R.string.error_invalid_email))
-                return@setOnClickListener
-            }
-            setUpNewEmailViews()
+            val inputCurrentPassword = binding.etCurrentPassword.text.toString()
+            if (!validateEmailAndPassword(
+                    inputCurrentEmail,
+                    inputCurrentPassword
+                )
+            ) return@setOnClickListener
+            Log.d(TAG, "setUpContinueButton: valid passed")
+            editEmailViewModel.reAuthenticateUser(inputCurrentEmail, inputCurrentPassword)
         }
     }
 
     private fun setUpNewEmailViews() {
+        binding.tvEditEmailSub.text = getString(R.string.edit_email_sub_new)
         binding.currentEmailTIL.visibility = View.GONE
         binding.btnEmailContinue.root.visibility = View.GONE
+        binding.currentPasswordTIL.visibility = View.GONE
         binding.tvEditEmailSub.visibility = View.VISIBLE
         binding.newEmailTIL.visibility = View.VISIBLE
         binding.btnEmailSave.root.visibility = View.VISIBLE
@@ -176,17 +204,26 @@ class EditEmailDialog : BottomSheetDialogFragment() {
         binding.btnEmailSave.tvButton.text = getString(R.string.save)
         binding.btnEmailSave.root.setOnClickListener {
             val newEmail = binding.etNewEmail.text.toString()
-            if (!validateEmail(newEmail)) return@setOnClickListener
-            binding.etNewEmail.clearFocus()
+            if (newEmail.isEmpty()) {
+                binding.etNewEmail.error = getString(R.string.required)
+                return@setOnClickListener
+            }
             editEmailViewModel.updateEmail(newEmail)
         }
     }
 
-    private fun validateEmail(email: String): Boolean {
-        return if (email.isEmpty()) {
+    private fun validateEmailAndPassword(email: String, password: String): Boolean {
+        var isValid = true
+        if (email.isEmpty()) {
             binding.etCurrentEmail.error = getString(R.string.required)
-            false
-        } else true
+            isValid = false
+        }
+        if (password.isEmpty()) {
+            binding.etCurrentPassword.error = getString(R.string.required)
+            isValid = false
+        }
+        Log.d(TAG, "validateEmailAndPassword: is valid: $isValid")
+        return isValid
     }
 
     private fun setUpCancelButton() {

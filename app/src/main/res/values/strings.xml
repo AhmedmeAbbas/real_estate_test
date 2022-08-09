@@ -131,8 +131,9 @@
     <!-- Edit email dialog -->
     <string name="edit_email_title">Change email</string>
     <string name="edit_email_current_hint">Current email</string>
-    <string name="edit_email_new_hint">Enter your new email</string>
-    <string name="edit_email_sub">Note: changing your email is a sensitive operation. Please sign out and sign in again if prompted</string>
+    <string name="edit_email_new_hint">New email</string>
+    <string name="edit_email_sub_new">Enter your new email</string>
+    <string name="edit_email_sub_current">To continue, enter your current email and password</string>
 
     <!-- Edit password dialog -->
     <string name="edit_password_title">Change password</string>
@@ -140,6 +141,8 @@
     <string name="edit_password_new_hint">New password</string>
     <string name="edit_password_confirm_hint">Confirm new password</string>
     <string name="edit_password_min_chars">Must be at least 6 characters long</string>
+    <string name="edit_password_sub_new">Enter your new password</string>
+    <string name="edit_password_sub_current">To continue, enter your current email and password</string>
 
     <!-- Notification settings -->
     <string name="notif_settings_toolbar_title">Notification settings</string>

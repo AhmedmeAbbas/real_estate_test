@@ -156,6 +156,11 @@ class DisplayNameDialog : BottomSheetDialogFragment() {
         }
     }
 
+    override fun onStart() {
+        super.onStart()
+        displayNameViewModel.fetchDisplayName()
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

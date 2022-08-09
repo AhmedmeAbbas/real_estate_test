@@ -19,7 +19,7 @@
         android:id="@+id/tvDialogLanguage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_6sdp"
         android:text="@string/dialog_language_title"
         android:textSize="@dimen/_17ssp"
         app:layout_constraintEnd_toEndOf="parent"

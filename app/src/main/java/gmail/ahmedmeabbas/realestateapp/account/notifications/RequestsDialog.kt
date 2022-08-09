@@ -5,11 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import gmail.ahmedmeabbas.realestateapp.databinding.DialogMessagesBinding
+import gmail.ahmedmeabbas.realestateapp.databinding.DialogRequestsBinding
 
-class MessagesDialog: BottomSheetDialogFragment() {
+class RequestsDialog: BottomSheetDialogFragment() {
 
-    private var _binding: DialogMessagesBinding? = null
+    private var _binding: DialogRequestsBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -17,7 +17,7 @@ class MessagesDialog: BottomSheetDialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = DialogMessagesBinding.inflate(inflater, container, false)
+        _binding = DialogRequestsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
