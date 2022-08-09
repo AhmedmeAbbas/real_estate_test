@@ -24,8 +24,6 @@ class EditEmailViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(EditEmailUiState())
     val uiState = _uiState.asStateFlow()
 
-    val currentEmailLiveData = authRepository.userFlow.map { it?.email }.asLiveData()
-
     init {
         observeMessages()
     }

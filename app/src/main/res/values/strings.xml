@@ -34,10 +34,10 @@
     <string name="error_invalid_credentials">Invalid email or password</string>
     <string name="display_name_error">Failed to update the display name</string>
     <string name="display_name_success">Display name updated</string>
-    <string name="edit_email_error">Failed to update email</string>
     <string name="edit_email_success">Email updated</string>
-    <string name="error_invalid_email">Invalid email</string>
-    <string name="error_recent_login_required">Please sign in again</string>
+    <string name="edit_email_error">Failed to update email</string>
+    <string name="edit_password_success">Password updated</string>
+    <string name="edit_password_error">Failed to update password</string>
 
     <!-- Email sign in fragment -->
     <string name="email_sign_in_header">Sign in with email</string>
@@ -51,6 +51,8 @@
     <string name="create_account_confirm_password">Confirm password</string>
     <string name="create_account_button">Create Account</string>
     <string name="create_account_tos">By creating an account you agree to our Terms of Service and Privacy Policy</string>
+    <string name="passwords_dont_match">Passwords do not match</string>
+    <string name="password_length_error">Password must be at least 6 characters long</string>
 
     <!-- Search fragment -->
     <string name="toolbar_list_title">List</string>

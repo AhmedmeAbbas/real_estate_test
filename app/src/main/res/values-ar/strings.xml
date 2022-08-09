@@ -35,10 +35,10 @@
     <string name="error_invalid_credentials">خطأ في البريد الإلكتروني أو كلمة المرور</string>
     <string name="display_name_error">فشل تحديث اسم العرض</string>
     <string name="display_name_success">تم تحديث اسم العرض</string>
-    <string name="edit_email_error">فشل تحديث البريد الإلكتروني</string>
     <string name="edit_email_success">تم تحديث بريدك الإلكتروني</string>
-    <string name="error_invalid_email">البريد الإلكتروني غير صحيح</string>
-    <string name="error_recent_login_required">الرجاء تسجيل الدخول مرة أخرى</string>
+    <string name="edit_email_error">فشل تحديث البريد الإلكتروني</string>
+    <string name="edit_password_success">تم تحديث كلمة المرور</string>
+    <string name="edit_password_error">فشل تحديث كلمة المرور</string>
 
     <!-- Email sign in fragment -->
     <string name="email_sign_in_header">سجل دخولك بالبريد الإلكتروني</string>
@@ -52,6 +52,8 @@
     <string name="create_account_confirm_password">تأكيد كلمة المرور</string>
     <string name="create_account_button">إنشاء حساب</string>
     <string name="create_account_tos">بقيامك بإنشاء حساب أنت توافق على شروط الخدمة وسياسة الخصوصية الخاصة بنا</string>
+    <string name="passwords_dont_match">كلمة المرور غير مطابقة</string>
+    <string name="password_length_error">كلمة المرور يجب أن تتكون من 6 أحرف على الأقل</string>
 
     <!-- Search fragment -->
     <string name="toolbar_list_title">قائمة</string>

@@ -89,7 +89,7 @@ class AuthRepositoryImpl @Inject constructor(
                         _authMessagesFlow.emit(
                             AuthMessage(
                                 AuthMessageType.DISPLAY_NAME,
-                                DISPLAY_NAME_ERROR
+                                DISPLAY_NAME_FAILURE
                             )
                         )
                     }
@@ -127,7 +127,6 @@ class AuthRepositoryImpl @Inject constructor(
 
     override suspend fun updateEmail(email: String) {
         val user = auth.currentUser
-        Log.d(TAG, "auth repo: user: $user")
         user?.updateEmail(email)
             ?.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
@@ -153,14 +152,43 @@ class AuthRepositoryImpl @Inject constructor(
             }
     }
 
+    override suspend fun updatePassword(password: String) {
+        val user = auth.currentUser
+        user?.updatePassword(password)
+            ?.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    scope.launch {
+                        _authMessagesFlow.emit(
+                            AuthMessage(
+                                AuthMessageType.EDIT_PASSWORD,
+                                EDIT_PASSWORD_SUCCESS
+                            )
+                        )
+                    }
+                } else {
+                    scope.launch {
+                        _authMessagesFlow.emit(
+                            AuthMessage(
+                                AuthMessageType.EDIT_PASSWORD,
+                                EDIT_PASSWORD_FAILURE
+                            )
+                        )
+                    }
+
+                }
+            }
+    }
+
     companion object {
         const val INVALID_CREDENTIALS = "invalid_credentials"
         const val RE_AUTHENTICATE_SUCCESS = "re_auth_success"
         const val RE_AUTHENTICATE_FAILURE = "re_auth_failure"
         const val DISPLAY_NAME_SUCCESS = "display_name_success"
-        const val DISPLAY_NAME_ERROR = "display_name_error"
+        const val DISPLAY_NAME_FAILURE = "display_name_failure"
         const val EDIT_EMAIL_SUCCESS = "edit_email_success"
         const val EDIT_EMAIL_FAILURE = "edit_email_failure"
+        const val EDIT_PASSWORD_SUCCESS = "edit_password_success"
+        const val EDIT_PASSWORD_FAILURE = "edit_password_failure"
         private const val TAG = "AuthRepositoryImpl"
     }
 }

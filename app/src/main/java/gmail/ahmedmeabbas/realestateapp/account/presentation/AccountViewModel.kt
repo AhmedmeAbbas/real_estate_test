@@ -1,5 +1,6 @@
 package gmail.ahmedmeabbas.realestateapp.account.presentation
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -40,6 +41,7 @@ class AccountViewModel @Inject constructor(
                                 ?: ""
                         )
                     }
+                    Log.d(TAG, "fetchDisplayName: ${_uiState.value.displayName}")
                 }
         }
     }
@@ -64,5 +66,9 @@ class AccountViewModel @Inject constructor(
         viewModelScope.launch {
             authRepository.signOut()
         }
+    }
+    
+    companion object {
+        private const val TAG = "AccountViewModel"
     }
 }

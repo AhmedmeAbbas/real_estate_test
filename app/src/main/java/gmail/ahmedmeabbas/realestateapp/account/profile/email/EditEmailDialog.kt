@@ -29,7 +29,6 @@ class EditEmailDialog : BottomSheetDialogFragment() {
     private var _binding: DialogEditEmailBinding? = null
     private val binding get() = _binding!!
     private val editEmailViewModel: EditEmailViewModel by activityViewModels()
-    private var currentEmail: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,17 +46,8 @@ class EditEmailDialog : BottomSheetDialogFragment() {
         setUpContinueButton()
         setUpSaveButton()
         setUpCancelButton()
-        observeCurrentEmail()
         observeLoading()
         observeMessages()
-    }
-
-    private fun observeCurrentEmail() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            editEmailViewModel.currentEmailLiveData.observe(viewLifecycleOwner) {
-                currentEmail = it
-            }
-        }
     }
 
     private fun observeLoading() {
@@ -84,9 +74,8 @@ class EditEmailDialog : BottomSheetDialogFragment() {
     }
 
     private fun observeMessages() {
-        val failureMessage = getString(R.string.edit_email_error)
         val successMessage = getString(R.string.edit_email_success)
-        val loginRequired = getString(R.string.error_recent_login_required)
+        val failureMessage = getString(R.string.edit_email_error)
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 editEmailViewModel.uiState
@@ -107,7 +96,7 @@ class EditEmailDialog : BottomSheetDialogFragment() {
     }
 
     private fun showMessage(message: String) {
-        Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 
     private fun setUpEditTexts() {
@@ -193,8 +182,8 @@ class EditEmailDialog : BottomSheetDialogFragment() {
     private fun setUpNewEmailViews() {
         binding.tvEditEmailSub.text = getString(R.string.edit_email_sub_new)
         binding.currentEmailTIL.visibility = View.GONE
-        binding.btnEmailContinue.root.visibility = View.GONE
         binding.currentPasswordTIL.visibility = View.GONE
+        binding.btnEmailContinue.root.visibility = View.GONE
         binding.tvEditEmailSub.visibility = View.VISIBLE
         binding.newEmailTIL.visibility = View.VISIBLE
         binding.btnEmailSave.root.visibility = View.VISIBLE
