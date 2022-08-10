@@ -67,7 +67,7 @@
     <string name="toolbar_map_title">Map</string>
     <string name="toolbar_filter_title">Filter</string>
     <string name="toolbar_sort_title">Sort</string>
-    <string name="toolbar_save_search_title">Save Search</string>
+    <string name="toolbar_save_search_title">Save search</string>
     <string name="search_query_hint">Search city or area</string>
 
     <!-- Saved fragment -->
