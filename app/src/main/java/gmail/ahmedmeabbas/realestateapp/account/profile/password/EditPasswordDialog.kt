@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.widget.TextViewCompat.setCompoundDrawablesRelativeWithIntrinsicBounds
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
@@ -107,6 +108,7 @@ class EditPasswordDialog : BottomSheetDialogFragment() {
                             null
                         ), null, null, null
                     )
+                    compoundDrawablePadding = 10
                     setTextColor(ContextCompat.getColor(requireContext(),R.color.green))
                 }
             } else {
@@ -182,8 +184,18 @@ class EditPasswordDialog : BottomSheetDialogFragment() {
             showMessage(getString(R.string.passwords_dont_match))
             isValid = false
         }
-        if (newPassword.isNotEmpty() && newPassword.length < 6) {
-            showMessage(getString(R.string.password_length_error))
+        if (newPassword.length < 6) {
+            binding.tvEditPasswordMinChars.apply {
+                setCompoundDrawablesRelativeWithIntrinsicBounds(
+                    ResourcesCompat.getDrawable(
+                        requireContext().resources,
+                        R.drawable.ic_error,
+                        null
+                    ), null, null, null
+                )
+                compoundDrawablePadding = 10
+                setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
+            }
             isValid = false
         }
         return isValid

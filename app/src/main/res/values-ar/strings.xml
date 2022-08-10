@@ -41,6 +41,8 @@
     <string name="edit_password_error">فشل تحديث كلمة المرور</string>
     <string name="reset_password_success">تم إرسال الرسالة</string>
     <string name="reset_password_error">فشل إرسال الرسالة</string>
+    <string name="create_account_success">تم إنشاء الحساب بنجاح</string>
+    <string name="create_account_failure">فشل إنشاء الحساب. الرجاء المحاولة مجددا لاحقا</string>
 
     <!-- Email sign in fragment -->
     <string name="email_sign_in_header">سجل دخولك بالبريد الإلكتروني</string>

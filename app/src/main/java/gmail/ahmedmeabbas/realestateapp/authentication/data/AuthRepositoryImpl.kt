@@ -1,6 +1,5 @@
 package gmail.ahmedmeabbas.realestateapp.authentication.data
 
-import android.util.Log
 import com.google.firebase.auth.*
 import gmail.ahmedmeabbas.realestateapp.authentication.util.AuthMessage
 import gmail.ahmedmeabbas.realestateapp.authentication.util.AuthMessageType
@@ -36,7 +35,12 @@ class AuthRepositoryImpl @Inject constructor(
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    _userFlow.value = auth.currentUser
+                    val user = auth.currentUser
+                    if (user?.displayName == null) {
+                        addDefaultDisplayName()
+                        return@addOnCompleteListener
+                    }
+                    _userFlow.value = user
                 } else {
                     val e = task.exception
                     if (e is FirebaseAuthInvalidUserException ||
@@ -76,6 +80,7 @@ class AuthRepositoryImpl @Inject constructor(
         user?.updateProfile(profileUpdates)
             ?.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
+                    _userFlow.value = auth.currentUser
                     scope.launch {
                         _authMessagesFlow.emit(
                             AuthMessage(
@@ -102,7 +107,6 @@ class AuthRepositoryImpl @Inject constructor(
         val credential = EmailAuthProvider.getCredential(email, password)
         user?.reauthenticate(credential)
             ?.addOnCompleteListener { task ->
-                Log.d(TAG, "reAuthenticateUser: auth repo task: ${task.isSuccessful}")
                 if (task.isSuccessful) {
                     scope.launch {
                         _authMessagesFlow.emit(
@@ -205,6 +209,44 @@ class AuthRepositoryImpl @Inject constructor(
             }
     }
 
+    override suspend fun createAccount(email: String, password: String) {
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    addDefaultDisplayName()
+                    scope.launch {
+                        _authMessagesFlow.emit(
+                            AuthMessage(
+                                AuthMessageType.CREATE_ACCOUNT,
+                                CREATE_ACCOUNT_SUCCESS
+                            )
+                        )
+                    }
+                } else {
+                    scope.launch {
+                        _authMessagesFlow.emit(
+                            AuthMessage(
+                                AuthMessageType.CREATE_ACCOUNT,
+                                CREATE_ACCOUNT_FAILURE
+                            )
+                        )
+                    }
+                }
+            }
+    }
+
+    private fun addDefaultDisplayName() {
+        val user = auth.currentUser
+        val defaultName = user?.email?.substringBefore("@") ?: ""
+        val profileUpdates = UserProfileChangeRequest.Builder()
+            .setDisplayName(defaultName)
+            .build()
+        user?.updateProfile(profileUpdates)
+            ?.addOnCompleteListener {
+                _userFlow.value = user
+            }
+    }
+
     companion object {
         const val INVALID_CREDENTIALS = "invalid_credentials"
         const val RE_AUTHENTICATE_SUCCESS = "re_auth_success"
@@ -217,6 +259,8 @@ class AuthRepositoryImpl @Inject constructor(
         const val EDIT_PASSWORD_FAILURE = "edit_password_failure"
         const val RESET_PASSWORD_SUCCESS = "reset_password_success"
         const val RESET_PASSWORD_FAILURE = "reset_password_failure"
+        const val CREATE_ACCOUNT_SUCCESS = "create_account_success"
+        const val CREATE_ACCOUNT_FAILURE = "create_account_failure"
         private const val TAG = "AuthRepositoryImpl"
     }
 }

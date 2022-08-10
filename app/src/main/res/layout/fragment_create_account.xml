@@ -101,12 +101,28 @@
                     android:minHeight="@dimen/_48sdp" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <TextView
+                android:id="@+id/tvPasswordMinChars"
+                style="@style/SubText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_35sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:gravity="center_vertical"
+                android:text="@string/edit_password_min_chars"
+                android:textColor="@color/hint_color"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintStart_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/passwordCreateAccountTIL" />
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/confirmPasswordCreateAccountTIL"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_30sdp"
-                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginEnd="@dimen/_30sdp"
                 android:scrollbarSize="25dp"
                 android:scrollbarThumbHorizontal="@color/hint_color"
@@ -120,7 +136,7 @@
                 app:startIconTint="@color/hint_color"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/passwordCreateAccountTIL">
+                app:layout_constraintTop_toBottomOf="@id/tvPasswordMinChars">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etConfirmPasswordCreateAccount"

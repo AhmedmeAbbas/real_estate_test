@@ -1,7 +1,7 @@
 package gmail.ahmedmeabbas.realestateapp.account.presentation
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepository
@@ -11,8 +11,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 data class AccountUiState(
-    var isUserSignedIn: Boolean = false,
-    val displayName: String = ""
+    var isUserSignedIn: Boolean = false
 )
 
 @HiltViewModel
@@ -24,26 +23,10 @@ class AccountViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(AccountUiState())
     val uiState: StateFlow<AccountUiState> = _uiState.asStateFlow()
 
+    val displayNameLiveData = authRepository.userFlow.map { it?.displayName }.asLiveData()
+
     init {
         observeSignInState()
-        fetchDisplayName()
-    }
-
-    fun fetchDisplayName() {
-        viewModelScope.launch {
-            authRepository.userFlow
-                .map { it?.displayName }
-                .collect { displayName ->
-                    _uiState.update {
-                        it.copy(
-                            displayName = displayName
-                                ?: authRepository.userFlow.value?.email?.substringBefore("@")
-                                ?: ""
-                        )
-                    }
-                    Log.d(TAG, "fetchDisplayName: ${_uiState.value.displayName}")
-                }
-        }
     }
 
     private fun observeSignInState() {

@@ -40,6 +40,8 @@
     <string name="edit_password_error">Failed to update password</string>
     <string name="reset_password_success">Email sent</string>
     <string name="reset_password_error">Failed to send email</string>
+    <string name="create_account_success">Account created successfully</string>
+    <string name="create_account_failure">Failed to create account. Please try again later</string>
 
     <!-- Email sign in fragment -->
     <string name="email_sign_in_header">Sign in with email</string>
