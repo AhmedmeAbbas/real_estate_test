@@ -19,5 +19,6 @@ enum class AuthMessageType {
     RE_AUTHENTICATE,
     DISPLAY_NAME,
     EDIT_EMAIL,
-    EDIT_PASSWORD
+    EDIT_PASSWORD,
+    RESET_PASSWORD
 }

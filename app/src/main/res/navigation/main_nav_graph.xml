@@ -64,7 +64,11 @@
         <fragment
             android:id="@+id/emailSignInFragment"
             android:name="gmail.ahmedmeabbas.realestateapp.authentication.presentation.email.EmailSignInFragment"
-            android:label="EmailSignInFragment" />
+            android:label="EmailSignInFragment" >
+            <action
+                android:id="@+id/action_emailSignInFragment_to_resetPasswordDialog"
+                app:destination="@id/resetPasswordDialog" />
+        </fragment>
         <fragment
             android:id="@+id/signInFragment"
             android:name="gmail.ahmedmeabbas.realestateapp.authentication.presentation.SignInFragment"
@@ -88,6 +92,10 @@
             android:id="@+id/createAccountFragment"
             android:name="gmail.ahmedmeabbas.realestateapp.authentication.presentation.CreateAccountFragment"
             android:label="CreateAccountFragment" />
+        <dialog
+            android:id="@+id/resetPasswordDialog"
+            android:name="gmail.ahmedmeabbas.realestateapp.authentication.presentation.email.ResetPasswordDialog"
+            android:label="ResetPasswordDialog" />
     </navigation>
     <action
         android:id="@+id/action_global_termsFragment"

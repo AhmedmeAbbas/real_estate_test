@@ -21,6 +21,7 @@ import gmail.ahmedmeabbas.realestateapp.R
 import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl.Companion.INVALID_CREDENTIALS
 import gmail.ahmedmeabbas.realestateapp.databinding.FragmentEmailSignInBinding
 import gmail.ahmedmeabbas.realestateapp.util.ColorUtils.getColorFromAttr
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
@@ -44,6 +45,7 @@ class EmailSignInFragment : Fragment() {
 
         setUpToolbar()
         setUpSignInButton()
+        setUpForgotPassword()
         setUpEditTextColor()
         observeErrorMessages()
         observeSignInState()
@@ -55,14 +57,15 @@ class EmailSignInFragment : Fragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 emailViewModel.uiState
                     .map { it.isLoading }
+                    .distinctUntilChanged()
                     .collect { isLoading ->
-                        updateViews(isLoading)
+                        updateLoadingButton(isLoading)
                     }
             }
         }
     }
 
-    private fun updateViews(isLoading: Boolean) {
+    private fun updateLoadingButton(isLoading: Boolean) {
         val show = if (isLoading) View.VISIBLE else View.GONE
         val hide = if (isLoading) View.GONE else View.VISIBLE
         binding.btnEmailSignIn.tvButton.visibility = hide
@@ -85,6 +88,7 @@ class EmailSignInFragment : Fragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 emailViewModel.uiState
                     .map { it.userMessage }
+                    .distinctUntilChanged()
                     .collect { errorMessage ->
                         if (errorMessage.isEmpty()) return@collect
                         val message =
@@ -103,6 +107,12 @@ class EmailSignInFragment : Fragment() {
     private fun setUpToolbar() {
         binding.toolbarEmailSignIn.setNavigationOnClickListener {
             findNavController().navigateUp()
+        }
+    }
+
+    private fun setUpForgotPassword() {
+        binding.tvForgotPassword.setOnClickListener {
+            findNavController().navigate(R.id.action_emailSignInFragment_to_resetPasswordDialog)
         }
     }
 

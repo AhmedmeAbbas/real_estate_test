@@ -39,6 +39,8 @@
     <string name="edit_email_error">فشل تحديث البريد الإلكتروني</string>
     <string name="edit_password_success">تم تحديث كلمة المرور</string>
     <string name="edit_password_error">فشل تحديث كلمة المرور</string>
+    <string name="reset_password_success">تم إرسال الرسالة</string>
+    <string name="reset_password_error">فشل إرسال الرسالة</string>
 
     <!-- Email sign in fragment -->
     <string name="email_sign_in_header">سجل دخولك بالبريد الإلكتروني</string>
@@ -46,6 +48,12 @@
     <string name="password_hint">كلمة المرور</string>
     <string name="forgot_password">نسيت كلمة المرور؟</string>
     <string name="sign_in_button">تسجيل دخول</string>
+    <string name="reset_password_title">إعادة تعيين كلمة المرور</string>
+    <string name="reset_password_sub">
+        سيتم إرسالة رسالة إلى بريدك الإلكتروني. إذا لم تصلك رسالة الرجاء التأكد من مجلد الرسائل الغير مرغوب فيها. اتبع التعليمات الموجودة داخل الرسالة لإعادة تعيين كلمة مرورك
+    </string>
+    <string name="enter_your_email">أدخل بريدك الإلكتروني</string>
+    <string name="send">أرسل</string>
 
     <!-- Create account fragment -->
     <string name="create_account_header">أنشئ حسابك</string>

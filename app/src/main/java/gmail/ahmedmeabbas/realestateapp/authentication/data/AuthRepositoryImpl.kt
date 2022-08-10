@@ -179,6 +179,32 @@ class AuthRepositoryImpl @Inject constructor(
             }
     }
 
+    override suspend fun sendPasswordResetEmail(email: String) {
+        auth.sendPasswordResetEmail(email)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    scope.launch {
+                        _authMessagesFlow.emit(
+                            AuthMessage(
+                                AuthMessageType.RESET_PASSWORD,
+                                RESET_PASSWORD_SUCCESS
+                            )
+                        )
+                    }
+                } else {
+                    scope.launch {
+                        _authMessagesFlow.emit(
+                            AuthMessage(
+                                AuthMessageType.RESET_PASSWORD,
+                                RESET_PASSWORD_FAILURE
+                            )
+                        )
+                    }
+
+                }
+            }
+    }
+
     companion object {
         const val INVALID_CREDENTIALS = "invalid_credentials"
         const val RE_AUTHENTICATE_SUCCESS = "re_auth_success"
@@ -189,6 +215,8 @@ class AuthRepositoryImpl @Inject constructor(
         const val EDIT_EMAIL_FAILURE = "edit_email_failure"
         const val EDIT_PASSWORD_SUCCESS = "edit_password_success"
         const val EDIT_PASSWORD_FAILURE = "edit_password_failure"
+        const val RESET_PASSWORD_SUCCESS = "reset_password_success"
+        const val RESET_PASSWORD_FAILURE = "reset_password_failure"
         private const val TAG = "AuthRepositoryImpl"
     }
 }

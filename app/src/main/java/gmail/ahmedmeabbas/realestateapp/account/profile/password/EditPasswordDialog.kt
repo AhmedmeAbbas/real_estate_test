@@ -1,7 +1,6 @@
 package gmail.ahmedmeabbas.realestateapp.account.profile.password
 
 import android.content.res.ColorStateList
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +18,7 @@ import gmail.ahmedmeabbas.realestateapp.R
 import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl
 import gmail.ahmedmeabbas.realestateapp.databinding.DialogEditPasswordBinding
 import gmail.ahmedmeabbas.realestateapp.util.ColorUtils.getColorFromAttr
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
@@ -54,14 +54,15 @@ class EditPasswordDialog : BottomSheetDialogFragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 editPasswordViewModel.uiState
                     .map { it.isLoading }
+                    .distinctUntilChanged()
                     .collect { isLoading ->
-                        updateViews(isLoading)
+                        updateLoadingButton(isLoading)
                     }
             }
         }
     }
 
-    private fun updateViews(isLoading: Boolean) {
+    private fun updateLoadingButton(isLoading: Boolean) {
         val show = if (isLoading) View.VISIBLE else View.GONE
         val hide = if (isLoading) View.GONE else View.VISIBLE
         binding.btnPasswordContinue.tvButton.visibility = hide
@@ -79,6 +80,7 @@ class EditPasswordDialog : BottomSheetDialogFragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 editPasswordViewModel.uiState
                     .map { it.userMessage }
+                    .distinctUntilChanged()
                     .collect { userMessage ->
                         if (userMessage.isEmpty()) return@collect
                         when (userMessage) {

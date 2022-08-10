@@ -21,6 +21,7 @@ import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl.C
 import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl.Companion.RE_AUTHENTICATE_SUCCESS
 import gmail.ahmedmeabbas.realestateapp.databinding.DialogEditEmailBinding
 import gmail.ahmedmeabbas.realestateapp.util.ColorUtils.getColorFromAttr
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
@@ -55,14 +56,15 @@ class EditEmailDialog : BottomSheetDialogFragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 editEmailViewModel.uiState
                     .map { it.isLoading }
+                    .distinctUntilChanged()
                     .collect { isLoading ->
-                        updateViews(isLoading)
+                        updateLoadingButton(isLoading)
                     }
             }
         }
     }
 
-    private fun updateViews(isLoading: Boolean) {
+    private fun updateLoadingButton(isLoading: Boolean) {
         val show = if (isLoading) View.VISIBLE else View.GONE
         val hide = if (isLoading) View.GONE else View.VISIBLE
         binding.btnEmailContinue.tvButton.visibility = hide
@@ -80,6 +82,7 @@ class EditEmailDialog : BottomSheetDialogFragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 editEmailViewModel.uiState
                     .map { it.userMessage }
+                    .distinctUntilChanged()
                     .collect { userMessage ->
                         if (userMessage.isEmpty()) return@collect
                         when (userMessage) {

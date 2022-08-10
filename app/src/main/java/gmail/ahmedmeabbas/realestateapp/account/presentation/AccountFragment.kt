@@ -2,7 +2,6 @@ package gmail.ahmedmeabbas.realestateapp.account.presentation
 
 import android.content.res.Configuration
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +14,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import gmail.ahmedmeabbas.realestateapp.R
 import gmail.ahmedmeabbas.realestateapp.databinding.FragmentAccountBinding
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import java.util.*
@@ -95,6 +95,7 @@ class AccountFragment : Fragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 accountViewModel.uiState
                     .map { it.isUserSignedIn }
+                    .distinctUntilChanged()
                     .collect { isSignedIn ->
                         updateViews(isSignedIn)
                     }
@@ -117,9 +118,10 @@ class AccountFragment : Fragment() {
     private fun observeDisplayName() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                accountViewModel.uiState.map { it.displayName }
+                accountViewModel.uiState
+                    .map { it.displayName }
+                    .distinctUntilChanged()
                     .collect { displayName ->
-                        Log.d(TAG, "account fragment: display name: $displayName")
                         if (displayName.isEmpty()) {
                             binding.tvAccountDisplayName.visibility = View.GONE
                         } else {
@@ -141,9 +143,9 @@ class AccountFragment : Fragment() {
         when (Calendar.getInstance().get(Calendar.HOUR_OF_DAY)) {
             in 0..11 ->
                 binding.tvAccountGreeting.text = getString(R.string.greeting_good_morning)
-            in 12..17 ->
+            in 12..15 ->
                 binding.tvAccountGreeting.text = getString(R.string.greeting_good_afternoon)
-            in 18..24 ->
+            in 16..24 ->
                 binding.tvAccountGreeting.text = getString(R.string.greeting_good_evening)
         }
     }
