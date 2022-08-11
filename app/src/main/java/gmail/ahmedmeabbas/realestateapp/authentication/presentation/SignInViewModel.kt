@@ -27,9 +27,10 @@ class SignInViewModel @Inject constructor(
     }
 
     private fun observeMessages() {
+        val messageTypes = listOf(AuthMessageType.FACEBOOK_SIGN_IN, AuthMessageType.GOOGLE_SIGN_IN)
         viewModelScope.launch {
             authRepository.authMessagesFlow
-                .filter { it.type == AuthMessageType.FACEBOOK_SIGN_IN }
+                .filter { it.type in messageTypes }
                 .collect { authMessage ->
                     _uiState.update { it.copy(userMessage = authMessage.message) }
                 }
@@ -39,6 +40,12 @@ class SignInViewModel @Inject constructor(
     fun handleFacebookAccessToken(accessToken: AccessToken) {
         viewModelScope.launch {
             authRepository.handleFacebookAccessToken(accessToken)
+        }
+    }
+
+    fun handleGoogleAccessToken(idToken: String?) {
+        viewModelScope.launch {
+            authRepository.handleGoogleAccessToken(idToken)
         }
     }
 

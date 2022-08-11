@@ -197,6 +197,5 @@
         app:destination="@id/accountFragment"
         app:enterAnim="@anim/fade_in"
         app:exitAnim="@anim/fade_out"
-        app:popUpTo="@id/accountFragment"
-        app:popUpToInclusive="true"/>
+        app:popUpTo="@id/searchFragment" />
 </navigation>

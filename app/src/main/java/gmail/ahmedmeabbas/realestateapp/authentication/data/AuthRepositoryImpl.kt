@@ -275,6 +275,33 @@ class AuthRepositoryImpl @Inject constructor(
             }
     }
 
+    override suspend fun handleGoogleAccessToken(idToken: String?) {
+        val credential = GoogleAuthProvider.getCredential(idToken , null)
+        auth.signInWithCredential(credential)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    _userFlow.value = auth.currentUser
+                    scope.launch {
+                        _authMessagesFlow.emit(
+                            AuthMessage(
+                                AuthMessageType.GOOGLE_SIGN_IN,
+                                SUCCESS
+                            )
+                        )
+                    }
+                } else {
+                    scope.launch {
+                        _authMessagesFlow.emit(
+                            AuthMessage(
+                                AuthMessageType.GOOGLE_SIGN_IN,
+                                FAILURE
+                            )
+                        )
+                    }
+                }
+            }
+    }
+
     companion object {
         const val SUCCESS = "success"
         const val FAILURE = "failure"

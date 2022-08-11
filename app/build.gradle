@@ -44,7 +44,7 @@ android {
 dependencies {
 
     implementation 'androidx.core:core-ktx:1.8.0'
-    implementation 'androidx.appcompat:appcompat:1.4.2'
+    implementation 'androidx.appcompat:appcompat:1.5.0'
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     testImplementation 'junit:junit:4.13.2'
@@ -56,10 +56,10 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.2"
 
     // LiveData
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.5.0"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.5.1"
 
     // Architecture Components
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.0"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
 
     // Preferences DataStore
     implementation "androidx.datastore:datastore-preferences:1.0.0"
@@ -80,12 +80,15 @@ dependencies {
     // Facebook
     implementation 'com.facebook.android:facebook-android-sdk:latest.release'
 
+    // Google Auth
+    implementation 'com.google.android.gms:play-services-auth:20.2.0'
+
     // ViewBinding
-    implementation 'com.android.databinding:viewbinding:7.2.1'
+    implementation 'com.android.databinding:viewbinding:7.2.2'
 
     // Navigation Component
-    implementation "androidx.navigation:navigation-fragment-ktx:2.5.0"
-    implementation "androidx.navigation:navigation-ui-ktx:2.5.0"
+    implementation "androidx.navigation:navigation-fragment-ktx:2.5.1"
+    implementation "androidx.navigation:navigation-ui-ktx:2.5.1"
 
     // Viewpager2
     implementation "androidx.viewpager2:viewpager2:1.0.0"
@@ -95,7 +98,7 @@ dependencies {
     kapt "com.google.dagger:hilt-android-compiler:2.38.1"
 
     // Splash screen
-    implementation 'androidx.core:core-splashscreen:1.0.0-rc01'
+    implementation 'androidx.core:core-splashscreen:1.0.0'
 
     // sdp, ssp
     implementation 'com.intuit.sdp:sdp-android:1.1.0'

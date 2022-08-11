@@ -1,5 +1,6 @@
 package gmail.ahmedmeabbas.realestateapp.authentication.presentation
 
+import android.app.Activity
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
@@ -9,6 +10,7 @@ import android.text.style.ClickableSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
@@ -20,6 +22,11 @@ import com.facebook.FacebookCallback
 import com.facebook.FacebookException
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.tasks.Task
 import com.google.android.material.snackbar.Snackbar
 import gmail.ahmedmeabbas.realestateapp.R
 import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl
@@ -47,11 +54,50 @@ class SignInFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setUpFacebookLoginButton()
         setUpToolbar()
+        setUpGoogleLogin()
+        setUpFacebookLogin()
         setUpButtonListeners()
         setUpToSText()
         observeMessages()
+    }
+
+    private fun setUpGoogleLogin() {
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+
+        val googleSignInClient = GoogleSignIn.getClient(requireActivity(), gso)
+        setUpGoogleButtonListener(googleSignInClient)
+    }
+
+    private fun setUpGoogleButtonListener(googleSignInClient: GoogleSignInClient) {
+        binding.btnSignInGoogle.setOnClickListener {
+            val signInIntent = googleSignInClient.signInIntent
+            launcher.launch(signInIntent)
+        }
+    }
+
+    private val launcher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { activityResult ->
+            if (activityResult.resultCode == Activity.RESULT_OK) {
+                val task = GoogleSignIn.getSignedInAccountFromIntent(activityResult.data)
+                handleResults(task)
+            } else {
+                showMessage(getString(R.string.error_sign_in))
+            }
+        }
+
+    private fun handleResults(task: Task<GoogleSignInAccount>) {
+        if (task.isSuccessful) {
+            val account = task.result
+            if (account != null) {
+                signInViewModel.handleGoogleAccessToken(account.idToken)
+            } else {
+                showMessage(getString(R.string.error_sign_in))
+            }
+        }
     }
 
     private fun observeMessages() {
@@ -66,6 +112,7 @@ class SignInFragment : Fragment() {
                             AuthRepositoryImpl.FAILURE -> showMessage(failureMessage)
                             else -> return@collect
                         }
+                        signInViewModel.clearMessages()
                     }
             }
         }
@@ -75,7 +122,7 @@ class SignInFragment : Fragment() {
         Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
     }
 
-    private fun setUpFacebookLoginButton() {
+    private fun setUpFacebookLogin() {
         val callbackManager = CallbackManager.Factory.create()
         LoginManager.getInstance().registerCallback(
             callbackManager, object : FacebookCallback<LoginResult> {

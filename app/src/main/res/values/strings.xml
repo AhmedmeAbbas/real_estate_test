@@ -16,8 +16,6 @@
     <string name="fb_login_protocol_scheme" translatable="false">fb1234</string>
     <string name="facebook_client_token">634350336f48d2aac54fac0f36d15c1e</string>
 
-
-
     <!-- Bottom navigation -->
     <string name="bottom_nav_search_title">Search</string>
     <string name="bottom_nav_saved_title">Saved</string>

@@ -29,4 +29,6 @@ interface AuthRepository {
     suspend fun createAccount(email: String, password: String)
 
     suspend fun handleFacebookAccessToken(accessToken: AccessToken)
+
+    suspend fun handleGoogleAccessToken(idToken: String?)
 }

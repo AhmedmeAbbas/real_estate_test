@@ -2,7 +2,6 @@ package gmail.ahmedmeabbas.realestateapp.account.profile.email
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepository
@@ -28,9 +27,8 @@ class EditEmailViewModel @Inject constructor(
         observeMessages()
     }
 
-    private val messageTypes = listOf(AuthMessageType.RE_AUTHENTICATE, AuthMessageType.EDIT_EMAIL)
-
     private fun observeMessages() {
+        val messageTypes = listOf(AuthMessageType.RE_AUTHENTICATE, AuthMessageType.EDIT_EMAIL)
         viewModelScope.launch {
             authRepository.authMessagesFlow
                 .filter { it.type in messageTypes }
