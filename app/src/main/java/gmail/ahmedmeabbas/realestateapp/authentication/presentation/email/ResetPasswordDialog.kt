@@ -78,8 +78,8 @@ class ResetPasswordDialog: BottomSheetDialogFragment() {
                     .collect { userMessage ->
                         if (userMessage.isEmpty()) return@collect
                         when (userMessage) {
-                            AuthRepositoryImpl.RESET_PASSWORD_SUCCESS -> showMessage(successMessage)
-                            AuthRepositoryImpl.RESET_PASSWORD_FAILURE -> showMessage(failureMessage)
+                            AuthRepositoryImpl.SUCCESS -> showMessage(successMessage)
+                            AuthRepositoryImpl.FAILURE -> showMessage(failureMessage)
                             else -> return@collect
                         }
                         resetPasswordViewModel.clearMessages()

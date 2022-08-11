@@ -1,5 +1,6 @@
 package gmail.ahmedmeabbas.realestateapp.authentication.data
 
+import com.facebook.AccessToken
 import com.google.firebase.auth.*
 import gmail.ahmedmeabbas.realestateapp.authentication.util.AuthMessage
 import gmail.ahmedmeabbas.realestateapp.authentication.util.AuthMessageType
@@ -85,7 +86,7 @@ class AuthRepositoryImpl @Inject constructor(
                         _authMessagesFlow.emit(
                             AuthMessage(
                                 AuthMessageType.DISPLAY_NAME,
-                                DISPLAY_NAME_SUCCESS
+                                SUCCESS
                             )
                         )
                     }
@@ -94,7 +95,7 @@ class AuthRepositoryImpl @Inject constructor(
                         _authMessagesFlow.emit(
                             AuthMessage(
                                 AuthMessageType.DISPLAY_NAME,
-                                DISPLAY_NAME_FAILURE
+                                FAILURE
                             )
                         )
                     }
@@ -191,7 +192,7 @@ class AuthRepositoryImpl @Inject constructor(
                         _authMessagesFlow.emit(
                             AuthMessage(
                                 AuthMessageType.RESET_PASSWORD,
-                                RESET_PASSWORD_SUCCESS
+                                SUCCESS
                             )
                         )
                     }
@@ -200,7 +201,7 @@ class AuthRepositoryImpl @Inject constructor(
                         _authMessagesFlow.emit(
                             AuthMessage(
                                 AuthMessageType.RESET_PASSWORD,
-                                RESET_PASSWORD_FAILURE
+                                FAILURE
                             )
                         )
                     }
@@ -218,7 +219,7 @@ class AuthRepositoryImpl @Inject constructor(
                         _authMessagesFlow.emit(
                             AuthMessage(
                                 AuthMessageType.CREATE_ACCOUNT,
-                                CREATE_ACCOUNT_SUCCESS
+                                SUCCESS
                             )
                         )
                     }
@@ -227,7 +228,7 @@ class AuthRepositoryImpl @Inject constructor(
                         _authMessagesFlow.emit(
                             AuthMessage(
                                 AuthMessageType.CREATE_ACCOUNT,
-                                CREATE_ACCOUNT_FAILURE
+                                FAILURE
                             )
                         )
                     }
@@ -247,20 +248,43 @@ class AuthRepositoryImpl @Inject constructor(
             }
     }
 
+    override suspend fun handleFacebookAccessToken(accessToken: AccessToken) {
+        val credential = FacebookAuthProvider.getCredential(accessToken.token)
+        FirebaseAuth.getInstance().signInWithCredential(credential)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    _userFlow.value = auth.currentUser
+                    scope.launch {
+                        _authMessagesFlow.emit(
+                            AuthMessage(
+                                AuthMessageType.FACEBOOK_SIGN_IN,
+                                SUCCESS
+                            )
+                        )
+                    }
+                } else {
+                    scope.launch {
+                        _authMessagesFlow.emit(
+                            AuthMessage(
+                                AuthMessageType.FACEBOOK_SIGN_IN,
+                                FAILURE
+                            )
+                        )
+                    }
+                }
+            }
+    }
+
     companion object {
+        const val SUCCESS = "success"
+        const val FAILURE = "failure"
         const val INVALID_CREDENTIALS = "invalid_credentials"
         const val RE_AUTHENTICATE_SUCCESS = "re_auth_success"
         const val RE_AUTHENTICATE_FAILURE = "re_auth_failure"
-        const val DISPLAY_NAME_SUCCESS = "display_name_success"
-        const val DISPLAY_NAME_FAILURE = "display_name_failure"
         const val EDIT_EMAIL_SUCCESS = "edit_email_success"
         const val EDIT_EMAIL_FAILURE = "edit_email_failure"
         const val EDIT_PASSWORD_SUCCESS = "edit_password_success"
         const val EDIT_PASSWORD_FAILURE = "edit_password_failure"
-        const val RESET_PASSWORD_SUCCESS = "reset_password_success"
-        const val RESET_PASSWORD_FAILURE = "reset_password_failure"
-        const val CREATE_ACCOUNT_SUCCESS = "create_account_success"
-        const val CREATE_ACCOUNT_FAILURE = "create_account_failure"
         private const val TAG = "AuthRepositoryImpl"
     }
 }

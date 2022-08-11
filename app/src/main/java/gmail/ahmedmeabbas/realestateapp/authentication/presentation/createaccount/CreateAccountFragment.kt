@@ -1,4 +1,4 @@
-package gmail.ahmedmeabbas.realestateapp.authentication.presentation
+package gmail.ahmedmeabbas.realestateapp.authentication.presentation.createaccount
 
 import android.content.Context
 import android.content.res.ColorStateList
@@ -89,10 +89,10 @@ class CreateAccountFragment : Fragment() {
                     .collect { userMessage ->
                         if (userMessage.isEmpty()) return@collect
                         when (userMessage) {
-                            AuthRepositoryImpl.CREATE_ACCOUNT_SUCCESS -> findNavController().navigate(
+                            AuthRepositoryImpl.SUCCESS -> findNavController().navigate(
                                 R.id.action_global_accountFragment
                             )
-                            AuthRepositoryImpl.CREATE_ACCOUNT_FAILURE -> showMessage(failureMessage)
+                            AuthRepositoryImpl.FAILURE -> showMessage(failureMessage)
                             else -> return@collect
                         }
                         createAccountViewModel.clearMessages()

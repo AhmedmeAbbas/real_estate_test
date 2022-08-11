@@ -90,7 +90,7 @@
         </fragment>
         <fragment
             android:id="@+id/createAccountFragment"
-            android:name="gmail.ahmedmeabbas.realestateapp.authentication.presentation.CreateAccountFragment"
+            android:name="gmail.ahmedmeabbas.realestateapp.authentication.presentation.createaccount.CreateAccountFragment"
             android:label="CreateAccountFragment" />
         <dialog
             android:id="@+id/resetPasswordDialog"

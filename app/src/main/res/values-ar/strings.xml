@@ -12,6 +12,10 @@
     <string name="button_continue">استمر</string>
     <string name="required">مطلوب</string>
 
+    <!-- Facebook -->
+    <string name="facebook_app_id">585599636490913</string>
+    <string name="facebook_client_token">634350336f48d2aac54fac0f36d15c1e</string>
+
     <!-- Bottom navigation -->
     <string name="bottom_nav_search_title">بحث</string>
     <string name="bottom_nav_saved_title">المفضلة</string>
@@ -43,6 +47,7 @@
     <string name="reset_password_error">فشل إرسال الرسالة</string>
     <string name="create_account_success">تم إنشاء الحساب بنجاح</string>
     <string name="create_account_failure">فشل إنشاء الحساب. الرجاء المحاولة مجددا لاحقا</string>
+    <string name="error_sign_in">فشل تسجيل الدخول</string>
 
     <!-- Email sign in fragment -->
     <string name="email_sign_in_header">سجل دخولك بالبريد الإلكتروني</string>

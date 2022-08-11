@@ -10,16 +10,30 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import com.facebook.CallbackManager
+import com.facebook.FacebookCallback
+import com.facebook.FacebookException
+import com.facebook.login.LoginManager
+import com.facebook.login.LoginResult
+import com.google.android.material.snackbar.Snackbar
 import gmail.ahmedmeabbas.realestateapp.R
+import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl
 import gmail.ahmedmeabbas.realestateapp.databinding.FragmentSignInBinding
 import gmail.ahmedmeabbas.realestateapp.util.ColorUtils.getColorFromAttr
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 import java.util.*
 
-class SignInFragment: Fragment() {
+class SignInFragment : Fragment() {
 
     private var _binding: FragmentSignInBinding? = null
     private val binding get() = _binding!!
+    private val signInViewModel: SignInViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,9 +47,54 @@ class SignInFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setUpFacebookLoginButton()
         setUpToolbar()
         setUpButtonListeners()
         setUpToSText()
+        observeMessages()
+    }
+
+    private fun observeMessages() {
+        val failureMessage = getString(R.string.error_sign_in)
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                signInViewModel.uiState
+                    .map { it.userMessage }
+                    .collect { userMessage ->
+                        when (userMessage) {
+                            AuthRepositoryImpl.SUCCESS -> findNavController().navigate(R.id.action_global_accountFragment)
+                            AuthRepositoryImpl.FAILURE -> showMessage(failureMessage)
+                            else -> return@collect
+                        }
+                    }
+            }
+        }
+    }
+
+    private fun showMessage(message: String) {
+        Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
+    }
+
+    private fun setUpFacebookLoginButton() {
+        val callbackManager = CallbackManager.Factory.create()
+        LoginManager.getInstance().registerCallback(
+            callbackManager, object : FacebookCallback<LoginResult> {
+                override fun onCancel() {}
+
+                override fun onError(error: FacebookException) {}
+
+                override fun onSuccess(result: LoginResult) {
+                    signInViewModel.handleFacebookAccessToken(result.accessToken)
+                }
+            }
+        )
+        binding.btnSignInFacebook.setOnClickListener {
+            LoginManager.getInstance().logInWithReadPermissions(
+                this,
+                callbackManager,
+                listOf("email", "public_profile")
+            )
+        }
     }
 
     private fun setUpToolbar() {
@@ -87,8 +146,18 @@ class SignInFragment: Fragment() {
                 ds.color = textColor
             }
         }
-        spannableString.setSpan(clickableSpan1, click1Start, click1End, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-        spannableString.setSpan(clickableSpan2, click2Start, click2End, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        spannableString.setSpan(
+            clickableSpan1,
+            click1Start,
+            click1End,
+            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        spannableString.setSpan(
+            clickableSpan2,
+            click2Start,
+            click2End,
+            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
         binding.tvToSSignIn.text = spannableString
         binding.tvToSSignIn.movementMethod = LinkMovementMethod.getInstance()
     }
@@ -100,5 +169,9 @@ class SignInFragment: Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        private const val TAG = "SignInFragment"
     }
 }

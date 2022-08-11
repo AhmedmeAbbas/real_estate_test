@@ -1,4 +1,4 @@
-package gmail.ahmedmeabbas.realestateapp.authentication.presentation
+package gmail.ahmedmeabbas.realestateapp.authentication.presentation.createaccount
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

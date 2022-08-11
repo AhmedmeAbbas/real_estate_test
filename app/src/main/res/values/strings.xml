@@ -11,6 +11,13 @@
     <string name="button_continue">Continue</string>
     <string name="required">Required</string>
 
+    <!-- Facebook -->
+    <string name="facebook_app_id">585599636490913</string>
+    <string name="fb_login_protocol_scheme" translatable="false">fb1234</string>
+    <string name="facebook_client_token">634350336f48d2aac54fac0f36d15c1e</string>
+
+
+
     <!-- Bottom navigation -->
     <string name="bottom_nav_search_title">Search</string>
     <string name="bottom_nav_saved_title">Saved</string>
@@ -42,6 +49,7 @@
     <string name="reset_password_error">Failed to send email</string>
     <string name="create_account_success">Account created successfully</string>
     <string name="create_account_failure">Failed to create account. Please try again later</string>
+    <string name="error_sign_in">Sign in failed</string>
 
     <!-- Email sign in fragment -->
     <string name="email_sign_in_header">Sign in with email</string>

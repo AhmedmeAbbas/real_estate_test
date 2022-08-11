@@ -92,11 +92,11 @@ class DisplayNameDialog : BottomSheetDialogFragment() {
                     .collect { userMessage ->
                         if (userMessage.isEmpty()) return@collect
                         when (userMessage) {
-                            AuthRepositoryImpl.DISPLAY_NAME_SUCCESS -> {
+                            AuthRepositoryImpl.SUCCESS -> {
                                 displayNameViewModel.fetchDisplayName()
                                 showMessage(successMessage)
                             }
-                            AuthRepositoryImpl.DISPLAY_NAME_FAILURE -> showMessage(failureMessage)
+                            AuthRepositoryImpl.FAILURE -> showMessage(failureMessage)
                             else -> return@collect
                         }
                         displayNameViewModel.clearMessages()

@@ -1,5 +1,6 @@
 package gmail.ahmedmeabbas.realestateapp.authentication.data
 
+import com.facebook.AccessToken
 import com.google.firebase.auth.FirebaseUser
 import gmail.ahmedmeabbas.realestateapp.authentication.util.AuthMessage
 import kotlinx.coroutines.flow.SharedFlow
@@ -26,4 +27,6 @@ interface AuthRepository {
     suspend fun sendPasswordResetEmail(email: String)
 
     suspend fun createAccount(email: String, password: String)
+
+    suspend fun handleFacebookAccessToken(accessToken: AccessToken)
 }
