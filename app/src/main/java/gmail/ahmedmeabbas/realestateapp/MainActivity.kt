@@ -3,12 +3,16 @@ package gmail.ahmedmeabbas.realestateapp
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.content.Context
+import android.net.ConnectivityManager
+import android.net.Network
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -21,11 +25,9 @@ import gmail.ahmedmeabbas.realestateapp.databinding.ActivityMainBinding
 import gmail.ahmedmeabbas.realestateapp.splashscreen.SplashScreenViewModel
 import gmail.ahmedmeabbas.realestateapp.util.MyContextWrapper
 import gmail.ahmedmeabbas.realestateapp.userpreferences.UserPrefsEntryPoint
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import java.util.*
 
 @AndroidEntryPoint
@@ -35,6 +37,7 @@ class MainActivity : AppCompatActivity() {
     private val splashScreenViewModel: SplashScreenViewModel by viewModels()
     private val mainViewModel: MainViewModel by viewModels()
     private lateinit var navController: NavController
+    private val scope = CoroutineScope(Dispatchers.Main)
     private var appLanguage: String = Locale.getDefault().language
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,6 +59,35 @@ class MainActivity : AppCompatActivity() {
         observeLanguageChange()
         observeNightModeChange()
         observeSignInState()
+        observeNetworkState()
+    }
+
+    private fun observeNetworkState() {
+        val connectivityManager =
+            getSystemService(ConnectivityManager::class.java) as ConnectivityManager
+        val networkCallback = object : ConnectivityManager.NetworkCallback() {
+            override fun onAvailable(network: Network) {
+                super.onAvailable(network)
+                scope.launch {
+                    binding.clNetwork.visibility = View.GONE
+                }
+            }
+
+            override fun onLost(network: Network) {
+                super.onLost(network)
+                scope.launch {
+                    binding.clNetwork.visibility = View.VISIBLE
+                }
+            }
+
+            override fun onUnavailable() {
+                super.onUnavailable()
+                scope.launch {
+                    binding.clNetwork.visibility = View.VISIBLE
+                }
+            }
+        }
+        connectivityManager.registerDefaultNetworkCallback(networkCallback)
     }
 
     private fun setUpBottomNavigationVisibilityListener() {
