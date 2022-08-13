@@ -32,6 +32,7 @@ import gmail.ahmedmeabbas.realestateapp.R
 import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl
 import gmail.ahmedmeabbas.realestateapp.databinding.FragmentSignInBinding
 import gmail.ahmedmeabbas.realestateapp.util.ColorUtils.getColorFromAttr
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import java.util.*
@@ -60,6 +61,20 @@ class SignInFragment : Fragment() {
         setUpButtonListeners()
         setUpToSText()
         observeMessages()
+        observeLoading()
+    }
+
+    private fun observeLoading() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                signInViewModel.uiState
+                    .map { it.isLoading }
+                    .distinctUntilChanged()
+                    .collect { isLoading ->
+                        if (isLoading) binding.clLoading.visibility = View.VISIBLE
+                    }
+            }
+        }
     }
 
     private fun setUpGoogleLogin() {

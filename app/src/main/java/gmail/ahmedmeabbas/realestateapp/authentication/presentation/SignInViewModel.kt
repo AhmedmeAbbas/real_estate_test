@@ -11,6 +11,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 data class SignInUiState(
+    val isLoading: Boolean = false,
     val userMessage: String = ""
 )
 
@@ -32,18 +33,20 @@ class SignInViewModel @Inject constructor(
             authRepository.authMessagesFlow
                 .filter { it.type in messageTypes }
                 .collect { authMessage ->
-                    _uiState.update { it.copy(userMessage = authMessage.message) }
+                    _uiState.update { it.copy(userMessage = authMessage.message, isLoading = false) }
                 }
         }
     }
 
     fun handleFacebookAccessToken(accessToken: AccessToken) {
+        _uiState.update { it.copy(isLoading = true) }
         viewModelScope.launch {
             authRepository.handleFacebookAccessToken(accessToken)
         }
     }
 
     fun handleGoogleAccessToken(idToken: String?) {
+        _uiState.update { it.copy(isLoading = true) }
         viewModelScope.launch {
             authRepository.handleGoogleAccessToken(idToken)
         }
