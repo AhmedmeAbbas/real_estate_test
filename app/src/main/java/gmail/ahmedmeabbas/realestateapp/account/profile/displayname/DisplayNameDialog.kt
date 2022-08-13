@@ -14,7 +14,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import gmail.ahmedmeabbas.realestateapp.R
-import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl
+import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl.Companion.FAILURE
+import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl.Companion.NETWORK_ERROR
+import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl.Companion.SUCCESS
 import gmail.ahmedmeabbas.realestateapp.databinding.DialogDisplayNameBinding
 import gmail.ahmedmeabbas.realestateapp.util.ColorUtils.getColorFromAttr
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -89,14 +91,16 @@ class DisplayNameDialog : BottomSheetDialogFragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 displayNameViewModel.uiState
                     .map { it.userMessage }
+                    .distinctUntilChanged()
                     .collect { userMessage ->
                         if (userMessage.isEmpty()) return@collect
                         when (userMessage) {
-                            AuthRepositoryImpl.SUCCESS -> {
+                            SUCCESS -> {
                                 displayNameViewModel.fetchDisplayName()
                                 showMessage(successMessage)
                             }
-                            AuthRepositoryImpl.FAILURE -> showMessage(failureMessage)
+                            NETWORK_ERROR -> showMessage(getString(R.string.error_network))
+                            FAILURE -> showMessage(failureMessage)
                             else -> return@collect
                         }
                         displayNameViewModel.clearMessages()

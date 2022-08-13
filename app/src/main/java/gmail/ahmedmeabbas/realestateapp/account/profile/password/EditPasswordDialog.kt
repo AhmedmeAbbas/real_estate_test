@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
-import androidx.core.widget.TextViewCompat.setCompoundDrawablesRelativeWithIntrinsicBounds
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
@@ -16,7 +15,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import gmail.ahmedmeabbas.realestateapp.R
-import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl
+import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl.Companion.FAILURE
+import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl.Companion.NETWORK_ERROR
+import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl.Companion.RE_AUTHENTICATE_FAILURE
+import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl.Companion.RE_AUTHENTICATE_SUCCESS
+import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl.Companion.SUCCESS
 import gmail.ahmedmeabbas.realestateapp.databinding.DialogEditPasswordBinding
 import gmail.ahmedmeabbas.realestateapp.util.ColorUtils.getColorFromAttr
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -75,8 +78,6 @@ class EditPasswordDialog : BottomSheetDialogFragment() {
     }
 
     private fun observeMessages() {
-        val successMessage = getString(R.string.edit_password_success)
-        val failureMessage = getString(R.string.edit_password_error)
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 editPasswordViewModel.uiState
@@ -85,10 +86,11 @@ class EditPasswordDialog : BottomSheetDialogFragment() {
                     .collect { userMessage ->
                         if (userMessage.isEmpty()) return@collect
                         when (userMessage) {
-                            AuthRepositoryImpl.RE_AUTHENTICATE_SUCCESS -> setUpNewPasswordViews()
-                            AuthRepositoryImpl.RE_AUTHENTICATE_FAILURE -> showMessage(getString(R.string.error_invalid_credentials))
-                            AuthRepositoryImpl.EDIT_PASSWORD_SUCCESS -> showMessage(successMessage)
-                            AuthRepositoryImpl.EDIT_PASSWORD_FAILURE -> showMessage(failureMessage)
+                            RE_AUTHENTICATE_SUCCESS -> setUpNewPasswordViews()
+                            RE_AUTHENTICATE_FAILURE -> showMessage(getString(R.string.error_invalid_credentials))
+                            SUCCESS -> showMessage(getString(R.string.edit_password_success))
+                            NETWORK_ERROR -> showMessage(getString(R.string.error_network))
+                            FAILURE -> showMessage(getString(R.string.edit_password_error))
                             else -> return@collect
                         }
                         editPasswordViewModel.clearMessages()

@@ -1,6 +1,7 @@
 package gmail.ahmedmeabbas.realestateapp.authentication.data
 
 import com.facebook.AccessToken
+import com.google.firebase.FirebaseNetworkException
 import com.google.firebase.auth.*
 import gmail.ahmedmeabbas.realestateapp.authentication.util.AuthMessage
 import gmail.ahmedmeabbas.realestateapp.authentication.util.AuthMessageType
@@ -43,34 +44,26 @@ class AuthRepositoryImpl @Inject constructor(
                     }
                     _userFlow.value = user
                 } else {
-                    val e = task.exception
-                    if (e is FirebaseAuthInvalidUserException ||
-                        e is FirebaseAuthInvalidCredentialsException
-                    ) {
-                        scope.launch {
-                            _authMessagesFlow.emit(
-                                AuthMessage(
-                                    AuthMessageType.EMAIL_SIGN_IN,
-                                    INVALID_CREDENTIALS
-                                )
-                            )
-                        }
-                    } else {
-                        scope.launch {
-                            _authMessagesFlow.emit(
-                                AuthMessage(
-                                    AuthMessageType.EMAIL_SIGN_IN,
-                                    task.exception?.message.toString()
-                                )
-                            )
-                        }
+                    when (task.exception) {
+                        is FirebaseAuthInvalidUserException -> sendMessage(
+                            AuthMessageType.EMAIL_SIGN_IN,
+                            INVALID_CREDENTIALS
+                        )
+                        is FirebaseAuthInvalidCredentialsException -> sendMessage(
+                            AuthMessageType.EMAIL_SIGN_IN,
+                            INVALID_CREDENTIALS
+                        )
+                        is FirebaseNetworkException -> sendMessage(
+                            AuthMessageType.EMAIL_SIGN_IN,
+                            NETWORK_ERROR
+                        )
+                        else -> sendMessage(
+                            AuthMessageType.EMAIL_SIGN_IN,
+                            task.exception?.message.toString()
+                        )
                     }
                 }
             }
-    }
-
-    override suspend fun signOut() {
-        auth.signOut()
     }
 
     override suspend fun updateDisplayName(displayName: String) {
@@ -82,22 +75,12 @@ class AuthRepositoryImpl @Inject constructor(
             ?.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     _userFlow.value = auth.currentUser
-                    scope.launch {
-                        _authMessagesFlow.emit(
-                            AuthMessage(
-                                AuthMessageType.DISPLAY_NAME,
-                                SUCCESS
-                            )
-                        )
-                    }
+                    sendMessage(AuthMessageType.DISPLAY_NAME, SUCCESS)
                 } else {
-                    scope.launch {
-                        _authMessagesFlow.emit(
-                            AuthMessage(
-                                AuthMessageType.DISPLAY_NAME,
-                                FAILURE
-                            )
-                        )
+                    if (task.exception is FirebaseNetworkException) {
+                        sendMessage(AuthMessageType.DISPLAY_NAME, NETWORK_ERROR)
+                    } else {
+                        sendMessage(AuthMessageType.DISPLAY_NAME, FAILURE)
                     }
                 }
             }
@@ -109,22 +92,12 @@ class AuthRepositoryImpl @Inject constructor(
         user?.reauthenticate(credential)
             ?.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    scope.launch {
-                        _authMessagesFlow.emit(
-                            AuthMessage(
-                                AuthMessageType.RE_AUTHENTICATE,
-                                RE_AUTHENTICATE_SUCCESS
-                            )
-                        )
-                    }
+                    sendMessage(AuthMessageType.RE_AUTHENTICATE, RE_AUTHENTICATE_SUCCESS)
                 } else {
-                    scope.launch {
-                        _authMessagesFlow.emit(
-                            AuthMessage(
-                                AuthMessageType.RE_AUTHENTICATE,
-                                RE_AUTHENTICATE_FAILURE
-                            )
-                        )
+                    if (task.exception is FirebaseNetworkException) {
+                        sendMessage(AuthMessageType.RE_AUTHENTICATE, NETWORK_ERROR)
+                    } else {
+                        sendMessage(AuthMessageType.RE_AUTHENTICATE, RE_AUTHENTICATE_FAILURE)
                     }
                 }
             }
@@ -135,24 +108,13 @@ class AuthRepositoryImpl @Inject constructor(
         user?.updateEmail(email)
             ?.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    scope.launch {
-                        _authMessagesFlow.emit(
-                            AuthMessage(
-                                AuthMessageType.EDIT_EMAIL,
-                                EDIT_EMAIL_SUCCESS
-                            )
-                        )
-                    }
+                    sendMessage(AuthMessageType.EDIT_EMAIL, SUCCESS)
                 } else {
-                    scope.launch {
-                        _authMessagesFlow.emit(
-                            AuthMessage(
-                                AuthMessageType.EDIT_EMAIL,
-                                EDIT_EMAIL_FAILURE
-                            )
-                        )
+                    if (task.exception is FirebaseNetworkException) {
+                        sendMessage(AuthMessageType.EDIT_EMAIL, NETWORK_ERROR)
+                    } else {
+                        sendMessage(AuthMessageType.EDIT_EMAIL, FAILURE)
                     }
-
                 }
             }
     }
@@ -162,24 +124,13 @@ class AuthRepositoryImpl @Inject constructor(
         user?.updatePassword(password)
             ?.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    scope.launch {
-                        _authMessagesFlow.emit(
-                            AuthMessage(
-                                AuthMessageType.EDIT_PASSWORD,
-                                EDIT_PASSWORD_SUCCESS
-                            )
-                        )
-                    }
+                    sendMessage(AuthMessageType.EDIT_PASSWORD, SUCCESS)
                 } else {
-                    scope.launch {
-                        _authMessagesFlow.emit(
-                            AuthMessage(
-                                AuthMessageType.EDIT_PASSWORD,
-                                EDIT_PASSWORD_FAILURE
-                            )
-                        )
+                    if (task.exception is FirebaseNetworkException) {
+                        sendMessage(AuthMessageType.EDIT_PASSWORD, NETWORK_ERROR)
+                    } else {
+                        sendMessage(AuthMessageType.EDIT_PASSWORD, FAILURE)
                     }
-
                 }
             }
     }
@@ -188,24 +139,13 @@ class AuthRepositoryImpl @Inject constructor(
         auth.sendPasswordResetEmail(email)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    scope.launch {
-                        _authMessagesFlow.emit(
-                            AuthMessage(
-                                AuthMessageType.RESET_PASSWORD,
-                                SUCCESS
-                            )
-                        )
-                    }
+                    sendMessage(AuthMessageType.RESET_PASSWORD, SUCCESS)
                 } else {
-                    scope.launch {
-                        _authMessagesFlow.emit(
-                            AuthMessage(
-                                AuthMessageType.RESET_PASSWORD,
-                                FAILURE
-                            )
-                        )
+                    if (task.exception is FirebaseNetworkException) {
+                        sendMessage(AuthMessageType.RESET_PASSWORD, NETWORK_ERROR)
+                    } else {
+                        sendMessage(AuthMessageType.RESET_PASSWORD, FAILURE)
                     }
-
                 }
             }
     }
@@ -215,22 +155,12 @@ class AuthRepositoryImpl @Inject constructor(
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     addDefaultDisplayName()
-                    scope.launch {
-                        _authMessagesFlow.emit(
-                            AuthMessage(
-                                AuthMessageType.CREATE_ACCOUNT,
-                                SUCCESS
-                            )
-                        )
-                    }
+                    sendMessage(AuthMessageType.CREATE_ACCOUNT, SUCCESS)
                 } else {
-                    scope.launch {
-                        _authMessagesFlow.emit(
-                            AuthMessage(
-                                AuthMessageType.CREATE_ACCOUNT,
-                                FAILURE
-                            )
-                        )
+                    if (task.exception is FirebaseNetworkException) {
+                        sendMessage(AuthMessageType.CREATE_ACCOUNT, NETWORK_ERROR)
+                    } else {
+                        sendMessage(AuthMessageType.CREATE_ACCOUNT, FAILURE)
                     }
                 }
             }
@@ -254,64 +184,53 @@ class AuthRepositoryImpl @Inject constructor(
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     _userFlow.value = auth.currentUser
-                    scope.launch {
-                        _authMessagesFlow.emit(
-                            AuthMessage(
-                                AuthMessageType.FACEBOOK_SIGN_IN,
-                                SUCCESS
-                            )
-                        )
-                    }
+                    sendMessage(AuthMessageType.FACEBOOK_SIGN_IN, SUCCESS)
                 } else {
-                    scope.launch {
-                        _authMessagesFlow.emit(
-                            AuthMessage(
-                                AuthMessageType.FACEBOOK_SIGN_IN,
-                                FAILURE
-                            )
-                        )
+                    if (task.exception is FirebaseNetworkException) {
+                        sendMessage(AuthMessageType.FACEBOOK_SIGN_IN, NETWORK_ERROR)
+                    } else {
+                        sendMessage(AuthMessageType.FACEBOOK_SIGN_IN, FAILURE)
                     }
                 }
             }
     }
 
     override suspend fun handleGoogleAccessToken(idToken: String?) {
-        val credential = GoogleAuthProvider.getCredential(idToken , null)
+        val credential = GoogleAuthProvider.getCredential(idToken, null)
         auth.signInWithCredential(credential)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     _userFlow.value = auth.currentUser
-                    scope.launch {
-                        _authMessagesFlow.emit(
-                            AuthMessage(
-                                AuthMessageType.GOOGLE_SIGN_IN,
-                                SUCCESS
-                            )
-                        )
-                    }
+                    sendMessage(AuthMessageType.GOOGLE_SIGN_IN, SUCCESS)
                 } else {
-                    scope.launch {
-                        _authMessagesFlow.emit(
-                            AuthMessage(
-                                AuthMessageType.GOOGLE_SIGN_IN,
-                                FAILURE
-                            )
-                        )
+                    if (task.exception is FirebaseNetworkException) {
+                        sendMessage(AuthMessageType.GOOGLE_SIGN_IN, NETWORK_ERROR)
+                    } else {
+                        sendMessage(AuthMessageType.GOOGLE_SIGN_IN, FAILURE)
                     }
                 }
             }
     }
 
+    private fun sendMessage(messageType: AuthMessageType, message: String) {
+        scope.launch {
+            _authMessagesFlow.emit(
+                AuthMessage(messageType, message)
+            )
+        }
+    }
+
+    override suspend fun signOut() {
+        auth.signOut()
+    }
+
     companion object {
         const val SUCCESS = "success"
         const val FAILURE = "failure"
+        const val NETWORK_ERROR = "network_error"
         const val INVALID_CREDENTIALS = "invalid_credentials"
         const val RE_AUTHENTICATE_SUCCESS = "re_auth_success"
         const val RE_AUTHENTICATE_FAILURE = "re_auth_failure"
-        const val EDIT_EMAIL_SUCCESS = "edit_email_success"
-        const val EDIT_EMAIL_FAILURE = "edit_email_failure"
-        const val EDIT_PASSWORD_SUCCESS = "edit_password_success"
-        const val EDIT_PASSWORD_FAILURE = "edit_password_failure"
         private const val TAG = "AuthRepositoryImpl"
     }
 }

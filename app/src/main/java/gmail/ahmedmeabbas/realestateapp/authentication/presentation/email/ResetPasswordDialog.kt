@@ -14,7 +14,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import gmail.ahmedmeabbas.realestateapp.R
-import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl
+import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl.Companion.FAILURE
+import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl.Companion.NETWORK_ERROR
+import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl.Companion.SUCCESS
 import gmail.ahmedmeabbas.realestateapp.databinding.DialogResetPasswordBinding
 import gmail.ahmedmeabbas.realestateapp.util.ColorUtils.getColorFromAttr
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -68,8 +70,6 @@ class ResetPasswordDialog: BottomSheetDialogFragment() {
     }
 
     private fun observeMessages() {
-        val successMessage = getString(R.string.reset_password_success)
-        val failureMessage = getString(R.string.reset_password_error)
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 resetPasswordViewModel.uiState
@@ -78,8 +78,9 @@ class ResetPasswordDialog: BottomSheetDialogFragment() {
                     .collect { userMessage ->
                         if (userMessage.isEmpty()) return@collect
                         when (userMessage) {
-                            AuthRepositoryImpl.SUCCESS -> showMessage(successMessage)
-                            AuthRepositoryImpl.FAILURE -> showMessage(failureMessage)
+                            SUCCESS -> showMessage(getString(R.string.reset_password_success))
+                            NETWORK_ERROR -> showMessage(getString(R.string.error_network))
+                            FAILURE -> showMessage(getString(R.string.reset_password_error))
                             else -> return@collect
                         }
                         resetPasswordViewModel.clearMessages()

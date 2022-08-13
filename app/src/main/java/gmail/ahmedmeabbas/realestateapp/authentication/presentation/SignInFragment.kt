@@ -29,7 +29,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.tasks.Task
 import com.google.android.material.snackbar.Snackbar
 import gmail.ahmedmeabbas.realestateapp.R
-import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl
+import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl.Companion.FAILURE
+import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl.Companion.NETWORK_ERROR
+import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl.Companion.SUCCESS
 import gmail.ahmedmeabbas.realestateapp.databinding.FragmentSignInBinding
 import gmail.ahmedmeabbas.realestateapp.util.ColorUtils.getColorFromAttr
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -56,8 +58,8 @@ class SignInFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setUpToolbar()
-        setUpGoogleLogin()
         setUpFacebookLogin()
+        setUpGoogleLogin()
         setUpButtonListeners()
         setUpToSText()
         observeMessages()
@@ -116,15 +118,15 @@ class SignInFragment : Fragment() {
     }
 
     private fun observeMessages() {
-        val failureMessage = getString(R.string.error_sign_in)
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 signInViewModel.uiState
                     .map { it.userMessage }
                     .collect { userMessage ->
                         when (userMessage) {
-                            AuthRepositoryImpl.SUCCESS -> findNavController().navigate(R.id.action_global_accountFragment)
-                            AuthRepositoryImpl.FAILURE -> showMessage(failureMessage)
+                            SUCCESS -> findNavController().navigate(R.id.action_global_accountFragment)
+                            NETWORK_ERROR -> showMessage(getString(R.string.error_network))
+                            FAILURE -> showMessage(getString(R.string.error_sign_in))
                             else -> return@collect
                         }
                         signInViewModel.clearMessages()
@@ -141,9 +143,12 @@ class SignInFragment : Fragment() {
         val callbackManager = CallbackManager.Factory.create()
         LoginManager.getInstance().registerCallback(
             callbackManager, object : FacebookCallback<LoginResult> {
-                override fun onCancel() {}
-
-                override fun onError(error: FacebookException) {}
+                override fun onCancel() {
+                    showMessage(getString(R.string.sign_in_cancelled))
+                }
+                override fun onError(error: FacebookException) {
+                    showMessage(getString(R.string.error_sign_in))
+                }
 
                 override fun onSuccess(result: LoginResult) {
                     signInViewModel.handleFacebookAccessToken(result.accessToken)

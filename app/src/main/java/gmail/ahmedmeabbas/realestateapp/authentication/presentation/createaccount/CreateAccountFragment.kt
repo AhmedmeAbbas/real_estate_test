@@ -24,6 +24,9 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import gmail.ahmedmeabbas.realestateapp.R
 import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl
+import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl.Companion.FAILURE
+import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl.Companion.NETWORK_ERROR
+import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl.Companion.SUCCESS
 import gmail.ahmedmeabbas.realestateapp.databinding.FragmentCreateAccountBinding
 import gmail.ahmedmeabbas.realestateapp.util.ColorUtils.getColorFromAttr
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -80,7 +83,6 @@ class CreateAccountFragment : Fragment() {
     }
 
     private fun observeMessages() {
-        val failureMessage = getString(R.string.create_account_failure)
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 createAccountViewModel.uiState
@@ -89,10 +91,11 @@ class CreateAccountFragment : Fragment() {
                     .collect { userMessage ->
                         if (userMessage.isEmpty()) return@collect
                         when (userMessage) {
-                            AuthRepositoryImpl.SUCCESS -> findNavController().navigate(
+                            SUCCESS -> findNavController().navigate(
                                 R.id.action_global_accountFragment
                             )
-                            AuthRepositoryImpl.FAILURE -> showMessage(failureMessage)
+                            NETWORK_ERROR -> showMessage(getString(R.string.error_network))
+                            FAILURE -> showMessage(getString(R.string.create_account_failure))
                             else -> return@collect
                         }
                         createAccountViewModel.clearMessages()

@@ -15,10 +15,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import gmail.ahmedmeabbas.realestateapp.R
-import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl.Companion.EDIT_EMAIL_FAILURE
-import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl.Companion.EDIT_EMAIL_SUCCESS
+import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl.Companion.FAILURE
+import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl.Companion.NETWORK_ERROR
 import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl.Companion.RE_AUTHENTICATE_FAILURE
 import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl.Companion.RE_AUTHENTICATE_SUCCESS
+import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl.Companion.SUCCESS
 import gmail.ahmedmeabbas.realestateapp.databinding.DialogEditEmailBinding
 import gmail.ahmedmeabbas.realestateapp.util.ColorUtils.getColorFromAttr
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -76,8 +77,6 @@ class EditEmailDialog : BottomSheetDialogFragment() {
     }
 
     private fun observeMessages() {
-        val successMessage = getString(R.string.edit_email_success)
-        val failureMessage = getString(R.string.edit_email_error)
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 editEmailViewModel.uiState
@@ -88,8 +87,9 @@ class EditEmailDialog : BottomSheetDialogFragment() {
                         when (userMessage) {
                             RE_AUTHENTICATE_SUCCESS -> setUpNewEmailViews()
                             RE_AUTHENTICATE_FAILURE -> showMessage(getString(R.string.error_invalid_credentials))
-                            EDIT_EMAIL_SUCCESS -> showMessage(successMessage)
-                            EDIT_EMAIL_FAILURE -> showMessage(failureMessage)
+                            SUCCESS -> showMessage(getString(R.string.edit_email_success))
+                            NETWORK_ERROR -> showMessage(getString(R.string.error_network))
+                            FAILURE -> showMessage(getString(R.string.edit_email_error))
                             else -> return@collect
                         }
                         editEmailViewModel.clearMessages()

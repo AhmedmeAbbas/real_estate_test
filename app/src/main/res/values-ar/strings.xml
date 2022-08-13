@@ -37,6 +37,7 @@
 
     <!-- Error messages -->
     <string name="no_internet_connection">وضع غير متصل بالشبكة</string>
+    <string name="error_network">خطأ في الشبكة</string>
     <string name="error_occurred">حدث خطأ. الرجاء المحاولة لاحقا</string>
     <string name="error_invalid_credentials">خطأ في البريد الإلكتروني أو كلمة المرور</string>
     <string name="display_name_error">فشل تحديث اسم العرض</string>
@@ -50,6 +51,7 @@
     <string name="create_account_success">تم إنشاء الحساب بنجاح</string>
     <string name="create_account_failure">فشل إنشاء الحساب. الرجاء المحاولة مجددا لاحقا</string>
     <string name="error_sign_in">فشل تسجيل الدخول</string>
+    <string name="sign_in_cancelled">تم إلغاء تسجيل الدخول</string>
 
     <!-- Email sign in fragment -->
     <string name="email_sign_in_header">سجل دخولك بالبريد الإلكتروني</string>
