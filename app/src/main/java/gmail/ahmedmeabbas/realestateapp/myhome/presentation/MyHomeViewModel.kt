@@ -1,4 +1,4 @@
-package gmail.ahmedmeabbas.realestateapp.my_home.presentation
+package gmail.ahmedmeabbas.realestateapp.myhome.presentation
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel

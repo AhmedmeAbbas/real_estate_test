@@ -1,7 +1,6 @@
-package gmail.ahmedmeabbas.realestateapp.my_home.presentation
+package gmail.ahmedmeabbas.realestateapp.myhome.presentation
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,6 +38,15 @@ class MyHomeFragment: Fragment() {
         myHomeViewModel.isUserSignedIn.observe(viewLifecycleOwner) {
             binding.btnMyHomeSignIn.isEnabled = !it
         }
+    }
+
+    private fun generateListingId(): String {
+        val chars = "1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        var id = ""
+        for (i in 0 until 28) {
+            id += chars[(chars.indices).random()]
+        }
+        return id
     }
 
     override fun onDestroyView() {

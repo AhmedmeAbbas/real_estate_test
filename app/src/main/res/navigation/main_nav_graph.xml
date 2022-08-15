@@ -14,7 +14,7 @@
         android:label="SavedFragment" />
     <fragment
         android:id="@+id/myHomeFragment"
-        android:name="gmail.ahmedmeabbas.realestateapp.my_home.presentation.MyHomeFragment"
+        android:name="gmail.ahmedmeabbas.realestateapp.myhome.presentation.MyHomeFragment"
         android:label="MyHomeFragment" />
     <fragment
         android:id="@+id/inboxFragment"
