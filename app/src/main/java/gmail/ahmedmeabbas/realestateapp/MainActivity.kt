@@ -18,6 +18,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.google.firebase.firestore.FirebaseFirestore
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.EntryPointAccessors
 import gmail.ahmedmeabbas.realestateapp.databinding.ActivityMainBinding
@@ -27,8 +28,9 @@ import gmail.ahmedmeabbas.realestateapp.userpreferences.UserPrefsEntryPoint
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
+import java.time.LocalDateTime
 import java.util.*
-import kotlin.math.abs
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -39,6 +41,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     private val scope = CoroutineScope(Dispatchers.Main)
     private var appLanguage: String = Locale.getDefault().language
+    @Inject
+    lateinit var db: FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,12 +59,33 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
         binding.bottomNavigation.setupWithNavController(navController)
 
+        //firestoreStuff()
         setUpBottomNavigationVisibilityListener()
         observeLanguageChange()
         observeNightModeChange()
         observeSignInState()
         observeNetworkState()
     }
+
+//    private fun firestoreStuff() {
+//        db.collection("listings")
+//            .whereEqualTo("type", "house")
+//            .get()
+//            .addOnSuccessListener { documents ->
+//                for (document in documents) {
+//                    Log.d(TAG, "firestoreStuff: address: ${document.data["address"]}")
+//                }
+//            }
+//            .addOnFailureListener { Log.d(TAG, "firestoreStuff: failed af") }
+//    }
+
+//    private fun firestoreStuff() {
+//            val listing = ListingRepositoryImpl().listings[1]
+//            db.collection("listings")
+//                .add(listing)
+//                .addOnSuccessListener { Log.d(TAG, "firestoreStuff: success") }
+//                .addOnFailureListener { Log.d(TAG, "firestoreStuff: failure") }
+//    }
 
     private fun observeNetworkState() {
         val connectivityManager =

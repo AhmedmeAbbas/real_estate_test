@@ -31,6 +31,10 @@ class MyHomeFragment: Fragment() {
         binding.btnMyHomeSignIn.setOnClickListener {
             findNavController().navigate(R.id.action_global_authGraph)
         }
+
+        binding.tvAdd.setOnClickListener {
+            findNavController().navigate(R.id.action_myHomeFragment_to_addListingFragment)
+        }
         observeAuthState()
     }
 

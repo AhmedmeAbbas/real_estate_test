@@ -10,6 +10,8 @@ import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.preferencesDataStoreFile
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.google.firebase.ktx.Firebase
 import dagger.Module
 import dagger.Provides
@@ -18,6 +20,8 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepository
 import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl
+import gmail.ahmedmeabbas.realestateapp.listings.ListingRepository
+import gmail.ahmedmeabbas.realestateapp.listings.ListingRepositoryImpl
 import gmail.ahmedmeabbas.realestateapp.userpreferences.UserPreferencesRepository
 import gmail.ahmedmeabbas.realestateapp.userpreferences.UserPreferencesRepositoryImpl
 import kotlinx.coroutines.CoroutineScope
@@ -64,5 +68,25 @@ object AppModule {
         auth: FirebaseAuth
     ): AuthRepository {
         return AuthRepositoryImpl(auth)
+    }
+
+    @Singleton
+    @Provides
+    fun provideFirestoreDatabase(): FirebaseFirestore {
+        val db = FirebaseFirestore.getInstance()
+        db.useEmulator("10.0.2.2", 8080)
+        val settings = FirebaseFirestoreSettings.Builder()
+            .setPersistenceEnabled(false)
+            .build()
+        db.firestoreSettings = settings
+        return db
+    }
+
+    @Singleton
+    @Provides
+    fun provideListingRepository(
+        db: FirebaseFirestore
+    ): ListingRepository {
+        return ListingRepositoryImpl(db)
     }
 }

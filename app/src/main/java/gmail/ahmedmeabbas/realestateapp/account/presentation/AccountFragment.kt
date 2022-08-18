@@ -125,23 +125,6 @@ class AccountFragment : Fragment() {
         }
     }
 
-//    private fun observeDisplayName() {
-//        viewLifecycleOwner.lifecycleScope.launch {
-//            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-//                accountViewModel.uiState
-//                    .map { it.displayName }
-//                    .distinctUntilChanged()
-//                    .collect { displayName ->
-//                        if (displayName.isEmpty()) {
-//                            binding.tvAccountDisplayName.visibility = View.GONE
-//                        } else {
-//                            binding.tvAccountDisplayName.text = displayName
-//                        }
-//                    }
-//            }
-//        }
-//    }
-
     override fun onStart() {
         super.onStart()
         binding.switchNightMode.isChecked = isNightModeOn()

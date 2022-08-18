@@ -74,6 +74,9 @@ dependencies {
     // Firebase Auth
     implementation 'com.google.firebase:firebase-auth-ktx'
 
+    // Firebase Firestore
+    implementation 'com.google.firebase:firebase-firestore-ktx'
+
     // Firebase Crashlytics
     implementation 'com.google.firebase:firebase-crashlytics-ktx'
 

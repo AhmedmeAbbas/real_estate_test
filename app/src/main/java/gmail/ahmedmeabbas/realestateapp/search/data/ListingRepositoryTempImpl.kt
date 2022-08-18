@@ -1,5 +1,7 @@
 package gmail.ahmedmeabbas.realestateapp.search.data
 
+import com.google.firebase.firestore.FieldValue
+
 data class ListingItem(
     val id: Int = -1,
     val price: String? = null,
@@ -11,7 +13,7 @@ data class ListingItem(
     val address: String? = null
 )
 
-class ListingRepositoryImpl: ListingRepository {
+class ListingRepositoryImpl: ListingRepositoryTemp {
 
     val listings = listOf(
         ListingItem(1, "30,000", "apartment", 2, 5, 5, 425.34, "406, Block 51, Jabra"),
