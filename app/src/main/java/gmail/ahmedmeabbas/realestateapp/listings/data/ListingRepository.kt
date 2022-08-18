@@ -1,4 +1,4 @@
-package gmail.ahmedmeabbas.realestateapp.listings
+package gmail.ahmedmeabbas.realestateapp.listings.data
 
 import kotlinx.coroutines.flow.SharedFlow
 

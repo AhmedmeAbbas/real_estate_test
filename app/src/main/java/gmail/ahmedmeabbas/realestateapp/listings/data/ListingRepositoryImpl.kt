@@ -1,10 +1,8 @@
-package gmail.ahmedmeabbas.realestateapp.listings
+package gmail.ahmedmeabbas.realestateapp.listings.data
 
 import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
-import gmail.ahmedmeabbas.realestateapp.search.data.ListingRepositoryImpl
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import javax.inject.Inject
 
@@ -16,8 +14,8 @@ class ListingRepositoryImpl @Inject constructor(
     override val listingFlow = _listingFlow.asSharedFlow()
 
     override suspend fun addListing(listing: Listing) {
-        val state = listing.state.lowercase()
-        val city = listing.city.lowercase()
+        val state = listing.state?.lowercase()
+        val city = listing.city?.lowercase()
         db.collection("/states/$state/cities/$city/listings")
             .add(listing)
             .addOnSuccessListener { Log.d(TAG, "addListing: success") }

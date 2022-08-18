@@ -35,6 +35,7 @@
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/drawable/dialog_background_round.xml" value="0.1695" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/drawable/favorite_button_icon.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/drawable/ic_account_selected.xml" value="0.1695" />
+        <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/drawable/ic_add_listing.xml" value="0.1695" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/drawable/ic_back.xml" value="0.2455" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/drawable/ic_check.xml" value="0.145" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/drawable/ic_close.xml" value="0.1695" />
@@ -86,6 +87,7 @@
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_notifications.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_privacy.xml" value="0.20778110303548525" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_profile.xml" value="0.20778110303548525" />
+        <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_property_type.xml" value="0.20778110303548525" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_requests.xml" value="0.20778110303548525" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_saved.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_saved_homes.xml" value="0.2" />

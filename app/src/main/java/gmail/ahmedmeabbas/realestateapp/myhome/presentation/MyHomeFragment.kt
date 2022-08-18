@@ -28,19 +28,41 @@ class MyHomeFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnMyHomeSignIn.setOnClickListener {
-            findNavController().navigate(R.id.action_global_authGraph)
-        }
-
-        binding.tvAdd.setOnClickListener {
-            findNavController().navigate(R.id.action_myHomeFragment_to_addListingFragment)
-        }
         observeAuthState()
     }
 
     private fun observeAuthState() {
-        myHomeViewModel.isUserSignedIn.observe(viewLifecycleOwner) {
-            binding.btnMyHomeSignIn.isEnabled = !it
+        myHomeViewModel.isUserSignedIn.observe(viewLifecycleOwner) { isSignedIn ->
+            updateUI(isSignedIn!!)
+        }
+    }
+
+    private fun updateUI(isSignedIn: Boolean) {
+        if (isSignedIn) {
+            if (myHomeViewModel.myListings[0].id == null) {
+                binding.tvMyHomeSub.text = getString(R.string.my_home_list_empty)
+                binding.btnMyHomeMain.text = getString(R.string.my_home_add_listing)
+                binding.btnMyHomeMain.setOnClickListener {
+                    findNavController().navigate(R.id.action_myHomeFragment_to_addListingFragment)
+                }
+            } else {
+                hideViewsAndShowRecyclerView()
+            }
+        } else {
+            binding.btnMyHomeMain.setOnClickListener {
+                findNavController().navigate(R.id.action_global_authGraph)
+            }
+        }
+    }
+
+    private fun hideViewsAndShowRecyclerView() {
+        with(binding) {
+            ivMyHome.visibility = View.GONE
+            tvMyHomeHeader.visibility = View.GONE
+            tvMyHomeSub.visibility = View.GONE
+            btnMyHomeMain.visibility = View.GONE
+            rvMyHome.visibility = View.VISIBLE
+            fabAddListing.visibility = View.VISIBLE
         }
     }
 

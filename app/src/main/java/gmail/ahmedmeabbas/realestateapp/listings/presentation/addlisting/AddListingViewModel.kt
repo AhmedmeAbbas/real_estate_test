@@ -1,10 +1,10 @@
-package gmail.ahmedmeabbas.realestateapp.myhome.presentation
+package gmail.ahmedmeabbas.realestateapp.listings.presentation.addlisting
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import gmail.ahmedmeabbas.realestateapp.listings.Listing
-import gmail.ahmedmeabbas.realestateapp.listings.ListingRepository
+import gmail.ahmedmeabbas.realestateapp.listings.data.Listing
+import gmail.ahmedmeabbas.realestateapp.listings.data.ListingRepository
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

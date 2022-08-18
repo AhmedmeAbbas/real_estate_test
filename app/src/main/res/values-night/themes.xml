@@ -96,4 +96,18 @@
     <style name="BottomSheetBackground" parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@drawable/dialog_background_round</item>
     </style>
+
+    <style name="ChipCustomStyle" parent="Widget.MaterialComponents.Chip.Filter">
+        <item name="chipStartPadding">@dimen/_30sdp</item>
+        <item name="chipEndPadding">@dimen/_30sdp</item>
+        <item name="chipMinHeight">@dimen/_40sdp</item>
+        <item name="chipBackgroundColor">?attr/colorTertiary</item>
+        <item name="checkedIconTint">?attr/colorSecondary</item>
+        <item name="chipCornerRadius">@dimen/_5sdp</item>
+        <item name="chipStrokeColor">@color/chip_stroke</item>
+        <item name="chipStrokeWidth">1dp</item>
+        <item name="android:textColor">@color/chip_stroke</item>
+        <item name="android:textSize">@dimen/_13ssp</item>
+        <item name="android:textAlignment">center</item>
+    </style>
 </resources>

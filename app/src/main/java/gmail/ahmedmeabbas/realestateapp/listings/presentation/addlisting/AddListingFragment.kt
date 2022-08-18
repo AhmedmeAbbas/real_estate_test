@@ -1,17 +1,19 @@
-package gmail.ahmedmeabbas.realestateapp.myhome.presentation
+package gmail.ahmedmeabbas.realestateapp.listings.presentation.addlisting
 
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FieldValue
+import gmail.ahmedmeabbas.realestateapp.R
 import gmail.ahmedmeabbas.realestateapp.databinding.FragmentAddListingBinding
-import gmail.ahmedmeabbas.realestateapp.listings.Listing
-import gmail.ahmedmeabbas.realestateapp.listings.Price
+import gmail.ahmedmeabbas.realestateapp.listings.data.Listing
+import gmail.ahmedmeabbas.realestateapp.listings.data.Price
 import java.util.*
 
 class AddListingFragment : Fragment() {
@@ -32,14 +34,47 @@ class AddListingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setUpButton()
+        setUpToolbar()
+        setUpCheckedChipListener()
+        setUpContinueButton()
     }
 
-    private fun setUpButton() {
-        binding.btnAdd.text = "Get listing"
-        binding.btnAdd.setOnClickListener {
-            getListing()
-            //addListing()
+    private fun setUpToolbar() {
+        binding.toolbarAddListingMain.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
+    }
+
+    private fun setUpCheckedChipListener() {
+        binding.cgListingOwner.setOnCheckedStateChangeListener { _, checkedIds ->
+            if (checkedIds.isEmpty()) {
+                updateButton(false)
+            } else {
+                updateButton(true)
+            }
+        }
+    }
+
+    private fun updateButton(enabled: Boolean) {
+        val alpha = if (enabled) 1.0F else 0.3F
+        binding.btnContinue.root.isEnabled = enabled
+        binding.btnContinue.root.alpha = alpha
+    }
+
+    private fun setUpContinueButton() {
+        binding.btnContinue.tvButton.text = getString(R.string.button_continue)
+        
+        binding.btnContinue.root.setOnClickListener { 
+            when (binding.cgListingOwner.checkedChipId) {
+                R.id.chipOwner -> {
+                    Toast.makeText(requireContext(), "owner", Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(R.id.action_addListingFragment_to_propertyTypeFragment)
+                }
+                R.id.chipBroker -> {
+                    Toast.makeText(requireContext(), "broker", Toast.LENGTH_SHORT).show()
+                }
+                else -> binding.cgListingOwner.requestFocus()
+            }
         }
     }
 
@@ -53,6 +88,7 @@ class AddListingFragment : Fragment() {
         val date = currentTime.time
         Log.d(TAG, "addListing: $date")
         val listing = Listing(
+            "1",
             "KHARTOUM",
             "KHARTOUM",
             "Jabra",

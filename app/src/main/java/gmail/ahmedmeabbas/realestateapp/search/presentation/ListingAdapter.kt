@@ -52,11 +52,11 @@ class ListingAdapter: ListAdapter<ListingItem, ListingAdapter.ListingViewHolder>
                 }
 
                 when(listing.type) {
-                    "apartment" -> binding.tvType.text = binding.root.context.getString(R.string.apartment)
-                    "house" -> binding.tvType.text = binding.root.context.getString(R.string.house)
-                    "building" -> binding.tvType.text = binding.root.context.getString(R.string.multistory)
-                    "land" -> binding.tvType.text = binding.root.context.getString(R.string.land)
-                    "farm" -> binding.tvType.text = binding.root.context.getString(R.string.farm)
+                    "apartment" -> binding.tvType.text = binding.root.context.getString(R.string.property_type_apartment)
+                    "house" -> binding.tvType.text = binding.root.context.getString(R.string.property_type_house)
+                    "building" -> binding.tvType.text = binding.root.context.getString(R.string.property_type_apartment_building)
+                    "land" -> binding.tvType.text = binding.root.context.getString(R.string.property_type_land)
+                    "farm" -> binding.tvType.text = binding.root.context.getString(R.string.property_type_farm)
                     else -> binding.tvType.visibility = View.GONE
                 }
             }

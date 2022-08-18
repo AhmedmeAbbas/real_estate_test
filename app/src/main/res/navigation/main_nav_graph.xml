@@ -204,6 +204,14 @@
         app:popUpTo="@id/searchFragment" />
     <fragment
         android:id="@+id/addListingFragment"
-        android:name="gmail.ahmedmeabbas.realestateapp.myhome.presentation.AddListingFragment"
-        android:label="AddListingFragment" />
+        android:name="gmail.ahmedmeabbas.realestateapp.listings.presentation.addlisting.AddListingFragment"
+        android:label="AddListingFragment" >
+        <action
+            android:id="@+id/action_addListingFragment_to_propertyTypeFragment"
+            app:destination="@id/propertyTypeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/propertyTypeFragment"
+        android:name="gmail.ahmedmeabbas.realestateapp.listings.presentation.addlisting.PropertyTypeFragment"
+        android:label="PropertyTypeFragment" />
 </navigation>

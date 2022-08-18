@@ -97,6 +97,25 @@
     <!-- My home fragment -->
     <string name="my_home_header">جميع عقاراتك في مكان واحد</string>
     <string name="my_home_sub">يتوجب عليك تسجيل الدخول لكي تتمكن من إضافة وإدارة عقاراتك</string>
+    <string name="my_home_list_empty">يبدو أنك لم تقم بإضافة إعلان. اضغط الزر في الأسفل لتضيف إعلانك</string>
+    <string name="my_home_add_listing">أضف إعلانك</string>
+
+    <!-- Add listing -->
+    <string name="add_listing_title">أضف إعلانك</string>
+    <string name="listing_owner_header">من أنت؟</string>
+    <string name="add_listing_chip_owner">مالك</string>
+    <string name="add_listing_chip_broker">وسيط</string>
+
+    <!-- Property types -->
+    <string name="property_type_title">نوع العقار</string>
+    <string name="property_type_header">اختر نوع العقار</string>
+    <string name="property_type_house">منزل</string>
+    <string name="property_type_apartment">شقة</string>
+    <string name="property_type_apartment_building">عمارة سكنية</string>
+    <string name="property_type_shop">متجر</string>
+    <string name="property_type_land">أرض</string>
+    <string name="property_type_warehouse">مستودع</string>
+    <string name="property_type_farm">مزرعة</string>
 
     <!-- Inbox fragment -->
     <string name="chats_tab">المحادثات</string>
@@ -203,13 +222,6 @@
     <string name="area">%1$s م\u00B2</string>
     <string name="address">%1$s</string>
     <string name="listing_new">جديد</string>
-
-    <!-- Property types -->
-    <string name="apartment">شقة</string>
-    <string name="house">منزل</string>
-    <string name="multistory">عمارة</string>
-    <string name="land">أرض</string>
-    <string name="farm">مزرعة</string>
 
     <string name="dummy_text">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec posuere rhoncus aliquam. Vivamus luctus velit rhoncus felis rhoncus, a convallis diam sollicitudin. Donec vitae magna varius, congue ante quis, semper dui. Integer lectus sapien, convallis a purus ac, aliquet posuere lacus. Nam sed mauris at sapien convallis venenatis. Nullam at gravida dolor. Fusce scelerisque, ante finibus faucibus dictum, sem erat dignissim mi, vel tincidunt ante nisi ac magna. Pellentesque vestibulum placerat sapien, eu fringilla mi sodales ac. Fusce mi diam, volutpat sit amet faucibus quis, suscipit ut urna. Maecenas lacinia eleifend leo, sit amet mollis diam vestibulum vehicula. Suspendisse ullamcorper, arcu tempus ullamcorper luctus, sapien lectus tempor sem, eget mattis ipsum est in erat. In ut finibus nisi. Aliquam at tincidunt elit. Integer bibendum laoreet diam sed aliquam. Suspendisse gravida malesuada urna, vehicula sodales massa vestibulum non.

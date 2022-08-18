@@ -97,6 +97,25 @@
     <!-- My home fragment -->
     <string name="my_home_header">All your listings in one place</string>
     <string name="my_home_sub">You have to be signed in to add and manage your listings</string>
+    <string name="my_home_list_empty">Seems like you have not added any listings. Click the button below to add one</string>
+    <string name="my_home_add_listing">Add your listing</string>
+    
+    <!-- Add listing -->
+    <string name="add_listing_title">Add your listing</string>
+    <string name="listing_owner_header">Who are you?</string>
+    <string name="add_listing_chip_owner">Owner</string>
+    <string name="add_listing_chip_broker">Broker</string>
+
+    <!-- Property types -->
+    <string name="property_type_title">Property type</string>
+    <string name="property_type_header">Choose property type</string>
+    <string name="property_type_house">House</string>
+    <string name="property_type_apartment">Apartment</string>
+    <string name="property_type_apartment_building">Apartment building</string>
+    <string name="property_type_shop">Shop</string>
+    <string name="property_type_land">Land</string>
+    <string name="property_type_warehouse">Warehouse</string>
+    <string name="property_type_farm">Farm</string>
 
     <!-- Inbox fragment -->
     <string name="chats_tab">Chats</string>
@@ -202,13 +221,6 @@
     <string name="area">%1$s m\u00B2</string>
     <string name="address">%1$s</string>
     <string name="listing_new">New</string>
-
-    <!-- Property types -->
-    <string name="apartment">Apartment</string>
-    <string name="house">House</string>
-    <string name="multistory">Multistory building</string>
-    <string name="land">Land</string>
-    <string name="farm">Farm</string>
 
     <string name="dummy_text">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec posuere rhoncus aliquam. Vivamus luctus velit rhoncus felis rhoncus, a convallis diam sollicitudin. Donec vitae magna varius, congue ante quis, semper dui. Integer lectus sapien, convallis a purus ac, aliquet posuere lacus. Nam sed mauris at sapien convallis venenatis. Nullam at gravida dolor. Fusce scelerisque, ante finibus faucibus dictum, sem erat dignissim mi, vel tincidunt ante nisi ac magna. Pellentesque vestibulum placerat sapien, eu fringilla mi sodales ac. Fusce mi diam, volutpat sit amet faucibus quis, suscipit ut urna. Maecenas lacinia eleifend leo, sit amet mollis diam vestibulum vehicula. Suspendisse ullamcorper, arcu tempus ullamcorper luctus, sapien lectus tempor sem, eget mattis ipsum est in erat. In ut finibus nisi. Aliquam at tincidunt elit. Integer bibendum laoreet diam sed aliquam. Suspendisse gravida malesuada urna, vehicula sodales massa vestibulum non.

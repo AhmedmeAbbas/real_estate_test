@@ -1,13 +1,14 @@
-package gmail.ahmedmeabbas.realestateapp.listings
+package gmail.ahmedmeabbas.realestateapp.listings.data
 
 import java.util.*
 
 data class Listing(
-    val state: String = "",
-    val city: String = "",
-    val region: String = "",
-    val listerId: String = "",
-    val type: String = "",
+    val id: String? = null,
+    val state: String? = null,
+    val city: String? = null,
+    val region: String? = null,
+    val listerId: String? = null,
+    val propertyType: String? = null,
     val price: Double? = null,
     val fullAddress: String? = null,
     val floors: Int? = null,
@@ -26,7 +27,7 @@ data class Listing(
     val parking: Boolean? = null,
     val parkingSpaces: Int? = null,
     val parkingType: String? = null,
-    val listerType: String? = null,
+    val listingOwner: String? = null,
     val electricity: Boolean? = null,
     val water: Boolean? = null,
     val waterSource: String? = null,
@@ -43,3 +44,7 @@ data class Price(
     val dateAdded: Date? = null,
     val price: Double? = null
 )
+
+enum class ListingOwner {
+    OWNER, BROKER
+}
