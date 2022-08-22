@@ -18,12 +18,12 @@
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <TextView
-        android:id="@+id/tvWhoAreYou"
+        android:id="@+id/tvListingOwner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginStart="@dimen/_15sdp"
-        android:text="@string/listing_owner_header"
+        android:text="@string/add_listing_advertiser"
         style="@style/HeaderText"
         android:textStyle="normal"
         app:layout_constraintTop_toBottomOf="@id/toolbarAddListingMain"
@@ -39,7 +39,7 @@
         app:singleSelection="true"
         app:chipSpacingVertical="@dimen/_10sdp"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@id/tvWhoAreYou"
+        app:layout_constraintTop_toBottomOf="@id/tvListingOwner"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
@@ -47,14 +47,14 @@
                 android:id="@+id/chipOwner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/ChipCustomStyle"
+                style="@style/ChipStyleFilter"
                 android:text="@string/add_listing_chip_owner"/>
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipBroker"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/ChipCustomStyle"
+                style="@style/ChipStyleFilter"
                 android:text="@string/add_listing_chip_broker"/>
     </com.google.android.material.chip.ChipGroup>
 

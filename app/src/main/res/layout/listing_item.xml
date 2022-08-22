@@ -29,7 +29,7 @@
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_10sdp"
             android:gravity="start"
-            android:text="@string/price"
+            android:text="@string/listing_item_price"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ivListingItem" />
@@ -55,7 +55,7 @@
             android:paddingEnd="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_5sdp"
             android:layout_marginStart="@dimen/_5sdp"
-            android:text="@string/type"
+            android:text="@string/listing_item_type"
             android:textSize="@dimen/_12ssp"
             android:background="@drawable/ripple_round_transparent"
             android:elevation="@dimen/_2sdp"
@@ -81,7 +81,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
                 android:layout_marginEnd="@dimen/_5sdp"
-                android:text="@string/floors"
+                android:text="@string/listing_item_floors"
                 android:textSize="@dimen/_12ssp" />
 
             <TextView
@@ -90,7 +90,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
                 android:layout_marginEnd="@dimen/_5sdp"
-                android:text="@string/bedrooms"
+                android:text="@string/listing_item_bedrooms"
                 android:textSize="@dimen/_12ssp" />
 
             <TextView
@@ -99,7 +99,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
                 android:layout_marginEnd="@dimen/_5sdp"
-                android:text="@string/bathrooms"
+                android:text="@string/listing_item_bathrooms"
                 android:textSize="@dimen/_12ssp" />
 
             <TextView
@@ -107,7 +107,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
-                android:text="@string/area"
+                android:text="@string/listing_item_area_m2"
                 android:textSize="@dimen/_12ssp" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -116,7 +116,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
-            android:text="@string/address"
+            android:text="@string/listing_item_address"
             android:textSize="@dimen/_12ssp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

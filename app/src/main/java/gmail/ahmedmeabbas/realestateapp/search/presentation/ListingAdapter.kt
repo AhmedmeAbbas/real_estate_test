@@ -43,18 +43,18 @@ class ListingAdapter: ListAdapter<ListingItem, ListingAdapter.ListingViewHolder>
 
             fun bind(listing: ListingItem) {
                 with(binding) {
-                    tvPrice.text = binding.root.context.getString(R.string.price, "$", listing.price)
-                    tvFloors.text = binding.root.context.getString(R.string.floors, listing.floors.toString())
-                    tvBedrooms.text = binding.root.context.getString(R.string.bedrooms, listing.bedrooms.toString())
-                    tvBathrooms.text = binding.root.context.getString(R.string.bathrooms, listing.bathrooms.toString())
-                    tvArea.text = binding.root.context.getString(R.string.area, listing.area.toString())
-                    tvAddress.text = binding.root.context.getString(R.string.address, listing.address)
+                    tvPrice.text = binding.root.context.getString(R.string.listing_item_price, "$", listing.price)
+                    tvFloors.text = binding.root.context.getString(R.string.listing_item_floors, listing.floors.toString())
+                    tvBedrooms.text = binding.root.context.getString(R.string.listing_item_bedrooms, listing.bedrooms.toString())
+                    tvBathrooms.text = binding.root.context.getString(R.string.listing_item_bathrooms, listing.bathrooms.toString())
+                    tvArea.text = binding.root.context.getString(R.string.listing_item_area_m2, listing.area.toString())
+                    tvAddress.text = binding.root.context.getString(R.string.listing_item_address, listing.address)
                 }
 
                 when(listing.type) {
                     "apartment" -> binding.tvType.text = binding.root.context.getString(R.string.property_type_apartment)
                     "house" -> binding.tvType.text = binding.root.context.getString(R.string.property_type_house)
-                    "building" -> binding.tvType.text = binding.root.context.getString(R.string.property_type_apartment_building)
+                    "building" -> binding.tvType.text = binding.root.context.getString(R.string.property_type_building)
                     "land" -> binding.tvType.text = binding.root.context.getString(R.string.property_type_land)
                     "farm" -> binding.tvType.text = binding.root.context.getString(R.string.property_type_farm)
                     else -> binding.tvType.visibility = View.GONE

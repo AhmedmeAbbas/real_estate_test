@@ -68,7 +68,6 @@ class AddListingFragment : Fragment() {
             when (binding.cgListingOwner.checkedChipId) {
                 R.id.chipOwner -> {
                     Toast.makeText(requireContext(), "owner", Toast.LENGTH_SHORT).show()
-                    findNavController().navigate(R.id.action_addListingFragment_to_propertyTypeFragment)
                 }
                 R.id.chipBroker -> {
                     Toast.makeText(requireContext(), "broker", Toast.LENGTH_SHORT).show()

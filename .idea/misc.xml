@@ -33,6 +33,7 @@
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/drawable/custom_notification.xml" value="0.1695" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/drawable/custom_requests.xml" value="0.1695" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/drawable/dialog_background_round.xml" value="0.1695" />
+        <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/drawable/dialog_round_corners.xml" value="0.1695" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/drawable/favorite_button_icon.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/drawable/ic_account_selected.xml" value="0.1695" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/drawable/ic_add_listing.xml" value="0.1695" />
@@ -57,6 +58,8 @@
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/drawable/ic_tos.xml" value="0.1695" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/drawable/search_view_background.xml" value="0.1695" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/drawable/stroke_empty_background.xml" value="0.1695" />
+        <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/drawable/stroke_rect_background.xml" value="0.1695" />
+        <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/drawable/stroke_transparent_background.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/activity_test.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/button_with_image.xml" value="0.1" />
@@ -71,9 +74,11 @@
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/dialog_new_listings.xml" value="0.225" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/dialog_notification_settings.xml" value="0.2" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/dialog_reset_password.xml" value="0.20863616930312098" />
+        <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/dialog_select_region.xml" value="0.20863616930312098" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/dialog_status_update.xml" value="0.20863616930312098" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/dialog_test.xml" value="0.225" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_account.xml" value="0.25" />
+        <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_add_apartment.xml" value="0.22739981360671016" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_add_listing.xml" value="0.20863616930312098" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_chats.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_create_account.xml" value="0.20863616930312098" />
@@ -96,7 +101,9 @@
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_sign_in.xml" value="0.20863616930312098" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_sign_up.xml" value="0.20863616930312098" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_terms.xml" value="0.20863616930312098" />
-        <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/listing_item.xml" value="0.4" />
+        <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/frament_apartment_listing.xml" value="0.20778110303548525" />
+        <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/line.xml" value="0.20778110303548525" />
+        <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/listing_item.xml" value="0.264" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/loading_button.xml" value="0.20778110303548525" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/main_search_layout.xml" value="0.264" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25416666666666665" />

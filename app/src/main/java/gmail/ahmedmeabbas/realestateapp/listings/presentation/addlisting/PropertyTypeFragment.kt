@@ -27,24 +27,21 @@ class PropertyTypeFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setUpCheckedChipListener()
         setUpContinueButton()
+        updateButton(binding.cgPropertyType.checkedChipIds.isEmpty())
+        setUpCheckedChipListener()
         setUpToolbar()
     }
 
     private fun setUpCheckedChipListener() {
         binding.cgPropertyType.setOnCheckedStateChangeListener { _, checkedIds ->
-            if (checkedIds.isEmpty()) {
-                updateButton(false)
-            } else {
-                updateButton(true)
-            }
+            updateButton(checkedIds.isEmpty())
         }
     }
 
-    private fun updateButton(enabled: Boolean) {
-        val alpha = if (enabled) 1.0F else 0.3F
-        binding.btnContinue.root.isEnabled = enabled
+    private fun updateButton(isIdsEmpty: Boolean) {
+        val alpha = if (isIdsEmpty) 0.3F else 1.0F
+        binding.btnContinue.root.isEnabled = !isIdsEmpty
         binding.btnContinue.root.alpha = alpha
     }
 
@@ -57,9 +54,9 @@ class PropertyTypeFragment: Fragment() {
                     Toast.makeText(requireContext(), "house", Toast.LENGTH_SHORT).show()
                 }
                 R.id.chipApartment -> {
-                    Toast.makeText(requireContext(), "apartment", Toast.LENGTH_SHORT).show()
+                    navigateTo(R.id.action_propertyTypeFragment_to_addApartmentFragment)
                 }
-                R.id.chipApartmentBuilding -> {
+                R.id.chipBuilding -> {
                     Toast.makeText(requireContext(), "building", Toast.LENGTH_SHORT).show()
                 }
                 R.id.chipStore -> {
@@ -77,6 +74,10 @@ class PropertyTypeFragment: Fragment() {
                 else -> binding.cgPropertyType.requestFocus()
             }
         }
+    }
+
+    private fun navigateTo(actionId: Int) {
+        findNavController().navigate(actionId)
     }
 
     private fun setUpToolbar() {

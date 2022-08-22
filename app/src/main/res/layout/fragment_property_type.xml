@@ -44,53 +44,58 @@
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipHouse"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/_120sdp"
             android:layout_height="wrap_content"
-            style="@style/ChipCustomStyle"
+            android:layout_marginStart="@dimen/_10sdp"
+            style="@style/ChipStyleFilter"
             android:text="@string/property_type_house" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipApartment"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/_120sdp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
-            style="@style/ChipCustomStyle"
+            style="@style/ChipStyleFilter"
             android:text="@string/property_type_apartment"/>
 
         <com.google.android.material.chip.Chip
-            android:id="@+id/chipApartmentBuilding"
-            android:layout_width="wrap_content"
+            android:id="@+id/chipBuilding"
+            android:layout_width="@dimen/_120sdp"
             android:layout_height="wrap_content"
-            style="@style/ChipCustomStyle"
-            android:text="@string/property_type_apartment_building"/>
+            android:layout_marginStart="@dimen/_10sdp"
+            style="@style/ChipStyleFilter"
+            android:text="@string/property_type_building"/>
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipStore"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/_120sdp"
             android:layout_height="wrap_content"
-            style="@style/ChipCustomStyle"
-            android:text="@string/property_type_shop"/>
+            android:layout_marginStart="@dimen/_10sdp"
+            style="@style/ChipStyleFilter"
+            android:text="@string/property_type_store"/>
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipLand"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/_120sdp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
-            style="@style/ChipCustomStyle"
+            style="@style/ChipStyleFilter"
             android:text="@string/property_type_land"/>
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipWarehouse"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/_120sdp"
             android:layout_height="wrap_content"
-            style="@style/ChipCustomStyle"
+            android:layout_marginStart="@dimen/_10sdp"
+            style="@style/ChipStyleFilter"
             android:text="@string/property_type_warehouse"/>
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipFarm"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/_120sdp"
             android:layout_height="wrap_content"
-            style="@style/ChipCustomStyle"
+            android:layout_marginStart="@dimen/_80sdp"
+            style="@style/ChipStyleFilter"
             android:text="@string/property_type_farm"/>
     </com.google.android.material.chip.ChipGroup>
 

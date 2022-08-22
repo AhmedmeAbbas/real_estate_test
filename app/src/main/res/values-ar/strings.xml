@@ -8,7 +8,10 @@
     <string name="close">إغلاق</string>
     <string name="dismiss">إخفاء</string>
     <string name="ok">موافق</string>
+    <string name="yes">نعم</string>
+    <string name="no">لا</string>
     <string name="save">حفظ</string>
+    <string name="other">اخر</string>
     <string name="button_continue">استمر</string>
     <string name="required">مطلوب</string>
 
@@ -102,20 +105,77 @@
 
     <!-- Add listing -->
     <string name="add_listing_title">أضف إعلانك</string>
-    <string name="listing_owner_header">من أنت؟</string>
+    <string name="add_listing_advertiser_info">بيانات المعلن</string>
+    <string name="add_listing_advertiser">هل أنت مالك أم وسيط؟</string>
     <string name="add_listing_chip_owner">مالك</string>
     <string name="add_listing_chip_broker">وسيط</string>
+    <string name="add_listing_owner_acknowledgement">باختيارك "مالك" أنت تقر بأنك مالك العقار وأنك تملك جميع المستندات القانونية التي تثبت ملكيتك للعقار. عدم الإلتزام بهذا الشرط قد يعرضك للمساءلة القانونية في المستقبل</string>
+    <string name="add_listing_broker_acknowledgement">باختيارك "وسيط" أنت تقر أنك تملك الإذن من مالك العقار بالإعلان عن عقاره في منصتنا وأنه يمكنك التحدث مع المشترين المحتملين بالنيابة عنه. عدم الإلتزام بهذا الشرط قد يعرضك للمساءلة القانونية في المستقبل</string>
+    <string name="add_listing_phone_number">رقم\nالهاتف</string>
+    <string name="add_listing_email">البريد\nالإلكتروني</string>
+    <string name="add_listing_email_hint">اختياري</string>
+    <string name="add_listing_property_address">عنوان العقار</string>
+    <string name="add_listing_city">المدينة</string>
+    <string name="add_listing_city_spinner">اختر المدينة</string>
+    <string name="add_listing_region">الحي/\nالمنطقة</string>
+    <string name="add_listing_select_region">اختر المنطقة</string>
+    <string name="add_listing_enter_region">أدخل المنطقة</string>
+    <string name="add_listing_block">المربع/\nالحارة</string>
+    <string name="add_listing_property_number">رقم\nالعقار</string>
+    <string name="add_listing_more_info">معلومات إضافية\n(اختياري)</string>
+    <string name="add_listing_price_header">السعر</string>
+    <string name="add_listing_currency">العملة</string>
+    <string name="add_listing_select_currency">اختر العملة</string>
+    <string name="add_listing_currency_usd">دولار أمريكي</string>
+    <string name="add_listing_currency_sdg">جنيه سوداني</string>
+    <string name="add_listing_price">السعر%1$s</string>
+    <string name="add_listing_installments">أقساط شهرية</string>
+    <string name="add_listing_down_payment">دفعة أولى%1$s</string>
+    <string name="add_listing_monthly_installment">القسط الشهري%1$s</string>
+    <string name="add_listing_installment_period">مدة\nالتقسيط\n(شهر)</string>
+    <string name="add_listing_submit">إضافة الإعلان</string>
+    <string name="none">لا يوجد</string>
 
     <!-- Property types -->
     <string name="property_type_title">نوع العقار</string>
     <string name="property_type_header">اختر نوع العقار</string>
     <string name="property_type_house">منزل</string>
     <string name="property_type_apartment">شقة</string>
-    <string name="property_type_apartment_building">عمارة سكنية</string>
-    <string name="property_type_shop">متجر</string>
+    <string name="property_type_building">عمارة</string>
+    <string name="property_type_store">متجر</string>
     <string name="property_type_land">أرض</string>
     <string name="property_type_warehouse">مستودع</string>
     <string name="property_type_farm">مزرعة</string>
+
+    <!-- Add apartment fragment -->
+    <string name="add_apartment_title">أضف شقتك</string>
+    <string name="add_apartment_details">تفاصيل الشقة</string>
+    <string name="add_apartment_area_header">المساحة (م\u00B2)</string>
+    <string name="add_apartment_bedrooms_header">الغرف</string>
+    <string name="add_apartment_bathrooms_header">الحمامات</string>
+    <string name="add_apartment_kitchen_header">مطبخ</string>
+    <string name="add_apartment_living_rooms_header">غرفة معيشة</string>
+    <string name="add_apartment_balcony_header">بلكونة</string>
+    <string name="add_apartment_floor_header">الطابق</string>
+    <string name="add_apartment_floor_ground">أرضي</string>
+    <string name="add_apartment_floor_number">رقم الطابق</string>
+    <string name="add_apartment_apartment_details_more_hint">إذا كنت تملك معلومات إضافية حول تفاصيل شقتك يمكنك إضافتها هنا</string>
+    <string name="add_apartment_finishing_and_furniture">التشطيب والفرش</string>
+    <string name="add_apartment_finishing">التشطيب</string>
+    <string name="add_apartment_finished">مشطبة</string>
+    <string name="add_apartment_unfinished">غير مشطبة</string>
+    <string name="add_apartment_furniture">الفرش</string>
+    <string name="add_apartment_furnished">مفروشة</string>
+    <string name="add_apartment_unfurnished">غير مفروشة</string>
+    <string name="add_apartment_finishing_more_hint">إذا كنت تملك معلومات إضافية حول التشطيب والفرش يمكنك إضافتها هنا</string>
+    <string name="add_apartment_utilities">الخدمات</string>
+    <string name="add_apartment_electricity">كهرباء</string>
+    <string name="add_apartment_water">ماء</string>
+    <string name="add_apartment_elevator">مصعد كهربائي</string>
+    <string name="add_apartment_parking">مواقف سيارات</string>
+    <string name="add_apartment_backup_generator">مولد كهرباء</string>
+    <string name="add_apartment_security">حراسة</string>
+    <string name="add_apartment_utilities_more_hint">إذا كنت تملك معلومات إضافية حول الخدمات يمكنك إضافتها هنا</string>
 
     <!-- Inbox fragment -->
     <string name="chats_tab">المحادثات</string>
@@ -214,13 +274,14 @@
     <string name="privacy_title">سياسة الخصوصية</string>
 
     <!-- Listing item -->
-    <string name="price">%1$s%2$s</string>
-    <string name="type">%1$s</string>
-    <string name="floors">%1$s طابق</string>
-    <string name="bedrooms">%1$s غرفة</string>
-    <string name="bathrooms">%1$s حمام</string>
-    <string name="area">%1$s م\u00B2</string>
-    <string name="address">%1$s</string>
+    <string name="listing_item_price">%1$s%2$s</string>
+    <string name="listing_item_type">%1$s</string>
+    <string name="listing_item_floors">%1$s طابق</string>
+    <string name="listing_item_bedrooms">%1$s غرفة</string>
+    <string name="listing_item_bathrooms">%1$s حمام</string>
+    <string name="listing_item_area_m2">%1$s م\u00B2</string>
+    <string name="listing_item_area_acres">%1$s فدان</string>
+    <string name="listing_item_address">%1$s</string>
     <string name="listing_new">جديد</string>
 
     <string name="dummy_text">

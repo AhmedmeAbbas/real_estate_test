@@ -43,7 +43,7 @@ class MyHomeFragment: Fragment() {
                 binding.tvMyHomeSub.text = getString(R.string.my_home_list_empty)
                 binding.btnMyHomeMain.text = getString(R.string.my_home_add_listing)
                 binding.btnMyHomeMain.setOnClickListener {
-                    findNavController().navigate(R.id.action_myHomeFragment_to_addListingFragment)
+                    findNavController().navigate(R.id.action_myHomeFragment_to_addListingGraph)
                 }
             } else {
                 hideViewsAndShowRecyclerView()
