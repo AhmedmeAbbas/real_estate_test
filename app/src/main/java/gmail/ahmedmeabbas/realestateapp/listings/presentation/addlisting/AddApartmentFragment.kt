@@ -10,6 +10,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -131,6 +132,8 @@ class AddApartmentFragment : Fragment() {
             for (i in chosenPhotoUris.indices) {
                 chosenPhotoUris[i] = tempPhotoUris[i]
             }
+            val numAddedPhotos = chosenPhotoUris.filterNotNull().size
+            binding.tvAddPhotos.text = resources.getQuantityString(R.plurals.added_photos, numAddedPhotos, numAddedPhotos)
             dialog.dismiss()
         }
     }
@@ -237,24 +240,9 @@ class AddApartmentFragment : Fragment() {
                     id: Long
                 ) {
                     if (position == 0) {
-                        binding.tvPrice.text = getString(R.string.add_listing_price, "")
-                        binding.tvDownPayment.text =
-                            getString(R.string.add_listing_down_payment, "")
-                        binding.tvMonthlyInstallment.text =
-                            getString(R.string.add_listing_monthly_installment, "")
+                        updatePriceTexts("")
                     } else {
-                        binding.tvPrice.text = getString(
-                            R.string.add_listing_price,
-                            "\n(${adapter.getItem(position)})"
-                        )
-                        binding.tvDownPayment.text = getString(
-                            R.string.add_listing_down_payment,
-                            "\n(${adapter.getItem(position)})"
-                        )
-                        binding.tvMonthlyInstallment.text = getString(
-                            R.string.add_listing_monthly_installment,
-                            "\n(${adapter.getItem(position)})"
-                        )
+                        updatePriceTexts("\n(${adapter.getItem(position)})")
                     }
                 }
 
@@ -262,6 +250,12 @@ class AddApartmentFragment : Fragment() {
 
                 }
             }
+    }
+
+    private fun updatePriceTexts(text: String) {
+        binding.tvPrice.text = getString(R.string.add_listing_price, text)
+        binding.tvDownPayment.text = getString(R.string.add_listing_down_payment, text)
+        binding.tvMonthlyInstallment.text = getString(R.string.add_listing_monthly_installment, text)
     }
 
     private fun setUpAdvertiserChipListener() {

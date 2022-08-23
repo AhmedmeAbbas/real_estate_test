@@ -128,6 +128,14 @@
     <string name="add_listing_more_info">معلومات إضافية\n(اختياري)</string>
     <string name="add_listing_photos">الصور</string>
     <string name="add_listing_add_photos">إضافة صور</string>
+    <plurals name="added_photos">
+        <item quantity="zero">إضافة صور</item>
+        <item quantity="one">تم إضافة صورة واحدة</item>
+        <item quantity="two">تم إضافة صورتين</item>
+        <item quantity="few">تم إضافة %1$d صور</item>
+        <item quantity="many">تم إضافة %1$d صور</item>
+        <item quantity="other">تم إضافة %1$d صور</item>
+    </plurals>
     <string name="add_listing_photos_dialog_sub">اضغط على إحدى الصور لتضيف صورة من جهازك</string>
     <string name="add_listing_price_header">السعر</string>
     <string name="add_listing_currency">العملة</string>

@@ -128,6 +128,10 @@
     <string name="add_listing_more_info">More\ninformation\n(optional)</string>
     <string name="add_listing_photos">Photos</string>
     <string name="add_listing_add_photos">Add photos</string>
+    <plurals name="added_photos">
+        <item quantity="one">One photo added</item>
+        <item quantity="other">%1$d photos added</item>
+    </plurals>
     <string name="add_listing_photos_dialog_sub">Click a photo to add a photo from your device</string>
     <string name="add_listing_price_header">Price</string>
     <string name="add_listing_currency">Currency</string>
