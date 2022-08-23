@@ -106,7 +106,7 @@ class EditPasswordDialog : BottomSheetDialogFragment() {
                     setCompoundDrawablesRelativeWithIntrinsicBounds(
                         ResourcesCompat.getDrawable(
                             requireContext().resources,
-                            R.drawable.ic_check,
+                            R.drawable.ic_check_round,
                             null
                         ), null, null, null
                     )

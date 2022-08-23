@@ -23,7 +23,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import gmail.ahmedmeabbas.realestateapp.R
-import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl
 import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl.Companion.FAILURE
 import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl.Companion.NETWORK_ERROR
 import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl.Companion.SUCCESS
@@ -176,7 +175,7 @@ class CreateAccountFragment : Fragment() {
                     setCompoundDrawablesRelativeWithIntrinsicBounds(
                         ResourcesCompat.getDrawable(
                             requireContext().resources,
-                            R.drawable.ic_check,
+                            R.drawable.ic_check_round,
                             null
                         ), null, null, null
                     )

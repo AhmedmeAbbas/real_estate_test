@@ -14,6 +14,9 @@
     <string name="button_continue">Continue</string>
     <string name="required">Required</string>
 
+    <!-- Permissions -->
+    <string name="permission_photos">In order to add photos to your listing the app needs access to your photos</string>
+
     <!-- Facebook -->
     <string name="facebook_app_id">585599636490913</string>
     <string name="fb_login_protocol_scheme" translatable="false">fb1234</string>
@@ -102,7 +105,7 @@
     <string name="my_home_sub">You have to be signed in to add and manage your listings</string>
     <string name="my_home_list_empty">Seems like you have not added any listings. Click the button below to add one</string>
     <string name="my_home_add_listing">Add your listing</string>
-    
+
     <!-- Add listing -->
     <string name="add_listing_title">Add your listing</string>
     <string name="add_listing_advertiser_info">Advertiser information</string>
@@ -123,6 +126,9 @@
     <string name="add_listing_block">Block/\nLane</string>
     <string name="add_listing_property_number">Property\nnumber</string>
     <string name="add_listing_more_info">More\ninformation\n(optional)</string>
+    <string name="add_listing_photos">Photos</string>
+    <string name="add_listing_add_photos">Add photos</string>
+    <string name="add_listing_photos_dialog_sub">Click a photo to add a photo from your device</string>
     <string name="add_listing_price_header">Price</string>
     <string name="add_listing_currency">Currency</string>
     <string name="add_listing_select_currency">Select currency</string>
@@ -146,7 +152,7 @@
     <string name="property_type_land">Land</string>
     <string name="property_type_warehouse">Warehouse</string>
     <string name="property_type_farm">Farm</string>
-    
+
     <!-- Add apartment fragment -->
     <string name="add_apartment_title">Add your apartment</string>
     <string name="add_apartment_details">Apartment details</string>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -21,23 +20,24 @@
 
     <include
         android:id="@+id/btnSubmitApartment"
+        layout="@layout/loading_button"
         android:layout_width="0dp"
         android:layout_height="@dimen/_48sdp"
         android:layout_marginStart="@dimen/_10sdp"
         android:layout_marginEnd="@dimen/_10sdp"
-        layout="@layout/loading_button"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/svApartment"/>
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/svApartment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:paddingBottom="@dimen/_10sdp"
         android:fillViewport="true"
-        app:layout_constraintTop_toBottomOf="@id/toolbarAddApartment"
-        app:layout_constraintBottom_toTopOf="@id/btnSubmitApartment">
+        android:paddingBottom="@dimen/_10sdp"
+        app:layout_constraintBottom_toTopOf="@id/btnSubmitApartment"
+        app:layout_constraintTop_toBottomOf="@id/toolbarAddApartment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -707,6 +707,8 @@
                 android:maxLines="5"
                 android:minHeight="@dimen/_100sdp"
                 android:padding="@dimen/_5sdp"
+                android:paddingStart="@dimen/_5sdp"
+                android:paddingEnd="@dimen/_5sdp"
                 android:scrollbars="vertical"
                 android:textColorHint="@color/hint_color"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -843,6 +845,8 @@
                 android:maxLines="5"
                 android:minHeight="@dimen/_100sdp"
                 android:padding="@dimen/_5sdp"
+                android:paddingStart="@dimen/_5sdp"
+                android:paddingEnd="@dimen/_5sdp"
                 android:scrollbars="vertical"
                 android:textColorHint="@color/hint_color"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -1164,6 +1168,51 @@
                 app:layout_constraintTop_toBottomOf="@id/etUtilitiesMore" />
 
             <TextView
+                android:id="@+id/tvPhotos"
+                style="@style/HeaderText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="@string/add_listing_photos"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/lineUtilities" />
+
+            <TextView
+                android:id="@+id/tvAddPhotos"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="?attr/colorOnBackground"
+                android:clickable="true"
+                android:elevation="@dimen/_2sdp"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:paddingStart="@dimen/_10sdp"
+                android:paddingEnd="@dimen/_10sdp"
+                android:text="@string/add_listing_add_photos"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvPhotos" />
+
+            <include
+                android:id="@+id/linePhotos"
+                layout="@layout/line"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvAddPhotos" />
+
+            <TextView
                 android:id="@+id/tvPriceHeader"
                 style="@style/HeaderText"
                 android:layout_width="wrap_content"
@@ -1173,7 +1222,7 @@
                 android:text="@string/add_listing_price_header"
                 android:textStyle="normal"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/lineUtilities" />
+                app:layout_constraintTop_toBottomOf="@id/linePhotos" />
 
             <TextView
                 android:id="@+id/tvCurrency"

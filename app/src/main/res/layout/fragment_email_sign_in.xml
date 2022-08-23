@@ -37,6 +37,7 @@
         android:layout_marginEnd="@dimen/_30sdp"
         android:scrollbarSize="25dp"
         android:scrollbarThumbHorizontal="@color/hint_color"
+        android:hint="@string/email_hint"
         android:textColorHint="@color/hint_color"
         app:hintTextColor="@color/hint_color"
         app:boxStrokeWidth="0dp"
@@ -52,7 +53,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/edit_text_background"
-            android:hint="@string/email_hint"
             android:inputType="textEmailAddress"
             android:maxLines="1"
             android:minHeight="@dimen/_48sdp" />
@@ -67,6 +67,7 @@
         android:layout_marginEnd="@dimen/_30sdp"
         android:scrollbarSize="25dp"
         android:scrollbarThumbHorizontal="@color/hint_color"
+        android:hint="@string/password_hint"
         android:textColorHint="@color/hint_color"
         app:hintTextColor="@color/hint_color"
         app:boxStrokeWidth="0dp"
@@ -84,7 +85,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/edit_text_background"
-            android:hint="@string/password_hint"
             android:inputType="textPassword"
             android:maxLines="1"
             android:minHeight="@dimen/_48sdp" />

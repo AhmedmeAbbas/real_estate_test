@@ -135,12 +135,12 @@ class EmailSignInFragment : Fragment() {
     private fun validateForm(email: String, password: String): Boolean {
         var valid = true
         if (TextUtils.isEmpty(email)) {
-            binding.etEmailSignIn.error = getString(R.string.required)
+            binding.emailSignInTIL.error = getString(R.string.required)
             valid = false
         }
 
         if (TextUtils.isEmpty(password)) {
-            binding.etPasswordSignIn.error = getString(R.string.required)
+            binding.passwordSignInTIL.error = getString(R.string.required)
             valid = false
         }
         return valid

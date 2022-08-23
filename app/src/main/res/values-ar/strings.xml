@@ -15,6 +15,9 @@
     <string name="button_continue">استمر</string>
     <string name="required">مطلوب</string>
 
+    <!-- Permissions -->
+    <string name="permission_photos">لكي تتمكن من إضافة صور لإعلانك التطبيق يحتاج إذن الوصول إلى الصور</string>
+
     <!-- Facebook -->
     <string name="facebook_app_id">585599636490913</string>
     <string name="facebook_client_token">634350336f48d2aac54fac0f36d15c1e</string>
@@ -117,12 +120,15 @@
     <string name="add_listing_property_address">عنوان العقار</string>
     <string name="add_listing_city">المدينة</string>
     <string name="add_listing_city_spinner">اختر المدينة</string>
-    <string name="add_listing_region">الحي/\nالمنطقة</string>
+    <string name="add_listing_region">المنطقة/\nالحي</string>
     <string name="add_listing_select_region">اختر المنطقة</string>
     <string name="add_listing_enter_region">أدخل المنطقة</string>
     <string name="add_listing_block">المربع/\nالحارة</string>
     <string name="add_listing_property_number">رقم\nالعقار</string>
     <string name="add_listing_more_info">معلومات إضافية\n(اختياري)</string>
+    <string name="add_listing_photos">الصور</string>
+    <string name="add_listing_add_photos">إضافة صور</string>
+    <string name="add_listing_photos_dialog_sub">اضغط على إحدى الصور لتضيف صورة من جهازك</string>
     <string name="add_listing_price_header">السعر</string>
     <string name="add_listing_currency">العملة</string>
     <string name="add_listing_select_currency">اختر العملة</string>

@@ -1,18 +1,23 @@
 package gmail.ahmedmeabbas.realestateapp.listings.presentation.addlisting
 
+import android.app.Activity
 import android.app.Dialog
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.EditText
-import android.widget.ListView
+import android.widget.*
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import gmail.ahmedmeabbas.realestateapp.R
@@ -22,6 +27,20 @@ class AddApartmentFragment : Fragment() {
 
     private var _binding: FragmentAddApartmentBinding? = null
     private val binding get() = _binding!!
+    private lateinit var dialog: Dialog
+    private lateinit var resultLauncher: ActivityResultLauncher<Intent>
+    private val chosenPhotoUris: MutableList<Uri?> = MutableList(MAX_NUMBER_OF_PHOTOS) { null }
+    private val tempPhotoUris: MutableList<Uri?> = MutableList(MAX_NUMBER_OF_PHOTOS) { null }
+    private var clickedPhotoIndex: Int = -1
+    private val requestPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+            if (isGranted) {
+                hidePermissionDeniedMessage()
+                launchIntentForPhotos()
+            } else {
+                showPermissionDeniedMessage()
+            }
+        }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,13 +54,136 @@ class AddApartmentFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        dialog = Dialog(requireContext())
+
+        initResultLauncher()
         setUpToolbar()
+        setUpAdvertiserChipListener()
         setUpCitySpinner()
         setUpSelectRegion()
+        setUpAddPhotos()
         setUpCurrencySpinner()
-        setUpAdvertiserChipListener()
         setUpInstallmentsChipListener()
         setUpSubmitButton()
+    }
+
+    private fun initResultLauncher() {
+        resultLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                if (result.resultCode == Activity.RESULT_OK) {
+                    val selectedUri = result.data?.data
+                    val clipData = result.data?.clipData
+                    val photoIndex = result.data?.getIntExtra(PHOTO_INDEX, clickedPhotoIndex)
+                    if (clipData != null) {
+                        tempPhotoUris[photoIndex!!] = clipData.getItemAt(0).uri
+                    } else if (selectedUri != null) {
+                        tempPhotoUris[photoIndex!!] = selectedUri
+                    } else return@registerForActivityResult
+                    setImages()
+                    showSaveIcon()
+                }
+            }
+    }
+
+    private fun showSaveIcon() {
+        dialog.findViewById<ImageView>(R.id.ivAddPhotosCheck).visibility = View.VISIBLE
+    }
+
+    private fun setImages() {
+        dialog.findViewById<ImageView>(R.id.ivPhoto1).setImageURI(tempPhotoUris[0])
+        dialog.findViewById<ImageView>(R.id.ivPhoto2).setImageURI(tempPhotoUris[1])
+        dialog.findViewById<ImageView>(R.id.ivPhoto3).setImageURI(tempPhotoUris[2])
+        dialog.findViewById<ImageView>(R.id.ivPhoto4).setImageURI(tempPhotoUris[3])
+        dialog.findViewById<ImageView>(R.id.ivPhoto5).setImageURI(tempPhotoUris[4])
+    }
+
+    private fun setUpAddPhotos() {
+        binding.tvAddPhotos.setOnClickListener {
+            val dialogWidth = binding.root.width
+            val dialogHeight = binding.root.height
+            dialog.apply {
+                setContentView(R.layout.dialog_add_photos)
+                window?.setLayout(dialogWidth, dialogHeight)
+                window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                setUpDismissAddPhotos()
+                setUpSavePhotos()
+                show()
+            }
+            for (i in tempPhotoUris.indices) {
+                tempPhotoUris[i] = chosenPhotoUris[i]
+            }
+            setImages()
+            setUpPhotoClickListeners(dialog)
+        }
+    }
+
+    private fun setUpDismissAddPhotos() {
+        dialog.findViewById<Toolbar>(R.id.toolbarAddPhotos).setNavigationOnClickListener {
+            for (i in tempPhotoUris.indices) {
+                tempPhotoUris[i] = null
+            }
+            dialog.dismiss()
+        }
+    }
+
+    private fun setUpSavePhotos() {
+        dialog.findViewById<ImageView>(R.id.ivAddPhotosCheck).setOnClickListener {
+            for (i in chosenPhotoUris.indices) {
+                chosenPhotoUris[i] = tempPhotoUris[i]
+            }
+            dialog.dismiss()
+        }
+    }
+
+    private fun setUpPhotoClickListeners(dialog: Dialog) {
+        dialog.findViewById<ImageView>(R.id.ivPhoto1).setOnClickListener {
+            clickedPhotoIndex = 0
+            onPhotoClicked()
+        }
+        dialog.findViewById<ImageView>(R.id.ivPhoto2).setOnClickListener {
+            clickedPhotoIndex = 1
+            onPhotoClicked()
+        }
+        dialog.findViewById<ImageView>(R.id.ivPhoto3).setOnClickListener {
+            clickedPhotoIndex = 2
+            onPhotoClicked()
+        }
+        dialog.findViewById<ImageView>(R.id.ivPhoto4).setOnClickListener {
+            clickedPhotoIndex = 3
+            onPhotoClicked()
+        }
+        dialog.findViewById<ImageView>(R.id.ivPhoto5).setOnClickListener {
+            clickedPhotoIndex = 4
+            onPhotoClicked()
+        }
+    }
+
+    private fun onPhotoClicked() {
+        if (isReadPermissionGranted()) {
+            launchIntentForPhotos()
+        } else {
+            requestReadPhotosPermission()
+        }
+    }
+
+    private fun isReadPermissionGranted(): Boolean {
+        val readPhotosPermission =
+            ContextCompat.checkSelfPermission(
+                requireContext(),
+                android.Manifest.permission.READ_EXTERNAL_STORAGE
+            )
+        return readPhotosPermission == PackageManager.PERMISSION_GRANTED
+    }
+
+    private fun requestReadPhotosPermission() {
+        requestPermissionLauncher.launch(android.Manifest.permission.READ_EXTERNAL_STORAGE)
+    }
+
+    private fun launchIntentForPhotos() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        intent.putExtra(PHOTO_INDEX, clickedPhotoIndex)
+        resultLauncher.launch(intent)
     }
 
     private fun setUpSubmitButton() {
@@ -163,7 +305,6 @@ class AddApartmentFragment : Fragment() {
         val dialogHeight =
             requireContext().resources.getDimension(com.intuit.sdp.R.dimen._400sdp).toInt()
         binding.tvSelectRegion.setOnClickListener {
-            val dialog = Dialog(requireContext())
             dialog.apply {
                 setContentView(R.layout.dialog_select_region)
                 window?.setLayout(dialogWidth, dialogHeight)
@@ -202,6 +343,14 @@ class AddApartmentFragment : Fragment() {
         binding.spinnerCity.adapter = adapter
     }
 
+    private fun showPermissionDeniedMessage() {
+        dialog.findViewById<TextView>(R.id.tvPermissionDenied).visibility = View.VISIBLE
+    }
+
+    private fun hidePermissionDeniedMessage() {
+        dialog.findViewById<TextView>(R.id.tvPermissionDenied).visibility = View.GONE
+    }
+
     private fun setUpToolbar() {
         binding.toolbarAddApartment.setNavigationOnClickListener {
             findNavController().navigateUp()
@@ -211,5 +360,11 @@ class AddApartmentFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        private const val MAX_NUMBER_OF_PHOTOS = 5
+        private const val PHOTO_INDEX = "photo_index"
+        private const val TAG = "AddApartmentFragment"
     }
 }
