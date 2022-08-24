@@ -12,7 +12,7 @@
         android:icon="@drawable/custom_favorite"
         android:title="@string/bottom_nav_saved_title"/>
     <item
-        android:id="@+id/myHomeFragment"
+        android:id="@+id/myListingsFragment"
         android:icon="@drawable/custom_home"
         android:title="@string/bottom_nav_my_listings_title"/>
     <item

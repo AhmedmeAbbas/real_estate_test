@@ -93,7 +93,7 @@ class AddListingFragment : Fragment() {
             "Jabra",
             FirebaseAuth.getInstance().currentUser?.uid.toString(),
             "house",
-            30000.00,
+            Price(date, 30000.00),
             "401, Block. 41, Jabra, Khartoum",
             2,
             6,

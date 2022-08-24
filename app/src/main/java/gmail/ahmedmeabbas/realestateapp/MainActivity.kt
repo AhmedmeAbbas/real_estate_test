@@ -6,7 +6,6 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.Network
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -28,7 +27,6 @@ import gmail.ahmedmeabbas.realestateapp.userpreferences.UserPrefsEntryPoint
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
-import java.time.LocalDateTime
 import java.util.*
 import javax.inject.Inject
 
@@ -120,7 +118,7 @@ class MainActivity : AppCompatActivity() {
             when (destination.id) {
                 R.id.searchFragment -> showBottomNav()
                 R.id.savedFragment -> showBottomNav()
-                R.id.myHomeFragment -> showBottomNav()
+                R.id.myListingsFragment -> showBottomNav()
                 R.id.inboxFragment -> showBottomNav()
                 R.id.accountFragment -> showBottomNav()
                 R.id.signInFragment -> fadeOutBottomNav()

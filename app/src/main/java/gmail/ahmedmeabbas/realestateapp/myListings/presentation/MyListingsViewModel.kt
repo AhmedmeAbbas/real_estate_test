@@ -1,4 +1,4 @@
-package gmail.ahmedmeabbas.realestateapp.myhome.presentation
+package gmail.ahmedmeabbas.realestateapp.myListings.presentation
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
@@ -9,7 +9,7 @@ import gmail.ahmedmeabbas.realestateapp.listings.data.Listing
 import javax.inject.Inject
 
 @HiltViewModel
-class MyHomeViewModel @Inject constructor(
+class MyListingsViewModel @Inject constructor(
     private val authRepository: AuthRepository
 ): ViewModel() {
 

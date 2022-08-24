@@ -1,4 +1,4 @@
-package gmail.ahmedmeabbas.realestateapp.myhome.presentation
+package gmail.ahmedmeabbas.realestateapp.myListings.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,20 +8,20 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import gmail.ahmedmeabbas.realestateapp.R
-import gmail.ahmedmeabbas.realestateapp.databinding.FragmentMyHomeBinding
+import gmail.ahmedmeabbas.realestateapp.databinding.FragmentMyListingsBinding
 
-class MyHomeFragment: Fragment() {
+class MyListingsFragment: Fragment() {
 
-    private var _binding: FragmentMyHomeBinding? = null
+    private var _binding: FragmentMyListingsBinding? = null
     private val binding get() = _binding!!
-    private val myHomeViewModel: MyHomeViewModel by activityViewModels()
+    private val myListingsViewModel: MyListingsViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentMyHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentMyListingsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -32,18 +32,18 @@ class MyHomeFragment: Fragment() {
     }
 
     private fun observeAuthState() {
-        myHomeViewModel.isUserSignedIn.observe(viewLifecycleOwner) { isSignedIn ->
+        myListingsViewModel.isUserSignedIn.observe(viewLifecycleOwner) { isSignedIn ->
             updateUI(isSignedIn!!)
         }
     }
 
     private fun updateUI(isSignedIn: Boolean) {
         if (isSignedIn) {
-            if (myHomeViewModel.myListings[0].id == null) {
+            if (myListingsViewModel.myListings[0].id == null) {
                 binding.tvMyHomeSub.text = getString(R.string.my_home_list_empty)
                 binding.btnMyHomeMain.text = getString(R.string.my_home_add_listing)
                 binding.btnMyHomeMain.setOnClickListener {
-                    findNavController().navigate(R.id.action_myHomeFragment_to_addListingGraph)
+                    findNavController().navigate(R.id.action_myListingsFragment_to_addListingGraph)
                 }
             } else {
                 hideViewsAndShowRecyclerView()

@@ -9,7 +9,7 @@ data class Listing(
     val region: String? = null,
     val listerId: String? = null,
     val propertyType: String? = null,
-    val price: Double? = null,
+    val price: Price? = null,
     val fullAddress: String? = null,
     val floors: Int? = null,
     val bedrooms: Int? = null,

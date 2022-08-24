@@ -25,7 +25,7 @@
     <!-- Bottom navigation -->
     <string name="bottom_nav_search_title">بحث</string>
     <string name="bottom_nav_saved_title">المفضلة</string>
-    <string name="bottom_nav_my_listings_title">عقاراتي</string>
+    <string name="bottom_nav_my_listings_title">إعلاناتي</string>
     <string name="bottom_nav_inbox_title">الوارد</string>
     <string name="bottom_nav_sign_in_title">سجل دخولك</string>
     <string name="bottom_nav_account_title">الحساب</string>
