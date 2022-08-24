@@ -47,7 +47,7 @@
             android:layout_width="@dimen/_120sdp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
-            style="@style/ChipStyleFilter"
+            style="@style/ChipStyleRect"
             android:text="@string/property_type_house" />
 
         <com.google.android.material.chip.Chip
@@ -55,7 +55,7 @@
             android:layout_width="@dimen/_120sdp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
-            style="@style/ChipStyleFilter"
+            style="@style/ChipStyleRect"
             android:text="@string/property_type_apartment"/>
 
         <com.google.android.material.chip.Chip
@@ -63,7 +63,7 @@
             android:layout_width="@dimen/_120sdp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
-            style="@style/ChipStyleFilter"
+            style="@style/ChipStyleRect"
             android:text="@string/property_type_building"/>
 
         <com.google.android.material.chip.Chip
@@ -71,7 +71,7 @@
             android:layout_width="@dimen/_120sdp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
-            style="@style/ChipStyleFilter"
+            style="@style/ChipStyleRect"
             android:text="@string/property_type_store"/>
 
         <com.google.android.material.chip.Chip
@@ -79,7 +79,7 @@
             android:layout_width="@dimen/_120sdp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
-            style="@style/ChipStyleFilter"
+            style="@style/ChipStyleRect"
             android:text="@string/property_type_land"/>
 
         <com.google.android.material.chip.Chip
@@ -87,7 +87,7 @@
             android:layout_width="@dimen/_120sdp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
-            style="@style/ChipStyleFilter"
+            style="@style/ChipStyleRect"
             android:text="@string/property_type_warehouse"/>
 
         <com.google.android.material.chip.Chip
@@ -95,18 +95,7 @@
             android:layout_width="@dimen/_120sdp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_80sdp"
-            style="@style/ChipStyleFilter"
+            style="@style/ChipStyleRect"
             android:text="@string/property_type_farm"/>
     </com.google.android.material.chip.ChipGroup>
-
-    <include
-        android:id="@+id/btnContinue"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/_48sdp"
-        style="@style/BigButton"
-        layout="@layout/loading_button"
-        android:layout_marginTop="@dimen/_20sdp"
-        app:layout_constraintTop_toBottomOf="@id/cgPropertyType"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

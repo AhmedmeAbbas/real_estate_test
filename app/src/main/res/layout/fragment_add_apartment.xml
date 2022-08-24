@@ -18,18 +18,6 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.DayNight"
         app:title="@string/add_apartment_title" />
 
-    <include
-        android:id="@+id/btnSubmitApartment"
-        layout="@layout/loading_button"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/_48sdp"
-        android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginEnd="@dimen/_10sdp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/svApartment"/>
-
     <androidx.core.widget.NestedScrollView
         android:id="@+id/svApartment"
         android:layout_width="match_parent"
@@ -1213,6 +1201,50 @@
                 app:layout_constraintTop_toBottomOf="@id/tvAddPhotos" />
 
             <TextView
+                android:id="@+id/tvAdditionalInfo"
+                style="@style/HeaderText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="@string/add_listing_additional_info"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/linePhotos" />
+
+            <EditText
+                android:id="@+id/etAdditionalInfo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@drawable/stroke_rect_background"
+                android:gravity="start"
+                android:hint="@string/add_listing_additional_info_hint"
+                android:inputType="textMultiLine"
+                android:maxLines="5"
+                android:minHeight="@dimen/_100sdp"
+                android:padding="@dimen/_5sdp"
+                android:scrollbars="vertical"
+                android:textColorHint="@color/hint_color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvAdditionalInfo" />
+
+            <include
+                android:id="@+id/lineAdditionalInfo"
+                layout="@layout/line"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/etAdditionalInfo" />
+
+            <TextView
                 android:id="@+id/tvPriceHeader"
                 style="@style/HeaderText"
                 android:layout_width="wrap_content"
@@ -1222,7 +1254,7 @@
                 android:text="@string/add_listing_price_header"
                 android:textStyle="normal"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/linePhotos" />
+                app:layout_constraintTop_toBottomOf="@id/lineAdditionalInfo" />
 
             <TextView
                 android:id="@+id/tvCurrency"
@@ -1409,4 +1441,16 @@
                 app:layout_constraintTop_toBottomOf="@id/etMonthlyInstallment" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <include
+        android:id="@+id/btnSubmitApartment"
+        layout="@layout/loading_button"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_48sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/svApartment" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -132,7 +132,9 @@
         <item quantity="one">One photo added</item>
         <item quantity="other">%1$d photos added</item>
     </plurals>
-    <string name="add_listing_photos_dialog_sub">Click a photo to add a photo from your device</string>
+    <string name="add_listing_photos_dialog_sub">Click an item below to add a photo from your device</string>
+    <string name="add_listing_additional_info">Additional information</string>
+    <string name="add_listing_additional_info_hint">This space is for the additional information you would like to share</string>
     <string name="add_listing_price_header">Price</string>
     <string name="add_listing_currency">Currency</string>
     <string name="add_listing_select_currency">Select currency</string>

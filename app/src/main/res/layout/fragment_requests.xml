@@ -8,7 +8,7 @@
         android:id="@+id/rvRequests"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineRequests"
@@ -28,27 +28,27 @@
 
     <TextView
         android:id="@+id/tvRequestsHeader"
+        style="@style/HeaderText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_16sdp"
         android:layout_marginStart="@dimen/_18sdp"
+        android:layout_marginTop="@dimen/_16sdp"
         android:layout_marginEnd="@dimen/_18sdp"
         android:text="@string/requests_header"
-        style="@style/HeaderText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivRequests" />
 
     <TextView
         android:id="@+id/tvRequestsSub"
+        style="@style/SubText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_18sdp"
-        android:layout_marginEnd="@dimen/_18sdp"
         android:layout_marginTop="@dimen/_6sdp"
+        android:layout_marginEnd="@dimen/_18sdp"
         android:text="@string/requests_sub"
-        style="@style/SubText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvRequestsHeader"/>
+        app:layout_constraintTop_toBottomOf="@+id/tvRequestsHeader" />
 </androidx.constraintlayout.widget.ConstraintLayout>

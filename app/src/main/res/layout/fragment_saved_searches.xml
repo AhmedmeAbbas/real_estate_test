@@ -8,7 +8,7 @@
         android:id="@+id/rvSavedSearches"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineSavedSearches"
@@ -28,41 +28,41 @@
 
     <TextView
         android:id="@+id/tvSavedSearchesHeader"
+        style="@style/HeaderText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_16sdp"
         android:layout_marginStart="@dimen/_18sdp"
+        android:layout_marginTop="@dimen/_16sdp"
         android:layout_marginEnd="@dimen/_18sdp"
         android:text="@string/saved_searches_header"
-        style="@style/HeaderText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivSavedSearches" />
 
     <TextView
         android:id="@+id/tvSavedSearchesSub"
+        style="@style/SubText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_18sdp"
-        android:layout_marginEnd="@dimen/_18sdp"
         android:layout_marginTop="@dimen/_6sdp"
+        android:layout_marginEnd="@dimen/_18sdp"
         android:text="@string/saved_searches_sub"
-        style="@style/SubText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvSavedSearchesHeader"/>
+        app:layout_constraintTop_toBottomOf="@+id/tvSavedSearchesHeader" />
 
     <TextView
         android:id="@+id/btnSavedSearchesSignIn"
+        style="@style/BigButton"
         android:layout_width="0dp"
         android:layout_height="@dimen/_48sdp"
         android:layout_marginTop="@dimen/_16sdp"
-        style="@style/BigButton"
         android:background="@drawable/ripple_round_primary"
         android:text="@string/go_to_search_page"
         android:textColor="?attr/colorTertiary"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvSavedSearchesSub"/>
+        app:layout_constraintTop_toBottomOf="@+id/tvSavedSearchesSub" />
 </androidx.constraintlayout.widget.ConstraintLayout>

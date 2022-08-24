@@ -8,64 +8,64 @@
         android:id="@+id/toolbarAddListingMain"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        app:title="@string/add_listing_title"
+        android:theme="@style/ThemeOverlay.AppCompat.DayNight.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/ic_back"
         app:navigationIconTint="?attr/colorSecondary"
-        android:theme="@style/ThemeOverlay.AppCompat.DayNight.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.DayNight"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:title="@string/add_listing_title" />
 
     <TextView
         android:id="@+id/tvListingOwner"
+        style="@style/HeaderText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_10sdp"
         android:text="@string/add_listing_advertiser"
-        style="@style/HeaderText"
         android:textStyle="normal"
-        app:layout_constraintTop_toBottomOf="@id/toolbarAddListingMain"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbarAddListingMain" />
 
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/cgListingOwner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_20sdp"
         android:layout_marginStart="@dimen/_50sdp"
+        android:layout_marginTop="@dimen/_20sdp"
         android:layout_marginEnd="@dimen/_50sdp"
-        app:singleSelection="true"
-        app:chipSpacingVertical="@dimen/_10sdp"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@id/tvListingOwner"
+        app:chipSpacingVertical="@dimen/_10sdp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/tvListingOwner"
+        app:singleSelection="true">
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipOwner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/ChipStyleFilter"
-                android:text="@string/add_listing_chip_owner"/>
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipOwner"
+            style="@style/ChipStyleFilter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/add_listing_chip_owner" />
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipBroker"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/ChipStyleFilter"
-                android:text="@string/add_listing_chip_broker"/>
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipBroker"
+            style="@style/ChipStyleFilter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/add_listing_chip_broker" />
     </com.google.android.material.chip.ChipGroup>
 
     <include
         android:id="@+id/btnContinue"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/_48sdp"
         style="@style/BigButton"
         layout="@layout/loading_button"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_48sdp"
         android:layout_marginTop="@dimen/_20sdp"
-        app:layout_constraintTop_toBottomOf="@id/cgListingOwner"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/cgListingOwner" />
 </androidx.constraintlayout.widget.ConstraintLayout>

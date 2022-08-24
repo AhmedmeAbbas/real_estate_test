@@ -49,38 +49,38 @@
             android:id="@+id/tvType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="@dimen/_5sdp"
-            android:paddingBottom="@dimen/_5sdp"
-            android:paddingStart="@dimen/_10sdp"
-            android:paddingEnd="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_5sdp"
             android:layout_marginStart="@dimen/_5sdp"
-            android:text="@string/listing_item_type"
-            android:textSize="@dimen/_12ssp"
+            android:layout_marginTop="@dimen/_5sdp"
             android:background="@drawable/ripple_round_transparent"
             android:elevation="@dimen/_2sdp"
-            app:layout_constraintTop_toBottomOf="@id/tvPrice"
+            android:paddingStart="@dimen/_10sdp"
+            android:paddingTop="@dimen/_5sdp"
+            android:paddingEnd="@dimen/_10sdp"
+            android:paddingBottom="@dimen/_5sdp"
+            android:text="@string/listing_item_type"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintBottom_toTopOf="@id/llDetails"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/llDetails"/>
+            app:layout_constraintTop_toBottomOf="@id/tvPrice" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/llDetails"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="@dimen/_5sdp"
-            android:paddingBottom="@dimen/_5sdp"
-            android:paddingStart="@dimen/_10sdp"
-            android:paddingEnd="@dimen/_10sdp"
             android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/_10sdp"
+            android:paddingTop="@dimen/_5sdp"
+            android:paddingEnd="@dimen/_10sdp"
+            android:paddingBottom="@dimen/_5sdp"
             app:layout_constraintTop_toBottomOf="@id/tvType">
 
             <TextView
                 android:id="@+id/tvFloors"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.25"
                 android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_weight="0.25"
                 android:text="@string/listing_item_floors"
                 android:textSize="@dimen/_12ssp" />
 
@@ -88,8 +88,8 @@
                 android:id="@+id/tvBedrooms"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.25"
                 android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_weight="0.25"
                 android:text="@string/listing_item_bedrooms"
                 android:textSize="@dimen/_12ssp" />
 
@@ -97,8 +97,8 @@
                 android:id="@+id/tvBathrooms"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.25"
                 android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_weight="0.25"
                 android:text="@string/listing_item_bathrooms"
                 android:textSize="@dimen/_12ssp" />
 

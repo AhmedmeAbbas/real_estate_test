@@ -27,28 +27,12 @@ class PropertyTypeFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setUpContinueButton()
-        updateButton(binding.cgPropertyType.checkedChipIds.isEmpty())
         setUpCheckedChipListener()
         setUpToolbar()
     }
 
     private fun setUpCheckedChipListener() {
-        binding.cgPropertyType.setOnCheckedStateChangeListener { _, checkedIds ->
-            updateButton(checkedIds.isEmpty())
-        }
-    }
-
-    private fun updateButton(isIdsEmpty: Boolean) {
-        val alpha = if (isIdsEmpty) 0.3F else 1.0F
-        binding.btnContinue.root.isEnabled = !isIdsEmpty
-        binding.btnContinue.root.alpha = alpha
-    }
-
-    private fun setUpContinueButton() {
-        binding.btnContinue.tvButton.text = getString(R.string.button_continue)
-
-        binding.btnContinue.root.setOnClickListener {
+        binding.cgPropertyType.setOnCheckedStateChangeListener { _, _ ->
             when (binding.cgPropertyType.checkedChipId) {
                 R.id.chipHouse -> {
                     Toast.makeText(requireContext(), "house", Toast.LENGTH_SHORT).show()
@@ -71,8 +55,9 @@ class PropertyTypeFragment: Fragment() {
                 R.id.chipFarm -> {
                     Toast.makeText(requireContext(), "farm", Toast.LENGTH_SHORT).show()
                 }
-                else -> binding.cgPropertyType.requestFocus()
+                else -> return@setOnCheckedStateChangeListener
             }
+            binding.cgPropertyType.clearCheck()
         }
     }
 
@@ -89,5 +74,9 @@ class PropertyTypeFragment: Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+    
+    companion object {
+        private const val TAG = "PropertyTypeFragment"
     }
 }

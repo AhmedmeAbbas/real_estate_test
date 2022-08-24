@@ -20,8 +20,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:fillViewport="true"
-        app:layout_constraintTop_toBottomOf="@id/toolbarCreateAccount"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbarCreateAccount">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -49,9 +49,9 @@
                 android:scrollbarSize="25dp"
                 android:scrollbarThumbHorizontal="@color/hint_color"
                 android:textColorHint="@color/hint_color"
-                app:hintTextColor="@color/hint_color"
                 app:boxStrokeWidth="0dp"
                 app:boxStrokeWidthFocused="0dp"
+                app:hintTextColor="@color/hint_color"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvCreateAccountHeader"
@@ -79,9 +79,9 @@
                 android:scrollbarSize="25dp"
                 android:scrollbarThumbHorizontal="@color/hint_color"
                 android:textColorHint="@color/hint_color"
-                app:hintTextColor="@color/hint_color"
                 app:boxStrokeWidth="0dp"
                 app:boxStrokeWidthFocused="0dp"
+                app:hintTextColor="@color/hint_color"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/emailCreateAccountTIL"
@@ -127,16 +127,16 @@
                 android:scrollbarSize="25dp"
                 android:scrollbarThumbHorizontal="@color/hint_color"
                 android:textColorHint="@color/hint_color"
-                app:hintTextColor="@color/hint_color"
                 app:boxStrokeWidth="0dp"
                 app:boxStrokeWidthFocused="0dp"
+                app:hintTextColor="@color/hint_color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvPasswordMinChars"
                 app:passwordToggleEnabled="true"
                 app:passwordToggleTint="@color/hint_color"
                 app:startIconDrawable="@drawable/ic_lock"
-                app:startIconTint="@color/hint_color"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvPasswordMinChars">
+                app:startIconTint="@color/hint_color">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etConfirmPasswordCreateAccount"
@@ -154,28 +154,28 @@
                 layout="@layout/loading_button"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_48sdp"
-                android:layout_marginTop="@dimen/_25sdp"
                 android:layout_marginStart="@dimen/_30sdp"
+                android:layout_marginTop="@dimen/_25sdp"
                 android:layout_marginEnd="@dimen/_30sdp"
-                app:layout_constraintTop_toBottomOf="@id/confirmPasswordCreateAccountTIL"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/confirmPasswordCreateAccountTIL" />
 
             <TextView
                 android:id="@+id/tvToSCreateAccount"
+                style="@style/SubText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_30sdp"
-                android:layout_marginBottom="@dimen/_30sdp"
                 android:layout_marginStart="@dimen/_30sdp"
+                android:layout_marginTop="@dimen/_30sdp"
                 android:layout_marginEnd="@dimen/_30sdp"
+                android:layout_marginBottom="@dimen/_30sdp"
                 android:text="@string/create_account_tos"
-                style="@style/SubText"
                 android:textSize="@dimen/_13ssp"
-                app:layout_constraintTop_toBottomOf="@id/btnCreateAccount"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@id/btnCreateAccount" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

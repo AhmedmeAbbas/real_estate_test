@@ -136,7 +136,9 @@
         <item quantity="many">تم إضافة %1$d صور</item>
         <item quantity="other">تم إضافة %1$d صور</item>
     </plurals>
-    <string name="add_listing_photos_dialog_sub">اضغط على إحدى الصور لتضيف صورة من جهازك</string>
+    <string name="add_listing_photos_dialog_sub">اضغط على أحد العناصر في الأسفل لتضيف صورة من جهازك</string>
+    <string name="add_listing_additional_info">معلومات إضافية</string>
+    <string name="add_listing_additional_info_hint">هذه المساحة مخصصة للمعلومات الإضافية التي تريد مشاركتها</string>
     <string name="add_listing_price_header">السعر</string>
     <string name="add_listing_currency">العملة</string>
     <string name="add_listing_select_currency">اختر العملة</string>

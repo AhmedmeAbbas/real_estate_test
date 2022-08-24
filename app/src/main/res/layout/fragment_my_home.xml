@@ -8,7 +8,7 @@
         android:id="@+id/rvMyHome"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineMyHome"
@@ -28,43 +28,43 @@
 
     <TextView
         android:id="@+id/tvMyHomeHeader"
+        style="@style/HeaderText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_16sdp"
         android:layout_marginStart="@dimen/_18sdp"
+        android:layout_marginTop="@dimen/_16sdp"
         android:layout_marginEnd="@dimen/_18sdp"
         android:text="@string/my_home_header"
-        style="@style/HeaderText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivMyHome" />
 
     <TextView
         android:id="@+id/tvMyHomeSub"
+        style="@style/SubText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_18sdp"
-        android:layout_marginEnd="@dimen/_18sdp"
         android:layout_marginTop="@dimen/_6sdp"
+        android:layout_marginEnd="@dimen/_18sdp"
         android:text="@string/my_home_sub"
-        style="@style/SubText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvMyHomeHeader"/>
+        app:layout_constraintTop_toBottomOf="@+id/tvMyHomeHeader" />
 
     <TextView
         android:id="@+id/btnMyHomeMain"
+        style="@style/BigButton"
         android:layout_width="0dp"
         android:layout_height="@dimen/_48sdp"
         android:layout_marginTop="@dimen/_16sdp"
-        style="@style/BigButton"
         android:background="@drawable/ripple_round_primary"
         android:text="@string/go_to_sign_in_page"
         android:textColor="?attr/colorTertiary"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvMyHomeSub"/>
+        app:layout_constraintTop_toBottomOf="@+id/tvMyHomeSub" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAddListing"
@@ -72,11 +72,11 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_10sdp"
         android:backgroundTint="?attr/colorPrimary"
-        app:backgroundTint="?attr/colorTertiary"
-        app:tint="?attr/colorTertiary"
-        app:borderWidth="@dimen/_2sdp"
-        app:srcCompat="@drawable/ic_add_listing"
         android:visibility="gone"
+        app:backgroundTint="?attr/colorTertiary"
+        app:borderWidth="@dimen/_2sdp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_add_listing"
+        app:tint="?attr/colorTertiary" />
 </androidx.constraintlayout.widget.ConstraintLayout>

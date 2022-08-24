@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarSignIn"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.DayNight.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/ic_close"
         app:navigationIconTint="?attr/colorSecondary"
-        android:theme="@style/ThemeOverlay.AppCompat.DayNight.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.DayNight"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:popupTheme="@style/ThemeOverlay.AppCompat.DayNight" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:fillViewport="true"
-        app:layout_constraintTop_toBottomOf="@id/toolbarSignIn"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbarSignIn">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -30,118 +30,118 @@
 
             <TextView
                 android:id="@+id/tvSignInHeader"
+                style="@style/HeaderText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_35sdp"
-                style="@style/HeaderText"
                 android:text="@string/sign_in_header"
                 android:textStyle="normal"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tvSignInSub"
+                style="@style/SubText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_6sdp"
-                style="@style/SubText"
                 android:text="@string/sign_in_sub"
-                app:layout_constraintTop_toBottomOf="@id/tvSignInHeader"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@id/tvSignInHeader" />
 
             <TextView
                 android:id="@+id/btnSignInEmail"
+                style="@style/SignInButton"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_48sdp"
                 android:layout_marginTop="@dimen/_40sdp"
-                style="@style/SignInButton"
                 android:background="@drawable/ripple_round_transparent"
+                android:elevation="@dimen/_4sdp"
+                android:text="@string/sign_in_email"
                 app:drawableStartCompat="@drawable/ic_mail_selected"
                 app:drawableTint="?attr/colorSecondary"
-                android:text="@string/sign_in_email"
-                android:elevation="@dimen/_4sdp"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvSignInSub"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvSignInSub" />
 
             <TextView
                 android:id="@+id/btnSignInFacebook"
+                style="@style/SignInButton"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_48sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                style="@style/SignInButton"
                 android:background="@drawable/ripple_round_transparent"
-                app:drawableStartCompat="@drawable/ic_facebook"
-                android:text="@string/sign_in_facebook"
                 android:elevation="@dimen/_4sdp"
+                android:text="@string/sign_in_facebook"
+                app:drawableStartCompat="@drawable/ic_facebook"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/btnSignInEmail" />
 
             <TextView
                 android:id="@+id/btnSignInGoogle"
+                style="@style/SignInButton"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_48sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                style="@style/SignInButton"
                 android:background="@drawable/ripple_round_transparent"
-                app:drawableStartCompat="@drawable/ic_google"
-                android:text="@string/sign_in_google"
                 android:elevation="@dimen/_4sdp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:text="@string/sign_in_google"
+                app:drawableStartCompat="@drawable/ic_google"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/btnSignInFacebook"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnSignInFacebook" />
 
             <TextView
                 android:id="@+id/line"
                 android:layout_width="0dp"
                 android:layout_height="2dp"
-                android:layout_marginTop="@dimen/_40sdp"
                 android:layout_marginStart="@dimen/_80sdp"
+                android:layout_marginTop="@dimen/_40sdp"
                 android:layout_marginEnd="@dimen/_80sdp"
                 android:background="@android:color/darker_gray"
-                app:layout_constraintTop_toBottomOf="@id/btnSignInGoogle"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@id/btnSignInGoogle" />
 
             <TextView
                 android:id="@+id/tvSignInOr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/_10sdp"
                 android:background="?attr/colorTertiary"
+                android:gravity="center"
+                android:padding="@dimen/_10sdp"
                 android:text="@string/or"
                 android:textSize="@dimen/_13ssp"
-                android:gravity="center"
-                app:layout_constraintStart_toStartOf="@id/line"
+                app:layout_constraintBottom_toBottomOf="@id/line"
                 app:layout_constraintEnd_toEndOf="@id/line"
-                app:layout_constraintTop_toTopOf="@id/line"
-                app:layout_constraintBottom_toBottomOf="@id/line"/>
+                app:layout_constraintStart_toStartOf="@id/line"
+                app:layout_constraintTop_toTopOf="@id/line" />
 
             <TextView
                 android:id="@+id/btnSignInCreateAccount"
+                style="@style/BigButton"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_48sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                style="@style/BigButton"
                 android:background="@drawable/ripple_round_transparent"
-                android:text="@string/sign_in_create_account"
                 android:elevation="@dimen/_4sdp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:text="@string/sign_in_create_account"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvSignInOr"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvSignInOr" />
 
             <TextView
                 android:id="@+id/tvToSSignIn"
                 style="@style/SubText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_30sdp"
-                android:layout_marginBottom="@dimen/_30sdp"
                 android:layout_marginStart="@dimen/_30sdp"
+                android:layout_marginTop="@dimen/_30sdp"
                 android:layout_marginEnd="@dimen/_30sdp"
+                android:layout_marginBottom="@dimen/_30sdp"
                 android:text="@string/sign_in_tos"
                 android:textSize="@dimen/_13ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -155,8 +155,8 @@
         android:id="@+id/clLoading"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/black"
         android:alpha="0.7"
+        android:background="@color/black"
         android:visibility="gone">
 
         <TextView
@@ -166,24 +166,24 @@
             android:text="@string/sign_in_loading"
             android:textColor="@color/white"
             android:textSize="@dimen/_20ssp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/guideline"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="@id/guideline"/>
+            app:layout_constraintStart_toStartOf="parent" />
 
         <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_5sdp"
             android:indeterminateTint="@color/white"
-            app:layout_constraintTop_toBottomOf="@id/guideline"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/guideline" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.5"/>
+            app:layout_constraintGuide_percent="0.5" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

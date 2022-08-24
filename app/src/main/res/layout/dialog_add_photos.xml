@@ -24,23 +24,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/_10sdp"
-        android:src="@drawable/ic_check"
-        android:visibility="gone"
-        android:foreground="?attr/selectableItemBackground"
         android:clickable="true"
         android:focusable="true"
-        app:layout_constraintTop_toTopOf="parent"
+        android:foreground="?attr/selectableItemBackground"
+        android:src="@drawable/ic_check"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/toolbarAddPhotos"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/toolbarAddPhotos"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvAddPhotosDialogSub"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
         android:text="@string/add_listing_photos_dialog_sub"
-        android:textColor="@color/hint_color"
         android:textSize="@dimen/_13ssp"
         app:layout_constraintTop_toBottomOf="@id/toolbarAddPhotos" />
 
@@ -48,9 +47,10 @@
         android:id="@+id/tvPermissionDenied"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
         android:text="@string/permission_photos"
+        android:textColor="@color/red"
         android:textSize="@dimen/_13ssp"
         android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@id/tvAddPhotosDialogSub" />
@@ -61,8 +61,8 @@
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/_10sdp"
         android:padding="@dimen/_10sdp"
-        app:layout_constraintTop_toBottomOf="@id/tvPermissionDenied"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvPermissionDenied"
         app:layout_goneMarginTop="@dimen/_10sdp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -71,56 +71,68 @@
 
             <ImageView
                 android:id="@+id/ivPhoto1"
-                android:layout_width="match_parent"
+                android:layout_width="@dimen/_200sdp"
                 android:layout_height="@dimen/_200sdp"
                 android:background="?attr/colorOnBackground"
                 android:elevation="@dimen/_2sdp"
-                android:scaleType="fitXY"
+                android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_goneMarginTop="@dimen/_10sdp" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/ivPhoto2"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_200sdp"
+                android:layout_width="@dimen/_150sdp"
+                android:layout_height="@dimen/_150sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:scaleType="fitXY"
+                android:layout_marginEnd="@dimen/_5sdp"
                 android:background="?attr/colorOnBackground"
                 android:elevation="@dimen/_2sdp"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toStartOf="@id/ivPhoto3"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/ivPhoto1"
                 app:layout_goneMarginTop="@dimen/_10sdp" />
 
             <ImageView
                 android:id="@+id/ivPhoto3"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_200sdp"
+                android:layout_width="@dimen/_150sdp"
+                android:layout_height="@dimen/_150sdp"
+                android:layout_marginStart="@dimen/_5sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:scaleType="fitXY"
                 android:background="?attr/colorOnBackground"
                 android:elevation="@dimen/_2sdp"
-                app:layout_constraintTop_toBottomOf="@id/ivPhoto2" />
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ivPhoto2"
+                app:layout_constraintTop_toBottomOf="@id/ivPhoto1"
+                app:layout_goneMarginTop="@dimen/_10sdp" />
 
             <ImageView
                 android:id="@+id/ivPhoto4"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_200sdp"
+                android:layout_width="@dimen/_150sdp"
+                android:layout_height="@dimen/_150sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:scaleType="fitXY"
+                android:layout_marginEnd="@dimen/_5sdp"
                 android:background="?attr/colorOnBackground"
                 android:elevation="@dimen/_2sdp"
-                app:layout_constraintTop_toBottomOf="@id/ivPhoto3" />
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toStartOf="@id/ivPhoto5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ivPhoto2" />
 
             <ImageView
                 android:id="@+id/ivPhoto5"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_200sdp"
+                android:layout_width="@dimen/_150sdp"
+                android:layout_height="@dimen/_150sdp"
+                android:layout_marginStart="@dimen/_5sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:scaleType="fitXY"
                 android:background="?attr/colorOnBackground"
                 android:elevation="@dimen/_2sdp"
-                app:layout_constraintTop_toBottomOf="@id/ivPhoto4" />
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ivPhoto4"
+                app:layout_constraintTop_toBottomOf="@id/ivPhoto3" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
