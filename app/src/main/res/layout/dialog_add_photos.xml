@@ -69,6 +69,20 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <TextView
+                android:id="@+id/tvMainPhoto"
+                android:layout_width="@dimen/_200sdp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_5sdp"
+                android:background="@drawable/secondary_to_transparent"
+                android:text="@string/add_listing_photos_main_photo"
+                android:textColor="?attr/colorTertiary"
+                android:textSize="@dimen/_12ssp"
+                android:gravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
             <ImageView
                 android:id="@+id/ivPhoto1"
                 android:layout_width="@dimen/_200sdp"
@@ -78,7 +92,7 @@
                 android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/tvMainPhoto" />
 
             <ImageView
                 android:id="@+id/ivPhoto2"

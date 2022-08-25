@@ -14,7 +14,7 @@
         android:label="SavedFragment" />
     <fragment
         android:id="@+id/myListingsFragment"
-        android:name="gmail.ahmedmeabbas.realestateapp.myListings.presentation.MyListingsFragment"
+        android:name="gmail.ahmedmeabbas.realestateapp.mylistings.presentation.MyListingsFragment"
         android:label="MyHomeFragment" >
         <action
             android:id="@+id/action_myListingsFragment_to_addListingGraph"
@@ -213,28 +213,27 @@
             android:name="gmail.ahmedmeabbas.realestateapp.listings.presentation.addlisting.PropertyTypeFragment"
             android:label="PropertyTypeFragment" >
             <action
-                android:id="@+id/action_propertyTypeFragment_to_addListingFragment"
-                app:destination="@id/addListingFragment"
-                app:enterAnim="@anim/slide_in_end"
-                app:exitAnim="@anim/slide_out_start"
-                app:popEnterAnim="@anim/slide_in_start"
-                app:popExitAnim="@anim/slide_out_end"/>
-            <action
                 android:id="@+id/action_propertyTypeFragment_to_addApartmentFragment"
                 app:destination="@id/addApartmentFragment"
                 app:enterAnim="@anim/slide_in_end"
                 app:exitAnim="@anim/slide_out_start"
                 app:popEnterAnim="@anim/slide_in_start"
                 app:popExitAnim="@anim/slide_out_end"/>
-        </fragment>
-        <fragment
-            android:id="@+id/addListingFragment"
-            android:name="gmail.ahmedmeabbas.realestateapp.listings.presentation.addlisting.AddListingFragment"
-            android:label="AddListingFragment">
+            <action
+                android:id="@+id/action_propertyTypeFragment_to_addHouseFragment"
+                app:destination="@id/addHouseFragment"
+                app:enterAnim="@anim/slide_in_end"
+                app:exitAnim="@anim/slide_out_start"
+                app:popEnterAnim="@anim/slide_in_start"
+                app:popExitAnim="@anim/slide_out_end"/>
         </fragment>
         <fragment
             android:id="@+id/addApartmentFragment"
             android:name="gmail.ahmedmeabbas.realestateapp.listings.presentation.addlisting.AddApartmentFragment"
             android:label="AddApartmentFragment" />
+        <fragment
+            android:id="@+id/addHouseFragment"
+            android:name="gmail.ahmedmeabbas.realestateapp.listings.presentation.addlisting.AddHouseFragment"
+            android:label="AddHouseOrBuildingFragment" />
     </navigation>
 </navigation>

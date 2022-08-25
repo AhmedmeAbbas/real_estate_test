@@ -116,7 +116,7 @@
     <string name="add_listing_broker_acknowledgement">By selecting "Broker" you acknowledge that you have permission from the property\'s owner to advertise their property on our platform and talk to potential buyers on the owner\'s behalf. Not adhering to this term will make you subject to legal accountability in the future</string>
     <string name="add_listing_phone_number">Phone\nnumber</string>
     <string name="add_listing_email">Email</string>
-    <string name="add_listing_email_hint">Optional</string>
+    <string name="add_listing_optional">Optional</string>
     <string name="add_listing_property_address">Property address</string>
     <string name="add_listing_city">City</string>
     <string name="add_listing_city_spinner">Select city</string>
@@ -133,6 +133,7 @@
         <item quantity="other">%1$d photos added</item>
     </plurals>
     <string name="add_listing_photos_dialog_sub">Click an item below to add a photo from your device</string>
+    <string name="add_listing_photos_main_photo">Main photo</string>
     <string name="add_listing_additional_info">Additional information</string>
     <string name="add_listing_additional_info_hint">This space is for the additional information you would like to share</string>
     <string name="add_listing_price_header">Price</string>
@@ -140,13 +141,18 @@
     <string name="add_listing_select_currency">Select currency</string>
     <string name="add_listing_currency_usd">USD</string>
     <string name="add_listing_currency_sdg">SDG</string>
-    <string name="add_listing_price">Price%1$s</string>
+    <string name="add_listing_price">Price</string>
     <string name="add_listing_installments">Monthly installments</string>
-    <string name="add_listing_down_payment">Down\npayment%1$s</string>
-    <string name="add_listing_monthly_installment">Monthly\ninstallment%1$s</string>
-    <string name="add_listing_installment_period">Installment\nperiod\n(month)</string>
+    <string name="add_listing_down_payment">Down\npayment</string>
+    <string name="add_listing_monthly_installment">Monthly\ninstallment</string>
+    <string name="add_listing_installment_period">Installment\nperiod</string>
     <string name="add_listing_submit">Submit listing</string>
     <string name="none">None</string>
+    <string name="add_listing_m2_suffix">m\u00B2</string>
+    <string name="add_listing_acres_suffix">acres</string>
+    <string name="add_listing_usd_prefix">$</string>
+    <string name="add_listing_sdg_suffix">SDG</string>
+    <string name="add_listing_month_suffix">Month</string>
 
     <!-- Property types -->
     <string name="property_type_title">Property type</string>
@@ -162,13 +168,13 @@
     <!-- Add apartment fragment -->
     <string name="add_apartment_title">Add your apartment</string>
     <string name="add_apartment_details">Apartment details</string>
-    <string name="add_apartment_area_header">Area (m\u00B2)</string>
-    <string name="add_apartment_bedrooms_header">Bedrooms</string>
-    <string name="add_apartment_bathrooms_header">Bathrooms</string>
-    <string name="add_apartment_kitchen_header">Kitchen</string>
-    <string name="add_apartment_living_rooms_header">Living room</string>
-    <string name="add_apartment_balcony_header">Balcony</string>
-    <string name="add_apartment_floor_header">Floor</string>
+    <string name="add_apartment_area">Area (m\u00B2)</string>
+    <string name="add_apartment_bedrooms">Bedrooms</string>
+    <string name="add_apartment_bathrooms">Bathrooms</string>
+    <string name="add_apartment_kitchen">Kitchen</string>
+    <string name="add_apartment_living_rooms">Living room</string>
+    <string name="add_apartment_balcony">Balcony</string>
+    <string name="add_apartment_floor">Floor</string>
     <string name="add_apartment_floor_ground">Ground</string>
     <string name="add_apartment_floor_number">Floor number</string>
     <string name="add_apartment_apartment_details_more_hint">If you have more information about your apartment details you can add it here</string>
@@ -188,6 +194,35 @@
     <string name="add_apartment_backup_generator">Backup generator</string>
     <string name="add_apartment_security">Security</string>
     <string name="add_apartment_utilities_more_hint">If you have more information about utilities you can add it here</string>
+
+    <!-- Add house fragment -->
+    <string name="add_house_title">Add your house</string>
+    <string name="add_house_construction_details">Construction details</string>
+    <string name="add_house_area_lot">Lot area</string>
+    <string name="add_house_area_built">Built area</string>
+    <string name="add_house_year_built">Year built</string>
+    <string name="add_house_structure_type">Structure type</string>
+    <string name="add_house_rc_frame">RC Frame</string>
+    <string name="add_house_loadbearing">Loadbearing</string>
+    <string name="add_house_finishing">Finishing</string>
+    <string name="add_house_finished">Finished</string>
+    <string name="add_house_partially_finished">Partially finished</string>
+    <string name="add_house_unfinished">Unfinished</string>
+    <string name="add_house_house_details">House details</string>
+    <string name="add_house_bedrooms">Number of\nbedrooms</string>
+    <string name="add_house_bathrooms">Number of\nbathrooms</string>
+    <string name="add_house_kitchens">Number of\nkitchens</string>
+    <string name="add_house_halls">Number of\nhalls</string>
+    <string name="add_house_floors">Number of\nfloors</string>
+    <string name="add_house_apartments">Are there apartments in the upper floors?</string>
+    <string name="add_house_apartments_number">Number of\napartments</string>
+    <string name="add_house_garage">Car garage</string>
+    <string name="add_house_number_cars">Number of\ncars</string>
+    <string name="add_house_cars_suffix">Cars</string>
+    <string name="add_house_house_details_more_hint">If you have more information about your house details you can add it here</string>
+    <string name="add_house_utilities">Utilities</string>
+    <string name="add_house_electricity">Electricity</string>
+    <string name="add_house_water">Water</string>
 
     <!-- Inbox fragment -->
     <string name="chats_tab">Chats</string>

@@ -10,7 +10,7 @@
         android:id="@+id/clNetwork"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorSecondary"
+        android:background="@drawable/secondary_to_transparent"
         android:paddingTop="@dimen/_5sdp"
         android:paddingBottom="@dimen/_5sdp"
         android:visibility="visible"

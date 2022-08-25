@@ -6,7 +6,7 @@
     android:paddingBottom="@dimen/_5sdp">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbarAddApartment"
+        android:id="@+id/toolbarAddHouse"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:theme="@style/ThemeOverlay.AppCompat.DayNight.ActionBar"
@@ -16,16 +16,16 @@
         app:navigationIcon="@drawable/ic_back"
         app:navigationIconTint="?attr/colorSecondary"
         app:popupTheme="@style/ThemeOverlay.AppCompat.DayNight"
-        app:title="@string/add_apartment_title" />
+        app:title="@string/add_house_title" />
 
     <androidx.core.widget.NestedScrollView
-        android:id="@+id/svApartment"
+        android:id="@+id/svHouse"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:fillViewport="true"
         android:paddingBottom="@dimen/_10sdp"
-        app:layout_constraintBottom_toTopOf="@id/btnSubmitApartment"
-        app:layout_constraintTop_toBottomOf="@id/toolbarAddApartment">
+        app:layout_constraintBottom_toTopOf="@id/btnSubmitHouse"
+        app:layout_constraintTop_toBottomOf="@id/toolbarAddHouse">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -105,25 +105,30 @@
                 android:layout_marginEnd="@dimen/_10sdp"
                 android:text="@string/add_listing_phone_number"
                 android:textSize="@dimen/_13ssp"
-                app:layout_constraintBottom_toBottomOf="@id/etPhoneNumber"
+                app:layout_constraintBottom_toBottomOf="@id/phoneNumberTIL"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/etPhoneNumber" />
+                app:layout_constraintTop_toTopOf="@id/phoneNumberTIL" />
 
-            <EditText
-                android:id="@+id/etPhoneNumber"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/phoneNumberTIL"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_40sdp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_100sdp"
                 android:layout_marginTop="@dimen/_15sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
-                android:background="@drawable/stroke_rect_background"
-                android:inputType="phone"
-                android:paddingStart="@dimen/_10sdp"
-                android:paddingEnd="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvAdvertiserAcknowledgement"
-                app:layout_goneMarginTop="@dimen/_15sdp" />
+                app:layout_constraintTop_toBottomOf="@id/tvAdvertiserAcknowledgement">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etPhoneNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:imeOptions="actionNext"
+                    android:inputType="phone"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/tvEmail"
@@ -133,50 +138,48 @@
                 android:layout_marginEnd="@dimen/_10sdp"
                 android:text="@string/add_listing_email"
                 android:textSize="@dimen/_13ssp"
-                app:layout_constraintBottom_toBottomOf="@id/etEmail"
+                app:layout_constraintBottom_toBottomOf="@id/emailTIL"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/etEmail" />
+                app:layout_constraintTop_toTopOf="@id/emailTIL" />
 
-            <EditText
-                android:id="@+id/etEmail"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/emailTIL"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_40sdp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_100sdp"
                 android:layout_marginTop="@dimen/_15sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
-                android:background="@drawable/stroke_rect_background"
-                android:hint="@string/add_listing_optional"
-                android:inputType="textEmailAddress"
-                android:paddingStart="@dimen/_10sdp"
-                android:paddingEnd="@dimen/_10sdp"
-                android:textColorHint="@color/hint_color"
+                app:helperText="@string/add_listing_optional"
+                app:helperTextTextColor="@color/hint_color"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/etPhoneNumber" />
+                app:layout_constraintTop_toBottomOf="@id/phoneNumberTIL">
 
-            <include
-                android:id="@+id/lineAdvertiserInfo"
-                layout="@layout/line"
-                android:layout_width="0dp"
-                android:layout_height="2dp"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/etEmail" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:imeOptions="actionNext"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/tvPropertyAddress"
                 style="@style/HeaderText"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@drawable/top_line_background"
+                android:gravity="start"
+                android:paddingTop="@dimen/_10sdp"
                 android:text="@string/add_listing_property_address"
                 android:textStyle="normal"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/lineAdvertiserInfo" />
+                app:layout_constraintTop_toBottomOf="@id/emailTIL" />
 
             <TextView
                 android:id="@+id/tvCity"
@@ -195,7 +198,7 @@
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_40sdp"
                 android:layout_marginStart="@dimen/_100sdp"
-                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_20sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
                 android:background="?attr/colorOnBackground"
                 android:elevation="@dimen/_2sdp"
@@ -245,24 +248,30 @@
                 android:layout_marginEnd="@dimen/_10sdp"
                 android:text="@string/add_listing_block"
                 android:textSize="@dimen/_13ssp"
-                app:layout_constraintBottom_toBottomOf="@id/etBlock"
+                app:layout_constraintBottom_toBottomOf="@id/blockTIL"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/etBlock" />
+                app:layout_constraintTop_toTopOf="@id/blockTIL" />
 
-            <EditText
-                android:id="@+id/etBlock"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/blockTIL"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_40sdp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_100sdp"
                 android:layout_marginTop="@dimen/_15sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
-                android:background="@drawable/stroke_rect_background"
-                android:inputType="number"
-                android:paddingStart="@dimen/_10sdp"
-                android:paddingEnd="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvSelectRegion" />
+                app:layout_constraintTop_toBottomOf="@id/tvSelectRegion">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etBlock"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/tvPropertyNumber"
@@ -272,460 +281,190 @@
                 android:layout_marginEnd="@dimen/_10sdp"
                 android:text="@string/add_listing_property_number"
                 android:textSize="@dimen/_13ssp"
-                app:layout_constraintBottom_toBottomOf="@id/etPropertyNumber"
+                app:layout_constraintBottom_toBottomOf="@id/propertyNumberTIL"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/etPropertyNumber" />
+                app:layout_constraintTop_toTopOf="@id/propertyNumberTIL" />
 
-            <EditText
-                android:id="@+id/etPropertyNumber"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/propertyNumberTIL"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_40sdp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_100sdp"
                 android:layout_marginTop="@dimen/_15sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
-                android:background="@drawable/stroke_rect_background"
-                android:inputType="number"
-                android:paddingStart="@dimen/_10sdp"
-                android:paddingEnd="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/etBlock" />
+                app:layout_constraintTop_toBottomOf="@id/blockTIL">
 
-            <include
-                android:id="@+id/linePropertyAddress"
-                layout="@layout/line"
-                android:layout_width="0dp"
-                android:layout_height="2dp"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etPropertyNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/tvConstructionDetails"
+                style="@style/HeaderText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_20sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/etPropertyNumber" />
-
-            <TextView
-                android:id="@+id/tvApartmentDetails"
-                style="@style/HeaderText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:text="@string/add_apartment_details"
-                android:textStyle="normal"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/linePropertyAddress" />
-
-            <TextView
-                android:id="@+id/tvArea"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_15sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:text="@string/add_apartment_area"
-                android:textSize="@dimen/_13ssp"
-                app:layout_constraintBottom_toBottomOf="@id/etArea"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/etArea" />
-
-            <EditText
-                android:id="@+id/etArea"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/_40sdp"
-                android:layout_marginStart="@dimen/_100sdp"
-                android:layout_marginTop="@dimen/_15sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:background="@drawable/stroke_rect_background"
-                android:inputType="numberDecimal"
-                android:paddingStart="@dimen/_10sdp"
-                android:paddingEnd="@dimen/_10sdp"
-                android:textColorHint="@color/hint_color"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvApartmentDetails" />
-
-            <TextView
-                android:id="@+id/tvBedrooms"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_15sdp"
-                android:layout_marginTop="@dimen/_15sdp"
-                android:text="@string/add_apartment_bedrooms"
-                android:textSize="@dimen/_13ssp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/etArea" />
-
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/cgBedrooms"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_20sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvBedrooms"
-                app:singleSelection="true">
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipBedroomsNone"
-                    style="@style/ChipStyleRound"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/none" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipBedrooms1"
-                    style="@style/ChipStyleRound"
-                    android:layout_width="@dimen/_50sdp"
-                    android:layout_height="wrap_content"
-                    android:text="1" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipBedrooms2"
-                    style="@style/ChipStyleRound"
-                    android:layout_width="@dimen/_50sdp"
-                    android:layout_height="wrap_content"
-                    android:text="2" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipBedrooms3"
-                    style="@style/ChipStyleRound"
-                    android:layout_width="@dimen/_50sdp"
-                    android:layout_height="wrap_content"
-                    android:text="3" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipBedrooms4"
-                    style="@style/ChipStyleRound"
-                    android:layout_width="@dimen/_50sdp"
-                    android:layout_height="wrap_content"
-                    android:text="4" />
-            </com.google.android.material.chip.ChipGroup>
-
-            <TextView
-                android:id="@+id/tvBathrooms"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_15sdp"
-                android:layout_marginTop="@dimen/_15sdp"
-                android:text="@string/add_apartment_bathrooms"
-                android:textSize="@dimen/_13ssp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cgBedrooms" />
-
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/cgBathrooms"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_20sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvBathrooms"
-                app:singleSelection="true">
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipBathroomsNone"
-                    style="@style/ChipStyleRound"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/none" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipBathrooms1"
-                    style="@style/ChipStyleRound"
-                    android:layout_width="@dimen/_50sdp"
-                    android:layout_height="wrap_content"
-                    android:text="1" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipBathrooms2"
-                    style="@style/ChipStyleRound"
-                    android:layout_width="@dimen/_50sdp"
-                    android:layout_height="wrap_content"
-                    android:text="2" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipBathrooms3"
-                    style="@style/ChipStyleRound"
-                    android:layout_width="@dimen/_50sdp"
-                    android:layout_height="wrap_content"
-                    android:text="3" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipBathrooms4"
-                    style="@style/ChipStyleRound"
-                    android:layout_width="@dimen/_50sdp"
-                    android:layout_height="wrap_content"
-                    android:text="4" />
-            </com.google.android.material.chip.ChipGroup>
-
-            <TextView
-                android:id="@+id/tvKitchen"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_15sdp"
-                android:layout_marginTop="@dimen/_15sdp"
-                android:text="@string/add_apartment_kitchen"
-                android:textSize="@dimen/_13ssp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cgBathrooms" />
-
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/cgKitchen"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_20sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvKitchen"
-                app:singleSelection="true">
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipKitchenYes"
-                    style="@style/ChipStyleRect"
-                    android:layout_width="@dimen/_120sdp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:text="@string/yes" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipKitchenNo"
-                    style="@style/ChipStyleRect"
-                    android:layout_width="@dimen/_120sdp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:text="@string/no" />
-            </com.google.android.material.chip.ChipGroup>
-
-            <TextView
-                android:id="@+id/tvLivingRoom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_15sdp"
-                android:layout_marginTop="@dimen/_15sdp"
-                android:text="@string/add_apartment_living_rooms"
-                android:textSize="@dimen/_13ssp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cgKitchen" />
-
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/cgLivingRoom"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_20sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvLivingRoom"
-                app:singleSelection="true">
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipLivingRoomYes"
-                    style="@style/ChipStyleRect"
-                    android:layout_width="@dimen/_120sdp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:text="@string/yes" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipLivingRoomNo"
-                    style="@style/ChipStyleRect"
-                    android:layout_width="@dimen/_120sdp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:text="@string/no" />
-            </com.google.android.material.chip.ChipGroup>
-
-            <TextView
-                android:id="@+id/tvBalcony"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_15sdp"
-                android:layout_marginTop="@dimen/_15sdp"
-                android:text="@string/add_apartment_balcony"
-                android:textSize="@dimen/_13ssp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cgLivingRoom" />
-
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/cgBalcony"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_20sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvBalcony"
-                app:singleSelection="true">
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipBalconyYes"
-                    style="@style/ChipStyleRect"
-                    android:layout_width="@dimen/_120sdp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:text="@string/yes" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipBalconyNo"
-                    style="@style/ChipStyleRect"
-                    android:layout_width="@dimen/_120sdp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:text="@string/no" />
-            </com.google.android.material.chip.ChipGroup>
-
-            <TextView
-                android:id="@+id/tvFloor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_15sdp"
-                android:layout_marginTop="@dimen/_15sdp"
-                android:text="@string/add_apartment_floor"
-                android:textSize="@dimen/_13ssp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cgBalcony" />
-
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/cgFloor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_20sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvFloor"
-                app:singleSelection="true">
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipFloorGround"
-                    style="@style/ChipStyleRound"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/add_apartment_floor_ground" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipFloor1"
-                    style="@style/ChipStyleRound"
-                    android:layout_width="@dimen/_50sdp"
-                    android:layout_height="wrap_content"
-                    android:text="1" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipFloor2"
-                    style="@style/ChipStyleRound"
-                    android:layout_width="@dimen/_50sdp"
-                    android:layout_height="wrap_content"
-                    android:text="2" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipFloor3"
-                    style="@style/ChipStyleRound"
-                    android:layout_width="@dimen/_50sdp"
-                    android:layout_height="wrap_content"
-                    android:text="3" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipFloor4"
-                    style="@style/ChipStyleRound"
-                    android:layout_width="@dimen/_50sdp"
-                    android:layout_height="wrap_content"
-                    android:text="4" />
-            </com.google.android.material.chip.ChipGroup>
-
-            <TextView
-                android:id="@+id/tvFloorOther"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_15sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:text="@string/other"
-                android:textSize="@dimen/_13ssp"
-                app:layout_constraintBottom_toBottomOf="@id/etFloorNumber"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/etFloorNumber" />
-
-            <EditText
-                android:id="@+id/etFloorNumber"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/_40sdp"
-                android:layout_marginStart="@dimen/_100sdp"
-                android:layout_marginTop="@dimen/_15sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:background="@drawable/stroke_rect_background"
-                android:hint="@string/add_apartment_floor_number"
-                android:inputType="number"
-                android:paddingStart="@dimen/_10sdp"
-                android:paddingEnd="@dimen/_10sdp"
-                android:textColorHint="@color/hint_color"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cgFloor" />
-
-            <TextView
-                android:id="@+id/tvApartmentDetailsMore"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_15sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:text="@string/add_listing_more_info"
-                android:textSize="@dimen/_13ssp"
-                app:layout_constraintBottom_toBottomOf="@id/etApartmentDetailsMore"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/etApartmentDetailsMore" />
-
-            <EditText
-                android:id="@+id/etApartmentDetailsMore"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_100sdp"
-                android:layout_marginTop="@dimen/_15sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:background="@drawable/stroke_rect_background"
+                android:background="@drawable/top_line_background"
                 android:gravity="start"
-                android:hint="@string/add_apartment_apartment_details_more_hint"
-                android:inputType="textMultiLine"
-                android:maxLines="5"
-                android:minHeight="@dimen/_100sdp"
-                android:padding="@dimen/_5sdp"
-                android:paddingStart="@dimen/_5sdp"
-                android:paddingEnd="@dimen/_5sdp"
-                android:scrollbars="vertical"
-                android:textColorHint="@color/hint_color"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:paddingTop="@dimen/_10sdp"
+                android:text="@string/add_house_construction_details"
+                android:textStyle="normal"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/etFloorNumber" />
+                app:layout_constraintTop_toBottomOf="@id/propertyNumberTIL" />
 
-            <include
-                android:id="@+id/lineApartmentDetails"
-                layout="@layout/line"
+            <TextView
+                android:id="@+id/tvLotArea"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:gravity="center"
+                android:text="@string/add_house_area_lot"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintBottom_toBottomOf="@id/lotAreaTIL"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/lotAreaTIL" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/lotAreaTIL"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
-                android:layout_height="2dp"
-                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_100sdp"
                 android:layout_marginTop="@dimen/_20sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/etApartmentDetailsMore" />
+                app:layout_constraintTop_toBottomOf="@id/tvConstructionDetails"
+                app:suffixText="@string/add_listing_m2_suffix">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etLotArea"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:imeOptions="actionNext"
+                    android:inputType="numberDecimal"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
-                android:id="@+id/tvFinishingAndFurniture"
-                style="@style/HeaderText"
+                android:id="@+id/tvBuiltArea"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:text="@string/add_apartment_finishing_and_furniture"
-                android:textStyle="normal"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:gravity="center"
+                android:text="@string/add_house_area_built"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintBottom_toBottomOf="@id/builtAreaTIL"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/lineApartmentDetails" />
+                app:layout_constraintTop_toTopOf="@id/builtAreaTIL" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/builtAreaTIL"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_100sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/lotAreaTIL"
+                app:suffixText="@string/add_listing_m2_suffix">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etBuiltArea"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:imeOptions="actionNext"
+                    android:inputType="numberDecimal"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/tvYearBuilt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:gravity="center"
+                android:text="@string/add_house_year_built"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintBottom_toBottomOf="@id/yearBuiltTIL"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/yearBuiltTIL" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/yearBuiltTIL"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_100sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/builtAreaTIL">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etYearBuilt"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/tvStructureType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:text="@string/add_house_structure_type"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/yearBuiltTIL" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/cgStructureType"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvStructureType"
+                app:singleSelection="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipRCFrame"
+                    style="@style/ChipStyleRect"
+                    android:layout_width="@dimen/_120sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:text="@string/add_house_rc_frame" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipLoadbearing"
+                    style="@style/ChipStyleRect"
+                    android:layout_width="@dimen/_120sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:text="@string/add_house_loadbearing" />
+            </com.google.android.material.chip.ChipGroup>
 
             <TextView
                 android:id="@+id/tvFinishing"
@@ -733,18 +472,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_15sdp"
                 android:layout_marginTop="@dimen/_15sdp"
-                android:text="@string/add_apartment_finishing"
+                android:text="@string/add_house_finishing"
                 android:textSize="@dimen/_13ssp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvFinishingAndFurniture" />
+                app:layout_constraintTop_toBottomOf="@id/cgStructureType" />
 
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/cgFinishing"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_20sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvFinishing"
@@ -753,33 +491,299 @@
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipFinished"
                     style="@style/ChipStyleRect"
-                    android:layout_width="@dimen/_120sdp"
+                    android:layout_width="@dimen/_80sdp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:text="@string/add_apartment_finished" />
+                    android:text="@string/add_house_finished" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipPartiallyFinished"
+                    style="@style/ChipStyleRect"
+                    android:layout_width="@dimen/_115sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:text="@string/add_house_partially_finished" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipUnfinished"
                     style="@style/ChipStyleRect"
-                    android:layout_width="@dimen/_120sdp"
+                    android:layout_width="@dimen/_80sdp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:text="@string/add_apartment_unfinished" />
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:text="@string/add_house_unfinished" />
             </com.google.android.material.chip.ChipGroup>
 
             <TextView
-                android:id="@+id/tvFurniture"
+                android:id="@+id/tvHouseDetails"
+                style="@style/HeaderText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@drawable/top_line_background"
+                android:gravity="start"
+                android:paddingTop="@dimen/_10sdp"
+                android:text="@string/add_house_house_details"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cgFinishing" />
+
+            <TextView
+                android:id="@+id/tvBedrooms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:text="@string/add_house_bedrooms"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintBottom_toBottomOf="@id/bedroomsTIL"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/bedroomsTIL" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/bedroomsTIL"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_100sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvHouseDetails">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etBedrooms"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/tvBathrooms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:text="@string/add_house_bathrooms"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintBottom_toBottomOf="@id/bathroomsTIL"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/bathroomsTIL" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/bathroomsTIL"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_100sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bedroomsTIL">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etBathrooms"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/tvKitchens"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:text="@string/add_house_kitchens"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintBottom_toBottomOf="@id/kitchensTIL"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/kitchensTIL" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/kitchensTIL"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_100sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bathroomsTIL">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etKitchens"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:imeOptions="actionNext"
+                    android:inputType="numberDecimal"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/tvHalls"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:text="@string/add_house_halls"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintBottom_toBottomOf="@id/hallsTIL"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/hallsTIL" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/hallsTIL"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_100sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/kitchensTIL">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etHalls"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:imeOptions="actionNext"
+                    android:inputType="numberDecimal"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/tvFloors"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:text="@string/add_house_floors"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintBottom_toBottomOf="@id/floorsTIL"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/floorsTIL" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/floorsTIL"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_100sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/hallsTIL">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etFloors"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:imeOptions="actionNext"
+                    android:inputType="numberDecimal"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/tvApartments"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_15sdp"
                 android:layout_marginTop="@dimen/_15sdp"
-                android:text="@string/add_apartment_furniture"
+                android:text="@string/add_house_apartments"
                 android:textSize="@dimen/_13ssp"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cgFinishing" />
+                app:layout_constraintTop_toBottomOf="@id/floorsTIL" />
 
             <com.google.android.material.chip.ChipGroup
-                android:id="@+id/cgFurniture"
+                android:id="@+id/cgApartments"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvApartments"
+                app:singleSelection="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipApartmentsYes"
+                    style="@style/ChipStyleRect"
+                    android:layout_width="@dimen/_120sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:text="@string/yes" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipApartmentsNo"
+                    style="@style/ChipStyleRect"
+                    android:layout_width="@dimen/_120sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:text="@string/no" />
+            </com.google.android.material.chip.ChipGroup>
+
+            <TextView
+                android:id="@+id/tvNumberApartments"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:text="@string/add_house_apartments_number"
+                android:textSize="@dimen/_13ssp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/numberApartmentsTIL"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/numberApartmentsTIL" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/numberApartmentsTIL"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_100sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cgApartments">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etNumberApartments"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:imeOptions="actionNext"
+                    android:inputType="numberDecimal"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/tvGarage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:text="@string/add_house_garage"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/numberApartmentsTIL"
+                app:layout_goneMarginTop="@dimen/_15sdp" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/cgGarage"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_20sdp"
@@ -787,40 +791,74 @@
                 android:layout_marginEnd="@dimen/_20sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvFurniture"
+                app:layout_constraintTop_toBottomOf="@id/tvGarage"
                 app:singleSelection="true">
 
                 <com.google.android.material.chip.Chip
-                    android:id="@+id/chipFurnished"
+                    android:id="@+id/chipGarageYes"
                     style="@style/ChipStyleRect"
                     android:layout_width="@dimen/_120sdp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_10sdp"
-                    android:text="@string/add_apartment_furnished" />
+                    android:text="@string/yes" />
 
                 <com.google.android.material.chip.Chip
-                    android:id="@+id/chipUnfurnished"
+                    android:id="@+id/chipGarageNo"
                     style="@style/ChipStyleRect"
                     android:layout_width="@dimen/_120sdp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_10sdp"
-                    android:text="@string/add_apartment_unfurnished" />
+                    android:text="@string/no" />
             </com.google.android.material.chip.ChipGroup>
 
             <TextView
-                android:id="@+id/tvFinishingMore"
+                android:id="@+id/tvParkingSpaces"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:text="@string/add_house_number_cars"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintBottom_toBottomOf="@id/numberCarsTIL"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/numberCarsTIL" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/numberCarsTIL"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_100sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cgGarage"
+                app:suffixText="@string/add_house_cars_suffix">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etNumberCars"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/tvHouseDetailsMore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_15sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
                 android:text="@string/add_listing_more_info"
                 android:textSize="@dimen/_13ssp"
-                app:layout_constraintBottom_toBottomOf="@id/etFinishingMore"
+                app:layout_constraintBottom_toBottomOf="@id/etHouseDetailsMore"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/etFinishingMore" />
+                app:layout_constraintTop_toTopOf="@id/etHouseDetailsMore" />
 
             <EditText
-                android:id="@+id/etFinishingMore"
+                android:id="@+id/etHouseDetailsMore"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_100sdp"
@@ -828,7 +866,8 @@
                 android:layout_marginEnd="@dimen/_10sdp"
                 android:background="@drawable/stroke_rect_background"
                 android:gravity="start"
-                android:hint="@string/add_apartment_finishing_more_hint"
+                android:hint="@string/add_house_house_details_more_hint"
+                android:imeOptions="actionNext"
                 android:inputType="textMultiLine"
                 android:maxLines="5"
                 android:minHeight="@dimen/_100sdp"
@@ -839,38 +878,30 @@
                 android:textColorHint="@color/hint_color"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cgFurniture" />
-
-            <include
-                android:id="@+id/lineFinishingAndFurniture"
-                layout="@layout/line"
-                android:layout_width="0dp"
-                android:layout_height="2dp"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/etFinishingMore" />
+                app:layout_constraintTop_toBottomOf="@id/numberCarsTIL" />
 
             <TextView
                 android:id="@+id/tvUtilities"
                 style="@style/HeaderText"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@drawable/top_line_background"
+                android:gravity="start"
+                android:paddingTop="@dimen/_10sdp"
                 android:text="@string/add_apartment_utilities"
                 android:textStyle="normal"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/lineFinishingAndFurniture" />
+                app:layout_constraintTop_toBottomOf="@id/etHouseDetailsMore" />
 
             <TextView
                 android:id="@+id/tvElectricity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_15sdp"
-                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_20sdp"
                 android:text="@string/add_apartment_electricity"
                 android:textSize="@dimen/_13ssp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -948,224 +979,20 @@
             </com.google.android.material.chip.ChipGroup>
 
             <TextView
-                android:id="@+id/tvElevator"
-                android:layout_width="wrap_content"
+                android:id="@+id/tvPhotos"
+                style="@style/HeaderText"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_15sdp"
-                android:layout_marginTop="@dimen/_15sdp"
-                android:text="@string/add_apartment_elevator"
-                android:textSize="@dimen/_13ssp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cgWater"
-                app:layout_goneMarginTop="@dimen/_15sdp" />
-
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/cgElevator"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_20sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvElevator"
-                app:singleSelection="true">
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipElevatorYes"
-                    style="@style/ChipStyleRect"
-                    android:layout_width="@dimen/_120sdp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:text="@string/yes" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipElevatorNo"
-                    style="@style/ChipStyleRect"
-                    android:layout_width="@dimen/_120sdp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:text="@string/no" />
-            </com.google.android.material.chip.ChipGroup>
-
-            <TextView
-                android:id="@+id/tvParking"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_15sdp"
-                android:layout_marginTop="@dimen/_15sdp"
-                android:text="@string/add_apartment_parking"
-                android:textSize="@dimen/_13ssp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cgElevator"
-                app:layout_goneMarginTop="@dimen/_15sdp" />
-
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/cgParking"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_20sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvParking"
-                app:singleSelection="true">
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipParkingYes"
-                    style="@style/ChipStyleRect"
-                    android:layout_width="@dimen/_120sdp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:text="@string/yes" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipParkingNo"
-                    style="@style/ChipStyleRect"
-                    android:layout_width="@dimen/_120sdp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:text="@string/no" />
-            </com.google.android.material.chip.ChipGroup>
-
-            <TextView
-                android:id="@+id/tvBackupGenerator"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_15sdp"
-                android:layout_marginTop="@dimen/_15sdp"
-                android:text="@string/add_apartment_backup_generator"
-                android:textSize="@dimen/_13ssp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cgParking"
-                app:layout_goneMarginTop="@dimen/_15sdp" />
-
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/cgBackupGenerator"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_20sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvBackupGenerator"
-                app:singleSelection="true">
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipBackupGeneratorYes"
-                    style="@style/ChipStyleRect"
-                    android:layout_width="@dimen/_120sdp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:text="@string/yes" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipBackupGeneratorNo"
-                    style="@style/ChipStyleRect"
-                    android:layout_width="@dimen/_120sdp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:text="@string/no" />
-            </com.google.android.material.chip.ChipGroup>
-
-            <TextView
-                android:id="@+id/tvSecurity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_15sdp"
-                android:layout_marginTop="@dimen/_15sdp"
-                android:text="@string/add_apartment_security"
-                android:textSize="@dimen/_13ssp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cgBackupGenerator"
-                app:layout_goneMarginTop="@dimen/_15sdp" />
-
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/cgSecurity"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_20sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvSecurity"
-                app:singleSelection="true">
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipSecurityYes"
-                    style="@style/ChipStyleRect"
-                    android:layout_width="@dimen/_120sdp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:text="@string/yes" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipSecurityNo"
-                    style="@style/ChipStyleRect"
-                    android:layout_width="@dimen/_120sdp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:text="@string/no" />
-            </com.google.android.material.chip.ChipGroup>
-
-            <TextView
-                android:id="@+id/tvUtilitiesMore"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_15sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:text="@string/add_listing_more_info"
-                android:textSize="@dimen/_13ssp"
-                app:layout_constraintBottom_toBottomOf="@id/etUtilitiesMore"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/etUtilitiesMore" />
-
-            <EditText
-                android:id="@+id/etUtilitiesMore"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_100sdp"
-                android:layout_marginTop="@dimen/_15sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:background="@drawable/stroke_rect_background"
-                android:gravity="start"
-                android:hint="@string/add_apartment_utilities_more_hint"
-                android:inputType="textMultiLine"
-                android:maxLines="5"
-                android:minHeight="@dimen/_100sdp"
-                android:padding="@dimen/_5sdp"
-                android:scrollbars="vertical"
-                android:textColorHint="@color/hint_color"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cgSecurity" />
-
-            <include
-                android:id="@+id/lineUtilities"
-                layout="@layout/line"
-                android:layout_width="0dp"
-                android:layout_height="2dp"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_20sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/etUtilitiesMore" />
-
-            <TextView
-                android:id="@+id/tvPhotos"
-                style="@style/HeaderText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/top_line_background"
+                android:gravity="start"
+                android:paddingTop="@dimen/_10sdp"
                 android:text="@string/add_listing_photos"
                 android:textStyle="normal"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/lineUtilities" />
+                app:layout_constraintTop_toBottomOf="@id/cgWater" />
 
             <TextView
                 android:id="@+id/tvAddPhotos"
@@ -1188,29 +1015,21 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvPhotos" />
 
-            <include
-                android:id="@+id/linePhotos"
-                layout="@layout/line"
-                android:layout_width="0dp"
-                android:layout_height="2dp"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvAddPhotos" />
-
             <TextView
                 android:id="@+id/tvAdditionalInfo"
                 style="@style/HeaderText"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@drawable/top_line_background"
+                android:gravity="start"
+                android:paddingTop="@dimen/_10sdp"
                 android:text="@string/add_listing_additional_info"
                 android:textStyle="normal"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/linePhotos" />
+                app:layout_constraintTop_toBottomOf="@id/tvAddPhotos" />
 
             <EditText
                 android:id="@+id/etAdditionalInfo"
@@ -1222,6 +1041,7 @@
                 android:background="@drawable/stroke_rect_background"
                 android:gravity="start"
                 android:hint="@string/add_listing_additional_info_hint"
+                android:imeOptions="actionNext"
                 android:inputType="textMultiLine"
                 android:maxLines="5"
                 android:minHeight="@dimen/_100sdp"
@@ -1232,29 +1052,21 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvAdditionalInfo" />
 
-            <include
-                android:id="@+id/lineAdditionalInfo"
-                layout="@layout/line"
-                android:layout_width="0dp"
-                android:layout_height="2dp"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/etAdditionalInfo" />
-
             <TextView
                 android:id="@+id/tvPriceHeader"
                 style="@style/HeaderText"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@drawable/top_line_background"
+                android:gravity="start"
+                android:paddingTop="@dimen/_10sdp"
                 android:text="@string/add_listing_price_header"
                 android:textStyle="normal"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/lineAdditionalInfo" />
+                app:layout_constraintTop_toBottomOf="@id/etAdditionalInfo" />
 
             <TextView
                 android:id="@+id/tvCurrency"
@@ -1273,7 +1085,7 @@
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_40sdp"
                 android:layout_marginStart="@dimen/_100sdp"
-                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_20sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
                 android:background="?attr/colorOnBackground"
                 android:elevation="@dimen/_2sdp"
@@ -1290,24 +1102,30 @@
                 android:layout_marginEnd="@dimen/_10sdp"
                 android:text="@string/add_listing_price"
                 android:textSize="@dimen/_13ssp"
-                app:layout_constraintBottom_toBottomOf="@id/etPrice"
+                app:layout_constraintBottom_toBottomOf="@id/priceTIL"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/etPrice" />
+                app:layout_constraintTop_toTopOf="@id/priceTIL" />
 
-            <EditText
-                android:id="@+id/etPrice"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/priceTIL"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_40sdp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_100sdp"
                 android:layout_marginTop="@dimen/_15sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
-                android:background="@drawable/stroke_rect_background"
-                android:inputType="number"
-                android:paddingStart="@dimen/_10sdp"
-                android:paddingEnd="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/spinnerCurrency" />
+                app:layout_constraintTop_toBottomOf="@id/spinnerCurrency">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:imeOptions="actionNext"
+                    android:inputType="numberDecimal"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/tvInstallments"
@@ -1318,7 +1136,7 @@
                 android:text="@string/add_listing_installments"
                 android:textSize="@dimen/_13ssp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/etPrice"
+                app:layout_constraintTop_toBottomOf="@id/priceTIL"
                 app:layout_goneMarginTop="@dimen/_15sdp" />
 
             <com.google.android.material.chip.ChipGroup
@@ -1359,26 +1177,30 @@
                 android:alpha="0.4"
                 android:text="@string/add_listing_down_payment"
                 android:textSize="@dimen/_13ssp"
-                app:layout_constraintBottom_toBottomOf="@id/etDownPayment"
+                app:layout_constraintBottom_toBottomOf="@id/downPaymentTIL"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/etDownPayment" />
+                app:layout_constraintTop_toTopOf="@id/downPaymentTIL" />
 
-            <EditText
-                android:id="@+id/etDownPayment"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/downPaymentTIL"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_40sdp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_100sdp"
                 android:layout_marginTop="@dimen/_15sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
-                android:alpha="0.4"
-                android:background="@drawable/stroke_rect_background"
-                android:enabled="false"
-                android:inputType="numberDecimal"
-                android:paddingStart="@dimen/_10sdp"
-                android:paddingEnd="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cgInstallments" />
+                app:layout_constraintTop_toBottomOf="@id/cgInstallments">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etDownPayment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:imeOptions="actionNext"
+                    android:inputType="numberDecimal"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/tvMonthlyInstallment"
@@ -1389,26 +1211,30 @@
                 android:alpha="0.4"
                 android:text="@string/add_listing_monthly_installment"
                 android:textSize="@dimen/_13ssp"
-                app:layout_constraintBottom_toBottomOf="@id/etMonthlyInstallment"
+                app:layout_constraintBottom_toBottomOf="@id/monthlyInstallmentTIL"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/etMonthlyInstallment" />
+                app:layout_constraintTop_toTopOf="@id/monthlyInstallmentTIL" />
 
-            <EditText
-                android:id="@+id/etMonthlyInstallment"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/monthlyInstallmentTIL"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_40sdp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_100sdp"
                 android:layout_marginTop="@dimen/_15sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
-                android:alpha="0.4"
-                android:background="@drawable/stroke_rect_background"
-                android:enabled="false"
-                android:inputType="numberDecimal"
-                android:paddingStart="@dimen/_10sdp"
-                android:paddingEnd="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/etDownPayment" />
+                app:layout_constraintTop_toBottomOf="@id/downPaymentTIL">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etMonthlyInstallment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:imeOptions="actionNext"
+                    android:inputType="numberDecimal"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/tvInstallmentPeriod"
@@ -1419,31 +1245,36 @@
                 android:alpha="0.4"
                 android:text="@string/add_listing_installment_period"
                 android:textSize="@dimen/_13ssp"
-                app:layout_constraintBottom_toBottomOf="@id/etInstallmentPeriod"
+                app:layout_constraintBottom_toBottomOf="@id/installmentPeriodTIL"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/etInstallmentPeriod" />
+                app:layout_constraintTop_toTopOf="@id/installmentPeriodTIL" />
 
-            <EditText
-                android:id="@+id/etInstallmentPeriod"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/installmentPeriodTIL"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_40sdp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_100sdp"
                 android:layout_marginTop="@dimen/_15sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
-                android:alpha="0.4"
-                android:background="@drawable/stroke_rect_background"
-                android:enabled="false"
-                android:inputType="number"
-                android:paddingStart="@dimen/_10sdp"
-                android:paddingEnd="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/etMonthlyInstallment" />
+                app:layout_constraintTop_toBottomOf="@id/monthlyInstallmentTIL"
+                app:suffixText="@string/add_listing_month_suffix">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etInstallmentPeriod"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:imeOptions="actionDone"
+                    android:inputType="numberDecimal"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
     <include
-        android:id="@+id/btnSubmitApartment"
+        android:id="@+id/btnSubmitHouse"
         layout="@layout/loading_button"
         android:layout_width="0dp"
         android:layout_height="@dimen/_48sdp"
@@ -1452,5 +1283,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/svApartment" />
+        app:layout_constraintTop_toBottomOf="@id/svHouse" />
 </androidx.constraintlayout.widget.ConstraintLayout>

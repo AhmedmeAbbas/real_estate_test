@@ -35,7 +35,7 @@ class PropertyTypeFragment: Fragment() {
         binding.cgPropertyType.setOnCheckedStateChangeListener { _, _ ->
             when (binding.cgPropertyType.checkedChipId) {
                 R.id.chipHouse -> {
-                    Toast.makeText(requireContext(), "house", Toast.LENGTH_SHORT).show()
+                    navigateTo(R.id.action_propertyTypeFragment_to_addHouseFragment)
                 }
                 R.id.chipApartment -> {
                     navigateTo(R.id.action_propertyTypeFragment_to_addApartmentFragment)
