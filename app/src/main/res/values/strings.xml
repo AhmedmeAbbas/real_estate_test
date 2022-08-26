@@ -168,7 +168,7 @@
     <!-- Add apartment fragment -->
     <string name="add_apartment_title">Add your apartment</string>
     <string name="add_apartment_details">Apartment details</string>
-    <string name="add_apartment_area">Area (m\u00B2)</string>
+    <string name="add_apartment_area">Area</string>
     <string name="add_apartment_bedrooms">Bedrooms</string>
     <string name="add_apartment_bathrooms">Bathrooms</string>
     <string name="add_apartment_kitchen">Kitchen</string>

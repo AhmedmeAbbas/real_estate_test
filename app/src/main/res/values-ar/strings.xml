@@ -114,7 +114,7 @@
     <string name="add_listing_chip_broker">وسيط</string>
     <string name="add_listing_owner_acknowledgement">باختيارك "مالك" أنت تقر بأنك مالك العقار وأنك تملك جميع المستندات القانونية التي تثبت ملكيتك للعقار. عدم الإلتزام بهذا الشرط قد يعرضك للمساءلة القانونية في المستقبل</string>
     <string name="add_listing_broker_acknowledgement">باختيارك "وسيط" أنت تقر أنك تملك الإذن من مالك العقار بالإعلان عن عقاره في منصتنا وأنه يمكنك التحدث مع المشترين المحتملين بالنيابة عنه. عدم الإلتزام بهذا الشرط قد يعرضك للمساءلة القانونية في المستقبل</string>
-    <string name="add_listing_phone_number">رقم\nالهاتف</string>
+    <string name="add_listing_phone_number">رقم الهاتف</string>
     <string name="add_listing_email">البريد\nالإلكتروني</string>
     <string name="add_listing_optional">اختياري</string>
     <string name="add_listing_property_address">عنوان العقار</string>
@@ -124,7 +124,7 @@
     <string name="add_listing_select_region">اختر المنطقة</string>
     <string name="add_listing_enter_region">أدخل المنطقة</string>
     <string name="add_listing_block">المربع/\nالحارة</string>
-    <string name="add_listing_property_number">رقم\nالعقار</string>
+    <string name="add_listing_property_number">رقم العقار</string>
     <string name="add_listing_more_info">معلومات إضافية\n(اختياري)</string>
     <string name="add_listing_photos">الصور</string>
     <string name="add_listing_add_photos">إضافة صور</string>
@@ -172,7 +172,7 @@
     <!-- Add apartment fragment -->
     <string name="add_apartment_title">أضف شقتك</string>
     <string name="add_apartment_details">تفاصيل الشقة</string>
-    <string name="add_apartment_area">المساحة (م\u00B2)</string>
+    <string name="add_apartment_area">المساحة</string>
     <string name="add_apartment_bedrooms">الغرف</string>
     <string name="add_apartment_bathrooms">الحمامات</string>
     <string name="add_apartment_kitchen">مطبخ</string>

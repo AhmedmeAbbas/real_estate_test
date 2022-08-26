@@ -8,94 +8,94 @@
         android:id="@+id/toolbarPropertyType"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        app:title="@string/property_type_title"
+        android:theme="@style/ThemeOverlay.AppCompat.DayNight.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/ic_back"
         app:navigationIconTint="?attr/colorSecondary"
-        android:theme="@style/ThemeOverlay.AppCompat.DayNight.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.DayNight"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:title="@string/property_type_title" />
 
     <TextView
         android:id="@+id/tvPropertyTypeHeader"
+        style="@style/HeaderText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_15sdp"
         android:text="@string/property_type_header"
-        style="@style/HeaderText"
         android:textStyle="normal"
-        app:layout_constraintTop_toBottomOf="@id/toolbarPropertyType"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbarPropertyType" />
 
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/cgPropertyType"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_20sdp"
-        android:layout_marginStart="@dimen/_20sdp"
-        android:layout_marginEnd="@dimen/_20sdp"
-        app:singleSelection="true"
+        android:layout_marginEnd="@dimen/_10sdp"
         app:chipSpacing="@dimen/_10sdp"
-        app:layout_constraintTop_toBottomOf="@id/tvPropertyTypeHeader"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/tvPropertyTypeHeader"
+        app:singleSelection="true">
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipHouse"
+            style="@style/ChipStyleRect"
             android:layout_width="@dimen/_120sdp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
-            style="@style/ChipStyleRect"
             android:text="@string/property_type_house" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipApartment"
+            style="@style/ChipStyleRect"
             android:layout_width="@dimen/_120sdp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
-            style="@style/ChipStyleRect"
-            android:text="@string/property_type_apartment"/>
+            android:text="@string/property_type_apartment" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipBuilding"
+            style="@style/ChipStyleRect"
             android:layout_width="@dimen/_120sdp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
-            style="@style/ChipStyleRect"
-            android:text="@string/property_type_building"/>
+            android:text="@string/property_type_building" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipStore"
+            style="@style/ChipStyleRect"
             android:layout_width="@dimen/_120sdp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
-            style="@style/ChipStyleRect"
-            android:text="@string/property_type_store"/>
+            android:text="@string/property_type_store" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipLand"
+            style="@style/ChipStyleRect"
             android:layout_width="@dimen/_120sdp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
-            style="@style/ChipStyleRect"
-            android:text="@string/property_type_land"/>
+            android:text="@string/property_type_land" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipWarehouse"
+            style="@style/ChipStyleRect"
             android:layout_width="@dimen/_120sdp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
-            style="@style/ChipStyleRect"
-            android:text="@string/property_type_warehouse"/>
+            android:text="@string/property_type_warehouse" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipFarm"
+            style="@style/ChipStyleRect"
             android:layout_width="@dimen/_120sdp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_80sdp"
-            style="@style/ChipStyleRect"
-            android:text="@string/property_type_farm"/>
+            android:text="@string/property_type_farm" />
     </com.google.android.material.chip.ChipGroup>
 </androidx.constraintlayout.widget.ConstraintLayout>

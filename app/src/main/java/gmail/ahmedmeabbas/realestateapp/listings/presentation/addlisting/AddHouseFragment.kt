@@ -64,51 +64,11 @@ class AddHouseFragment : Fragment() {
         setUpCitySpinner()
         setUpSelectRegion()
         setUpUpperApartments()
-        setUpApartmentsNumber()
+        setUpNumberOfApartments()
         setUpAddPhotos()
         setUpCurrencySpinner()
         setUpInstallmentsChipListener()
         setUpSubmitButton()
-    }
-
-    private fun setUpApartmentsNumber() {
-        binding.cgApartments.setOnCheckedStateChangeListener { _, checkedIds ->
-            if (checkedIds.isEmpty()) {
-                showApartmentChipGroup(false)
-                return@setOnCheckedStateChangeListener
-            }
-            when (checkedIds[0]) {
-                R.id.chipApartmentsYes -> showApartmentChipGroup(true)
-                R.id.chipApartmentsNo -> showApartmentChipGroup(false)
-                else -> return@setOnCheckedStateChangeListener
-            }
-        }
-    }
-
-    private fun showApartmentChipGroup(show: Boolean) {
-        val visibility = if (show) View.VISIBLE else View.GONE
-        binding.tvNumberApartments.visibility = visibility
-        binding.numberApartmentsTIL.visibility = visibility
-    }
-
-    private fun setUpUpperApartments() {
-        binding.etFloors.addTextChangedListener {
-            try {
-                if (it.toString().toInt() > 1) {
-                    showUpperApartments(true)
-                } else {
-                    showUpperApartments(false)
-                }
-            } catch (e: NumberFormatException) {
-                showUpperApartments(false)
-            }
-        }
-    }
-
-    private fun showUpperApartments(show: Boolean) {
-        val visibility = if (show) View.VISIBLE else View.GONE
-        binding.tvApartments.visibility = visibility
-        binding.cgApartments.visibility = visibility
     }
 
     private fun initResultLauncher() {
@@ -235,6 +195,46 @@ class AddHouseFragment : Fragment() {
 
     private fun setUpSubmitButton() {
         binding.btnSubmitHouse.tvButton.text = getString(R.string.add_listing_submit)
+    }
+
+    private fun setUpUpperApartments() {
+        binding.etFloors.addTextChangedListener {
+            try {
+                if (it.toString().toInt() > 1) {
+                    showUpperApartments(true)
+                } else {
+                    showUpperApartments(false)
+                }
+            } catch (e: NumberFormatException) {
+                showUpperApartments(false)
+            }
+        }
+    }
+
+    private fun showUpperApartments(show: Boolean) {
+        val visibility = if (show) View.VISIBLE else View.GONE
+        binding.tvApartments.visibility = visibility
+        binding.cgApartments.visibility = visibility
+    }
+
+    private fun setUpNumberOfApartments() {
+        binding.cgApartments.setOnCheckedStateChangeListener { _, checkedIds ->
+            if (checkedIds.isEmpty()) {
+                showNumberOfApartments(false)
+                return@setOnCheckedStateChangeListener
+            }
+            when (checkedIds[0]) {
+                R.id.chipApartmentsYes -> showNumberOfApartments(true)
+                R.id.chipApartmentsNo -> showNumberOfApartments(false)
+                else -> return@setOnCheckedStateChangeListener
+            }
+        }
+    }
+
+    private fun showNumberOfApartments(show: Boolean) {
+        val visibility = if (show) View.VISIBLE else View.GONE
+        binding.tvNumberApartments.visibility = visibility
+        binding.numberApartmentsTIL.visibility = visibility
     }
 
     private fun setUpInstallmentsChipListener() {

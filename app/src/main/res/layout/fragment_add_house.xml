@@ -56,11 +56,11 @@
 
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/cgAdvertiser"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvAdvertiser"
@@ -119,7 +119,8 @@
                 android:layout_marginEnd="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvAdvertiserAcknowledgement">
+                app:layout_constraintTop_toBottomOf="@id/tvAdvertiserAcknowledgement"
+                app:layout_goneMarginTop="@dimen/_15sdp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etPhoneNumber"
@@ -439,11 +440,11 @@
 
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/cgStructureType"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvStructureType"
@@ -479,10 +480,11 @@
 
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/cgFinishing"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvFinishing"
@@ -500,7 +502,7 @@
                     style="@style/ChipStyleRect"
                     android:layout_width="@dimen/_115sdp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginStart="@dimen/_3sdp"
                     android:text="@string/add_house_partially_finished" />
 
                 <com.google.android.material.chip.Chip
@@ -508,7 +510,7 @@
                     style="@style/ChipStyleRect"
                     android:layout_width="@dimen/_80sdp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginStart="@dimen/_3sdp"
                     android:text="@string/add_house_unfinished" />
             </com.google.android.material.chip.ChipGroup>
 
@@ -707,11 +709,11 @@
 
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/cgApartments"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -784,11 +786,11 @@
 
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/cgGarage"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvGarage"
@@ -910,11 +912,11 @@
 
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/cgElectricity"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvElectricity"
@@ -951,11 +953,11 @@
 
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/cgWater"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvWater"
@@ -1141,11 +1143,11 @@
 
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/cgInstallments"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvInstallments"

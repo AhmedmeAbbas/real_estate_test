@@ -132,7 +132,8 @@ class AddApartmentFragment : Fragment() {
                 chosenPhotoUris[i] = tempPhotoUris[i]
             }
             val numAddedPhotos = chosenPhotoUris.filterNotNull().size
-            binding.tvAddPhotos.text = resources.getQuantityString(R.plurals.added_photos, numAddedPhotos, numAddedPhotos)
+            binding.tvAddPhotos.text =
+                resources.getQuantityString(R.plurals.added_photos, numAddedPhotos, numAddedPhotos)
             dialog.dismiss()
         }
     }
@@ -238,10 +239,15 @@ class AddApartmentFragment : Fragment() {
                     position: Int,
                     id: Long
                 ) {
-                    if (position == 0) {
-                        updatePriceTexts("")
-                    } else {
-                        updatePriceTexts("\n(${adapter.getItem(position)})")
+                    clearAllTILs()
+                    when (position) {
+                        1 -> {
+                            setTILCurrency("USD")
+                        }
+                        2 -> {
+                            setTILCurrency("SDG")
+                        }
+                        else -> {}
                     }
                 }
 
@@ -251,10 +257,31 @@ class AddApartmentFragment : Fragment() {
             }
     }
 
-    private fun updatePriceTexts(text: String) {
-        binding.tvPrice.text = getString(R.string.add_listing_price, text)
-        binding.tvDownPayment.text = getString(R.string.add_listing_down_payment, text)
-        binding.tvMonthlyInstallment.text = getString(R.string.add_listing_monthly_installment, text)
+    private fun setTILCurrency(currency: String) {
+        if (currency == "USD") {
+            binding.priceTIL.prefixText = getString(R.string.add_listing_usd_prefix)
+            binding.downPaymentTIL.prefixText = getString(R.string.add_listing_usd_prefix)
+            binding.monthlyInstallmentTIL.prefixText = getString(R.string.add_listing_usd_prefix)
+        } else {
+            binding.priceTIL.suffixText = getString(R.string.add_listing_sdg_suffix)
+            binding.downPaymentTIL.suffixText = getString(R.string.add_listing_sdg_suffix)
+            binding.monthlyInstallmentTIL.suffixText = getString(R.string.add_listing_sdg_suffix)
+        }
+    }
+
+    private fun clearAllTILs() {
+        binding.priceTIL.apply {
+            prefixText = null
+            suffixText = null
+        }
+        binding.downPaymentTIL.apply {
+            prefixText = null
+            suffixText = null
+        }
+        binding.monthlyInstallmentTIL.apply {
+            prefixText = null
+            suffixText = null
+        }
     }
 
     private fun setUpAdvertiserChipListener() {
