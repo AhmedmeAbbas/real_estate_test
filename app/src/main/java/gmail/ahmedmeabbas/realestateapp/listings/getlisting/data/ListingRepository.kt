@@ -1,12 +1,12 @@
-package gmail.ahmedmeabbas.realestateapp.listings.data
+package gmail.ahmedmeabbas.realestateapp.listings.getlisting.data
 
 import kotlinx.coroutines.flow.SharedFlow
 
 interface ListingRepository {
 
-    val listingFlow: SharedFlow<Listing>
+    val listingModelFlow: SharedFlow<ListingModel>
 
-    suspend fun addListing(listing: Listing)
+    suspend fun addListing(listingModel: ListingModel)
 
     suspend fun getListingsInArea(area: String)
 

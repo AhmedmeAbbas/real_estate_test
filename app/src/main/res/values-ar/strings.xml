@@ -14,9 +14,8 @@
     <string name="other">اخر</string>
     <string name="button_continue">استمر</string>
     <string name="required">مطلوب</string>
-
-    <!-- Permissions -->
-    <string name="permission_photos">لكي تتمكن من إضافة صور لإعلانك التطبيق يحتاج إذن الوصول إلى الصور</string>
+    <string name="skip">تخطي</string>
+    <string name="confirm_and_continue">تأكيد واستمرار</string>
 
     <!-- Facebook -->
     <string name="facebook_app_id">585599636490913</string>
@@ -44,7 +43,7 @@
     <!-- Error messages -->
     <string name="no_internet_connection">وضع غير متصل بالشبكة</string>
     <string name="error_network">خطأ في الشبكة</string>
-    <string name="error_occurred">حدث خطأ. الرجاء المحاولة لاحقا</string>
+    <string name="error_occurred">حدث خطأ. الرجاء إعادة المحاولة</string>
     <string name="error_invalid_credentials">خطأ في البريد الإلكتروني أو كلمة المرور</string>
     <string name="display_name_error">فشل تحديث اسم العرض</string>
     <string name="display_name_success">تم تحديث اسم العرض</string>
@@ -58,6 +57,8 @@
     <string name="create_account_failure">فشل إنشاء الحساب. الرجاء المحاولة مجددا لاحقا</string>
     <string name="error_sign_in">فشل تسجيل الدخول</string>
     <string name="sign_in_cancelled">تم إلغاء تسجيل الدخول</string>
+    <string name="photos_permission_denied">لكي تتمكن من إضافة صور لإعلانك التطبيق يحتاج إذن الوصول إلى الصور</string>
+    <string name="photos_main_not_selected">يجب إضافة صورة رئيسية إلى إعلانك. إذا كنت لاترغب في إضافة صور اضغط على زر تخطي في الأعلى</string>
 
     <!-- Email sign in fragment -->
     <string name="email_sign_in_header">سجل دخولك بالبريد الإلكتروني</string>
@@ -108,8 +109,8 @@
 
     <!-- Add listing -->
     <string name="add_listing_title">أضف إعلانك</string>
-    <string name="add_listing_advertiser_info">بيانات المعلن</string>
-    <string name="add_listing_advertiser">هل أنت مالك أم وسيط؟</string>
+    <string name="add_listing_your_info">بياناتك</string>
+    <string name="add_listing_advertiser">هل أنت المالك أم وسيط؟</string>
     <string name="add_listing_chip_owner">مالك</string>
     <string name="add_listing_chip_broker">وسيط</string>
     <string name="add_listing_owner_acknowledgement">باختيارك "مالك" أنت تقر بأنك مالك العقار وأنك تملك جميع المستندات القانونية التي تثبت ملكيتك للعقار. عدم الإلتزام بهذا الشرط قد يعرضك للمساءلة القانونية في المستقبل</string>
@@ -126,6 +127,7 @@
     <string name="add_listing_block">المربع/\nالحارة</string>
     <string name="add_listing_property_number">رقم العقار</string>
     <string name="add_listing_more_info">معلومات إضافية\n(اختياري)</string>
+    <string name="add_listing_more_info_inline">معلومات إضافية (اختياري)</string>
     <string name="add_listing_photos">الصور</string>
     <string name="add_listing_add_photos">إضافة صور</string>
     <plurals name="added_photos">
@@ -139,7 +141,7 @@
     <string name="add_listing_photos_dialog_sub">اضغط على أحد العناصر في الأسفل لتضيف صورة من جهازك</string>
     <string name="add_listing_photos_main_photo">الصورة الرئيسية</string>
     <string name="add_listing_additional_info">معلومات إضافية</string>
-    <string name="add_listing_additional_info_hint">هذه المساحة مخصصة للمعلومات الإضافية التي تريد مشاركتها</string>
+    <string name="add_listing_additional_info_hint">إذا كانت لديك معلومات أخرى لم يتم تغطيتها من قبل النموذج يمكنك إضافتها في الأسفل</string>
     <string name="add_listing_price_header">السعر</string>
     <string name="add_listing_currency">العملة</string>
     <string name="add_listing_select_currency">اختر العملة</string>
@@ -174,13 +176,15 @@
     <string name="add_apartment_details">تفاصيل الشقة</string>
     <string name="add_apartment_area">المساحة</string>
     <string name="add_apartment_bedrooms">الغرف</string>
+    <string name="add_apartment_bedrooms_hint">عدد الغرف</string>
     <string name="add_apartment_bathrooms">الحمامات</string>
+    <string name="add_apartment_bathrooms_hint">عدد الحمامات</string>
     <string name="add_apartment_kitchen">مطبخ</string>
     <string name="add_apartment_living_rooms">غرفة معيشة</string>
     <string name="add_apartment_balcony">بلكونة</string>
     <string name="add_apartment_floor">الطابق</string>
     <string name="add_apartment_floor_ground">أرضي</string>
-    <string name="add_apartment_floor_number">رقم الطابق</string>
+    <string name="add_apartment_floor_hint">رقم الطابق</string>
     <string name="add_apartment_apartment_details_more_hint">إذا كنت تملك معلومات إضافية حول تفاصيل شقتك يمكنك إضافتها هنا</string>
     <string name="add_apartment_finishing_and_furniture">التشطيب والفرش</string>
     <string name="add_apartment_finishing">التشطيب</string>
@@ -190,14 +194,13 @@
     <string name="add_apartment_furnished">مفروشة</string>
     <string name="add_apartment_unfurnished">غير مفروشة</string>
     <string name="add_apartment_finishing_more_hint">إذا كنت تملك معلومات إضافية حول التشطيب والفرش يمكنك إضافتها هنا</string>
-    <string name="add_apartment_utilities">الخدمات</string>
     <string name="add_apartment_electricity">كهرباء</string>
     <string name="add_apartment_water">ماء</string>
     <string name="add_apartment_elevator">مصعد كهربائي</string>
     <string name="add_apartment_parking">مواقف سيارات</string>
     <string name="add_apartment_backup_generator">مولد كهرباء</string>
     <string name="add_apartment_security">حراسة</string>
-    <string name="add_apartment_utilities_more_hint">إذا كنت تملك معلومات إضافية حول الخدمات يمكنك إضافتها هنا</string>
+    <string name="add_listing_utilities_more_hint">إذا كنت تملك معلومات إضافية حول الخدمات يمكنك إضافتها هنا</string>
 
     <!-- Add house fragment -->
     <string name="add_house_title">أضف منزلك</string>
@@ -212,19 +215,27 @@
     <string name="add_house_finished">مشطب</string>
     <string name="add_house_partially_finished">مشطب جزئيا</string>
     <string name="add_house_unfinished">غير مشطب</string>
+    <string name="add_house_construction_details_more_hint">إذا كنت تملك معلومات إضافية حول تفاصيل البناء يمكنك إضافتها هنا</string>
     <string name="add_house_house_details">تفاصيل المنزل</string>
-    <string name="add_house_bedrooms">عدد الغرف</string>
-    <string name="add_house_bathrooms">عدد الحمامات</string>
-    <string name="add_house_kitchens">عدد المطابخ</string>
-    <string name="add_house_halls">عدد الصالات</string>
-    <string name="add_house_floors">عدد الطوابق</string>
+    <string name="add_house_bedrooms">الغرف</string>
+    <string name="add_house_bedrooms_hint">عدد الغرف</string>
+    <string name="add_house_bathrooms">الحمامات</string>
+    <string name="add_house_bathrooms_hint">عدد الحمامات</string>
+    <string name="add_house_kitchens">المطابخ</string>
+    <string name="add_house_kitchens_hint">عدد المطابخ</string>
+    <string name="add_house_halls">الصالات</string>
+    <string name="add_house_halls_hint">عدد الصالات</string>
+    <string name="add_house_floors">الطوابق</string>
+    <string name="add_house_floors_hint">عدد الطوابق</string>
     <string name="add_house_apartments">هل توجد شقق في الطوابق العليا؟</string>
-    <string name="add_house_apartments_number">عدد الطوابق</string>
+    <string name="add_house_apartments_number">الطوابق</string>
+    <string name="add_house_apartments_number_hint">عدد الطوابق</string>
+    <string name="add_house_basement">قبو</string>
     <string name="add_house_garage">مرأب سيارات</string>
+    <string name="add_house_cars">السيارات</string>
     <string name="add_house_number_cars">عدد السيارات</string>
-    <string name="add_house_cars_suffix">سيارات</string>
     <string name="add_house_house_details_more_hint">إذا كنت تملك معلومات إضافية حول تفاصيل منزلك يمكنك إضافتها هنا</string>
-    <string name="add_house_utilities">الخدمات</string>
+    <string name="add_listing_utilities">الخدمات</string>
     <string name="add_house_electricity">كهرباء</string>
     <string name="add_house_water">ماء</string>
 

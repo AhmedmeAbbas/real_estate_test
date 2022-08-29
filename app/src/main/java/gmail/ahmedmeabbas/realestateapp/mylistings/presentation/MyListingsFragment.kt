@@ -39,7 +39,7 @@ class MyListingsFragment: Fragment() {
 
     private fun updateUI(isSignedIn: Boolean) {
         if (isSignedIn) {
-            if (myListingsViewModel.myListings[0].id == null) {
+            if (myListingsViewModel.myListingModels[0].id == null) {
                 binding.tvMyHomeSub.text = getString(R.string.my_home_list_empty)
                 binding.btnMyHomeMain.text = getString(R.string.my_home_add_listing)
                 binding.btnMyHomeMain.setOnClickListener {

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/placeholder_text"
+        android:textSize="@dimen/_13ssp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chipGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        app:chipSpacingVertical="@dimen/_15sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvHeader"
+        app:singleSelection="true">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip0"
+            style="@style/ChipStyleRound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/none" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip1"
+            style="@style/ChipStyleRound"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="wrap_content"
+            android:text="1" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip2"
+            style="@style/ChipStyleRound"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="wrap_content"
+            android:text="2" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip3"
+            style="@style/ChipStyleRound"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="wrap_content"
+            android:text="3" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip4"
+            style="@style/ChipStyleRound"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="wrap_content"
+            android:text="4" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipOther"
+            style="@style/ChipStyleRound"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="wrap_content"
+            android:text="@string/other"/>
+    </com.google.android.material.chip.ChipGroup>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_90sdp"
+        android:layout_marginTop="@dimen/_49sdp"
+        android:layout_marginEnd="@dimen/_5sdp"
+        android:alpha="0.6"
+        android:enabled="false"
+        app:layout_constraintTop_toTopOf="@id/chipGroup"
+        app:layout_constraintEnd_toEndOf="@id/chipGroup"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:imeOptions="actionNext"
+            android:inputType="number"
+            android:maxLines="1" />
+    </com.google.android.material.textfield.TextInputLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -20,8 +20,10 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepository
 import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl
-import gmail.ahmedmeabbas.realestateapp.listings.data.ListingRepository
-import gmail.ahmedmeabbas.realestateapp.listings.data.ListingRepositoryImpl
+import gmail.ahmedmeabbas.realestateapp.listings.addlisting.data.AddListingRepository
+import gmail.ahmedmeabbas.realestateapp.listings.addlisting.data.AddListingRepositoryImpl
+import gmail.ahmedmeabbas.realestateapp.listings.getlisting.data.ListingRepository
+import gmail.ahmedmeabbas.realestateapp.listings.getlisting.data.ListingRepositoryImpl
 import gmail.ahmedmeabbas.realestateapp.userpreferences.UserPreferencesRepository
 import gmail.ahmedmeabbas.realestateapp.userpreferences.UserPreferencesRepositoryImpl
 import kotlinx.coroutines.CoroutineScope
@@ -80,6 +82,14 @@ object AppModule {
             .build()
         db.firestoreSettings = settings
         return db
+    }
+
+    @Singleton
+    @Provides
+    fun provideAddListingRepository(
+        db: FirebaseFirestore
+    ): AddListingRepository {
+        return AddListingRepositoryImpl(db)
     }
 
     @Singleton

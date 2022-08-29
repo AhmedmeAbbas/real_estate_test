@@ -1,4 +1,4 @@
-package gmail.ahmedmeabbas.realestateapp.listings.data
+package gmail.ahmedmeabbas.realestateapp.listings.getlisting.data
 
 import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
@@ -10,14 +10,14 @@ class ListingRepositoryImpl @Inject constructor(
     private val db: FirebaseFirestore
 ): ListingRepository {
 
-    private val _listingFlow = MutableSharedFlow<Listing>()
-    override val listingFlow = _listingFlow.asSharedFlow()
+    private val _listingModelFlow = MutableSharedFlow<ListingModel>()
+    override val listingModelFlow = _listingModelFlow.asSharedFlow()
 
-    override suspend fun addListing(listing: Listing) {
-        val state = listing.state?.lowercase()
-        val city = listing.city?.lowercase()
+    override suspend fun addListing(listingModel: ListingModel) {
+        val state = listingModel.state?.lowercase()
+        val city = listingModel.city?.lowercase()
         db.collection("/states/$state/cities/$city/listings")
-            .add(listing)
+            .add(listingModel)
             .addOnSuccessListener { Log.d(TAG, "addListing: success") }
             .addOnFailureListener { Log.d(TAG, "addListing: failed af") }
     }

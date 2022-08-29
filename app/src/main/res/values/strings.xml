@@ -13,9 +13,8 @@
     <string name="other">Other</string>
     <string name="button_continue">Continue</string>
     <string name="required">Required</string>
-
-    <!-- Permissions -->
-    <string name="permission_photos">In order to add photos to your listing the app needs access to your photos</string>
+    <string name="skip">Skip</string>
+    <string name="confirm_and_continue"><![CDATA[Confirm & Continue]]></string>
 
     <!-- Facebook -->
     <string name="facebook_app_id">585599636490913</string>
@@ -44,7 +43,7 @@
     <!-- Error messages -->
     <string name="no_internet_connection">Offline mode</string>
     <string name="error_network">Network error</string>
-    <string name="error_occurred">An error occurred. Please try again later</string>
+    <string name="error_occurred">An error occurred. Please try again</string>
     <string name="error_invalid_credentials">Invalid email or password</string>
     <string name="display_name_error">Failed to update the display name</string>
     <string name="display_name_success">Display name updated</string>
@@ -58,6 +57,8 @@
     <string name="create_account_failure">Failed to create account. Please try again later</string>
     <string name="error_sign_in">Sign in failed</string>
     <string name="sign_in_cancelled">Sign in cancelled</string>
+    <string name="photos_permission_denied">In order to add photos to your listing the app needs access to your photos</string>
+    <string name="photos_main_not_selected">You must add a main photo to your listing. If you don\'t want to add any photos click the Skip button at the top</string>
 
     <!-- Email sign in fragment -->
     <string name="email_sign_in_header">Sign in with email</string>
@@ -108,8 +109,8 @@
 
     <!-- Add listing -->
     <string name="add_listing_title">Add your listing</string>
-    <string name="add_listing_advertiser_info">Advertiser information</string>
-    <string name="add_listing_advertiser">Are you an owner or a broker?</string>
+    <string name="add_listing_your_info">Your information</string>
+    <string name="add_listing_advertiser">Are you the owner or a broker?</string>
     <string name="add_listing_chip_owner">Owner</string>
     <string name="add_listing_chip_broker">Broker</string>
     <string name="add_listing_owner_acknowledgement">By selecting "Owner" you acknowledge that you are the owner of the property and have all the legal documents that prove your ownership of the property. Not adhering to this term will make you subject to legal accountability in the future</string>
@@ -126,6 +127,9 @@
     <string name="add_listing_block">Block/\nLane</string>
     <string name="add_listing_property_number">Property\nnumber</string>
     <string name="add_listing_more_info">More\ninformation\n(optional)</string>
+    <string name="add_listing_more_info_inline">More information (optional)</string>
+    <string name="add_listing_utilities">Utilities</string>
+    <string name="add_listing_utilities_more_hint">If you have more information about utilities you can add it here</string>
     <string name="add_listing_photos">Photos</string>
     <string name="add_listing_add_photos">Add photos</string>
     <plurals name="added_photos">
@@ -135,7 +139,7 @@
     <string name="add_listing_photos_dialog_sub">Click an item below to add a photo from your device</string>
     <string name="add_listing_photos_main_photo">Main photo</string>
     <string name="add_listing_additional_info">Additional information</string>
-    <string name="add_listing_additional_info_hint">This space is for the additional information you would like to share</string>
+    <string name="add_listing_additional_info_hint">If you have other information that was not covered by the form you can add it below</string>
     <string name="add_listing_price_header">Price</string>
     <string name="add_listing_currency">Currency</string>
     <string name="add_listing_select_currency">Select currency</string>
@@ -170,13 +174,15 @@
     <string name="add_apartment_details">Apartment details</string>
     <string name="add_apartment_area">Area</string>
     <string name="add_apartment_bedrooms">Bedrooms</string>
+    <string name="add_apartment_bedrooms_hint">Number of bedrooms</string>
     <string name="add_apartment_bathrooms">Bathrooms</string>
+    <string name="add_apartment_bathrooms_hint">Number of bathrooms</string>
     <string name="add_apartment_kitchen">Kitchen</string>
     <string name="add_apartment_living_rooms">Living room</string>
     <string name="add_apartment_balcony">Balcony</string>
     <string name="add_apartment_floor">Floor</string>
     <string name="add_apartment_floor_ground">Ground</string>
-    <string name="add_apartment_floor_number">Floor number</string>
+    <string name="add_apartment_floor_hint">Floor number</string>
     <string name="add_apartment_apartment_details_more_hint">If you have more information about your apartment details you can add it here</string>
     <string name="add_apartment_finishing_and_furniture">Finishing and furniture</string>
     <string name="add_apartment_finishing">Finishing</string>
@@ -186,14 +192,12 @@
     <string name="add_apartment_furnished">Furnished</string>
     <string name="add_apartment_unfurnished">Unfurnished</string>
     <string name="add_apartment_finishing_more_hint">If you have more information about finishing and furniture you can add it here</string>
-    <string name="add_apartment_utilities">Utilities</string>
     <string name="add_apartment_electricity">Electricity</string>
     <string name="add_apartment_water">Water</string>
     <string name="add_apartment_elevator">Elevator</string>
     <string name="add_apartment_parking">Parking</string>
     <string name="add_apartment_backup_generator">Backup generator</string>
     <string name="add_apartment_security">Security</string>
-    <string name="add_apartment_utilities_more_hint">If you have more information about utilities you can add it here</string>
 
     <!-- Add house fragment -->
     <string name="add_house_title">Add your house</string>
@@ -208,19 +212,26 @@
     <string name="add_house_finished">Finished</string>
     <string name="add_house_partially_finished">Partially finished</string>
     <string name="add_house_unfinished">Unfinished</string>
+    <string name="add_house_construction_details_more_hint">If you have more information about construction details you can add it here</string>
     <string name="add_house_house_details">House details</string>
-    <string name="add_house_bedrooms">Number of\nbedrooms</string>
-    <string name="add_house_bathrooms">Number of\nbathrooms</string>
-    <string name="add_house_kitchens">Number of\nkitchens</string>
-    <string name="add_house_halls">Number of\nhalls</string>
-    <string name="add_house_floors">Number of\nfloors</string>
+    <string name="add_house_bedrooms">Bedrooms</string>
+    <string name="add_house_bedrooms_hint">Number of Bedrooms</string>
+    <string name="add_house_bathrooms">Bathrooms</string>
+    <string name="add_house_bathrooms_hint">Number of bathrooms</string>
+    <string name="add_house_kitchens">Kitchens</string>
+    <string name="add_house_kitchens_hint">Number of kitchens</string>
+    <string name="add_house_halls">Halls</string>
+    <string name="add_house_halls_hint">Number of halls</string>
+    <string name="add_house_floors">Floors</string>
+    <string name="add_house_floors_hint">Number of floors</string>
     <string name="add_house_apartments">Are there apartments in the upper floors?</string>
-    <string name="add_house_apartments_number">Number of\napartments</string>
+    <string name="add_house_apartments_number">Apartments</string>
+    <string name="add_house_apartments_number_hint">Number of apartments</string>
+    <string name="add_house_basement">Basement</string>
     <string name="add_house_garage">Car garage</string>
-    <string name="add_house_number_cars">Number of\ncars</string>
-    <string name="add_house_cars_suffix">Cars</string>
+    <string name="add_house_cars">Cars</string>
+    <string name="add_house_number_cars">Number of cars</string>
     <string name="add_house_house_details_more_hint">If you have more information about your house details you can add it here</string>
-    <string name="add_house_utilities">Utilities</string>
     <string name="add_house_electricity">Electricity</string>
     <string name="add_house_water">Water</string>
 

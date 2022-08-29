@@ -84,14 +84,22 @@
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/dialog_select_region.xml" value="0.20863616930312098" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/dialog_status_update.xml" value="0.20863616930312098" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/dialog_test.xml" value="0.225" />
+        <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/dual_choice_chip_group.xml" value="0.21981981981981982" />
+        <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/five_chips_chip_group.xml" value="0.21891891891891893" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_account.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_add_apartment.xml" value="0.16672360778954562" />
-        <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_add_house.xml" value="0.1" />
+        <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_add_house.xml" value="0.16" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_add_listing.xml" value="0.20863616930312098" />
+        <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_add_photos.xml" value="0.21981981981981982" />
+        <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_additional_info.xml" value="0.21891891891891893" />
+        <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_advertiser_info.xml" value="0.21891891891891893" />
+        <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_apartment_details.xml" value="0.21981981981981982" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_chats.xml" value="0.25416666666666665" />
+        <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_construction_details.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_create_account.xml" value="0.20863616930312098" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_email_sign_in.xml" value="0.20778110303548525" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_help.xml" value="0.20863616930312098" />
+        <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_house_details.xml" value="0.264" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_inbox.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_issues_feedback.xml" value="0.20778110303548525" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_messages.xml" value="0.25416666666666665" />
@@ -99,8 +107,10 @@
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_my_listings.xml" value="0.20863616930312098" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_notification_settings.xml" value="0.2" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_notifications.xml" value="0.25416666666666665" />
+        <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_price.xml" value="0.21891891891891893" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_privacy.xml" value="0.20778110303548525" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_profile.xml" value="0.20778110303548525" />
+        <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_property_address.xml" value="0.21891891891891893" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_property_type.xml" value="0.20778110303548525" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_requests.xml" value="0.20778110303548525" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_saved.xml" value="0.1" />
@@ -110,11 +120,16 @@
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_sign_in.xml" value="0.20863616930312098" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_sign_up.xml" value="0.20863616930312098" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_terms.xml" value="0.20863616930312098" />
+        <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_utilities_and_info.xml" value="0.21981981981981982" />
+        <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_utilities_apartment.xml" value="0.21981981981981982" />
+        <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/fragment_utilities_other.xml" value="0.21981981981981982" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/frament_apartment_listing.xml" value="0.20778110303548525" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/line.xml" value="0.20778110303548525" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/listing_item.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/loading_button.xml" value="0.20778110303548525" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/main_search_layout.xml" value="0.264" />
+        <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/many_chips_chip_group.xml" value="0.21981981981981982" />
+        <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/layout/yes_no_chip_group.xml" value="0.21891891891891893" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/menu/example_menu.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/RealEstateApp/app/src/main/res/menu/search.xml" value="0.1" />

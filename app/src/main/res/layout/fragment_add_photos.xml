@@ -14,21 +14,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:navigationIcon="@drawable/ic_close"
+        app:navigationIcon="@drawable/ic_back"
         app:navigationIconTint="?attr/colorSecondary"
         app:popupTheme="@style/ThemeOverlay.AppCompat.DayNight"
         app:title="@string/add_listing_add_photos" />
 
-    <ImageView
-        android:id="@+id/ivAddPhotosCheck"
+    <TextView
+        android:id="@+id/tvSkip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/_10sdp"
+        android:padding="@dimen/_10sdp"
         android:clickable="true"
         android:focusable="true"
         android:foreground="?attr/selectableItemBackground"
-        android:src="@drawable/ic_check"
-        android:visibility="gone"
+        android:text="@string/skip"
+        android:textSize="@dimen/_12ssp"
         app:layout_constraintBottom_toBottomOf="@id/toolbarAddPhotos"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -44,31 +44,31 @@
         app:layout_constraintTop_toBottomOf="@id/toolbarAddPhotos" />
 
     <TextView
-        android:id="@+id/tvPermissionDenied"
+        android:id="@+id/tvInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/_10sdp"
         android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginEnd="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_10sdp"
-        android:text="@string/permission_photos"
-        android:textColor="?attr/colorPrimary"
-        app:drawableTint="?attr/colorPrimary"
-        app:drawableStartCompat="@drawable/ic_error"
-        android:drawablePadding="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
         android:background="@drawable/error_round_background"
+        android:drawablePadding="@dimen/_10sdp"
+        android:padding="@dimen/_10sdp"
+        android:text="@string/photos_permission_denied"
+        android:textColor="?attr/colorPrimary"
         android:textSize="@dimen/_13ssp"
         android:visibility="gone"
+        app:drawableStartCompat="@drawable/ic_error"
+        app:drawableTint="?attr/colorPrimary"
         app:layout_constraintTop_toBottomOf="@id/tvAddPhotosDialogSub" />
 
     <androidx.core.widget.NestedScrollView
-        android:id="@+id/svPhotos"
+        android:id="@+id/nsvPhotos"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/_10sdp"
         android:padding="@dimen/_10sdp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvPermissionDenied"
+        app:layout_constraintBottom_toTopOf="@id/btnContinue"
+        app:layout_constraintTop_toBottomOf="@id/tvInfo"
         app:layout_goneMarginTop="@dimen/_10sdp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -79,15 +79,15 @@
                 android:id="@+id/tvMainPhoto"
                 android:layout_width="@dimen/_200sdp"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/_5sdp"
                 android:background="@drawable/secondary_to_transparent"
+                android:gravity="center"
+                android:padding="@dimen/_5sdp"
                 android:text="@string/add_listing_photos_main_photo"
                 android:textColor="?attr/colorTertiary"
                 android:textSize="@dimen/_12ssp"
-                android:gravity="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/ivPhoto1"
@@ -155,4 +155,16 @@
                 app:layout_constraintTop_toBottomOf="@id/ivPhoto3" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <include
+        android:id="@+id/btnContinue"
+        layout="@layout/loading_button"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_48sdp"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nsvPhotos" />
 </androidx.constraintlayout.widget.ConstraintLayout>
