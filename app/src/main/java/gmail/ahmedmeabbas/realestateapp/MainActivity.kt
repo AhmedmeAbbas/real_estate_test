@@ -121,7 +121,6 @@ class MainActivity : AppCompatActivity() {
                 R.id.myListingsFragment -> showBottomNav()
                 R.id.inboxFragment -> showBottomNav()
                 R.id.accountFragment -> showBottomNav()
-                R.id.signInFragment -> fadeOutBottomNav()
                 else -> fadeOutBottomNav()
             }
         }

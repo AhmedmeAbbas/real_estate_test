@@ -22,7 +22,6 @@ class AddPhotosFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
     private val chosenPhotoUris: MutableList<Uri?> = MutableList(MAX_NUMBER_OF_PHOTOS) { null }
-    private val tempPhotoUris: MutableList<Uri?> = MutableList(MAX_NUMBER_OF_PHOTOS) { null }
     private var clickedPhotoIndex: Int = -1
     private val requestPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
@@ -49,7 +48,7 @@ class AddPhotosFragment : Fragment() {
         setUpToolbar()
         initResultLauncher()
         setUpPhotoClickListeners()
-        // init previously selected photos if the use navigated back to this fragment
+        // init previously selected photos if the user navigated back to this fragment
         setPhotos()
         setUpSkipButton()
         setUpContinueButton()
@@ -139,7 +138,6 @@ class AddPhotosFragment : Fragment() {
         binding.tvInfo.apply {
             text = message
             visibility = View.VISIBLE
-            requestFocus()
         }
     }
 
