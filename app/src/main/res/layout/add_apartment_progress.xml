@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/_20sdp"
+    android:paddingBottom="@dimen/_20sdp">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivAdvertiserInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/oval_hint_background"
+        android:padding="@dimen/_5sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ivPropertyAddress"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_person_selected"
+        app:tint="@color/white" />
+
+    <TextView
+        android:id="@+id/line1"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_3sdp"
+        android:background="@color/hint_color"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ivAdvertiserInfo"
+        app:layout_constraintEnd_toStartOf="@id/ivPropertyAddress"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivPropertyAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/oval_hint_background"
+        android:padding="@dimen/_5sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ivApartmentDetails"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ivAdvertiserInfo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_location_selected"
+        app:tint="@color/white"
+        tools:layout_editor_absoluteY="26dp" />
+
+    <TextView
+        android:id="@+id/line2"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_3sdp"
+        android:background="@color/hint_color"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ivPropertyAddress"
+        app:layout_constraintEnd_toStartOf="@id/ivApartmentDetails"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivApartmentDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/oval_hint_background"
+        android:padding="@dimen/_5sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ivUtilities"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ivPropertyAddress"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_tos"
+        app:tint="@color/white"
+        tools:layout_editor_absoluteY="26dp" />
+
+    <TextView
+        android:id="@+id/line3"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_3sdp"
+        android:background="@color/hint_color"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ivApartmentDetails"
+        app:layout_constraintEnd_toStartOf="@id/ivUtilities"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivUtilities"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/oval_hint_background"
+        android:padding="@dimen/_5sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ivPhotos"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ivApartmentDetails"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_utilities"
+        app:tint="@color/white"
+        tools:layout_editor_absoluteY="26dp" />
+
+    <TextView
+        android:id="@+id/line4"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_3sdp"
+        android:background="@color/hint_color"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ivUtilities"
+        app:layout_constraintEnd_toStartOf="@id/ivPhotos"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivPhotos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/oval_hint_background"
+        android:padding="@dimen/_5sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ivPrice"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ivUtilities"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_camera"
+        app:tint="@color/white"
+        tools:layout_editor_absoluteY="26dp" />
+
+    <TextView
+        android:id="@+id/line5"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_3sdp"
+        android:background="@color/hint_color"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ivPhotos"
+        app:layout_constraintEnd_toStartOf="@id/ivPrice"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/oval_hint_background"
+        android:padding="@dimen/_5sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ivAdditionalInfo"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ivPhotos"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_money"
+        app:tint="@color/white"
+        tools:layout_editor_absoluteY="26dp" />
+
+    <TextView
+        android:id="@+id/line6"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_3sdp"
+        android:background="@color/hint_color"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ivPrice"
+        app:layout_constraintEnd_toStartOf="@id/ivAdditionalInfo"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivAdditionalInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/oval_hint_background"
+        android:padding="@dimen/_5sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ivPrice"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_request"
+        app:tint="@color/white" />
+</androidx.constraintlayout.widget.ConstraintLayout>
