@@ -19,16 +19,23 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.DayNight"
         app:title="@string/add_listing_your_info" />
 
+    <include
+        android:id="@+id/progressLayout"
+        layout="@layout/add_listing_progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/toolbarAdvertiserInfo"/>
+
     <TextView
         android:id="@+id/tvAdvertiser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_15sdp"
-        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_20sdp"
         android:text="@string/add_listing_advertiser"
         android:textSize="@dimen/_13ssp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbarAdvertiserInfo" />
+        app:layout_constraintTop_toBottomOf="@id/progressLayout" />
 
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/cgAdvertiser"

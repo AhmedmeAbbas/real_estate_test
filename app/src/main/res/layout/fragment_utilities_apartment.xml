@@ -31,6 +31,13 @@
             android:layout_height="match_parent">
 
             <include
+                android:id="@+id/progressLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                layout="@layout/add_listing_progress"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <include
                 android:id="@+id/electricity"
                 layout="@layout/yes_no_chip_group"
                 android:layout_width="match_parent"
@@ -38,7 +45,7 @@
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_15sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/progressLayout" />
 
             <include
                 android:id="@+id/water"

@@ -1,20 +1,26 @@
 package gmail.ahmedmeabbas.realestateapp.listings.addlisting.presentation.shared
 
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import gmail.ahmedmeabbas.realestateapp.R
 import gmail.ahmedmeabbas.realestateapp.databinding.FragmentPriceBinding
+import gmail.ahmedmeabbas.realestateapp.listings.models.PropertyType
+import gmail.ahmedmeabbas.realestateapp.util.ColorUtils.getColorFromAttr
 
 class PriceFragment : Fragment() {
 
     private var _binding: FragmentPriceBinding? = null
     private val binding get() = _binding!!
+    private val priceViewModel: PriceViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,9 +35,81 @@ class PriceFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setUpToolbar()
+        setUpProgressLayout()
+        setUpProgressColor()
         setUpInstallments()
         setUpCurrencySpinner()
         setUpContinueButton()
+    }
+
+    private fun setUpProgressColor() {
+        with(binding) {
+            progressLayout.ivAdvertiserInfo.background =
+                ResourcesCompat.getDrawable(
+                    resources,
+                    R.drawable.oval_primary_background,
+                    requireActivity().theme
+                )
+            progressLayout.line1.background =
+                ColorDrawable(requireContext().getColorFromAttr(androidx.appcompat.R.attr.colorPrimary))
+            progressLayout.ivPropertyAddress.background =
+                ResourcesCompat.getDrawable(
+                    resources,
+                    R.drawable.oval_primary_background,
+                    requireActivity().theme
+                )
+            progressLayout.line2.background =
+                ColorDrawable(requireContext().getColorFromAttr(androidx.appcompat.R.attr.colorPrimary))
+            progressLayout.ivConstructionDetails.background =
+                ResourcesCompat.getDrawable(
+                    resources,
+                    R.drawable.oval_primary_background,
+                    requireActivity().theme
+                )
+            progressLayout.line3.background =
+                ColorDrawable(requireContext().getColorFromAttr(androidx.appcompat.R.attr.colorPrimary))
+            progressLayout.ivHouseDetails.background =
+                ResourcesCompat.getDrawable(
+                    resources,
+                    R.drawable.oval_primary_background,
+                    requireActivity().theme
+                )
+            progressLayout.line4.background =
+                ColorDrawable(requireContext().getColorFromAttr(androidx.appcompat.R.attr.colorPrimary))
+            progressLayout.ivUtilities.background =
+                ResourcesCompat.getDrawable(
+                    resources,
+                    R.drawable.oval_primary_background,
+                    requireActivity().theme
+                )
+            progressLayout.line5.background =
+                ColorDrawable(requireContext().getColorFromAttr(androidx.appcompat.R.attr.colorPrimary))
+            progressLayout.ivPhotos.background =
+                ResourcesCompat.getDrawable(
+                    resources,
+                    R.drawable.oval_primary_background,
+                    requireActivity().theme
+                )
+            progressLayout.line6.background =
+                ColorDrawable(requireContext().getColorFromAttr(androidx.appcompat.R.attr.colorPrimary))
+            progressLayout.ivPrice.background =
+                ResourcesCompat.getDrawable(
+                    resources,
+                    R.drawable.oval_primary_background,
+                    requireActivity().theme
+                )
+        }
+    }
+
+    private fun setUpProgressLayout() {
+        when (priceViewModel.getPropertyType()) {
+            PropertyType.APARTMENT -> {
+                binding.progressLayout.apply {
+                    ivConstructionDetails.visibility = View.GONE
+                }
+            }
+            else -> {}
+        }
     }
 
     private fun setUpInstallments() {

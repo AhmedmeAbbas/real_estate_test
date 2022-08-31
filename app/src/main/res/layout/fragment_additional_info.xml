@@ -18,6 +18,13 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.DayNight"
         app:title="@string/add_listing_additional_info" />
 
+    <include
+        android:id="@+id/progressLayout"
+        layout="@layout/add_listing_progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/toolbarAdditionalInfo" />
+
     <TextView
         android:id="@+id/tvAdditionalInfo"
         android:layout_width="0dp"
@@ -29,7 +36,7 @@
         android:textSize="@dimen/_13ssp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbarAdditionalInfo" />
+        app:layout_constraintTop_toBottomOf="@id/progressLayout" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/additionalInfoTIL"
@@ -37,7 +44,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginEnd="@dimen/_10sdp"
         android:hint="@string/add_listing_additional_info"
         app:layout_constraintBottom_toTopOf="@id/btnContinue"

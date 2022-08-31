@@ -2,7 +2,6 @@ package gmail.ahmedmeabbas.realestateapp.account.profile.email
 
 import android.content.res.ColorStateList
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -177,7 +176,6 @@ class EditEmailDialog : BottomSheetDialogFragment() {
                     inputCurrentPassword
                 )
             ) return@setOnClickListener
-            Log.d(TAG, "setUpContinueButton: valid passed")
             editEmailViewModel.reAuthenticateUser(inputCurrentEmail, inputCurrentPassword)
         }
     }
@@ -214,7 +212,6 @@ class EditEmailDialog : BottomSheetDialogFragment() {
             binding.etCurrentPassword.error = getString(R.string.required)
             isValid = false
         }
-        Log.d(TAG, "validateEmailAndPassword: is valid: $isValid")
         return isValid
     }
 

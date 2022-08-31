@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="@dimen/_20sdp"
-    android:paddingBottom="@dimen/_20sdp">
+    android:paddingTop="@dimen/_10sdp"
+    android:paddingBottom="@dimen/_10sdp">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivAdvertiserInfo"
@@ -19,17 +19,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_person_selected"
-        app:tint="@color/white" />
+        app:tint="?attr/colorTertiary" />
 
     <TextView
         android:id="@+id/line1"
         android:layout_width="0dp"
         android:layout_height="@dimen/_3sdp"
         android:background="@color/hint_color"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/ivPropertyAddress"
         app:layout_constraintStart_toEndOf="@id/ivAdvertiserInfo"
-        app:layout_constraintEnd_toStartOf="@id/ivPropertyAddress"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivPropertyAddress"
@@ -38,12 +38,12 @@
         android:background="@drawable/oval_hint_background"
         android:padding="@dimen/_5sdp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/ivApartmentDetails"
+        app:layout_constraintEnd_toStartOf="@+id/ivConstructionDetails"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/ivAdvertiserInfo"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_location_selected"
-        app:tint="@color/white"
+        app:tint="?attr/colorTertiary"
         tools:layout_editor_absoluteY="26dp" />
 
     <TextView
@@ -51,24 +51,24 @@
         android:layout_width="0dp"
         android:layout_height="@dimen/_3sdp"
         android:background="@color/hint_color"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/ivConstructionDetails"
         app:layout_constraintStart_toEndOf="@id/ivPropertyAddress"
-        app:layout_constraintEnd_toStartOf="@id/ivApartmentDetails"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/ivApartmentDetails"
+        android:id="@+id/ivConstructionDetails"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/oval_hint_background"
         android:padding="@dimen/_5sdp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/ivUtilities"
+        app:layout_constraintEnd_toStartOf="@+id/ivHouseDetails"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/ivPropertyAddress"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_tos"
-        app:tint="@color/white"
+        app:srcCompat="@drawable/ic_construction"
+        app:tint="?attr/colorTertiary"
         tools:layout_editor_absoluteY="26dp" />
 
     <TextView
@@ -76,10 +76,36 @@
         android:layout_width="0dp"
         android:layout_height="@dimen/_3sdp"
         android:background="@color/hint_color"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/ivApartmentDetails"
-        app:layout_constraintEnd_toStartOf="@id/ivUtilities"/>
+        app:layout_constraintEnd_toStartOf="@id/ivHouseDetails"
+        app:layout_constraintStart_toEndOf="@id/ivConstructionDetails"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_goneMarginStart="0dp" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivHouseDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/oval_hint_background"
+        android:padding="@dimen/_5sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ivUtilities"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ivConstructionDetails"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_tos"
+        app:tint="?attr/colorTertiary"
+        tools:layout_editor_absoluteY="26dp" />
+
+    <TextView
+        android:id="@+id/line4"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_3sdp"
+        android:background="@color/hint_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/ivUtilities"
+        app:layout_constraintStart_toEndOf="@id/ivHouseDetails"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivUtilities"
@@ -90,21 +116,21 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/ivPhotos"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/ivApartmentDetails"
+        app:layout_constraintStart_toEndOf="@+id/ivHouseDetails"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_utilities"
-        app:tint="@color/white"
+        app:tint="?attr/colorTertiary"
         tools:layout_editor_absoluteY="26dp" />
 
     <TextView
-        android:id="@+id/line4"
+        android:id="@+id/line5"
         android:layout_width="0dp"
         android:layout_height="@dimen/_3sdp"
         android:background="@color/hint_color"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/ivPhotos"
         app:layout_constraintStart_toEndOf="@id/ivUtilities"
-        app:layout_constraintEnd_toStartOf="@id/ivPhotos"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivPhotos"
@@ -118,18 +144,18 @@
         app:layout_constraintStart_toEndOf="@+id/ivUtilities"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_camera"
-        app:tint="@color/white"
+        app:tint="?attr/colorTertiary"
         tools:layout_editor_absoluteY="26dp" />
 
     <TextView
-        android:id="@+id/line5"
+        android:id="@+id/line6"
         android:layout_width="0dp"
         android:layout_height="@dimen/_3sdp"
         android:background="@color/hint_color"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/ivPrice"
         app:layout_constraintStart_toEndOf="@id/ivPhotos"
-        app:layout_constraintEnd_toStartOf="@id/ivPrice"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivPrice"
@@ -143,18 +169,18 @@
         app:layout_constraintStart_toEndOf="@+id/ivPhotos"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_money"
-        app:tint="@color/white"
+        app:tint="?attr/colorTertiary"
         tools:layout_editor_absoluteY="26dp" />
 
     <TextView
-        android:id="@+id/line6"
+        android:id="@+id/line7"
         android:layout_width="0dp"
         android:layout_height="@dimen/_3sdp"
         android:background="@color/hint_color"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/ivAdditionalInfo"
         app:layout_constraintStart_toEndOf="@id/ivPrice"
-        app:layout_constraintEnd_toStartOf="@id/ivAdditionalInfo"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivAdditionalInfo"
@@ -168,5 +194,5 @@
         app:layout_constraintStart_toEndOf="@+id/ivPrice"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_request"
-        app:tint="@color/white" />
+        app:tint="?attr/colorTertiary" />
 </androidx.constraintlayout.widget.ConstraintLayout>

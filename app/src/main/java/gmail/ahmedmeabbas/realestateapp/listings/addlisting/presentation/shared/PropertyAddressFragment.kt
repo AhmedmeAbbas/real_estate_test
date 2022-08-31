@@ -3,6 +3,7 @@ package gmail.ahmedmeabbas.realestateapp.listings.addlisting.presentation.shared
 import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.ShapeDrawable
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -12,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.ListView
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -19,6 +21,7 @@ import com.google.android.material.snackbar.Snackbar
 import gmail.ahmedmeabbas.realestateapp.R
 import gmail.ahmedmeabbas.realestateapp.databinding.FragmentPropertyAddressBinding
 import gmail.ahmedmeabbas.realestateapp.listings.models.PropertyType
+import gmail.ahmedmeabbas.realestateapp.util.ColorUtils.getColorFromAttr
 
 class PropertyAddressFragment : Fragment() {
 
@@ -39,9 +42,42 @@ class PropertyAddressFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setUpToolbar()
+        setUpProgressLayout()
+        setUpProgressColor()
         setUpCitySpinner()
         setUpSelectRegion()
         setUpContinueButton()
+    }
+
+    private fun setUpProgressColor() {
+        with(binding) {
+            progressLayout.ivAdvertiserInfo.background =
+                ResourcesCompat.getDrawable(
+                    resources,
+                    R.drawable.oval_primary_background,
+                    requireActivity().theme
+                )
+            progressLayout.line1.background =
+                ColorDrawable(requireContext().getColorFromAttr(androidx.appcompat.R.attr.colorPrimary))
+            progressLayout.ivPropertyAddress.background =
+                ResourcesCompat.getDrawable(
+                    resources,
+                    R.drawable.oval_primary_background,
+                    requireActivity().theme
+                )
+        }
+
+    }
+
+    private fun setUpProgressLayout() {
+        when (propertyAddressViewModel.getPropertyType()) {
+            PropertyType.APARTMENT -> {
+                binding.progressLayout.apply {
+                    ivConstructionDetails.visibility = View.GONE
+                }
+            }
+            else -> {}
+        }
     }
 
     private fun setUpCitySpinner() {

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:animateLayoutChanges="true"
     android:background="@drawable/dialog_round_corners"
     android:paddingBottom="@dimen/_10sdp">
 
@@ -35,52 +34,60 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tvAddPhotosDialogSub"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:text="@string/add_listing_photos_dialog_sub"
-        android:textSize="@dimen/_13ssp"
-        app:layout_constraintTop_toBottomOf="@id/toolbarAddPhotos" />
-
-    <TextView
-        android:id="@+id/tvInfo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:layout_marginEnd="@dimen/_10sdp"
-        android:background="@drawable/error_round_background"
-        android:drawablePadding="@dimen/_10sdp"
-        android:padding="@dimen/_10sdp"
-        android:text="@string/photos_permission_denied"
-        android:textColor="?attr/colorPrimary"
-        android:textSize="@dimen/_13ssp"
-        android:visibility="gone"
-        app:drawableStartCompat="@drawable/ic_error"
-        app:drawableTint="?attr/colorPrimary"
-        app:layout_constraintTop_toBottomOf="@id/tvAddPhotosDialogSub" />
-
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nsvPhotos"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:padding="@dimen/_10sdp"
+        android:paddingBottom="@dimen/_10sdp"
         app:layout_constraintBottom_toTopOf="@id/btnContinue"
-        app:layout_constraintTop_toBottomOf="@id/tvInfo"
+        app:layout_constraintTop_toBottomOf="@id/toolbarAddPhotos"
         app:layout_goneMarginTop="@dimen/_10sdp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:animateLayoutChanges="true">
+
+            <include
+                android:id="@+id/progressLayout"
+                layout="@layout/add_listing_progress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvAddPhotosDialogSub"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:text="@string/add_listing_photos_dialog_sub"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintTop_toBottomOf="@id/progressLayout" />
+
+            <TextView
+                android:id="@+id/tvInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@drawable/error_round_background"
+                android:drawablePadding="@dimen/_10sdp"
+                android:padding="@dimen/_10sdp"
+                android:text="@string/photos_permission_denied"
+                android:textColor="?attr/colorPrimary"
+                android:textSize="@dimen/_13ssp"
+                android:visibility="gone"
+                app:drawableStartCompat="@drawable/ic_error"
+                app:drawableTint="?attr/colorPrimary"
+                app:layout_constraintTop_toBottomOf="@id/tvAddPhotosDialogSub" />
 
             <TextView
                 android:id="@+id/tvMainPhoto"
                 android:layout_width="@dimen/_200sdp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
                 android:background="@drawable/secondary_to_transparent"
                 android:gravity="center"
                 android:padding="@dimen/_5sdp"
@@ -89,7 +96,8 @@
                 android:textSize="@dimen/_12ssp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/tvInfo"
+                app:layout_goneMarginTop="@dimen/_20sdp" />
 
             <ImageView
                 android:id="@+id/ivPhoto1"

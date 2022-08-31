@@ -4,15 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import gmail.ahmedmeabbas.realestateapp.R
 import gmail.ahmedmeabbas.realestateapp.databinding.FragmentAdvertiserInfoBinding
+import gmail.ahmedmeabbas.realestateapp.listings.models.PropertyType
 
 class AdvertiserInfoFragment : Fragment() {
 
     private var _binding: FragmentAdvertiserInfoBinding? = null
     private val binding get() = _binding!!
+    private val advertiserInfoViewModel: AdvertiserInfoViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,8 +31,30 @@ class AdvertiserInfoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setUpToolbar()
+        setUpProgressLayout()
+        setUpProgressColor()
         setUpContinueButton()
         setUpAdvertiserChipListener()
+    }
+
+    private fun setUpProgressColor() {
+        binding.progressLayout.ivAdvertiserInfo.background =
+            ResourcesCompat.getDrawable(
+                resources,
+                R.drawable.oval_primary_background,
+                requireActivity().theme
+            )
+    }
+
+    private fun setUpProgressLayout() {
+        when (advertiserInfoViewModel.getPropertyType()) {
+            PropertyType.APARTMENT -> {
+                binding.progressLayout.apply {
+                    ivConstructionDetails.visibility = View.GONE
+                }
+            }
+            else -> {}
+        }
     }
 
     private fun setUpAdvertiserChipListener() {

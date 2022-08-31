@@ -32,6 +32,13 @@
             android:layout_height="match_parent"
             android:animateLayoutChanges="true">
 
+            <include
+                android:id="@+id/progressLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                layout="@layout/add_listing_progress"
+                app:layout_constraintTop_toTopOf="parent"/>
+
             <TextView
                 android:id="@+id/tvBedrooms"
                 android:layout_width="wrap_content"
@@ -55,7 +62,7 @@
                 android:hint="@string/add_apartment_bedrooms_hint"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@id/progressLayout">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etBedrooms"

@@ -31,9 +31,9 @@
 
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/cgPropertyType"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_15sdp"
         android:layout_marginTop="@dimen/_20sdp"
         android:layout_marginEnd="@dimen/_10sdp"
         app:chipSpacing="@dimen/_10sdp"
