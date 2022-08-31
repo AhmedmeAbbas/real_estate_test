@@ -15,14 +15,14 @@
     <fragment
         android:id="@+id/myListingsFragment"
         android:name="gmail.ahmedmeabbas.realestateapp.mylistings.presentation.MyListingsFragment"
-        android:label="MyHomeFragment" >
+        android:label="MyHomeFragment">
         <action
             android:id="@+id/action_myListingsFragment_to_addListingGraph"
             app:destination="@id/addListingGraph"
             app:enterAnim="@anim/slide_in_end"
             app:exitAnim="@anim/slide_out_start"
             app:popEnterAnim="@anim/slide_in_start"
-            app:popExitAnim="@anim/slide_out_end"/>
+            app:popExitAnim="@anim/slide_out_end" />
     </fragment>
     <fragment
         android:id="@+id/inboxFragment"
@@ -38,7 +38,7 @@
             app:enterAnim="@anim/slide_in_end"
             app:exitAnim="@anim/slide_out_start"
             app:popEnterAnim="@anim/slide_in_start"
-            app:popExitAnim="@anim/slide_out_end"/>
+            app:popExitAnim="@anim/slide_out_end" />
         <action
             android:id="@+id/action_accountFragment_to_languageDialog"
             app:destination="@id/languageDialog" />
@@ -72,7 +72,7 @@
         <fragment
             android:id="@+id/emailSignInFragment"
             android:name="gmail.ahmedmeabbas.realestateapp.authentication.presentation.email.EmailSignInFragment"
-            android:label="EmailSignInFragment" >
+            android:label="EmailSignInFragment">
             <action
                 android:id="@+id/action_emailSignInFragment_to_resetPasswordDialog"
                 app:destination="@id/resetPasswordDialog" />
@@ -122,10 +122,10 @@
     <action
         android:id="@+id/action_global_authGraph"
         app:destination="@id/authGraph"
-        app:enterAnim="@anim/slide_in_bottom"
-        app:exitAnim="@anim/slide_out_bottom"
-        app:popEnterAnim="@anim/slide_in_bottom"
-        app:popExitAnim="@anim/slide_out_bottom" />
+        app:enterAnim="@anim/scale_in"
+        app:exitAnim="@anim/scale_out"
+        app:popEnterAnim="@anim/scale_in"
+        app:popExitAnim="@anim/scale_out" />
     <action
         android:id="@+id/action_global_notificationsGraph"
         app:destination="@id/notificationsGraph"
@@ -196,125 +196,130 @@
     <action
         android:id="@+id/action_global_searchFragment"
         app:destination="@id/searchFragment"
-        app:enterAnim="@anim/fade_in"
-        app:exitAnim="@anim/fade_out"
+        app:enterAnim="@anim/scale_in"
+        app:exitAnim="@anim/scale_out"
+        app:popEnterAnim="@anim/scale_in"
+        app:popExitAnim="@anim/scale_out"
         app:popUpTo="@id/searchFragment"
-        app:popUpToInclusive="true"/>
+        app:popUpToInclusive="true" />
     <action
         android:id="@+id/action_global_accountFragment"
         app:destination="@id/accountFragment"
-        app:enterAnim="@anim/fade_in"
-        app:exitAnim="@anim/fade_out"
+        app:enterAnim="@anim/scale_in"
+        app:exitAnim="@anim/scale_out"
+        app:popEnterAnim="@anim/scale_in"
+        app:popExitAnim="@anim/scale_out"
         app:popUpTo="@id/searchFragment" />
-    <navigation android:id="@+id/addListingGraph"
+    <navigation
+        android:id="@+id/addListingGraph"
         app:startDestination="@id/propertyTypeFragment">
         <fragment
             android:id="@+id/propertyTypeFragment"
             android:name="gmail.ahmedmeabbas.realestateapp.listings.addlisting.presentation.shared.PropertyTypeFragment"
-            android:label="PropertyTypeFragment" >
+            android:label="PropertyTypeFragment">
             <action
                 android:id="@+id/action_propertyTypeFragment_to_advertiserInfoFragment"
                 app:destination="@id/advertiserInfoFragment"
                 app:enterAnim="@anim/slide_in_end"
                 app:exitAnim="@anim/slide_out_start"
                 app:popEnterAnim="@anim/slide_in_start"
-                app:popExitAnim="@anim/slide_out_end"/>
+                app:popExitAnim="@anim/slide_out_end" />
         </fragment>
         <fragment
             android:id="@+id/advertiserInfoFragment"
             android:name="gmail.ahmedmeabbas.realestateapp.listings.addlisting.presentation.shared.AdvertiserInfoFragment"
-            android:label="AdvertiserInfoFragment" >
+            android:label="AdvertiserInfoFragment">
             <action
                 android:id="@+id/action_advertiserInfoFragment_to_propertyAddressFragment"
                 app:destination="@id/propertyAddressFragment"
                 app:enterAnim="@anim/slide_in_end"
                 app:exitAnim="@anim/slide_out_start"
                 app:popEnterAnim="@anim/slide_in_start"
-                app:popExitAnim="@anim/slide_out_end"/>
+                app:popExitAnim="@anim/slide_out_end" />
         </fragment>
         <fragment
             android:id="@+id/propertyAddressFragment"
             android:name="gmail.ahmedmeabbas.realestateapp.listings.addlisting.presentation.shared.PropertyAddressFragment"
-            android:label="PropertyAddressFragment" >
+            android:label="PropertyAddressFragment">
             <action
                 android:id="@+id/action_propertyAddressFragment_to_constructionDetailsFragment"
                 app:destination="@id/constructionDetailsFragment"
                 app:enterAnim="@anim/slide_in_end"
                 app:exitAnim="@anim/slide_out_start"
                 app:popEnterAnim="@anim/slide_in_start"
-                app:popExitAnim="@anim/slide_out_end"/>
+                app:popExitAnim="@anim/slide_out_end" />
             <action
                 android:id="@+id/action_propertyAddressFragment_to_apartmentDetailsFragment"
                 app:destination="@id/apartmentDetailsFragment"
                 app:enterAnim="@anim/slide_in_end"
                 app:exitAnim="@anim/slide_out_start"
                 app:popEnterAnim="@anim/slide_in_start"
-                app:popExitAnim="@anim/slide_out_end"/>
+                app:popExitAnim="@anim/slide_out_end" />
             <action
                 android:id="@+id/action_propertyAddressFragment_to_propertyTypeFragment"
                 app:destination="@id/propertyTypeFragment"
                 app:popUpTo="@id/propertyTypeFragment"
-                app:popUpToInclusive="true"/>
+                app:popUpToInclusive="true" />
         </fragment>
         <fragment
             android:id="@+id/constructionDetailsFragment"
             android:name="gmail.ahmedmeabbas.realestateapp.listings.addlisting.presentation.house.ConstructionDetailsFragment"
-            android:label="ConstructionDetailsFragment" >
+            android:label="ConstructionDetailsFragment">
             <action
                 android:id="@+id/action_constructionDetailsFragment_to_houseDetailsFragment"
                 app:destination="@id/houseDetailsFragment"
                 app:enterAnim="@anim/slide_in_end"
                 app:exitAnim="@anim/slide_out_start"
                 app:popEnterAnim="@anim/slide_in_start"
-                app:popExitAnim="@anim/slide_out_end"/>
+                app:popExitAnim="@anim/slide_out_end" />
         </fragment>
         <fragment
             android:id="@+id/houseDetailsFragment"
             android:name="gmail.ahmedmeabbas.realestateapp.listings.addlisting.presentation.house.HouseDetailsFragment"
-            android:label="HouseDetailsFragment" >
+            android:label="HouseDetailsFragment">
             <action
                 android:id="@+id/action_houseDetailsFragment_to_utilitiesOtherFragment"
                 app:destination="@id/utilitiesOtherFragment"
                 app:enterAnim="@anim/slide_in_end"
                 app:exitAnim="@anim/slide_out_start"
                 app:popEnterAnim="@anim/slide_in_start"
-                app:popExitAnim="@anim/slide_out_end"/>
+                app:popExitAnim="@anim/slide_out_end" />
         </fragment>
         <fragment
             android:id="@+id/utilitiesOtherFragment"
             android:name="gmail.ahmedmeabbas.realestateapp.listings.addlisting.presentation.shared.UtilitiesOtherFragment"
-            android:label="UtilitiesOtherFragment" >
+            android:label="UtilitiesOtherFragment">
             <action
                 android:id="@+id/action_utilitiesOtherFragment_to_addPhotosFragment"
                 app:destination="@id/addPhotosFragment"
                 app:enterAnim="@anim/slide_in_end"
                 app:exitAnim="@anim/slide_out_start"
                 app:popEnterAnim="@anim/slide_in_start"
-                app:popExitAnim="@anim/slide_out_end"/>
+                app:popExitAnim="@anim/slide_out_end" />
         </fragment>
         <fragment
             android:id="@+id/addPhotosFragment"
             android:name="gmail.ahmedmeabbas.realestateapp.listings.addlisting.presentation.shared.AddPhotosFragment"
-            android:label="AddPhotosFragment" >
+            android:label="AddPhotosFragment">
             <action
                 android:id="@+id/action_addPhotosFragment_to_priceFragment"
                 app:destination="@id/priceFragment"
                 app:enterAnim="@anim/slide_in_end"
                 app:exitAnim="@anim/slide_out_start"
                 app:popEnterAnim="@anim/slide_in_start"
-                app:popExitAnim="@anim/slide_out_end"/>
+                app:popExitAnim="@anim/slide_out_end" />
         </fragment>
         <fragment
             android:id="@+id/priceFragment"
             android:name="gmail.ahmedmeabbas.realestateapp.listings.addlisting.presentation.shared.PriceFragment"
-            android:label="PriceFragment" >
+            android:label="PriceFragment">
             <action
                 android:id="@+id/action_priceFragment_to_additionalInfoFragment"
                 app:destination="@id/additionalInfoFragment"
                 app:enterAnim="@anim/slide_in_end"
                 app:exitAnim="@anim/slide_out_start"
                 app:popEnterAnim="@anim/slide_in_start"
-                app:popExitAnim="@anim/slide_out_end"/>
+                app:popExitAnim="@anim/slide_out_end" />
         </fragment>
         <fragment
             android:id="@+id/additionalInfoFragment"
@@ -323,26 +328,26 @@
         <fragment
             android:id="@+id/apartmentDetailsFragment"
             android:name="gmail.ahmedmeabbas.realestateapp.listings.addlisting.presentation.apartment.ApartmentDetailsFragment"
-            android:label="ApartmentDetailsFragment" >
+            android:label="ApartmentDetailsFragment">
             <action
                 android:id="@+id/action_apartmentDetailsFragment_to_utilitiesApartmentFragment"
                 app:destination="@id/utilitiesApartmentFragment"
                 app:enterAnim="@anim/slide_in_end"
                 app:exitAnim="@anim/slide_out_start"
                 app:popEnterAnim="@anim/slide_in_start"
-                app:popExitAnim="@anim/slide_out_end"/>
+                app:popExitAnim="@anim/slide_out_end" />
         </fragment>
         <fragment
             android:id="@+id/utilitiesApartmentFragment"
             android:name="gmail.ahmedmeabbas.realestateapp.listings.addlisting.presentation.apartment.UtilitiesApartmentFragment"
-            android:label="UtilitiesApartmentFragment" >
+            android:label="UtilitiesApartmentFragment">
             <action
                 android:id="@+id/action_utilitiesApartmentFragment_to_addPhotosFragment"
                 app:destination="@id/addPhotosFragment"
                 app:enterAnim="@anim/slide_in_end"
                 app:exitAnim="@anim/slide_out_start"
                 app:popEnterAnim="@anim/slide_in_start"
-                app:popExitAnim="@anim/slide_out_end"/>
+                app:popExitAnim="@anim/slide_out_end" />
         </fragment>
     </navigation>
 </navigation>

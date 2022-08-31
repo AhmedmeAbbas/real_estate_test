@@ -144,6 +144,7 @@
                 android:layout_marginBottom="@dimen/_30sdp"
                 android:text="@string/sign_in_tos"
                 android:textSize="@dimen/_13ssp"
+                app:layout_goneMarginBottom="@dimen/_43sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
