@@ -30,43 +30,42 @@ class PropertyTypeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setUpCheckedChipListener()
+        setUpClickListeners()
         setUpToolbar()
     }
 
-    private fun setUpCheckedChipListener() {
-        binding.cgPropertyType.setOnCheckedStateChangeListener { _, _ ->
-            when (binding.cgPropertyType.checkedChipId) {
-                R.id.chipHouse -> {
-                    propertyTypeViewModel.setPropertyType(PropertyType.HOUSE)
-                }
-                R.id.chipApartment -> {
-                    propertyTypeViewModel.setPropertyType(PropertyType.APARTMENT)
-                }
-                R.id.chipBuilding -> {
-                    Toast.makeText(requireContext(), "building", Toast.LENGTH_SHORT).show()
-                }
-                R.id.chipStore -> {
-                    Toast.makeText(requireContext(), "store", Toast.LENGTH_SHORT).show()
-                }
-                R.id.chipLand -> {
-                    Toast.makeText(requireContext(), "land", Toast.LENGTH_SHORT).show()
-                }
-                R.id.chipWarehouse -> {
-                    Toast.makeText(requireContext(), "warehouse", Toast.LENGTH_SHORT).show()
-                }
-                R.id.chipFarm -> {
-                    Toast.makeText(requireContext(), "farm", Toast.LENGTH_SHORT).show()
-                }
-                else -> return@setOnCheckedStateChangeListener
-            }
-            navigateTo(R.id.action_propertyTypeFragment_to_advertiserInfoFragment)
-            binding.cgPropertyType.clearCheck()
+    private fun setUpClickListeners() {
+        binding.tvPropertyTypeHouse.setOnClickListener {
+            setPropertyType(PropertyType.HOUSE)
+            navigateToAdvertiserInfo()
+        }
+        binding.tvPropertyTypeApartment.setOnClickListener {
+            setPropertyType(PropertyType.APARTMENT)
+            navigateToAdvertiserInfo()
+        }
+        binding.tvPropertyTypeBuilding.setOnClickListener {
+            Toast.makeText(requireContext(), getString(R.string.property_type_building), Toast.LENGTH_SHORT).show()
+        }
+        binding.tvPropertyTypeStore.setOnClickListener {
+            Toast.makeText(requireContext(), getString(R.string.property_type_store), Toast.LENGTH_SHORT).show()
+        }
+        binding.tvPropertyTypeLand.setOnClickListener {
+            Toast.makeText(requireContext(), getString(R.string.property_type_land), Toast.LENGTH_SHORT).show()
+        }
+        binding.tvPropertyTypeWarehouse.setOnClickListener {
+            Toast.makeText(requireContext(), getString(R.string.property_type_warehouse), Toast.LENGTH_SHORT).show()
+        }
+        binding.tvPropertyTypeFarm.setOnClickListener {
+            Toast.makeText(requireContext(), getString(R.string.property_type_farm), Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun navigateTo(actionId: Int) {
-        findNavController().navigate(actionId)
+    private fun setPropertyType(propertyType: String) {
+        propertyTypeViewModel.setPropertyType(propertyType)
+    }
+
+    private fun navigateToAdvertiserInfo() {
+        findNavController().navigate(R.id.action_propertyTypeFragment_to_advertiserInfoFragment)
     }
 
     private fun setUpToolbar() {

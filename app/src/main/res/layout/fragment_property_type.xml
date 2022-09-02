@@ -29,73 +29,148 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbarPropertyType" />
 
-    <com.google.android.material.chip.ChipGroup
-        android:id="@+id/cgPropertyType"
+    <TextView
+        android:id="@+id/tvPropertyTypeHouse"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/_48sdp"
         android:layout_marginStart="@dimen/_15sdp"
         android:layout_marginTop="@dimen/_20sdp"
         android:layout_marginEnd="@dimen/_10sdp"
-        app:chipSpacing="@dimen/_10sdp"
+        android:background="@drawable/ripple_round_transparent"
+        android:elevation="@dimen/_2sdp"
+        android:gravity="center"
+        android:padding="@dimen/_10sdp"
+        android:paddingStart="@dimen/_20sdp"
+        android:paddingEnd="@dimen/_20sdp"
+        android:text="@string/property_type_house"
+        android:textSize="@dimen/_13ssp"
+        app:drawableStartCompat="@drawable/ic_villa"
+        app:drawableTint="?attr/colorSecondary"
+        app:layout_constraintEnd_toStartOf="@id/tvPropertyTypeApartment"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvPropertyTypeHeader" />
+
+    <TextView
+        android:id="@+id/tvPropertyTypeApartment"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_48sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:background="@drawable/ripple_round_transparent"
+        android:elevation="@dimen/_2sdp"
+        android:gravity="center"
+        android:padding="@dimen/_10sdp"
+        android:paddingStart="@dimen/_20sdp"
+        android:paddingEnd="@dimen/_20sdp"
+        android:text="@string/property_type_apartment"
+        android:textSize="@dimen/_13ssp"
+        app:drawableStartCompat="@drawable/ic_apartment"
+        app:drawableTint="?attr/colorSecondary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvPropertyTypeHouse"
+        app:layout_constraintTop_toBottomOf="@id/tvPropertyTypeHeader" />
+
+    <TextView
+        android:id="@+id/tvPropertyTypeBuilding"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_48sdp"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:background="@drawable/ripple_round_transparent"
+        android:elevation="@dimen/_2sdp"
+        android:gravity="center"
+        android:padding="@dimen/_10sdp"
+        android:paddingStart="@dimen/_20sdp"
+        android:paddingEnd="@dimen/_20sdp"
+        android:text="@string/property_type_building"
+        android:textSize="@dimen/_13ssp"
+        app:drawableStartCompat="@drawable/ic_building"
+        app:drawableTint="?attr/colorSecondary"
+        app:layout_constraintEnd_toStartOf="@id/tvPropertyTypeStore"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvPropertyTypeHouse" />
+
+    <TextView
+        android:id="@+id/tvPropertyTypeStore"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_48sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:background="@drawable/ripple_round_transparent"
+        android:elevation="@dimen/_2sdp"
+        android:gravity="center"
+        android:padding="@dimen/_10sdp"
+        android:paddingStart="@dimen/_20sdp"
+        android:paddingEnd="@dimen/_20sdp"
+        android:text="@string/property_type_store"
+        android:textSize="@dimen/_13ssp"
+        app:drawableStartCompat="@drawable/ic_store"
+        app:drawableTint="?attr/colorSecondary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvPropertyTypeBuilding"
+        app:layout_constraintTop_toBottomOf="@id/tvPropertyTypeApartment" />
+
+    <TextView
+        android:id="@+id/tvPropertyTypeLand"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_48sdp"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:background="@drawable/ripple_round_transparent"
+        android:elevation="@dimen/_2sdp"
+        android:gravity="center"
+        android:padding="@dimen/_10sdp"
+        android:paddingStart="@dimen/_20sdp"
+        android:paddingEnd="@dimen/_20sdp"
+        android:text="@string/property_type_land"
+        android:textSize="@dimen/_13ssp"
+        app:drawableStartCompat="@drawable/ic_land"
+        app:drawableTint="?attr/colorSecondary"
+        app:layout_constraintEnd_toStartOf="@id/tvPropertyTypeWarehouse"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvPropertyTypeBuilding" />
+
+    <TextView
+        android:id="@+id/tvPropertyTypeWarehouse"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_48sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:background="@drawable/ripple_round_transparent"
+        android:elevation="@dimen/_2sdp"
+        android:gravity="center"
+        android:padding="@dimen/_10sdp"
+        android:paddingStart="@dimen/_20sdp"
+        android:paddingEnd="@dimen/_20sdp"
+        android:text="@string/property_type_warehouse"
+        android:textSize="@dimen/_13ssp"
+        app:drawableStartCompat="@drawable/ic_warehouse"
+        app:drawableTint="?attr/colorSecondary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvPropertyTypeLand"
+        app:layout_constraintTop_toBottomOf="@id/tvPropertyTypeStore" />
+
+    <TextView
+        android:id="@+id/tvPropertyTypeFarm"
+        android:layout_width="@dimen/_135sdp"
+        android:layout_height="@dimen/_48sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:background="@drawable/ripple_round_transparent"
+        android:elevation="@dimen/_2sdp"
+        android:gravity="center"
+        android:padding="@dimen/_10sdp"
+        android:paddingStart="@dimen/_20sdp"
+        android:paddingEnd="@dimen/_20sdp"
+        android:text="@string/property_type_farm"
+        android:textSize="@dimen/_13ssp"
+        app:drawableStartCompat="@drawable/ic_farm"
+        app:drawableTint="?attr/colorSecondary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvPropertyTypeHeader"
-        app:singleSelection="true">
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chipHouse"
-            style="@style/ChipStyleRect"
-            android:layout_width="@dimen/_120sdp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:text="@string/property_type_house" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chipApartment"
-            style="@style/ChipStyleRect"
-            android:layout_width="@dimen/_120sdp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:text="@string/property_type_apartment" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chipBuilding"
-            style="@style/ChipStyleRect"
-            android:layout_width="@dimen/_120sdp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:text="@string/property_type_building" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chipStore"
-            style="@style/ChipStyleRect"
-            android:layout_width="@dimen/_120sdp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:text="@string/property_type_store" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chipLand"
-            style="@style/ChipStyleRect"
-            android:layout_width="@dimen/_120sdp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:text="@string/property_type_land" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chipWarehouse"
-            style="@style/ChipStyleRect"
-            android:layout_width="@dimen/_120sdp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:text="@string/property_type_warehouse" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chipFarm"
-            style="@style/ChipStyleRect"
-            android:layout_width="@dimen/_120sdp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_80sdp"
-            android:text="@string/property_type_farm" />
-    </com.google.android.material.chip.ChipGroup>
+        app:layout_constraintTop_toBottomOf="@id/tvPropertyTypeLand" />
 </androidx.constraintlayout.widget.ConstraintLayout>
