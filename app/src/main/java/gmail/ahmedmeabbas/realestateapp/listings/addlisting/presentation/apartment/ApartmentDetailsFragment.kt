@@ -9,6 +9,8 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.chip.ChipGroup
+import com.google.android.material.textfield.TextInputEditText
 import gmail.ahmedmeabbas.realestateapp.R
 import gmail.ahmedmeabbas.realestateapp.databinding.FragmentApartmentDetailsBinding
 import gmail.ahmedmeabbas.realestateapp.listings.models.PropertyType
@@ -36,9 +38,7 @@ class ApartmentDetailsFragment : Fragment() {
         setUpProgressLayout()
         setUpProgressColor()
         setUpViews()
-        setUpBedrooms()
-        setUpBathrooms()
-        setUpFloor()
+        setUpChipGroups()
         setUpContinueButton()
     }
 
@@ -82,11 +82,20 @@ class ApartmentDetailsFragment : Fragment() {
         }
     }
 
-    private fun setUpFloor() {
-        binding.floor.apply {
-            tvHeader.text = getString(R.string.add_apartment_floor)
-            textInputLayout.hint = getString(R.string.add_apartment_floor_hint)
-            chip0.text = getString(R.string.add_apartment_floor_ground)
+    private fun setUpChipGroups() {
+        binding.bedrooms.chipGroup.setOnCheckedStateChangeListener { group, _ ->
+            if (group.checkedChipId == R.id.chipOther) {
+                enableTIL(binding.bedrooms.textInputLayout, true)
+            } else {
+                enableTIL(binding.bedrooms.textInputLayout, false)
+            }
+        }
+        binding.bathrooms.chipGroup.setOnCheckedStateChangeListener { group, _ ->
+            if (group.checkedChipId == R.id.chipOther) {
+                enableTIL(binding.bathrooms.textInputLayout, true)
+            } else {
+                enableTIL(binding.bathrooms.textInputLayout, false)
+            }
         }
         binding.floor.chipGroup.setOnCheckedStateChangeListener { group, _ ->
             if (group.checkedChipId == R.id.chipOther) {
@@ -97,31 +106,19 @@ class ApartmentDetailsFragment : Fragment() {
         }
     }
 
-    private fun setUpBedrooms() {
+    private fun setUpTILHints() {
         binding.bedrooms.apply {
             tvHeader.text = getString(R.string.add_apartment_bedrooms)
             textInputLayout.hint = getString(R.string.add_apartment_bedrooms_hint)
         }
-        binding.bedrooms.chipGroup.setOnCheckedStateChangeListener { group, _ ->
-            if (group.checkedChipId == R.id.chipOther) {
-                enableTIL(binding.bedrooms.textInputLayout, true)
-            } else {
-                enableTIL(binding.bedrooms.textInputLayout, false)
-            }
-        }
-    }
-
-    private fun setUpBathrooms() {
         binding.bathrooms.apply {
             tvHeader.text = getString(R.string.add_apartment_bathrooms)
             textInputLayout.hint = getString(R.string.add_apartment_bathrooms_hint)
         }
-        binding.bathrooms.chipGroup.setOnCheckedStateChangeListener { group, _ ->
-            if (group.checkedChipId == R.id.chipOther) {
-                enableTIL(binding.bathrooms.textInputLayout, true)
-            } else {
-                enableTIL(binding.bathrooms.textInputLayout, false)
-            }
+        binding.floor.apply {
+            tvHeader.text = getString(R.string.add_apartment_floor)
+            textInputLayout.hint = getString(R.string.add_apartment_floor_hint)
+            chip0.text = getString(R.string.add_apartment_floor_ground)
         }
     }
 
@@ -140,7 +137,56 @@ class ApartmentDetailsFragment : Fragment() {
     private fun setUpContinueButton() {
         binding.btnContinue.tvButton.text = getString(R.string.confirm_and_continue)
         binding.btnContinue.root.setOnClickListener {
+            val area = binding.etArea.text.toString().toDoubleOrNull()
+            val yearBuilt = binding.etYearBuilt.text.toString().toIntOrNull()
+            val finished = getUserChoice(binding.cgFinishing)
+            val furnished = getUserChoice(binding.cgFurniture)
+            val bedrooms = getNumberFromChipGroup(binding.bedrooms.chipGroup, binding.bedrooms.editText)
+            val bathrooms =
+                getNumberFromChipGroup(binding.bathrooms.chipGroup, binding.bathrooms.editText)
+            val kitchen = getUserChoice(binding.kitchen.chipGroup)
+            val livingRoom = getUserChoice(binding.livingRoom.chipGroup)
+            val balcony = getUserChoice(binding.balcony.chipGroup)
+            val floorNumber = getNumberFromChipGroup(binding.floor.chipGroup, binding.floor.editText)
+            val moreInfo = binding.etApartmentDetailsMore.text.toString().ifEmpty { null }
+            apartmentDetailsViewModel.addApartmentDetails(
+                area,
+                yearBuilt,
+                finished,
+                furnished,
+                bedrooms,
+                bathrooms,
+                kitchen,
+                livingRoom,
+                balcony,
+                floorNumber,
+                moreInfo
+            )
             findNavController().navigate(R.id.action_apartmentDetailsFragment_to_utilitiesApartmentFragment)
+        }
+    }
+
+    private fun getNumberFromChipGroup(chipGroup: ChipGroup, editText: TextInputEditText): Int? {
+        return when (chipGroup.checkedChipId) {
+            R.id.chip0 -> 0
+            R.id.chip1 -> 1
+            R.id.chip2 -> 2
+            R.id.chip3 -> 3
+            R.id.chip4 -> 4
+            R.id.chipOther -> editText.text.toString().toIntOrNull()
+            else -> null
+        }
+    }
+
+    private fun getUserChoice(chipGroup: ChipGroup): Boolean? {
+        return when (chipGroup.checkedChipId) {
+            R.id.chipFinished -> true
+            R.id.chipUnfinished -> false
+            R.id.chipFurnished -> true
+            R.id.chipUnfurnished -> false
+            R.id.chipYes -> true
+            R.id.chipNo -> false
+            else -> null
         }
     }
 
@@ -150,8 +196,17 @@ class ApartmentDetailsFragment : Fragment() {
         }
     }
 
+    override fun onStart() {
+        super.onStart()
+        setUpTILHints()
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        private const val TAG = "ApartmentDetailsFragment"
     }
 }

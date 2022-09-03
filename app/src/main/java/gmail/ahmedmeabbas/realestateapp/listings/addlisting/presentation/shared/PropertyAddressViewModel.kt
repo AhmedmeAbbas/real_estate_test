@@ -11,4 +11,14 @@ class PropertyAddressViewModel @Inject constructor(
 ) : ViewModel() {
 
     fun getPropertyType() = addListingRepository.getPropertyType()
+
+    fun addPropertyAddress(
+        state: String,
+        city: String,
+        region: String,
+        block: Int,
+        propertyNumber: Int
+    ) {
+        addListingRepository.addPropertyAddress(state, city, region, block, propertyNumber)
+    }
 }

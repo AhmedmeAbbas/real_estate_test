@@ -57,8 +57,8 @@
     <string name="create_account_error">Failed to create account. Please try again later</string>
     <string name="error_sign_in">Sign in failed</string>
     <string name="photos_permission_denied">In order to add photos to your listing the app needs access to your photos</string>
-    <string name="photos_main_not_selected">You must add a main photo to your listing. If you don\'t want to add any photos click the Skip button at the top</string>
     <string name="error_invalid_number">Invalid number</string>
+    <string name="error_invalid">Invalid</string>
 
     <!-- Email sign in fragment -->
     <string name="email_sign_in_header">Sign in with email</string>
@@ -119,9 +119,11 @@
     <string name="add_listing_email">Email</string>
     <string name="add_listing_optional">Optional</string>
     <string name="add_listing_property_address">Property address</string>
+    <string name="add_listing_state">State</string>
+    <string name="add_listing_state_spinner">Select state</string>
     <string name="add_listing_city">City</string>
     <string name="add_listing_city_spinner">Select city</string>
-    <string name="add_listing_region">Region/\nNeighborhood</string>
+    <string name="add_listing_region">Region</string>
     <string name="add_listing_select_region">Select region</string>
     <string name="add_listing_enter_region">Enter region</string>
     <string name="add_listing_block">Block/\nLane</string>

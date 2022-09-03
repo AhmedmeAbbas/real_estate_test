@@ -9,6 +9,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import gmail.ahmedmeabbas.realestateapp.R
 import gmail.ahmedmeabbas.realestateapp.databinding.FragmentAdditionalInfoBinding
 import gmail.ahmedmeabbas.realestateapp.listings.models.PropertyType
@@ -118,6 +119,11 @@ class AdditionalInfoFragment : Fragment() {
 
     private fun setUpContinueButton() {
         binding.btnContinue.tvButton.text = getString(R.string.confirm_and_continue)
+        binding.btnContinue.root.setOnClickListener {
+            val additionalInfo = binding.etAdditionalInfo.text.toString().ifEmpty { null }
+            additionalInfoViewModel.addAdditionalInfo(additionalInfo)
+            additionalInfoViewModel.done()
+        }
     }
 
     private fun setUpToolbar() {

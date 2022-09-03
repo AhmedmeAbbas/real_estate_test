@@ -11,4 +11,22 @@ class PriceViewModel @Inject constructor(
 ) : ViewModel() {
 
     fun getPropertyType() = addListingRepository.getPropertyType()
+
+    fun addPrice(
+        currency: String,
+        price: Double,
+        installments: Boolean?,
+        downPayment: Double?,
+        monthlyInstallment: Double?,
+        installmentPeriod: Int?
+    ) {
+        addListingRepository.addPrice(
+            currency,
+            price,
+            installments,
+            downPayment,
+            monthlyInstallment,
+            installmentPeriod
+        )
+    }
 }

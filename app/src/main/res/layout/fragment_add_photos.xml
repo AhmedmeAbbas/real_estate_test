@@ -20,20 +20,6 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.DayNight"
         app:title="@string/add_listing_add_photos" />
 
-    <TextView
-        android:id="@+id/tvSkip"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:focusable="true"
-        android:foreground="?attr/selectableItemBackground"
-        android:padding="@dimen/_10sdp"
-        android:text="@string/skip"
-        android:textSize="@dimen/_12ssp"
-        app:layout_constraintBottom_toBottomOf="@id/toolbarAddPhotos"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nsvPhotos"
         android:layout_width="match_parent"
@@ -83,86 +69,89 @@
                 app:drawableTint="?attr/colorPrimary"
                 app:layout_constraintTop_toBottomOf="@id/tvAddPhotosDialogSub" />
 
-            <TextView
-                android:id="@+id/tvMainPhoto"
-                android:layout_width="@dimen/_200sdp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:background="@drawable/secondary_to_transparent"
-                android:gravity="center"
-                android:padding="@dimen/_5sdp"
-                android:text="@string/add_listing_photos_main_photo"
-                android:textColor="?attr/colorTertiary"
-                android:textSize="@dimen/_12ssp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvInfo"
-                app:layout_goneMarginTop="@dimen/_20sdp" />
-
             <ImageView
                 android:id="@+id/ivPhoto1"
-                android:layout_width="@dimen/_200sdp"
-                android:layout_height="@dimen/_200sdp"
+                android:layout_width="@dimen/_140sdp"
+                android:layout_height="@dimen/_140sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                app:layout_goneMarginTop="@dimen/_20sdp"
+                android:background="?attr/colorOnBackground"
+                android:elevation="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toStartOf="@id/ivPhoto2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvInfo" />
+
+            <ImageView
+                android:id="@+id/ivPhoto2"
+                android:layout_width="@dimen/_140sdp"
+                android:layout_height="@dimen/_140sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginStart="@dimen/_5sdp"
                 android:background="?attr/colorOnBackground"
                 android:elevation="@dimen/_2sdp"
                 android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvMainPhoto" />
+                app:layout_constraintStart_toEndOf="@id/ivPhoto1"
+                app:layout_constraintTop_toBottomOf="@id/tvInfo"
+                app:layout_goneMarginTop="@dimen/_20sdp" />
 
             <ImageView
-                android:id="@+id/ivPhoto2"
-                android:layout_width="@dimen/_150sdp"
-                android:layout_height="@dimen/_150sdp"
+                android:id="@+id/ivPhoto3"
+                android:layout_width="@dimen/_140sdp"
+                android:layout_height="@dimen/_140sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginEnd="@dimen/_5sdp"
                 android:background="?attr/colorOnBackground"
                 android:elevation="@dimen/_2sdp"
                 android:scaleType="centerCrop"
-                app:layout_constraintEnd_toStartOf="@id/ivPhoto3"
+                app:layout_constraintEnd_toStartOf="@id/ivPhoto4"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ivPhoto1"
-                app:layout_goneMarginTop="@dimen/_10sdp" />
-
-            <ImageView
-                android:id="@+id/ivPhoto3"
-                android:layout_width="@dimen/_150sdp"
-                android:layout_height="@dimen/_150sdp"
-                android:layout_marginStart="@dimen/_5sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:background="?attr/colorOnBackground"
-                android:elevation="@dimen/_2sdp"
-                android:scaleType="centerCrop"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/ivPhoto2"
                 app:layout_constraintTop_toBottomOf="@id/ivPhoto1"
                 app:layout_goneMarginTop="@dimen/_10sdp" />
 
             <ImageView
                 android:id="@+id/ivPhoto4"
-                android:layout_width="@dimen/_150sdp"
-                android:layout_height="@dimen/_150sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_5sdp"
-                android:background="?attr/colorOnBackground"
-                android:elevation="@dimen/_2sdp"
-                android:scaleType="centerCrop"
-                app:layout_constraintEnd_toStartOf="@id/ivPhoto5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ivPhoto2" />
-
-            <ImageView
-                android:id="@+id/ivPhoto5"
-                android:layout_width="@dimen/_150sdp"
-                android:layout_height="@dimen/_150sdp"
+                android:layout_width="@dimen/_140sdp"
+                android:layout_height="@dimen/_140sdp"
                 android:layout_marginStart="@dimen/_5sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:background="?attr/colorOnBackground"
                 android:elevation="@dimen/_2sdp"
                 android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/ivPhoto4"
-                app:layout_constraintTop_toBottomOf="@id/ivPhoto3" />
+                app:layout_constraintStart_toEndOf="@id/ivPhoto3"
+                app:layout_constraintTop_toBottomOf="@id/ivPhoto2"
+                app:layout_goneMarginTop="@dimen/_10sdp" />
+
+            <ImageView
+                android:id="@+id/ivPhoto5"
+                android:layout_width="@dimen/_140sdp"
+                android:layout_height="@dimen/_140sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:background="?attr/colorOnBackground"
+                android:elevation="@dimen/_2sdp"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toStartOf="@id/ivPhoto6"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ivPhoto3"
+                app:layout_goneMarginTop="@dimen/_10sdp" />
+
+            <ImageView
+                android:id="@+id/ivPhoto6"
+                android:layout_width="@dimen/_140sdp"
+                android:layout_height="@dimen/_140sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="?attr/colorOnBackground"
+                android:elevation="@dimen/_2sdp"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ivPhoto5"
+                app:layout_constraintTop_toBottomOf="@id/ivPhoto4"
+                app:layout_goneMarginTop="@dimen/_10sdp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 

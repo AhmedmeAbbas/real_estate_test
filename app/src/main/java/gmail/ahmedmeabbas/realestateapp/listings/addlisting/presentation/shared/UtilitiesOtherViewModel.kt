@@ -11,4 +11,8 @@ class UtilitiesOtherViewModel @Inject constructor(
 ) : ViewModel() {
 
     fun getPropertyType() = addListingRepository.getPropertyType()
+
+    fun addOtherUtilities(electricity: Boolean?, water: Boolean?, moreInfo: String?) {
+
+    }
 }

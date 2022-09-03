@@ -22,6 +22,7 @@ import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepository
 import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl
 import gmail.ahmedmeabbas.realestateapp.listings.addlisting.data.AddListingRepository
 import gmail.ahmedmeabbas.realestateapp.listings.addlisting.data.AddListingRepositoryImpl
+import gmail.ahmedmeabbas.realestateapp.listings.addlisting.domain.AddApartmentUseCase
 import gmail.ahmedmeabbas.realestateapp.listings.getlisting.data.ListingRepository
 import gmail.ahmedmeabbas.realestateapp.listings.getlisting.data.ListingRepositoryImpl
 import gmail.ahmedmeabbas.realestateapp.userpreferences.UserPreferencesRepository
@@ -90,6 +91,14 @@ object AppModule {
         db: FirebaseFirestore
     ): AddListingRepository {
         return AddListingRepositoryImpl(db)
+    }
+
+    @Singleton
+    @Provides
+    fun provideAddApartmentUseCase(
+        addListingRepository: AddListingRepository
+    ): AddApartmentUseCase {
+        return AddApartmentUseCase(addListingRepository)
     }
 
     @Singleton

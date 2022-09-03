@@ -11,4 +11,12 @@ class AdditionalInfoViewModel @Inject constructor(
 ) : ViewModel() {
 
     fun getPropertyType() = addListingRepository.getPropertyType()
+
+    fun addAdditionalInfo(additionalInfo: String?) {
+        addListingRepository.addAdditionalInfo(additionalInfo)
+    }
+
+    fun done() {
+        addListingRepository.logResults()
+    }
 }

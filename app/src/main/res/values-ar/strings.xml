@@ -57,8 +57,8 @@
     <string name="create_account_error">فشل إنشاء الحساب. الرجاء المحاولة مجددا لاحقا</string>
     <string name="error_sign_in">فشل تسجيل الدخول</string>
     <string name="photos_permission_denied">لكي تتمكن من إضافة صور لإعلانك التطبيق يحتاج إذن الوصول إلى الصور</string>
-    <string name="photos_main_not_selected">يجب إضافة صورة رئيسية إلى إعلانك. إذا كنت لاترغب في إضافة صور اضغط على زر تخطي في الأعلى</string>
     <string name="error_invalid_number">الرقم غير صحيح</string>
+    <string name="error_invalid">غير صحيح</string>
 
     <!-- Email sign in fragment -->
     <string name="email_sign_in_header">سجل دخولك بالبريد الإلكتروني</string>
@@ -119,6 +119,8 @@
     <string name="add_listing_email">البريد\nالإلكتروني</string>
     <string name="add_listing_optional">اختياري</string>
     <string name="add_listing_property_address">عنوان العقار</string>
+    <string name="add_listing_state">الولاية</string>
+    <string name="add_listing_state_spinner">اختر الولاية</string>
     <string name="add_listing_city">المدينة</string>
     <string name="add_listing_city_spinner">اختر المدينة</string>
     <string name="add_listing_region">المنطقة/\nالحي</string>

@@ -2,15 +2,19 @@ package gmail.ahmedmeabbas.realestateapp.listings.addlisting.presentation.shared
 
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import gmail.ahmedmeabbas.realestateapp.R
 import gmail.ahmedmeabbas.realestateapp.databinding.FragmentPriceBinding
 import gmail.ahmedmeabbas.realestateapp.listings.models.PropertyType
@@ -165,6 +169,7 @@ class PriceFragment : Fragment() {
                         }
                         else -> {}
                     }
+                    if (position != 0) resetTextError(binding.tvCurrency)
                 }
 
                 override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -203,7 +208,159 @@ class PriceFragment : Fragment() {
     private fun setUpContinueButton() {
         binding.btnContinue.tvButton.text = getString(R.string.confirm_and_continue)
         binding.btnContinue.root.setOnClickListener {
-            findNavController().navigate(R.id.action_priceFragment_to_additionalInfoFragment)
+            val currency = binding.spinnerCurrency.selectedItem.toString()
+            val priceInput = binding.etPrice.text.toString()
+            val installments = getInstallments()
+
+            if (validateForm(currency, priceInput) && validateInstallments(installments)) {
+                val downPayment = binding.etDownPayment.text.toString().toDoubleOrNull()
+                val monthlyInstallment =
+                    binding.etMonthlyInstallment.text.toString().toDoubleOrNull()
+                val installmentPeriod = binding.etInstallmentPeriod.text.toString().toIntOrNull()
+                priceViewModel.addPrice(
+                    currency,
+                    priceInput.toDouble(),
+                    installments,
+                    downPayment,
+                    monthlyInstallment,
+                    installmentPeriod
+                )
+                findNavController().navigate(R.id.action_priceFragment_to_additionalInfoFragment)
+            }
+        }
+    }
+
+    private fun validateInstallments(installments: Boolean?): Boolean {
+        var isValid = true
+        if (installments == null || installments == false) {
+            isValid = true
+        } else {
+            if (!validateDownPayment()) isValid = false
+            if (!validateMonthlyInstallment()) isValid = false
+            if (!validateInstallmentPeriod()) isValid = false
+        }
+        return isValid
+    }
+
+    private fun validateDownPayment(): Boolean {
+        val downPayment = binding.etDownPayment.text.toString()
+
+        return if (downPayment.isEmpty()) {
+            binding.downPaymentTIL.error = getString(R.string.required)
+            setUpTILErrorListener(binding.downPaymentTIL, binding.etDownPayment)
+            false
+        } else {
+            try {
+                downPayment.toInt()
+                true
+            } catch (e: Exception) {
+                binding.downPaymentTIL.error = getString(R.string.error_invalid)
+                setUpTILErrorListener(binding.downPaymentTIL, binding.etDownPayment)
+                false
+            }
+        }
+    }
+
+    private fun validateMonthlyInstallment(): Boolean {
+        val monthlyInstallment = binding.etMonthlyInstallment.text.toString()
+
+        return if (monthlyInstallment.isEmpty()) {
+            binding.monthlyInstallmentTIL.error = getString(R.string.required)
+            setUpTILErrorListener(binding.monthlyInstallmentTIL, binding.etMonthlyInstallment)
+            false
+        } else {
+            try {
+                monthlyInstallment.toDouble()
+                true
+            } catch (e: Exception) {
+                binding.monthlyInstallmentTIL.error = getString(R.string.error_invalid)
+                setUpTILErrorListener(binding.monthlyInstallmentTIL, binding.etMonthlyInstallment)
+                false
+            }
+        }
+    }
+
+    private fun validateInstallmentPeriod(): Boolean {
+        val installmentPeriod = binding.etInstallmentPeriod.text.toString()
+
+        return if (installmentPeriod.isEmpty()) {
+            binding.installmentPeriodTIL.error = getString(R.string.required)
+            setUpTILErrorListener(binding.installmentPeriodTIL, binding.etInstallmentPeriod)
+            false
+        } else {
+            try {
+                installmentPeriod.toInt()
+                true
+            } catch (e: Exception) {
+                binding.installmentPeriodTIL.error = getString(R.string.error_invalid)
+                setUpTILErrorListener(binding.installmentPeriodTIL, binding.etInstallmentPeriod)
+                false
+            }
+        }
+    }
+
+    private fun getInstallments(): Boolean? {
+        return when (binding.installments.chipGroup.checkedChipId) {
+            R.id.chipYes -> true
+            R.id.chipNo -> false
+            else -> null
+        }
+    }
+
+    private fun validateForm(currency: String, priceInput: String): Boolean {
+        var isValid = true
+
+        if (currency == getString(R.string.add_listing_select_currency)) {
+            showTextError(binding.tvCurrency)
+            isValid = false
+        }
+        if (priceInput.isEmpty()) {
+            binding.priceTIL.error = getString(R.string.required)
+            setUpTILErrorListener(binding.priceTIL, binding.etPrice)
+            isValid = false
+        } else {
+            try {
+                priceInput.toDouble()
+            } catch (e: Exception) {
+                binding.priceTIL.error = getString(R.string.error_invalid)
+                setUpTILErrorListener(binding.priceTIL, binding.etPrice)
+                isValid = false
+            }
+        }
+        return isValid
+    }
+
+    private fun setUpTILErrorListener(
+        textInputLayout: TextInputLayout,
+        textInputEditText: TextInputEditText
+    ) {
+        textInputEditText.setOnClickListener {
+            textInputLayout.error = null
+        }
+        textInputEditText.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) textInputLayout.error = null
+        }
+    }
+
+    private fun showTextError(textView: TextView) {
+        textView.apply {
+            setCompoundDrawablesRelativeWithIntrinsicBounds(
+                ResourcesCompat.getDrawable(
+                    resources,
+                    R.drawable.ic_error,
+                    requireActivity().theme
+                ),
+                null, null, null
+            )
+            setTextColor(ResourcesCompat.getColor(resources, R.color.red, requireActivity().theme))
+            compoundDrawablePadding = 15
+        }
+    }
+
+    private fun resetTextError(textView: TextView) {
+        textView.apply {
+            setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, null, null)
+            setTextColor(requireContext().getColorFromAttr(com.google.android.material.R.attr.colorSecondary))
         }
     }
 
@@ -216,5 +373,9 @@ class PriceFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        private const val TAG = "PriceFragment"
     }
 }

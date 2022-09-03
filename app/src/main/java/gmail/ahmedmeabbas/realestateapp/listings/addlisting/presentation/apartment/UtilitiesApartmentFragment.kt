@@ -5,12 +5,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.chip.ChipGroup
 import gmail.ahmedmeabbas.realestateapp.R
 import gmail.ahmedmeabbas.realestateapp.databinding.FragmentUtilitiesApartmentBinding
+import gmail.ahmedmeabbas.realestateapp.listings.models.Advertiser
 import gmail.ahmedmeabbas.realestateapp.listings.models.PropertyType
 import gmail.ahmedmeabbas.realestateapp.util.ColorUtils.getColorFromAttr
 
@@ -99,7 +102,23 @@ class UtilitiesApartmentFragment : Fragment() {
     private fun setUpContinueButton() {
         binding.btnContinue.tvButton.text = getString(R.string.confirm_and_continue)
         binding.btnContinue.root.setOnClickListener {
+            val electricity = getUserChoice(binding.electricity.chipGroup)
+            val water = getUserChoice(binding.water.chipGroup)
+            val elevator = getUserChoice(binding.elevator.chipGroup)
+            val parking = getUserChoice(binding.parking.chipGroup)
+            val backupGenerator = getUserChoice(binding.backupGenerator.chipGroup)
+            val security = getUserChoice(binding.security.chipGroup)
+            val moreInfo = binding.etUtilitiesMore.text.toString().ifEmpty { null }
+            utilitiesApartmentViewModel.addApartmentUtilities(electricity, water, elevator, parking, backupGenerator, security, moreInfo)
             findNavController().navigate(R.id.action_utilitiesApartmentFragment_to_addPhotosFragment)
+        }
+    }
+
+    private fun getUserChoice(chipGroup: ChipGroup): Boolean? {
+        return when (chipGroup.checkedChipId) {
+            R.id.chipYes -> true
+            R.id.chipNo -> false
+            else -> null
         }
     }
 

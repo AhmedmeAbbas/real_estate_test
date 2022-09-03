@@ -147,15 +147,15 @@ class AdvertiserInfoFragment : Fragment() {
         if (phoneNumber.isEmpty()) {
             binding.phoneNumberTIL.error = getString(R.string.required)
             setUpPhoneNumberErrorListener()
-            // Returning false here instead of isValid to skip the format check
-            return false
-        }
-        try {
-            phoneNumber.toInt()
-        } catch (e: Exception) {
-            binding.phoneNumberTIL.error = getString(R.string.error_invalid_number)
-            setUpPhoneNumberErrorListener()
             isValid = false
+        } else {
+            try {
+                phoneNumber.toInt()
+            } catch (e: Exception) {
+                binding.phoneNumberTIL.error = getString(R.string.error_invalid_number)
+                setUpPhoneNumberErrorListener()
+                isValid = false
+            }
         }
         return isValid
     }
@@ -163,6 +163,9 @@ class AdvertiserInfoFragment : Fragment() {
     private fun setUpPhoneNumberErrorListener() {
         binding.etPhoneNumber.setOnClickListener {
             binding.phoneNumberTIL.error = null
+        }
+        binding.etPhoneNumber.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) binding.phoneNumberTIL.error = null
         }
     }
 

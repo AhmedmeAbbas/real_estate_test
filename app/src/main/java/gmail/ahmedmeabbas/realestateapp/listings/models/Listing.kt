@@ -1,21 +1,40 @@
 package gmail.ahmedmeabbas.realestateapp.listings.models
 
+import android.net.Uri
+import com.google.firebase.firestore.FieldValue
 import java.util.*
 
-sealed class Listing {
+data class Listing(
+    var id: String? = null,
+    var dateAdded: Date? = null,
+    var advertiserId: String? = null,
+    var advertiser: String? = null,
+    var phoneNumber: Int? = null,
+    var email: String? = null,
+    var state: String? = null,
+    var city: String? = null,
+    var region: String? = null,
+    var block: Int? = null,
+    var propertyNumber: Int? = null,
+    var property: Property? = null,
+    var photoUris: List<Uri?> = listOf(),
+    var currency: String? = null,
+    var price: Price = Price(),
+    var installments: Boolean? = null,
+    var downPayment: Double? = null,
+    var monthlyInstallment: Double? = null,
+    var installmentPeriod: Int? = null,
+    var longitude: String? = null,
+    var latitude: String? = null,
+    var additionalInfo: String? = null,
+    var priceHistory: MutableList<Price> = mutableListOf(Price()),
+    var listingStatus: String? = null
+)
+
+sealed class Property {
 
     data class Apartment(
-        var id: String? = null,
-        var state: String? = null,
-        var city: String? = null,
-        var region: String? = null,
-        var advertiserId: String? = null,
-        var dateAdded: Date? = null,
-        var propertyType: String? = null,
-        var advertiser: String? = null,
-        var phoneNumber: Int? = null,
-        var email: String? = null,
-        var fullAddress: String? = null,
+        val type: String? = null,
         var area: Double? = null,
         var yearBuilt: Int? = null,
         var finished: Boolean? = null,
@@ -34,30 +53,10 @@ sealed class Listing {
         var backupGenerator: Boolean? = null,
         var security: Boolean? = null,
         var utilitiesMoreInfo: String? = null,
-        var photoUrls: List<String>? = null,
-        var price: Price? = null,
-        var monthlyInstallments: Boolean? = null,
-        var downPayment: Double? = null,
-        var installment: Double? = null,
-        var installmentPeriod: Int? = null,
-        var longitude: String? = null,
-        var latitude: String? = null,
-        var additionalInfo: String? = null,
-        var priceHistory: List<Price>? = null,
-        var listingStatus: String? = null
-    )
+    ): Property()
+
     data class House(
-        var id: String? = null,
-        var state: String? = null,
-        var city: String? = null,
-        var region: String? = null,
-        var listerId: String? = null,
-        var dateAdded: Date? = null,
-        var propertyType: String = PropertyType.HOUSE,
-        var advertiser: String? = null,
-        var phoneNumber: Int? = null,
-        var email: String? = null,
-        var fullAddress: String? = null,
+        val type: String? = null,
         var lotArea: Double? = null,
         var builtArea: Double? = null,
         var yearBuilt: Int? = null,
@@ -75,30 +74,22 @@ sealed class Listing {
         var electricity: Boolean? = null,
         var water: Boolean? = null,
         var utilitiesMoreInfo: String? = null,
-        var photoUrls: List<String>? = null,
-        var price: Price? = null,
-        var monthlyInstallments: Boolean? = null,
-        var downPayment: Double? = null,
-        var installment: Double? = null,
-        var installmentPeriod: Int? = null,
-        var additionalInfo: String? = null,
-        var longitude: String? = null,
-        var latitude: String? = null,
-        var priceHistory: List<Price>? = null,
-        var listingStatus: String? = null
-    )
+    ): Property()
 }
 
 data class Price(
-    val dateAdded: Date? = null,
-    val currency: String? = null,
+    val dateAdded: FieldValue? = null,
     val price: Double? = null
 )
 
-class Advertiser {
+object Advertiser {
 
-    companion object {
         const val OWNER = "owner"
         const val BROKER = "broker"
-    }
+}
+
+object ListingStatus {
+
+    const val FOR_SALE = "for_sale"
+    const val SOLD = "sold"
 }

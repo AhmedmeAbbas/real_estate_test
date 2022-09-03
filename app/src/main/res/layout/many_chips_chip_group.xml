@@ -17,7 +17,7 @@
         android:id="@+id/chipGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_5sdp"
         android:layout_marginTop="@dimen/_10sdp"
         app:chipSpacingVertical="@dimen/_15sdp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,42 +30,48 @@
             style="@style/ChipStyleRound"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/none" />
+            android:text="@string/none"
+            android:textSize="@dimen/_11ssp"/>
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip1"
             style="@style/ChipStyleRound"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="wrap_content"
-            android:text="1" />
+            android:text="1"
+            android:textSize="@dimen/_11ssp"/>
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip2"
             style="@style/ChipStyleRound"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="wrap_content"
-            android:text="2" />
+            android:text="2"
+            android:textSize="@dimen/_11ssp"/>
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip3"
             style="@style/ChipStyleRound"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="wrap_content"
-            android:text="3" />
+            android:text="3"
+            android:textSize="@dimen/_11ssp"/>
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip4"
             style="@style/ChipStyleRound"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="wrap_content"
-            android:text="4" />
+            android:text="4"
+            android:textSize="@dimen/_11ssp"/>
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipOther"
             style="@style/ChipStyleRound"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="wrap_content"
-            android:text="@string/other"/>
+            android:text="@string/other"
+            android:textSize="@dimen/_11ssp"/>
     </com.google.android.material.chip.ChipGroup>
 
     <com.google.android.material.textfield.TextInputLayout

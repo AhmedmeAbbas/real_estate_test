@@ -26,6 +26,32 @@
         app:layout_constraintTop_toBottomOf="@id/toolbarPropertyAddress"/>
 
     <TextView
+        android:id="@+id/tvState"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:text="@string/add_listing_state"
+        android:textSize="@dimen/_13ssp"
+        app:layout_constraintBottom_toBottomOf="@id/spinnerState"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/spinnerState" />
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/spinnerState"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginStart="@dimen/_100sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:background="?attr/colorOnBackground"
+        android:elevation="@dimen/_2sdp"
+        android:gravity="center_vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/progressLayout" />
+
+    <TextView
         android:id="@+id/tvCity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -42,14 +68,14 @@
         android:layout_width="0dp"
         android:layout_height="@dimen/_40sdp"
         android:layout_marginStart="@dimen/_100sdp"
-        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_15sdp"
         android:layout_marginEnd="@dimen/_10sdp"
         android:background="?attr/colorOnBackground"
         android:elevation="@dimen/_2sdp"
         android:gravity="center_vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/progressLayout" />
+        app:layout_constraintTop_toBottomOf="@id/spinnerState" />
 
     <TextView
         android:id="@+id/tvRegion"
@@ -98,7 +124,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/blockTIL"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/CustomTILStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_100sdp"
@@ -131,7 +157,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/propertyNumberTIL"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/CustomTILStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_100sdp"

@@ -58,7 +58,6 @@ class AddPhotosFragment : Fragment() {
         setUpPhotoClickListeners()
         // init previously selected photos if the user navigates back to this fragment
         setPhotos()
-        setUpSkipButton()
         setUpContinueButton()
     }
 
@@ -137,10 +136,6 @@ class AddPhotosFragment : Fragment() {
                         chosenPhotoUris[photoIndex!!] = selectedUri
                     } else return@registerForActivityResult
                     setPhotos()
-                    // in case the user clicked continue and main photo is null, then selected a photo
-                    if (chosenPhotoUris[0] != null) {
-                        hideInfoText()
-                    }
                 }
             }
     }
@@ -151,6 +146,7 @@ class AddPhotosFragment : Fragment() {
         binding.ivPhoto3.setImageURI(chosenPhotoUris[2])
         binding.ivPhoto4.setImageURI(chosenPhotoUris[3])
         binding.ivPhoto5.setImageURI(chosenPhotoUris[4])
+        binding.ivPhoto6.setImageURI(chosenPhotoUris[5])
     }
 
     private fun setUpPhotoClickListeners() {
@@ -172,6 +168,10 @@ class AddPhotosFragment : Fragment() {
         }
         binding.ivPhoto5.setOnClickListener {
             clickedPhotoIndex = 4
+            onPhotoClicked()
+        }
+        binding.ivPhoto6.setOnClickListener {
+            clickedPhotoIndex = 5
             onPhotoClicked()
         }
     }
@@ -218,18 +218,7 @@ class AddPhotosFragment : Fragment() {
     private fun setUpContinueButton() {
         binding.btnContinue.tvButton.text = getString(R.string.confirm_and_continue)
         binding.btnContinue.root.setOnClickListener {
-            if (chosenPhotoUris[0] == null) {
-                showInfoText(getString(R.string.photos_main_not_selected))
-                return@setOnClickListener
-            }
-        }
-    }
-
-    private fun setUpSkipButton() {
-        binding.tvSkip.setOnClickListener {
-            for (i in chosenPhotoUris.indices) {
-                chosenPhotoUris[i] = null
-            }
+            addPhotosViewModel.addPhotos(chosenPhotoUris)
             findNavController().navigate(R.id.action_addPhotosFragment_to_priceFragment)
         }
     }
@@ -246,7 +235,7 @@ class AddPhotosFragment : Fragment() {
     }
 
     companion object {
-        private const val MAX_NUMBER_OF_PHOTOS = 5
+        private const val MAX_NUMBER_OF_PHOTOS = 6
         private const val PHOTO_INDEX = "photo_index"
         private const val TAG = "AddHouseFragment"
     }
