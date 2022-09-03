@@ -94,7 +94,7 @@ class CreateAccountFragment : Fragment() {
                                 R.id.action_global_accountFragment
                             )
                             NETWORK_ERROR -> showMessage(getString(R.string.error_network))
-                            FAILURE -> showMessage(getString(R.string.create_account_failure))
+                            FAILURE -> showMessage(getString(R.string.create_account_error))
                             else -> return@collect
                         }
                         createAccountViewModel.clearMessages()

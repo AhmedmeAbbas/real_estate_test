@@ -85,8 +85,6 @@ class DisplayNameDialog : BottomSheetDialogFragment() {
     }
 
     private fun observeMessages() {
-        val failureMessage = getString(R.string.display_name_error)
-        val successMessage = getString(R.string.display_name_success)
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 displayNameViewModel.uiState
@@ -97,10 +95,10 @@ class DisplayNameDialog : BottomSheetDialogFragment() {
                         when (userMessage) {
                             SUCCESS -> {
                                 displayNameViewModel.fetchDisplayName()
-                                showMessage(successMessage)
+                                showMessage(getString(R.string.display_name_success))
                             }
                             NETWORK_ERROR -> showMessage(getString(R.string.error_network))
-                            FAILURE -> showMessage(failureMessage)
+                            FAILURE -> showMessage(getString(R.string.display_name_error))
                             else -> return@collect
                         }
                         displayNameViewModel.clearMessages()

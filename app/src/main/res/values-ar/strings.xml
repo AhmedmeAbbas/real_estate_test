@@ -20,6 +20,7 @@
     <!-- Facebook -->
     <string name="facebook_app_id">585599636490913</string>
     <string name="facebook_client_token">634350336f48d2aac54fac0f36d15c1e</string>
+    <string name="sign_in_cancelled">تم إلغاء تسجيل الدخول</string>
 
     <!-- Bottom navigation -->
     <string name="bottom_nav_search_title">بحث</string>
@@ -53,12 +54,11 @@
     <string name="edit_password_error">فشل تحديث كلمة المرور</string>
     <string name="reset_password_success">تم إرسال الرسالة</string>
     <string name="reset_password_error">فشل إرسال الرسالة</string>
-    <string name="create_account_success">تم إنشاء الحساب بنجاح</string>
-    <string name="create_account_failure">فشل إنشاء الحساب. الرجاء المحاولة مجددا لاحقا</string>
+    <string name="create_account_error">فشل إنشاء الحساب. الرجاء المحاولة مجددا لاحقا</string>
     <string name="error_sign_in">فشل تسجيل الدخول</string>
-    <string name="sign_in_cancelled">تم إلغاء تسجيل الدخول</string>
     <string name="photos_permission_denied">لكي تتمكن من إضافة صور لإعلانك التطبيق يحتاج إذن الوصول إلى الصور</string>
     <string name="photos_main_not_selected">يجب إضافة صورة رئيسية إلى إعلانك. إذا كنت لاترغب في إضافة صور اضغط على زر تخطي في الأعلى</string>
+    <string name="error_invalid_number">الرقم غير صحيح</string>
 
     <!-- Email sign in fragment -->
     <string name="email_sign_in_header">سجل دخولك بالبريد الإلكتروني</string>

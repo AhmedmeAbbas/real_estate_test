@@ -107,16 +107,10 @@
         <item name="android:background">@drawable/dialog_background_round</item>
     </style>
 
-    <style name="ChipStyleFilter" parent="Widget.MaterialComponents.Chip.Filter">
-        <item name="chipMinHeight">@dimen/_40sdp</item>
-        <item name="chipBackgroundColor">?attr/colorTertiary</item>
-        <item name="checkedIconTint">?attr/colorPrimary</item>
-        <item name="chipCornerRadius">@dimen/_5sdp</item>
-        <item name="chipStrokeColor">@color/chip_stroke</item>
-        <item name="chipStrokeWidth">1dp</item>
-        <item name="android:textColor">@color/chip_stroke</item>
-        <item name="android:textSize">@dimen/_13ssp</item>
-        <item name="android:textAlignment">center</item>
+    <style name="CustomTILStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeErrorColor">@color/red</item>
+        <item name="errorIconTint">@color/red</item>
+        <item name="errorTextColor">@color/red</item>
     </style>
 
     <style name="ChipStyleRound" parent="Widget.MaterialComponents.Chip.Choice">
