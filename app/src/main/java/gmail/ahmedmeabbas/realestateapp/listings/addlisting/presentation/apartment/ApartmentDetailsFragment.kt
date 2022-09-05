@@ -130,7 +130,7 @@ class ApartmentDetailsFragment : Fragment() {
 
     private fun setUpViews() {
         binding.kitchen.tvHeader.text = getString(R.string.add_apartment_kitchen)
-        binding.livingRoom.tvHeader.text = getString(R.string.add_apartment_living_rooms)
+        binding.livingRoom.tvHeader.text = getString(R.string.add_apartment_living_room)
         binding.balcony.tvHeader.text = getString(R.string.add_apartment_balcony)
     }
 

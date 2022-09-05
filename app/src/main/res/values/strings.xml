@@ -16,6 +16,8 @@
     <string name="skip">Skip</string>
     <string name="confirm_and_continue"><![CDATA[Confirm & Continue]]></string>
     <string name="coming_soon">Coming soon</string>
+    <string name="single_string">%1$s</string>
+    <string name="double_string">%1$s%1$s</string>
 
     <!-- Facebook -->
     <string name="facebook_app_id">585599636490913</string>
@@ -120,7 +122,7 @@
     <string name="add_listing_email">Email</string>
     <string name="add_listing_optional">Optional</string>
     <string name="add_listing_property_address">Property address</string>
-    <string name="add_listing_state">State</string>
+    <string name="add_listing_status">Status</string>
     <string name="add_listing_state_spinner">Select state</string>
     <string name="add_listing_city">City</string>
     <string name="add_listing_city_spinner">Select city</string>
@@ -161,6 +163,25 @@
     <string name="add_listing_sdg_suffix">SDG</string>
     <string name="add_listing_month_suffix">Month</string>
 
+    <!-- Listing preview -->
+    <string name="listing_preview_title">Listing preview</string>
+    <string name="listing_preview_sub">This is a preview of what your listing will look like. Click submit below after checking your listing details</string>
+    <string name="listing_preview_date_added">Date added</string>
+    <string name="listing_preview_status">Status</string>
+    <string name="listing_preview_installments">Installments</string>
+    <string name="listing_preview_down_payment">Down payment</string>
+    <string name="listing_preview_monthly_installment">Monthly installment</string>
+    <string name="listing_preview_installment_period">Installment period</string>
+    <string name="listing_preview_installment_period_value">%1$d months</string>
+    <string name="listing_preview_about_house">About this house</string>
+    <string name="listing_preview_about_apartment">About this apartment</string>
+    <string name="listing_preview_more_info">More information</string>
+    <string name="listing_preview_contact">Contact %1$s</string>
+    <string name="listing_preview_contact_owner">owner</string>
+    <string name="listing_preview_contact_broker">broker</string>
+    <string name="listing_preview_phone_number">Phone number</string>
+    <string name="listing_preview_upper_apartments">Upper apartments</string>
+
     <!-- Property types -->
     <string name="property_type_title">Property type</string>
     <string name="property_type_header">Choose property type</string>
@@ -181,7 +202,7 @@
     <string name="add_apartment_bathrooms">Bathrooms</string>
     <string name="add_apartment_bathrooms_hint">Number of bathrooms</string>
     <string name="add_apartment_kitchen">Kitchen</string>
-    <string name="add_apartment_living_rooms">Living room</string>
+    <string name="add_apartment_living_room">Living room</string>
     <string name="add_apartment_balcony">Balcony</string>
     <string name="add_apartment_floor">Floor</string>
     <string name="add_apartment_floor_ground">Ground</string>
@@ -204,7 +225,7 @@
 
     <!-- Add house fragment -->
     <string name="add_house_title">Add your house</string>
-    <string name="add_house_construction_details">Construction details</string>
+    <string name="add_house_construction_details">Construction</string>
     <string name="add_house_area_lot">Lot area</string>
     <string name="add_house_area_built">Built area</string>
     <string name="add_house_year_built">Year built</string>

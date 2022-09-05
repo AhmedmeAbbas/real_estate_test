@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/top_line_background"
+    android:paddingTop="@dimen/_10sdp"
+    android:paddingStart="@dimen/_10sdp"
+    android:paddingEnd="@dimen/_10sdp"
+    android:paddingBottom="@dimen/_20sdp">
+
+    <TextView
+        android:id="@+id/tvHouseDetailsHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/add_house_house_details"
+        android:textSize="@dimen/_20ssp"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvBedrooms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:drawablePadding="@dimen/_10sdp"
+        android:text="@string/add_apartment_bedrooms"
+        android:textSize="@dimen/_13ssp"
+        app:drawableStartCompat="@drawable/ic_bedroom"
+        app:drawableTint="?attr/colorSecondary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvHouseDetailsHeader" />
+
+    <TextView
+        android:id="@+id/tvBedroomsValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_170sdp"
+        android:text="@string/single_string"
+        android:textSize="@dimen/_13ssp"
+        app:layout_constraintBottom_toBottomOf="@id/tvBedrooms"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvBedrooms" />
+
+    <TextView
+        android:id="@+id/tvBathrooms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:drawablePadding="@dimen/_10sdp"
+        android:text="@string/add_apartment_bathrooms"
+        android:textSize="@dimen/_13ssp"
+        app:drawableStartCompat="@drawable/ic_bathroom"
+        app:drawableTint="?attr/colorSecondary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvBedrooms" />
+
+    <TextView
+        android:id="@+id/tvBathroomsValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_170sdp"
+        android:text="@string/single_string"
+        android:textSize="@dimen/_13ssp"
+        app:layout_constraintBottom_toBottomOf="@id/tvBathrooms"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvBathrooms" />
+
+    <TextView
+        android:id="@+id/tvKitchens"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:drawablePadding="@dimen/_10sdp"
+        android:text="@string/add_house_kitchens"
+        android:textSize="@dimen/_13ssp"
+        app:drawableStartCompat="@drawable/ic_kitchen"
+        app:drawableTint="?attr/colorSecondary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvBathroomsValue" />
+
+    <TextView
+        android:id="@+id/tvKitchensValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_170sdp"
+        android:text="@string/single_string"
+        android:textSize="@dimen/_13ssp"
+        app:layout_constraintBottom_toBottomOf="@id/tvKitchens"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvKitchens" />
+
+    <TextView
+        android:id="@+id/tvHalls"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:drawablePadding="@dimen/_10sdp"
+        android:text="@string/add_house_halls"
+        android:textSize="@dimen/_13ssp"
+        app:drawableStartCompat="@drawable/ic_living_room"
+        app:drawableTint="?attr/colorSecondary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvKitchensValue" />
+
+    <TextView
+        android:id="@+id/tvHallsValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_170sdp"
+        android:text="@string/single_string"
+        android:textSize="@dimen/_13ssp"
+        app:layout_constraintBottom_toBottomOf="@id/tvHalls"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvHalls" />
+
+    <TextView
+        android:id="@+id/tvFloors"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:drawablePadding="@dimen/_10sdp"
+        android:text="@string/add_house_floors"
+        android:textSize="@dimen/_13ssp"
+        app:drawableStartCompat="@drawable/ic_floor"
+        app:drawableTint="?attr/colorSecondary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvHallsValue" />
+
+    <TextView
+        android:id="@+id/tvFloorsValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_170sdp"
+        android:text="@string/single_string"
+        android:textSize="@dimen/_13ssp"
+        app:layout_constraintBottom_toBottomOf="@id/tvFloors"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvFloors" />
+
+    <TextView
+        android:id="@+id/tvBasement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:drawablePadding="@dimen/_10sdp"
+        android:text="@string/add_house_basement"
+        android:textSize="@dimen/_13ssp"
+        app:drawableStartCompat="@drawable/ic_basement"
+        app:drawableTint="?attr/colorSecondary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvFloorsValue" />
+
+    <TextView
+        android:id="@+id/tvBasementValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_170sdp"
+        android:text="@string/single_string"
+        android:textSize="@dimen/_13ssp"
+        app:layout_constraintBottom_toBottomOf="@id/tvBasement"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvBasement" />
+
+    <TextView
+        android:id="@+id/tvUpperApartments"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:drawablePadding="@dimen/_10sdp"
+        android:text="@string/listing_preview_upper_apartments"
+        android:textSize="@dimen/_13ssp"
+        app:drawableStartCompat="@drawable/ic_apartment"
+        app:drawableTint="?attr/colorSecondary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvBasementValue" />
+
+    <TextView
+        android:id="@+id/tvUpperApartmentsValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_170sdp"
+        android:text="@string/single_string"
+        android:textSize="@dimen/_13ssp"
+        app:layout_constraintBottom_toBottomOf="@id/tvUpperApartments"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvUpperApartments" />
+
+    <TextView
+        android:id="@+id/tvGarage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:drawablePadding="@dimen/_10sdp"
+        android:text="@string/add_house_garage"
+        android:textSize="@dimen/_13ssp"
+        app:drawableStartCompat="@drawable/ic_garage"
+        app:drawableTint="?attr/colorSecondary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvUpperApartmentsValue" />
+
+    <TextView
+        android:id="@+id/tvGarageValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_170sdp"
+        android:text="@string/single_string"
+        android:textSize="@dimen/_13ssp"
+        app:layout_constraintBottom_toBottomOf="@id/tvGarage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvGarage" />
+
+    <TextView
+        android:id="@+id/tvCars"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:drawablePadding="@dimen/_10sdp"
+        android:text="@string/add_house_number_cars"
+        android:textSize="@dimen/_13ssp"
+        app:drawableStartCompat="@drawable/ic_car"
+        app:drawableTint="?attr/colorSecondary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvGarage" />
+
+    <TextView
+        android:id="@+id/tvCarsValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_170sdp"
+        android:text="@string/single_string"
+        android:textSize="@dimen/_13ssp"
+        app:layout_constraintBottom_toBottomOf="@id/tvCars"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvCars" />
+
+    <TextView
+        android:id="@+id/tvMoreInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:drawablePadding="@dimen/_10sdp"
+        android:text="@string/listing_preview_more_info"
+        android:textSize="@dimen/_13ssp"
+        app:drawableStartCompat="@drawable/ic_edit"
+        app:drawableTint="?attr/colorSecondary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvCarsValue" />
+
+    <TextView
+        android:id="@+id/tvMoreInfoValue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:text="@string/single_string"
+        android:textSize="@dimen/_13ssp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvMoreInfo" />
+</androidx.constraintlayout.widget.ConstraintLayout>
