@@ -2,6 +2,7 @@ package gmail.ahmedmeabbas.realestateapp.listings.addlisting.presentation.house
 
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.chip.ChipGroup
 import gmail.ahmedmeabbas.realestateapp.R
 import gmail.ahmedmeabbas.realestateapp.databinding.FragmentHouseDetailsBinding
 import gmail.ahmedmeabbas.realestateapp.listings.models.PropertyType
@@ -99,7 +101,7 @@ class HouseDetailsFragment : Fragment() {
             when (checkedIds[0]) {
                 R.id.chipYes -> showNumberOfCars(true)
                 R.id.chipNo -> showNumberOfCars(false)
-                else -> {  }
+                else -> {}
             }
         }
     }
@@ -158,7 +160,39 @@ class HouseDetailsFragment : Fragment() {
     private fun setUpContinueButton() {
         binding.btnContinue.tvButton.text = getString(R.string.confirm_and_continue)
         binding.btnContinue.root.setOnClickListener {
+            val bedrooms = binding.etBedrooms.text.toString().toIntOrNull()
+            val bathrooms = binding.etBathrooms.text.toString().toIntOrNull()
+            val kitchens = binding.etKitchens.text.toString().toIntOrNull()
+            val halls = binding.etHalls.text.toString().toIntOrNull()
+            val floors = binding.etFloors.text.toString().toIntOrNull()
+            val apartments = getUserChoice(binding.apartments.chipGroup)
+            val numberApartments = binding.etNumberApartments.text.toString().toIntOrNull()
+            val basement = getUserChoice(binding.basement.chipGroup)
+            val garage = getUserChoice(binding.carGarage.chipGroup)
+            val numberCars = binding.etNumberCars.text.toString().toIntOrNull()
+            val moreInfo = binding.etHouseDetailsMore.text.toString().ifEmpty { null }
+            houseDetailsViewModel.addHouseDetails(
+                bedrooms,
+                bathrooms,
+                kitchens,
+                halls,
+                floors,
+                apartments,
+                numberApartments,
+                basement,
+                garage,
+                numberCars,
+                moreInfo
+            )
             findNavController().navigate(R.id.action_houseDetailsFragment_to_utilitiesOtherFragment)
+        }
+    }
+
+    private fun getUserChoice(chipGroup: ChipGroup): Boolean? {
+        return when (chipGroup.checkedChipId) {
+            R.id.chipYes -> true
+            R.id.chipNo -> false
+            else -> null
         }
     }
 
@@ -171,5 +205,9 @@ class HouseDetailsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        private const val TAG = "HouseDetailsFragment"
     }
 }

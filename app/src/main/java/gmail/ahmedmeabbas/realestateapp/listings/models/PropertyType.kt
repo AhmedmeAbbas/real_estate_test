@@ -1,12 +1,11 @@
 package gmail.ahmedmeabbas.realestateapp.listings.models
 
 object PropertyType {
-
-    const val APARTMENT = "apartment"
-    const val HOUSE = "house"
-    const val BUILDING = "building"
-    const val STORE = "store"
-    const val LAND = "land"
-    const val WAREHOUSE = "warehouse"
-    const val FARM = "farm"
+    const val APARTMENT = "Apartment"
+    const val HOUSE = "House"
+    const val BUILDING = "Building"
+    const val STORE = "Store"
+    const val LAND = "Land"
+    const val WAREHOUSE = "Warehouse"
+    const val FARM = "Farm"
 }

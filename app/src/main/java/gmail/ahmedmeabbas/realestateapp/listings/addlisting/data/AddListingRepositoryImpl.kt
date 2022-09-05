@@ -4,10 +4,7 @@ import android.net.Uri
 import android.util.Log
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
-import gmail.ahmedmeabbas.realestateapp.listings.models.Listing
-import gmail.ahmedmeabbas.realestateapp.listings.models.ListingStatus
-import gmail.ahmedmeabbas.realestateapp.listings.models.Price
-import gmail.ahmedmeabbas.realestateapp.listings.models.Property
+import gmail.ahmedmeabbas.realestateapp.listings.models.*
 
 class AddListingRepositoryImpl(
     private val db: FirebaseFirestore
@@ -54,8 +51,12 @@ class AddListingRepositoryImpl(
         }
     }
 
-    override fun addProperty(property: Property) {
-        newListing.property = property
+    override fun addApartment(apartment: Property.Apartment) {
+        newListing.property = apartment
+    }
+
+    override fun addHouse(house: Property.House) {
+        newListing.property = house
     }
 
     override fun addPhotos(photoUris: List<Uri?>) {
@@ -70,7 +71,7 @@ class AddListingRepositoryImpl(
         monthlyInstallment: Double?,
         installmentPeriod: Int?
     ) {
-        val newPrice = Price(FieldValue.serverTimestamp(), price)
+        val newPrice = PriceModel(price =  price)
         newListing.apply {
             this.currency = currency
             this.price = newPrice
@@ -84,11 +85,6 @@ class AddListingRepositoryImpl(
 
     override fun addAdditionalInfo(additionalInfo: String?) {
         newListing.additionalInfo = additionalInfo
-        setStatus()
-    }
-
-    private fun setStatus() {
-        newListing.listingStatus = ListingStatus.FOR_SALE
     }
 
     override fun logResults() {
@@ -103,25 +99,7 @@ class AddListingRepositoryImpl(
         Log.d(TAG, "logResults: region: ${newListing.region}")
         Log.d(TAG, "logResults: block: ${newListing.block}")
         Log.d(TAG, "logResults: property number: ${newListing.propertyNumber}")
-//        Log.d(TAG, "logResults: property type: ${newListing.property}")
-//        Log.d(TAG, "logResults: property area: $newListing.id")
-//        Log.d(TAG, "logResults: property year: $newListing.id")
-//        Log.d(TAG, "logResults: property finished: $newListing.id")
-//        Log.d(TAG, "logResults: property furnished: $newListing.id")
-//        Log.d(TAG, "logResults: property bedrooms: $newListing.id")
-//        Log.d(TAG, "logResults: property bathrooms: $newListing.id")
-//        Log.d(TAG, "logResults: property kitchen: $newListing.id")
-//        Log.d(TAG, "logResults: property living room: $newListing.id")
-//        Log.d(TAG, "logResults: property balcony: $newListing.id")
-//        Log.d(TAG, "logResults: property floor number: $newListing.id")
-//        Log.d(TAG, "logResults: property details more: $newListing.id")
-//        Log.d(TAG, "logResults: property electricity: $newListing.id")
-//        Log.d(TAG, "logResults: property water: $newListing.id")
-//        Log.d(TAG, "logResults: property elevator: $newListing.id")
-//        Log.d(TAG, "logResults: property parking: $newListing.id")
-//        Log.d(TAG, "logResults: property backup gen: $newListing.id")
-//        Log.d(TAG, "logResults: property security: $newListing.id")
-//        Log.d(TAG, "logResults: property utils more: $newListing.id")
+        Log.d(TAG, "logResults: property: ${newListing.property}")
         Log.d(TAG, "logResults: property photo1: ${newListing.photoUris[0]}")
         Log.d(TAG, "logResults: property photo2: ${newListing.photoUris[1]}")
         Log.d(TAG, "logResults: property photo3: ${newListing.photoUris[2]}")
@@ -137,7 +115,7 @@ class AddListingRepositoryImpl(
         Log.d(TAG, "logResults: property lng: ${newListing.longitude}")
         Log.d(TAG, "logResults: property lat: ${newListing.latitude}")
         Log.d(TAG, "logResults: property additional info: ${newListing.additionalInfo}")
-        Log.d(TAG, "logResults: property price history: ${newListing.priceHistory[0].price}")
+        Log.d(TAG, "logResults: property price history: ${newListing.priceHistory[0]?.dateAdded}")
         Log.d(TAG, "logResults: property status: ${newListing.listingStatus}")
     }
 

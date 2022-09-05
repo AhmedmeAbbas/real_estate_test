@@ -7,7 +7,7 @@ class AddApartmentUseCase(
     private val addListingRepository: AddListingRepository
 ) {
 
-    private val property = Property.Apartment()
+    private val apartment = Property.Apartment()
 
     fun addApartmentDetails(
         area: Double?,
@@ -22,7 +22,7 @@ class AddApartmentUseCase(
         floorNumber: Int?,
         moreInfo: String?
     ) {
-        property.apply {
+        apartment.apply {
             this.area = area
             this.yearBuilt = yearBuilt
             this.finished = finished
@@ -46,7 +46,7 @@ class AddApartmentUseCase(
         security: Boolean?,
         moreInfo: String?
     ) {
-        property.apply {
+        apartment.apply {
             this.electricity = electricity
             this.water = water
             this.elevator = elevator
@@ -55,6 +55,6 @@ class AddApartmentUseCase(
             this.security = security
             this.utilitiesMoreInfo = moreInfo
         }
-        addListingRepository.addProperty(property)
+        addListingRepository.addApartment(apartment)
     }
 }

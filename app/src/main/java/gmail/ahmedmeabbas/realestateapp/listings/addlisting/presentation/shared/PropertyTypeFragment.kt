@@ -44,19 +44,19 @@ class PropertyTypeFragment : Fragment() {
             navigateToAdvertiserInfo()
         }
         binding.tvPropertyTypeBuilding.setOnClickListener {
-            Toast.makeText(requireContext(), getString(R.string.property_type_building), Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), getString(R.string.coming_soon), Toast.LENGTH_SHORT).show()
         }
         binding.tvPropertyTypeStore.setOnClickListener {
-            Toast.makeText(requireContext(), getString(R.string.property_type_store), Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), getString(R.string.coming_soon), Toast.LENGTH_SHORT).show()
         }
         binding.tvPropertyTypeLand.setOnClickListener {
-            Toast.makeText(requireContext(), getString(R.string.property_type_land), Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), getString(R.string.coming_soon), Toast.LENGTH_SHORT).show()
         }
         binding.tvPropertyTypeWarehouse.setOnClickListener {
-            Toast.makeText(requireContext(), getString(R.string.property_type_warehouse), Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), getString(R.string.coming_soon), Toast.LENGTH_SHORT).show()
         }
         binding.tvPropertyTypeFarm.setOnClickListener {
-            Toast.makeText(requireContext(), getString(R.string.property_type_farm), Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), getString(R.string.coming_soon), Toast.LENGTH_SHORT).show()
         }
     }
 

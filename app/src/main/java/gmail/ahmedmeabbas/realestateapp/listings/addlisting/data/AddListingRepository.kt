@@ -28,7 +28,9 @@ interface AddListingRepository {
         propertyNumber: Int
     )
 
-    fun addProperty(property: Property)
+    fun addApartment(apartment: Property.Apartment)
+
+    fun addHouse(house: Property.House)
 
     fun addPhotos(photoUris: List<Uri?>)
 

@@ -1,6 +1,6 @@
 package gmail.ahmedmeabbas.realestateapp.listings.getlisting.data
 
-import gmail.ahmedmeabbas.realestateapp.listings.models.Price
+import gmail.ahmedmeabbas.realestateapp.listings.models.PriceModel
 import java.util.*
 
 data class ListingModel(
@@ -10,7 +10,7 @@ data class ListingModel(
     val region: String? = null,
     val listerId: String? = null,
     val propertyType: String? = null,
-    val price: Price? = null,
+    val price: PriceModel? = null,
     val fullAddress: String? = null,
     val floors: Int? = null,
     val bedrooms: Int? = null,
@@ -37,7 +37,7 @@ data class ListingModel(
     val yard: Boolean? = null,
     val basement: Boolean? = null,
     val sanitary: String? = null,
-    val priceHistory: List<Price>? = null,
+    val priceHistory: List<PriceModel>? = null,
     val listingStatus: String? = null
 )
 

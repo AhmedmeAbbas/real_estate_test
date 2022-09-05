@@ -9,9 +9,12 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.chip.ChipGroup
 import gmail.ahmedmeabbas.realestateapp.R
 import gmail.ahmedmeabbas.realestateapp.databinding.FragmentConstructionDetailsBinding
+import gmail.ahmedmeabbas.realestateapp.listings.models.Finishing
 import gmail.ahmedmeabbas.realestateapp.listings.models.PropertyType
+import gmail.ahmedmeabbas.realestateapp.listings.models.StructureType
 import gmail.ahmedmeabbas.realestateapp.util.ColorUtils.getColorFromAttr
 
 class ConstructionDetailsFragment : Fragment() {
@@ -80,7 +83,32 @@ class ConstructionDetailsFragment : Fragment() {
     private fun setUpContinueButton() {
         binding.btnContinue.tvButton.text = getString(R.string.confirm_and_continue)
         binding.btnContinue.root.setOnClickListener {
+            val lotArea = binding.etLotArea.text.toString().toDoubleOrNull()
+            val builtArea = binding.etBuiltArea.text.toString().toDoubleOrNull()
+            val yearBuilt = binding.etYearBuilt.text.toString().toIntOrNull()
+            val structureType = getUserChoice(binding.cgStructureType)
+            val finishing = getUserChoice(binding.cgFinishing)
+            val moreInfo = binding.etConstructionDetailsMore.text.toString().ifEmpty { null }
+            constructionDetailsViewModel.addConstructionDetails(
+                lotArea,
+                builtArea,
+                yearBuilt,
+                structureType,
+                finishing,
+                moreInfo
+            )
             findNavController().navigate(R.id.action_constructionDetailsFragment_to_houseDetailsFragment)
+        }
+    }
+
+    private fun getUserChoice(chipGroup: ChipGroup): String? {
+        return when (chipGroup.checkedChipId) {
+            R.id.chipRCFrame -> StructureType.RC_FRAME
+            R.id.chipLoadbearing -> StructureType.LOADBEARING
+            R.id.chipFinished -> Finishing.FINISHED
+            R.id.chipUnfinished -> Finishing.UNFINISHED
+            R.id.chipPartiallyFinished -> Finishing.PARTIALLY_FINISHED
+            else -> null
         }
     }
 

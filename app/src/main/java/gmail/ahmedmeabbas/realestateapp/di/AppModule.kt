@@ -23,6 +23,7 @@ import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepositoryImpl
 import gmail.ahmedmeabbas.realestateapp.listings.addlisting.data.AddListingRepository
 import gmail.ahmedmeabbas.realestateapp.listings.addlisting.data.AddListingRepositoryImpl
 import gmail.ahmedmeabbas.realestateapp.listings.addlisting.domain.AddApartmentUseCase
+import gmail.ahmedmeabbas.realestateapp.listings.addlisting.domain.AddHouseUseCase
 import gmail.ahmedmeabbas.realestateapp.listings.getlisting.data.ListingRepository
 import gmail.ahmedmeabbas.realestateapp.listings.getlisting.data.ListingRepositoryImpl
 import gmail.ahmedmeabbas.realestateapp.userpreferences.UserPreferencesRepository
@@ -99,6 +100,14 @@ object AppModule {
         addListingRepository: AddListingRepository
     ): AddApartmentUseCase {
         return AddApartmentUseCase(addListingRepository)
+    }
+
+    @Singleton
+    @Provides
+    fun provideAddHouseUseCase(
+        addListingRepository: AddListingRepository
+    ): AddHouseUseCase {
+        return AddHouseUseCase(addListingRepository)
     }
 
     @Singleton

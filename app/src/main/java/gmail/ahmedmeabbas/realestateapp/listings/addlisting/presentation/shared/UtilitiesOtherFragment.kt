@@ -9,6 +9,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.chip.ChipGroup
 import gmail.ahmedmeabbas.realestateapp.R
 import gmail.ahmedmeabbas.realestateapp.databinding.FragmentUtilitiesOtherBinding
 import gmail.ahmedmeabbas.realestateapp.listings.models.PropertyType
@@ -102,7 +103,19 @@ class UtilitiesOtherFragment : Fragment() {
     private fun setUpContinueButton() {
         binding.btnContinue.tvButton.text = getString(R.string.confirm_and_continue)
         binding.btnContinue.root.setOnClickListener {
+            val electricity = getUserChoice(binding.electricity.chipGroup)
+            val water = getUserChoice(binding.water.chipGroup)
+            val moreInfo = binding.etUtilitiesMore.text.toString().ifEmpty { null }
+            utilitiesOtherViewModel.addOtherUtilities(electricity, water, moreInfo)
             findNavController().navigate(R.id.action_utilitiesOtherFragment_to_addPhotosFragment)
+        }
+    }
+
+    private fun getUserChoice(chipGroup: ChipGroup): Boolean? {
+        return when (chipGroup.checkedChipId) {
+            R.id.chipYes -> true
+            R.id.chipNo -> false
+            else -> null
         }
     }
 

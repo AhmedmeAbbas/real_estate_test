@@ -244,7 +244,7 @@
                 app:layout_constraintTop_toBottomOf="@id/cgFinishing" />
 
             <EditText
-                android:id="@+id/etApartmentDetailsMore"
+                android:id="@+id/etConstructionDetailsMore"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
