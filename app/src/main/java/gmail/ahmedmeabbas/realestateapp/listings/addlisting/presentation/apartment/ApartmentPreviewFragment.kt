@@ -26,6 +26,7 @@ class ApartmentPreviewFragment : Fragment() {
     private val binding get() = _binding!!
     private val apartmentPreviewViewModel: ApartmentPreviewViewModel by activityViewModels()
     private var apartment = Listing()
+    private var property = Property.Apartment()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -121,7 +122,6 @@ class ApartmentPreviewFragment : Fragment() {
     }
 
     private fun setUpUtilities() {
-        val property = apartment.property as Property.Apartment
         setUpBooleanValues(
             binding.apartmentUtilities.tvElectricity,
             binding.apartmentUtilities.tvElectricityValue,
@@ -161,8 +161,7 @@ class ApartmentPreviewFragment : Fragment() {
     }
 
     private fun setUpApartmentDetails() {
-        val property = apartment.property as Property.Apartment
-        setUpArea(property)
+        setUpArea()
         setUpIntValues(
             binding.apartmentDetails.tvYearBuilt,
             binding.apartmentDetails.tvYearBuiltValue,
@@ -251,7 +250,7 @@ class ApartmentPreviewFragment : Fragment() {
         value.text = getString(R.string.single_string, detail)
     }
 
-    private fun setUpArea(property: Property.Apartment) {
+    private fun setUpArea() {
         if (property.area == null) {
             binding.apartmentDetails.tvArea.visibility = View.GONE
             binding.apartmentDetails.tvAreaValue.visibility = View.GONE
@@ -355,6 +354,7 @@ class ApartmentPreviewFragment : Fragment() {
 
     private fun getApartment() {
         apartment = apartmentPreviewViewModel.getApartment()
+        property = apartment.property as Property.Apartment
     }
 
     private fun setUpToolbar() {
