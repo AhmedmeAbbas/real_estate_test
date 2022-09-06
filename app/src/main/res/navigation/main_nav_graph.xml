@@ -324,7 +324,15 @@
         <fragment
             android:id="@+id/additionalInfoFragment"
             android:name="gmail.ahmedmeabbas.realestateapp.listings.addlisting.presentation.shared.AdditionalInfoFragment"
-            android:label="AdditionalInfoFragment" />
+            android:label="AdditionalInfoFragment">
+            <action
+                android:id="@+id/action_additionalInfoFragment_to_apartmentPreviewFragment"
+                app:destination="@id/apartmentPreviewFragment"
+                app:enterAnim="@anim/slide_in_end"
+                app:exitAnim="@anim/slide_out_start"
+                app:popEnterAnim="@anim/slide_in_start"
+                app:popExitAnim="@anim/slide_out_end" />
+        </fragment>
         <fragment
             android:id="@+id/apartmentDetailsFragment"
             android:name="gmail.ahmedmeabbas.realestateapp.listings.addlisting.presentation.apartment.ApartmentDetailsFragment"
@@ -349,5 +357,18 @@
                 app:popEnterAnim="@anim/slide_in_start"
                 app:popExitAnim="@anim/slide_out_end" />
         </fragment>
+        <fragment
+            android:id="@+id/apartmentPreviewFragment"
+            android:name="gmail.ahmedmeabbas.realestateapp.listings.addlisting.presentation.apartment.ApartmentPreviewFragment"
+            android:label="ApartmentPreviewFragment" />
     </navigation>
+    <action
+        android:id="@+id/action_global_myListingsFragment"
+        app:destination="@id/myListingsFragment"
+        app:enterAnim="@anim/fade_in"
+        app:exitAnim="@anim/fade_out"
+        app:popEnterAnim="@anim/fade_in"
+        app:popExitAnim="@anim/fade_out"
+        app:popUpTo="@id/myListingsFragment"
+        app:popUpToInclusive="true"/>
 </navigation>

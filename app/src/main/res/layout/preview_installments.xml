@@ -4,8 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/top_line_background"
-    android:paddingTop="@dimen/_10sdp"
     android:paddingStart="@dimen/_10sdp"
+    android:paddingTop="@dimen/_10sdp"
     android:paddingEnd="@dimen/_10sdp"
     android:paddingBottom="@dimen/_20sdp">
 
@@ -21,23 +21,24 @@
         android:id="@+id/tvDownPayment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_10sdp"
         android:drawablePadding="@dimen/_10sdp"
         android:text="@string/listing_preview_down_payment"
         android:textSize="@dimen/_13ssp"
         app:drawableStartCompat="@drawable/ic_money"
         app:drawableTint="?attr/colorSecondary"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvInstallmentsHeader" />
+        app:layout_constraintTop_toBottomOf="@id/guideline" />
 
     <TextView
         android:id="@+id/tvDownPaymentValue"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_170sdp"
         android:text="@string/listing_item_price"
         android:textSize="@dimen/_13ssp"
         app:layout_constraintBottom_toBottomOf="@id/tvDownPayment"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/tvDownPayment" />
 
@@ -56,12 +57,13 @@
 
     <TextView
         android:id="@+id/tvMonthlyInstallmentValue"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_170sdp"
         android:text="@string/listing_item_price"
         android:textSize="@dimen/_13ssp"
         app:layout_constraintBottom_toBottomOf="@id/tvMonthlyInstallment"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/tvMonthlyInstallment" />
 
@@ -80,12 +82,20 @@
 
     <TextView
         android:id="@+id/tvInstallmentPeriodValue"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_170sdp"
         android:text="@string/listing_preview_installment_period_value"
         android:textSize="@dimen/_13ssp"
         app:layout_constraintBottom_toBottomOf="@id/tvInstallmentPeriod"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/tvInstallmentPeriod" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="@dimen/_35sdp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,7 +1,6 @@
 package gmail.ahmedmeabbas.realestateapp.listings.addlisting.presentation.shared
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -107,12 +106,18 @@ class AdvertiserInfoFragment : Fragment() {
             val advertiserId = getAdvertiserId()
             val advertiser = getAdvertiser()
             val phoneNumberInput = binding.etPhoneNumber.text.toString()
+            val name = getUsername()
             val email = binding.etEmail.text.toString().ifEmpty { null }
 
             if (!validateForm(advertiserId, advertiser, phoneNumberInput)) return@setOnClickListener
-            advertiserInfoViewModel.addAdvertiserInfo(advertiserId!!, advertiser!!, phoneNumberInput.toInt(), email)
+            advertiserInfoViewModel.addAdvertiserInfo(advertiserId!!, advertiser!!, phoneNumberInput.toLong(), name, email)
             findNavController().navigate(R.id.action_advertiserInfoFragment_to_propertyAddressFragment)
         }
+    }
+
+    private fun getUsername(): String? {
+        advertiserInfoViewModel.getUsername()
+        return advertiserInfoViewModel.uiState.value.username
     }
 
     private fun getAdvertiserId(): String? {
@@ -150,7 +155,7 @@ class AdvertiserInfoFragment : Fragment() {
             isValid = false
         } else {
             try {
-                phoneNumber.toInt()
+                phoneNumber.toLong()
             } catch (e: Exception) {
                 binding.phoneNumberTIL.error = getString(R.string.error_invalid_number)
                 setUpPhoneNumberErrorListener()

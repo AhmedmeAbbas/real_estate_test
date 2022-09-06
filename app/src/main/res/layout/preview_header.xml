@@ -85,7 +85,7 @@
         android:layout_marginStart="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_10sdp"
         android:drawablePadding="@dimen/_10sdp"
-        android:text="@string/single_string"
+        android:text="@string/double_string"
         android:textSize="@dimen/_13ssp"
         app:drawableStartCompat="@drawable/ic_person_selected"
         app:drawableTint="?attr/colorSecondary"
@@ -108,13 +108,13 @@
 
     <TextView
         android:id="@+id/tvDateAddedValue"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_170sdp"
-        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_180sdp"
         android:text="@string/single_string"
         android:textSize="@dimen/_13ssp"
         app:layout_constraintBottom_toBottomOf="@id/tvDateAdded"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/tvDateAdded" />
 
@@ -134,13 +134,13 @@
 
     <TextView
         android:id="@+id/tvStatusValue"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_170sdp"
-        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_180sdp"
         android:text="@string/single_string"
         android:textSize="@dimen/_13ssp"
         app:layout_constraintBottom_toBottomOf="@id/tvStatus"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/tvStatus" />
 </androidx.constraintlayout.widget.ConstraintLayout>

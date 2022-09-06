@@ -4,8 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/top_line_background"
-    android:paddingTop="@dimen/_10sdp"
     android:paddingStart="@dimen/_10sdp"
+    android:paddingTop="@dimen/_10sdp"
     android:paddingEnd="@dimen/_10sdp"
     android:paddingBottom="@dimen/_20sdp">
 
@@ -21,14 +21,14 @@
         android:id="@+id/tvBedrooms"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_10sdp"
         android:drawablePadding="@dimen/_10sdp"
         android:text="@string/add_apartment_bedrooms"
         android:textSize="@dimen/_13ssp"
         app:drawableStartCompat="@drawable/ic_bedroom"
         app:drawableTint="?attr/colorSecondary"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvHouseDetailsHeader" />
+        app:layout_constraintTop_toBottomOf="@id/guideline" />
 
     <TextView
         android:id="@+id/tvBedroomsValue"
@@ -255,4 +255,11 @@
         android:textSize="@dimen/_13ssp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvMoreInfo" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="@dimen/_35sdp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

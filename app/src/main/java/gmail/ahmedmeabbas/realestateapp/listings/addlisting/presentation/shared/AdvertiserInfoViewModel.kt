@@ -12,6 +12,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 data class AdvertiserInfoUiState(
+    val username: String? = null,
     val userEmail: String? = null,
     val userId: String? = null
 )
@@ -41,9 +42,17 @@ class AdvertiserInfoViewModel @Inject constructor(
         }
     }
 
+    fun getUsername() {
+        viewModelScope.launch {
+            authRepository.userFlow.collect { user ->
+                _uiState.update { it.copy(username = user?.displayName) }
+            }
+        }
+    }
+
     fun getPropertyType() = addListingRepository.getPropertyType()
 
-    fun addAdvertiserInfo(advertiserId: String, advertiser: String, phoneNumber: Int, email: String?) {
-        addListingRepository.addAdvertiserInfo(advertiserId, advertiser, phoneNumber, email)
+    fun addAdvertiserInfo(advertiserId: String, advertiser: String, phoneNumber: Long, name: String?, email: String?) {
+        addListingRepository.addAdvertiserInfo(advertiserId, advertiser, phoneNumber, name, email)
     }
 }

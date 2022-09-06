@@ -82,7 +82,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_4sdp"
-            android:text="@string/account_display_name"
+            android:text="@string/profile_display_name_header"
             android:textSize="@dimen/_24ssp"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"

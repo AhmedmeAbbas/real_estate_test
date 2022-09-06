@@ -251,7 +251,7 @@ class PriceFragment : Fragment() {
             false
         } else {
             try {
-                downPayment.toInt()
+                downPayment.toDouble()
                 true
             } catch (e: Exception) {
                 binding.downPaymentTIL.error = getString(R.string.error_invalid)

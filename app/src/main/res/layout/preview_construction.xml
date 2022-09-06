@@ -21,14 +21,14 @@
         android:id="@+id/tvLotArea"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_10sdp"
         android:drawablePadding="@dimen/_10sdp"
         android:text="@string/add_house_area_lot"
         android:textSize="@dimen/_13ssp"
         app:drawableStartCompat="@drawable/ic_rectangle"
         app:drawableTint="?attr/colorSecondary"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvConstructionHeader" />
+        app:layout_constraintTop_toBottomOf="@id/guideline" />
 
     <TextView
         android:id="@+id/tvLotAreaValue"
@@ -159,4 +159,11 @@
         android:textSize="@dimen/_13ssp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvMoreInfo" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="@dimen/_35sdp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

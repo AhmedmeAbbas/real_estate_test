@@ -16,7 +16,8 @@ interface AddListingRepository {
     fun addAdvertiserInfo(
         advertiserId: String,
         advertiser: String,
-        phoneNumber: Int,
+        phoneNumber: Long,
+        name: String?,
         email: String?
     )
 
@@ -44,6 +45,8 @@ interface AddListingRepository {
     )
 
     fun addAdditionalInfo(additionalInfo: String?)
+
+    fun getListing(): Listing
 
     fun logResults()
 }

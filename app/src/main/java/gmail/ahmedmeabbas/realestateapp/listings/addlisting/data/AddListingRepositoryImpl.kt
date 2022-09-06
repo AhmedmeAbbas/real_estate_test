@@ -2,7 +2,6 @@ package gmail.ahmedmeabbas.realestateapp.listings.addlisting.data
 
 import android.net.Uri
 import android.util.Log
-import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import gmail.ahmedmeabbas.realestateapp.listings.models.*
 
@@ -24,13 +23,15 @@ class AddListingRepositoryImpl(
     override fun addAdvertiserInfo(
         advertiserId: String,
         advertiser: String,
-        phoneNumber: Int,
+        phoneNumber: Long,
+        name: String?,
         email: String?
     ) {
         newListing.apply {
             this.advertiserId = advertiserId
             this.advertiser = advertiser
             this.phoneNumber = phoneNumber
+            this.name = name
             this.email = email
         }
     }
@@ -85,6 +86,10 @@ class AddListingRepositoryImpl(
 
     override fun addAdditionalInfo(additionalInfo: String?) {
         newListing.additionalInfo = additionalInfo
+    }
+
+    override fun getListing(): Listing {
+        return newListing
     }
 
     override fun logResults() {

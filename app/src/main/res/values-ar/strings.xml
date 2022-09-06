@@ -18,7 +18,8 @@
     <string name="confirm_and_continue">تأكيد واستمرار</string>
     <string name="coming_soon">قريبا</string>
     <string name="single_string">%1$s</string>
-    <string name="double_string">%1$s%1$s</string>
+    <string name="double_string">%1$s%2$s</string>
+    <string name="copied">تم النسخ</string>
 
     <!-- Facebook -->
     <string name="facebook_app_id">585599636490913</string>
@@ -122,7 +123,8 @@
     <string name="add_listing_email">البريد\nالإلكتروني</string>
     <string name="add_listing_optional">اختياري</string>
     <string name="add_listing_property_address">عنوان العقار</string>
-    <string name="add_listing_status">الولاية</string>
+    <string name="add_listing_status">الحالة</string>
+    <string name="add_listing_state">الولاية</string>
     <string name="add_listing_state_spinner">اختر الولاية</string>
     <string name="add_listing_city">المدينة</string>
     <string name="add_listing_city_spinner">اختر المدينة</string>
@@ -150,8 +152,8 @@
     <string name="add_listing_price_header">السعر</string>
     <string name="add_listing_currency">العملة</string>
     <string name="add_listing_select_currency">اختر العملة</string>
-    <string name="add_listing_currency_usd">دولار أمريكي</string>
-    <string name="add_listing_currency_sdg">جنيه سوداني</string>
+    <string name="add_listing_currency_usd">دولار</string>
+    <string name="add_listing_currency_sdg">جنيه</string>
     <string name="add_listing_price">السعر</string>
     <string name="add_listing_installments">أقساط شهرية</string>
     <string name="add_listing_down_payment">دفعة أولى</string>
@@ -168,6 +170,10 @@
     <!-- Listing preview -->
     <string name="listing_preview_title">معاينة الإعلان</string>
     <string name="listing_preview_sub">هذا العرض يوضح كيف سيبدو إعلانك بعد إضافته. اضغط زر إضافة بعد التحقق من تفاصيل إعلانك</string>
+    <string name="listing_preview_for_sale_by_owner">للبيع عن طريق المالك</string>
+    <string name="listing_preview_for_sale_by_broker">للبيع عن طريق وسيط</string>
+    <string name="listing_preview_status_for_sale">للبيع</string>
+    <string name="listing_preview_status_sold">تم البيع</string>
     <string name="listing_preview_date_added">تاريخ الإضافة</string>
     <string name="listing_preview_status">الحالة</string>
     <string name="listing_preview_installments">أقساط</string>
@@ -183,6 +189,7 @@
     <string name="listing_preview_contact_broker">الوسيط</string>
     <string name="listing_preview_phone_number">رقم الهاتف</string>
     <string name="listing_preview_upper_apartments">شقق علوية</string>
+    <string name="listing_preview_block">مربع </string>
 
     <!-- Property types -->
     <string name="property_type_title">نوع العقار</string>
@@ -283,7 +290,6 @@
     <!-- Account fragment -->
     <string name="account_sign_in_header">سجل دخولك</string>
     <string name="account_sign_in_sub">سجل دخولك لكي تتمكن من إضافة وإدارة عقاراتك, إرسال واستقبال الطلبات والتواصل مع أصحاب العقارات</string>
-    <string name="account_display_name">Display Name</string>
     <string name="account_greeting">Greeting</string>
     <string name="account_profile_title">الملف الشخصي</string>
     <string name="account_language_title">اللغة</string>

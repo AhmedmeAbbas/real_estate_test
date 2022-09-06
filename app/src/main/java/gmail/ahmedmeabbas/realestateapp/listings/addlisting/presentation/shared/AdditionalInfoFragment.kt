@@ -123,6 +123,7 @@ class AdditionalInfoFragment : Fragment() {
             val additionalInfo = binding.etAdditionalInfo.text.toString().ifEmpty { null }
             additionalInfoViewModel.addAdditionalInfo(additionalInfo)
             additionalInfoViewModel.done()
+            findNavController().navigate(R.id.action_additionalInfoFragment_to_apartmentPreviewFragment)
         }
     }
 
