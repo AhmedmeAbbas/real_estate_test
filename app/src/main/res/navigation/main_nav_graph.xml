@@ -332,6 +332,13 @@
                 app:exitAnim="@anim/slide_out_start"
                 app:popEnterAnim="@anim/slide_in_start"
                 app:popExitAnim="@anim/slide_out_end" />
+            <action
+                android:id="@+id/action_additionalInfoFragment_to_housePreviewFragment"
+                app:destination="@id/housePreviewFragment"
+                app:enterAnim="@anim/slide_in_end"
+                app:exitAnim="@anim/slide_out_start"
+                app:popEnterAnim="@anim/slide_in_start"
+                app:popExitAnim="@anim/slide_out_end"/>
         </fragment>
         <fragment
             android:id="@+id/apartmentDetailsFragment"
@@ -361,6 +368,10 @@
             android:id="@+id/apartmentPreviewFragment"
             android:name="gmail.ahmedmeabbas.realestateapp.listings.addlisting.presentation.apartment.ApartmentPreviewFragment"
             android:label="ApartmentPreviewFragment" />
+        <fragment
+            android:id="@+id/housePreviewFragment"
+            android:name="gmail.ahmedmeabbas.realestateapp.listings.addlisting.presentation.house.HousePreviewFragment"
+            android:label="HousePreviewFragment" />
     </navigation>
     <action
         android:id="@+id/action_global_myListingsFragment"
