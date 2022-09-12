@@ -1,12 +1,12 @@
 package gmail.ahmedmeabbas.realestateapp.listings.addlisting.data
 
+import android.content.ContentResolver
 import android.net.Uri
 import gmail.ahmedmeabbas.realestateapp.listings.models.Listing
 import gmail.ahmedmeabbas.realestateapp.listings.models.Property
 
 interface AddListingRepository {
 
-    var chosenPropertyType: String?
     val newListing: Listing
 
     fun setPropertyType(propertyType: String)
@@ -33,7 +33,9 @@ interface AddListingRepository {
 
     fun addHouse(house: Property.House)
 
-    fun addPhotos(photoUris: List<Uri?>)
+    fun addPreviewPhotos(photoUris: List<Uri?>)
+
+    fun getPreviewPhotos(): List<Uri>
 
     fun addPrice(
         currency: String,
@@ -47,6 +49,8 @@ interface AddListingRepository {
     fun addAdditionalInfo(additionalInfo: String?)
 
     fun getListing(): Listing
+
+    suspend fun getPhotoUrls(contentResolver: ContentResolver, height: Int)
 
     fun logResults()
 }

@@ -11,8 +11,8 @@ import androidx.datastore.preferences.preferencesDataStoreFile
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -79,19 +79,24 @@ object AppModule {
     fun provideFirestoreDatabase(): FirebaseFirestore {
         val db = FirebaseFirestore.getInstance()
         db.useEmulator("10.0.2.2", 8080)
-        val settings = FirebaseFirestoreSettings.Builder()
-            .setPersistenceEnabled(false)
-            .build()
-        db.firestoreSettings = settings
         return db
     }
 
     @Singleton
     @Provides
+    fun provideFirebaseCloudStorage(): FirebaseStorage {
+        val storage = FirebaseStorage.getInstance()
+        storage.useEmulator("10.0.2.2", 9199)
+        return storage
+    }
+
+    @Singleton
+    @Provides
     fun provideAddListingRepository(
-        db: FirebaseFirestore
+        db: FirebaseFirestore,
+        storage: FirebaseStorage
     ): AddListingRepository {
-        return AddListingRepositoryImpl(db)
+        return AddListingRepositoryImpl(db, storage)
     }
 
     @Singleton

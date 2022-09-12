@@ -3,6 +3,7 @@ package gmail.ahmedmeabbas.realestateapp.listings.addlisting.presentation.house
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -28,6 +29,7 @@ class HousePreviewFragment : Fragment() {
     private val housePreviewViewModel: HousePreviewViewModel by activityViewModels()
     private var house = Listing()
     private var property = Property.House()
+    private var photoUris = listOf<Uri>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,6 +53,7 @@ class HousePreviewFragment : Fragment() {
         setUpUtilities()
         setUpContact()
         setUpSubmitButton()
+        setUpBackToStartButton()
     }
 
     private fun setUpConstruction() {
@@ -340,9 +343,10 @@ class HousePreviewFragment : Fragment() {
     }
 
     private fun setUpPhotos() {
+        photoUris = housePreviewViewModel.getPhotoUris()
         setUpEmptyPhotos()
         binding.houseHeader.previewViewPager.adapter =
-            SliderAdapter(house.photoUris.filterNotNull())
+            SliderAdapter(photoUris)
         TabLayoutMediator(
             binding.houseHeader.previewTabLayout,
             binding.houseHeader.previewViewPager
@@ -350,7 +354,7 @@ class HousePreviewFragment : Fragment() {
     }
 
     private fun setUpEmptyPhotos() {
-        if (house.photoUris.filterNotNull().isEmpty()) {
+        if (photoUris.isEmpty()) {
             binding.houseHeader.previewTabLayout.visibility = View.GONE
             binding.houseHeader.previewViewPager.visibility = View.GONE
             binding.houseHeader.ivPlaceholderPhoto.visibility = View.VISIBLE
@@ -418,8 +422,14 @@ class HousePreviewFragment : Fragment() {
         property = house.property as Property.House
     }
 
+    private fun setUpBackToStartButton() {
+        binding.tvBackToStart.setOnClickListener {
+            findNavController().navigate(R.id.action_global_myListingsFragment)
+        }
+    }
+
     private fun setUpToolbar() {
-        binding.toolbarPreview.setNavigationOnClickListener {
+        binding.toolbarHousePreview.setNavigationOnClickListener {
             findNavController().navigateUp()
         }
     }

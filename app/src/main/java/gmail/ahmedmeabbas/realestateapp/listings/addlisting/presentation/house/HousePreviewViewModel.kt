@@ -11,4 +11,6 @@ class HousePreviewViewModel @Inject constructor(
 ) : ViewModel() {
 
     fun getHouse() = addListingRepository.getListing()
+
+    fun getPhotoUris() = addListingRepository.getPreviewPhotos()
 }

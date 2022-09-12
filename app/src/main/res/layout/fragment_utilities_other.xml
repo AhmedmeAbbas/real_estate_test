@@ -18,64 +18,79 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.DayNight"
         app:title="@string/add_listing_utilities" />
 
-    <include
-        android:id="@+id/progressLayout"
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nsvUtilities"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        layout="@layout/add_listing_progress"
-        app:layout_constraintTop_toBottomOf="@id/toolbarUtilities"/>
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:paddingBottom="@dimen/_10sdp"
+        app:layout_constraintBottom_toTopOf="@id/btnContinue"
+        app:layout_constraintTop_toBottomOf="@id/toolbarUtilities">
 
-    <include
-        android:id="@+id/electricity"
-        layout="@layout/yes_no_chip_group"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:layout_marginEnd="@dimen/_10sdp"
-        app:layout_constraintTop_toBottomOf="@id/progressLayout" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <include
-        android:id="@+id/water"
-        layout="@layout/yes_no_chip_group"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_15sdp"
-        android:layout_marginEnd="@dimen/_10sdp"
-        app:layout_constraintTop_toBottomOf="@id/electricity" />
+            <include
+                android:id="@+id/progressLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                layout="@layout/add_listing_progress"
+                app:layout_constraintTop_toTopOf="parent"/>
 
-    <TextView
-        android:id="@+id/tvUtilitiesMore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_15sdp"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:layout_marginEnd="@dimen/_10sdp"
-        android:text="@string/add_listing_more_info_inline"
-        android:textSize="@dimen/_13ssp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/water" />
+            <include
+                android:id="@+id/electricity"
+                layout="@layout/yes_no_chip_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                app:layout_constraintTop_toBottomOf="@id/progressLayout" />
 
-    <EditText
-        android:id="@+id/etUtilitiesMore"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:layout_marginEnd="@dimen/_10sdp"
-        android:background="@drawable/stroke_rect_background"
-        android:gravity="start"
-        android:hint="@string/add_listing_utilities_more_hint"
-        android:inputType="textMultiLine"
-        android:maxLines="5"
-        android:minHeight="@dimen/_100sdp"
-        android:padding="@dimen/_10sdp"
-        android:scrollbars="vertical"
-        android:textColorHint="@color/hint_color"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvUtilitiesMore" />
+            <include
+                android:id="@+id/water"
+                layout="@layout/yes_no_chip_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                app:layout_constraintTop_toBottomOf="@id/electricity" />
+
+            <TextView
+                android:id="@+id/tvUtilitiesMore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:text="@string/add_listing_more_info_inline"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/water" />
+
+            <EditText
+                android:id="@+id/etUtilitiesMore"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@drawable/stroke_rect_background"
+                android:gravity="start"
+                android:hint="@string/add_listing_utilities_more_hint"
+                android:inputType="textMultiLine"
+                android:maxLines="5"
+                android:minHeight="@dimen/_100sdp"
+                android:padding="@dimen/_10sdp"
+                android:scrollbars="vertical"
+                android:textColorHint="@color/hint_color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvUtilitiesMore" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 
     <include
         android:id="@+id/btnContinue"

@@ -190,6 +190,7 @@
     <string name="listing_preview_phone_number">رقم الهاتف</string>
     <string name="listing_preview_upper_apartments">شقق علوية</string>
     <string name="listing_preview_block">مربع </string>
+    <string name="back_to_start">عودة للبداية</string>
 
     <!-- Property types -->
     <string name="property_type_title">نوع العقار</string>

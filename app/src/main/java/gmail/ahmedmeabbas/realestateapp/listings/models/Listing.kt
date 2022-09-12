@@ -18,7 +18,7 @@ data class Listing(
     var block: Int? = null,
     var propertyNumber: Int? = null,
     var property: Property? = null,
-    var photoUris: List<Uri?> = listOf(),
+    var photoUrls: List<String> = listOf(),
     var currency: String? = null,
     var price: PriceModel = PriceModel(),
     var installments: Boolean? = null,

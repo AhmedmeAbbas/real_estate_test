@@ -1,16 +1,23 @@
 package gmail.ahmedmeabbas.realestateapp.listings.addlisting.data
 
+import android.content.ContentResolver
 import android.net.Uri
 import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
+import gmail.ahmedmeabbas.realestateapp.listings.addlisting.data.PhotoUtils.getImageByteArray
 import gmail.ahmedmeabbas.realestateapp.listings.models.*
 
 class AddListingRepositoryImpl(
-    private val db: FirebaseFirestore
+    private val db: FirebaseFirestore,
+    private val storage: FirebaseStorage
 ) : AddListingRepository {
 
-    override var chosenPropertyType: String? = null
     override val newListing = Listing()
+    private var chosenPropertyType: String? = null
+    private var chosenPhotoUris = listOf<Uri?>()
+    private val uploadedPhotoUrls = mutableListOf<String>()
+
 
     override fun setPropertyType(propertyType: String) {
         chosenPropertyType = propertyType
@@ -60,8 +67,12 @@ class AddListingRepositoryImpl(
         newListing.property = house
     }
 
-    override fun addPhotos(photoUris: List<Uri?>) {
-        newListing.photoUris = photoUris
+    override fun addPreviewPhotos(photoUris: List<Uri?>) {
+        chosenPhotoUris = photoUris
+    }
+
+    override fun getPreviewPhotos(): List<Uri> {
+        return chosenPhotoUris.filterNotNull()
     }
 
     override fun addPrice(
@@ -72,7 +83,7 @@ class AddListingRepositoryImpl(
         monthlyInstallment: Double?,
         installmentPeriod: Int?
     ) {
-        val newPrice = PriceModel(price =  price)
+        val newPrice = PriceModel(price = price)
         newListing.apply {
             this.currency = currency
             this.price = newPrice
@@ -105,12 +116,6 @@ class AddListingRepositoryImpl(
         Log.d(TAG, "logResults: block: ${newListing.block}")
         Log.d(TAG, "logResults: property number: ${newListing.propertyNumber}")
         Log.d(TAG, "logResults: property: ${newListing.property}")
-        Log.d(TAG, "logResults: property photo1: ${newListing.photoUris[0]}")
-        Log.d(TAG, "logResults: property photo2: ${newListing.photoUris[1]}")
-        Log.d(TAG, "logResults: property photo3: ${newListing.photoUris[2]}")
-        Log.d(TAG, "logResults: property photo4: ${newListing.photoUris[3]}")
-        Log.d(TAG, "logResults: property photo5: ${newListing.photoUris[4]}")
-        Log.d(TAG, "logResults: property photo6: ${newListing.photoUris[5]}")
         Log.d(TAG, "logResults: property currency: ${newListing.currency}")
         Log.d(TAG, "logResults: property price: ${newListing.price.price}")
         Log.d(TAG, "logResults: property installments: ${newListing.installments}")
@@ -124,7 +129,46 @@ class AddListingRepositoryImpl(
         Log.d(TAG, "logResults: property status: ${newListing.listingStatus}")
     }
 
+    override suspend fun getPhotoUrls(contentResolver: ContentResolver, height: Int) {
+        for ((index, photoUri) in chosenPhotoUris.filterNotNull().withIndex()) {
+            val imageByteArray = getImageByteArray(contentResolver, photoUri, height)
+            val filePath = "images/listing_id/${System.currentTimeMillis()}-$index.jpg"
+
+            val photoRef = storage.reference.child(filePath)
+            Log.d(TAG, "getPhotoUrls: ${photoRef.path}")
+            photoRef.putBytes(imageByteArray)
+                .continueWithTask { photoUploadTask ->
+                    Log.d(TAG, "Uploaded bytes: ${photoUploadTask.result?.bytesTransferred}")
+                    photoRef.downloadUrl
+                }.addOnCompleteListener { downloadUrlTask ->
+                    if (!downloadUrlTask.isSuccessful) {
+                        Log.d(TAG, "Exception with firebase storage", downloadUrlTask.exception)
+                        return@addOnCompleteListener
+                    }
+                    val downloadUrl = downloadUrlTask.result.toString()
+                    uploadedPhotoUrls.add(downloadUrl)
+
+                    Log.d(
+                        TAG,
+                        "Finished uploading $photoUri, num uploads ${uploadedPhotoUrls.size}"
+                    )
+
+                    if (uploadedPhotoUrls.size == chosenPhotoUris.size) {
+                        for (i in uploadedPhotoUrls.indices) {
+                            Log.d(TAG, "getPhotoUrls: url$i: ${uploadedPhotoUrls[i]}")
+                        }
+                        addPhotosToListing(uploadedPhotoUrls)
+                    }
+                }
+        }
+        Log.d(TAG, "getPhotoUrls: size after: ${uploadedPhotoUrls.size}")
+    }
+
+    private fun addPhotosToListing(photoUrls: MutableList<String>) {
+        newListing.photoUrls = photoUrls
+    }
+
     companion object {
-        private const val TAG = "AddListingRepositoryImp"
+        private const val TAG = "AddListingRepositoryImpl"
     }
 }

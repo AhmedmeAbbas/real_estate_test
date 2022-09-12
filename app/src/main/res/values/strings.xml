@@ -188,6 +188,7 @@
     <string name="listing_preview_phone_number">Phone number</string>
     <string name="listing_preview_upper_apartments">Upper apartments</string>
     <string name="listing_preview_block">Block. </string>
+    <string name="back_to_start">Back to start</string>
 
     <!-- Property types -->
     <string name="property_type_title">Property type</string>

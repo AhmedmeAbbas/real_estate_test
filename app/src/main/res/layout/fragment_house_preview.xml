@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbarPreview"
+        android:id="@+id/toolbarHousePreview"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:theme="@style/ThemeOverlay.AppCompat.DayNight.ActionBar"
@@ -17,6 +17,20 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.DayNight"
         app:title="@string/listing_preview_title" />
 
+    <TextView
+        android:id="@+id/tvBackToStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/back_to_start"
+        android:textSize="@dimen/_13ssp"
+        android:padding="@dimen/_10sdp"
+        android:foreground="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintTop_toTopOf="@id/toolbarHousePreview"
+        app:layout_constraintBottom_toBottomOf="@id/toolbarHousePreview"
+        app:layout_constraintEnd_toEndOf="@id/toolbarHousePreview"/>
+
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nsvPreview"
         android:layout_width="match_parent"
@@ -24,7 +38,7 @@
         android:fillViewport="true"
         android:paddingBottom="@dimen/_10sdp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbarPreview">
+        app:layout_constraintTop_toBottomOf="@id/toolbarHousePreview">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

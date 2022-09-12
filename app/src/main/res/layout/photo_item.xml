@@ -7,7 +7,7 @@
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivPreviewPhoto"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_200sdp"
+        android:layout_height="@dimen/listing_photo_height"
         app:srcCompat="@drawable/ic_image"
         android:scaleType="fitXY"
         app:layout_constraintTop_toTopOf="parent"/>

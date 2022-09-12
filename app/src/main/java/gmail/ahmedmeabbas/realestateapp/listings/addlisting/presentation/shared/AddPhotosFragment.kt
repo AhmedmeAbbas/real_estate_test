@@ -218,7 +218,11 @@ class AddPhotosFragment : Fragment() {
     private fun setUpContinueButton() {
         binding.btnContinue.tvButton.text = getString(R.string.confirm_and_continue)
         binding.btnContinue.root.setOnClickListener {
-            addPhotosViewModel.addPhotos(chosenPhotoUris)
+            addPhotosViewModel.addPreviewPhotos(chosenPhotoUris)
+            addPhotosViewModel.uploadPhotos(
+                requireActivity().contentResolver,
+                resources.getDimension(R.dimen.listing_photo_height).toInt()
+            )
             findNavController().navigate(R.id.action_addPhotosFragment_to_priceFragment)
         }
     }

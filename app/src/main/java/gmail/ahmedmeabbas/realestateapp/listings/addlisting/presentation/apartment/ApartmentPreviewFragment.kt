@@ -3,6 +3,7 @@ package gmail.ahmedmeabbas.realestateapp.listings.addlisting.presentation.apartm
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -30,6 +31,7 @@ class ApartmentPreviewFragment : Fragment() {
     private val apartmentPreviewViewModel: ApartmentPreviewViewModel by activityViewModels()
     private var apartment = Listing()
     private var property = Property.Apartment()
+    private var photoUris = listOf<Uri>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -52,6 +54,7 @@ class ApartmentPreviewFragment : Fragment() {
         setUpUtilities()
         setUpContact()
         setUpSubmitButton()
+        setUpBackToStartButton()
     }
 
     private fun setUpSubmitButton() {
@@ -302,9 +305,10 @@ class ApartmentPreviewFragment : Fragment() {
     }
 
     private fun setUpPhotos() {
+        photoUris = apartmentPreviewViewModel.getPhotoUris()
         setUpEmptyPhotos()
         binding.apartmentHeader.previewViewPager.adapter =
-            SliderAdapter(apartment.photoUris.filterNotNull())
+            SliderAdapter(photoUris)
         TabLayoutMediator(
             binding.apartmentHeader.previewTabLayout,
             binding.apartmentHeader.previewViewPager
@@ -312,7 +316,7 @@ class ApartmentPreviewFragment : Fragment() {
     }
 
     private fun setUpEmptyPhotos() {
-        if (apartment.photoUris.filterNotNull().isEmpty()) {
+        if (photoUris.isEmpty()) {
             binding.apartmentHeader.previewTabLayout.visibility = View.GONE
             binding.apartmentHeader.previewViewPager.visibility = View.GONE
             binding.apartmentHeader.ivPlaceholderPhoto.visibility = View.VISIBLE
@@ -378,6 +382,12 @@ class ApartmentPreviewFragment : Fragment() {
     private fun getApartment() {
         apartment = apartmentPreviewViewModel.getApartment()
         property = apartment.property as Property.Apartment
+    }
+
+    private fun setUpBackToStartButton() {
+        binding.tvBackToStart.setOnClickListener {
+            findNavController().navigate(R.id.action_global_myListingsFragment)
+        }
     }
 
     private fun setUpToolbar() {

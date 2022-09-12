@@ -15,7 +15,7 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivListingItem"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_270sdp"
+            android:layout_height="@dimen/listing_photo_height"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
