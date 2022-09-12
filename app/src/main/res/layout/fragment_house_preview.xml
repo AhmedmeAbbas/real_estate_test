@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarPreview"
@@ -35,56 +35,58 @@
                 layout="@layout/preview_header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <include
                 android:id="@+id/houseInstallments"
                 layout="@layout/preview_installments"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/houseHeader"/>
+                app:layout_constraintTop_toBottomOf="@id/houseHeader" />
 
             <include
                 android:id="@+id/houseAbout"
                 layout="@layout/preview_about"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/houseInstallments"/>
+                app:layout_constraintTop_toBottomOf="@id/houseInstallments" />
 
             <include
                 android:id="@+id/construction"
                 layout="@layout/preview_construction"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/houseAbout"/>
+                app:layout_constraintTop_toBottomOf="@id/houseAbout" />
 
             <include
                 android:id="@+id/houseDetails"
                 layout="@layout/preview_house_details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/construction"/>
+                app:layout_constraintTop_toBottomOf="@id/construction" />
 
             <include
                 android:id="@+id/houseUtilities"
                 layout="@layout/preview_house_utilities"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/houseDetails"/>
+                app:layout_constraintTop_toBottomOf="@id/houseDetails" />
 
             <include
                 android:id="@+id/contactAdvertiser"
                 layout="@layout/preview_contact"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/houseUtilities"/>
+                app:layout_constraintTop_toBottomOf="@id/houseUtilities" />
 
             <include
                 android:id="@+id/btnSubmit"
                 layout="@layout/loading_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/contactAdvertiser"/>
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                app:layout_constraintTop_toBottomOf="@id/contactAdvertiser" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

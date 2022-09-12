@@ -12,8 +12,10 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.tabs.TabLayoutMediator
 import gmail.ahmedmeabbas.realestateapp.R
 import gmail.ahmedmeabbas.realestateapp.databinding.FragmentHousePreviewBinding
+import gmail.ahmedmeabbas.realestateapp.listings.addlisting.presentation.adapters.SliderAdapter
 import gmail.ahmedmeabbas.realestateapp.listings.models.*
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
@@ -328,12 +330,31 @@ class HousePreviewFragment : Fragment() {
     }
 
     private fun setUpHeader() {
+        setUpPhotos()
         setUpPrice()
         setUpAddress()
         setUpType()
         setUpAdvertiser()
         setUpDateAdded()
         setUpStatus()
+    }
+
+    private fun setUpPhotos() {
+        setUpEmptyPhotos()
+        binding.houseHeader.previewViewPager.adapter =
+            SliderAdapter(house.photoUris.filterNotNull())
+        TabLayoutMediator(
+            binding.houseHeader.previewTabLayout,
+            binding.houseHeader.previewViewPager
+        ) { _, _ -> }.attach()
+    }
+
+    private fun setUpEmptyPhotos() {
+        if (house.photoUris.filterNotNull().isEmpty()) {
+            binding.houseHeader.previewTabLayout.visibility = View.GONE
+            binding.houseHeader.previewViewPager.visibility = View.GONE
+            binding.houseHeader.ivPlaceholderPhoto.visibility = View.VISIBLE
+        }
     }
 
     private fun setUpPrice() {
@@ -347,7 +368,8 @@ class HousePreviewFragment : Fragment() {
     }
 
     private fun setUpDateAdded() {
-        binding.houseHeader.tvDateAddedValue.text = SimpleDateFormat("dd/MM/yyyy", Locale.US).format(Calendar.getInstance().time)
+        binding.houseHeader.tvDateAddedValue.text =
+            SimpleDateFormat("dd/MM/yyyy", Locale.US).format(Calendar.getInstance().time)
     }
 
     private fun setUpAdvertiser() {

@@ -12,12 +12,15 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.tabs.TabLayoutMediator
 import gmail.ahmedmeabbas.realestateapp.R
 import gmail.ahmedmeabbas.realestateapp.databinding.FragmentApartmentPreviewBinding
+import gmail.ahmedmeabbas.realestateapp.listings.addlisting.presentation.adapters.SliderAdapter
 import gmail.ahmedmeabbas.realestateapp.listings.models.Advertiser
 import gmail.ahmedmeabbas.realestateapp.listings.models.Listing
 import gmail.ahmedmeabbas.realestateapp.listings.models.Property
 import java.text.DecimalFormat
+import java.text.SimpleDateFormat
 import java.util.*
 
 class ApartmentPreviewFragment : Fragment() {
@@ -289,12 +292,31 @@ class ApartmentPreviewFragment : Fragment() {
     }
 
     private fun setUpHeader() {
+        setUpPhotos()
         setUpPrice()
         setUpAddress()
         setUpType()
         setUpAdvertiser()
         setUpDateAdded()
         setUpStatus()
+    }
+
+    private fun setUpPhotos() {
+        setUpEmptyPhotos()
+        binding.apartmentHeader.previewViewPager.adapter =
+            SliderAdapter(apartment.photoUris.filterNotNull())
+        TabLayoutMediator(
+            binding.apartmentHeader.previewTabLayout,
+            binding.apartmentHeader.previewViewPager
+        ) { _, _ -> }.attach()
+    }
+
+    private fun setUpEmptyPhotos() {
+        if (apartment.photoUris.filterNotNull().isEmpty()) {
+            binding.apartmentHeader.previewTabLayout.visibility = View.GONE
+            binding.apartmentHeader.previewViewPager.visibility = View.GONE
+            binding.apartmentHeader.ivPlaceholderPhoto.visibility = View.VISIBLE
+        }
     }
 
     private fun setUpPrice() {
@@ -308,7 +330,8 @@ class ApartmentPreviewFragment : Fragment() {
     }
 
     private fun setUpDateAdded() {
-        binding.apartmentHeader.tvDateAddedValue.text = apartment.dateAdded.toString()
+        binding.apartmentHeader.tvDateAddedValue.text =
+            SimpleDateFormat("dd/MM/yyyy", Locale.US).format(Calendar.getInstance().time)
     }
 
     private fun setUpAdvertiser() {
@@ -370,5 +393,9 @@ class ApartmentPreviewFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        private const val TAG = "ApartmentPreviewFragmen"
     }
 }

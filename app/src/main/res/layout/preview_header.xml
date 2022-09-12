@@ -17,8 +17,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/ivPreviewImage"
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/previewViewPager"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_200sdp"
         android:layout_marginTop="@dimen/_10sdp"
@@ -27,27 +27,53 @@
         app:layout_constraintTop_toBottomOf="@id/tvPreviewSub"
         app:tint="?attr/colorSecondary" />
 
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/previewTabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/previewViewPager"
+        app:tabBackground="@drawable/slider_indicator"
+        app:tabGravity="center"
+        app:tabIndicatorHeight="0dp" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivPlaceholderPhoto"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_200sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:background="?attr/colorOnBackground"
+        android:elevation="@dimen/_2sdp"
+        android:scaleType="fitCenter"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/tvPreviewSub"
+        app:srcCompat="@drawable/ic_image" />
+
     <TextView
         android:id="@+id/tvPrice"
         style="@style/HeaderText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_5sdp"
         android:gravity="start"
         android:text="@string/double_string"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ivPreviewImage" />
+        app:layout_constraintTop_toBottomOf="@id/previewTabLayout"
+        app:layout_goneMarginTop="@dimen/_230sdp" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivFavButton"
         android:layout_width="@dimen/_23sdp"
         android:layout_height="@dimen/_23sdp"
-        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_5sdp"
         android:layout_marginEnd="@dimen/_10sdp"
         app:layout_constraintBottom_toBottomOf="@id/tvPrice"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ivPreviewImage"
+        app:layout_constraintTop_toBottomOf="@id/previewTabLayout"
+        app:layout_goneMarginTop="@dimen/_230sdp"
         app:srcCompat="@drawable/ic_favorite" />
 
     <TextView
