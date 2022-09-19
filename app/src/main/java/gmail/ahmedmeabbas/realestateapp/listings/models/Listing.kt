@@ -1,7 +1,7 @@
 package gmail.ahmedmeabbas.realestateapp.listings.models
 
-import android.net.Uri
 import com.google.firebase.firestore.FieldValue
+import java.text.SimpleDateFormat
 import java.util.*
 
 data class Listing(
@@ -18,7 +18,7 @@ data class Listing(
     var block: Int? = null,
     var propertyNumber: Int? = null,
     var property: Property? = null,
-    var photoUrls: List<String> = listOf(),
+    var photos: List<String> = listOf(),
     var currency: String? = null,
     var price: PriceModel = PriceModel(),
     var installments: Boolean? = null,
@@ -82,7 +82,7 @@ sealed class Property {
 }
 
 data class PriceModel(
-    val dateAdded: FieldValue? = FieldValue.serverTimestamp(),
+    val dateAdded: String? = SimpleDateFormat("dd/MM/yyyy", Locale.US).format(Calendar.getInstance().time),
     val price: Double? = null
 )
 

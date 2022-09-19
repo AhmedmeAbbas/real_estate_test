@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/dialog_background_round_transparent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clErrorBody"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_40sdp"
+        android:background="@drawable/dialog_background_round"
+        android:paddingBottom="@dimen/_10sdp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvErrorHeader"
+            style="@style/HeaderText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_35sdp"
+            android:text="@string/error_something_went_wrong"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvErrorSub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:text="@string/single_string"
+            android:textColor="@color/hint_color"
+            android:textSize="@dimen/_13ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvErrorHeader" />
+
+        <TextView
+            android:id="@+id/btnErrorOk"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_48sdp"
+            android:layout_marginStart="@dimen/_50sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_50sdp"
+            android:background="@drawable/ripple_round_primary"
+            android:gravity="center"
+            android:text="@string/ok"
+            android:textColor="?attr/colorTertiary"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvErrorSub" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:background="@drawable/oval_tertiary_background"
+        app:layout_constraintBottom_toTopOf="@id/clErrorBody"
+        app:layout_constraintEnd_toEndOf="@id/clErrorBody"
+        app:layout_constraintStart_toStartOf="@id/clErrorBody"
+        app:layout_constraintTop_toTopOf="@id/clErrorBody"
+        app:srcCompat="@drawable/ic_error" />
+</androidx.constraintlayout.widget.ConstraintLayout>

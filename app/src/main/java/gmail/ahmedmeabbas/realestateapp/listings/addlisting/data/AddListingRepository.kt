@@ -4,10 +4,14 @@ import android.content.ContentResolver
 import android.net.Uri
 import gmail.ahmedmeabbas.realestateapp.listings.models.Listing
 import gmail.ahmedmeabbas.realestateapp.listings.models.Property
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.StateFlow
 
 interface AddListingRepository {
 
     val newListing: Listing
+    val addListingMessagesFlow: SharedFlow<String>
+    val uploadPhotosProgress: StateFlow<Int>
 
     fun setPropertyType(propertyType: String)
 
@@ -50,7 +54,7 @@ interface AddListingRepository {
 
     fun getListing(): Listing
 
-    suspend fun getPhotoUrls(contentResolver: ContentResolver, height: Int)
+    suspend fun submitListing(contentResolver: ContentResolver, height: Int)
 
     fun logResults()
 }

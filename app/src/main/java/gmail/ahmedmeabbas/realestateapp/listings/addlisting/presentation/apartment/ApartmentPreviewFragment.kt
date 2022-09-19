@@ -1,25 +1,36 @@
 package gmail.ahmedmeabbas.realestateapp.listings.addlisting.presentation.apartment
 
+import android.app.Dialog
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayoutMediator
 import gmail.ahmedmeabbas.realestateapp.R
 import gmail.ahmedmeabbas.realestateapp.databinding.FragmentApartmentPreviewBinding
+import gmail.ahmedmeabbas.realestateapp.listings.addlisting.data.AddListingRepositoryImpl
 import gmail.ahmedmeabbas.realestateapp.listings.addlisting.presentation.adapters.SliderAdapter
 import gmail.ahmedmeabbas.realestateapp.listings.models.Advertiser
 import gmail.ahmedmeabbas.realestateapp.listings.models.Listing
 import gmail.ahmedmeabbas.realestateapp.listings.models.Property
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -32,6 +43,7 @@ class ApartmentPreviewFragment : Fragment() {
     private var apartment = Listing()
     private var property = Property.Apartment()
     private var photoUris = listOf<Uri>()
+    private lateinit var dialog: Dialog
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -55,12 +67,132 @@ class ApartmentPreviewFragment : Fragment() {
         setUpContact()
         setUpSubmitButton()
         setUpBackToStartButton()
+        observeUserMessages()
+        observeUploadPhotosProgress()
+    }
+
+    private fun observeUploadPhotosProgress() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                apartmentPreviewViewModel.uiState
+                    .map { it.uploadPhotosProgress }
+                    .distinctUntilChanged()
+                    .collect { progress ->
+                        if (progress > 0)
+                            updatePhotosProgressBar(progress)
+                    }
+            }
+        }
+    }
+
+    private fun updatePhotosProgressBar(progress: Int) {
+        dialog.findViewById<ProgressBar>(R.id.pbUploadProgress).progress = progress
+    }
+
+    private fun observeUserMessages() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                apartmentPreviewViewModel.uiState
+                    .map { it.userMessage }
+                    .distinctUntilChanged()
+                    .collect { userMessage ->
+                        when (userMessage) {
+                            AddListingRepositoryImpl.UPLOADING_PHOTOS -> {
+                                dialog.findViewById<TextView>(R.id.tvLoadingInfo).text =
+                                    getString(R.string.add_listing_uploading_photos)
+                                dialog.findViewById<ProgressBar>(R.id.pbUploadProgress).visibility =
+                                    View.VISIBLE
+                            }
+                            AddListingRepositoryImpl.SUBMITTING_LISTING -> {
+                                dialog.findViewById<TextView>(R.id.tvLoadingInfo).text =
+                                    getString(R.string.add_listing_submitting_listing)
+                            }
+                            AddListingRepositoryImpl.SUCCESS -> showSuccessDialog()
+                            AddListingRepositoryImpl.NETWORK_ERROR -> showErrorDialog(getString(R.string.error_network))
+                            AddListingRepositoryImpl.UNAUTHENTICATED -> showErrorDialog(getString(R.string.error_unauthenticated))
+                            AddListingRepositoryImpl.FAILURE -> showErrorDialog(getString(R.string.error_occurred))
+                            else -> return@collect
+                        }
+                        apartmentPreviewViewModel.clearMessages()
+                    }
+            }
+        }
+    }
+
+    private fun showSuccessDialog() {
+        dialog.dismiss()
+
+        val dialogWidth =
+            requireContext().resources.getDimension(com.intuit.sdp.R.dimen._250sdp).toInt()
+        val dialogHeight =
+            requireContext().resources.getDimension(com.intuit.sdp.R.dimen._250sdp).toInt()
+
+        dialog = Dialog(requireContext())
+        dialog.apply {
+            setContentView(R.layout.dialog_upload_success)
+            window?.setLayout(dialogWidth, dialogHeight)
+            window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+            findViewById<TextView>(R.id.btnSuccessOk).setOnClickListener {
+                findNavController().navigate(R.id.action_global_myListingsFragment)
+                dialog.dismiss()
+            }
+            setCancelable(false)
+            show()
+        }
+    }
+
+    private fun showErrorDialog(errorMessage: String) {
+        dialog.dismiss()
+
+        val dialogWidth =
+            requireContext().resources.getDimension(com.intuit.sdp.R.dimen._250sdp).toInt()
+        val dialogHeight =
+            requireContext().resources.getDimension(com.intuit.sdp.R.dimen._250sdp).toInt()
+
+        dialog = Dialog(requireContext())
+        dialog.apply {
+            setContentView(R.layout.dialog_upload_error)
+            window?.setLayout(dialogWidth, dialogHeight)
+            window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+            findViewById<TextView>(R.id.tvErrorSub).text = errorMessage
+            findViewById<TextView>(R.id.btnErrorOk).setOnClickListener {
+                dialog.dismiss()
+            }
+            setCancelable(false)
+            show()
+        }
+    }
+
+    private fun showLoadingDialog() {
+        val dialogWidth =
+            requireContext().resources.getDimension(com.intuit.sdp.R.dimen._250sdp).toInt()
+        val dialogHeight =
+            requireContext().resources.getDimension(com.intuit.sdp.R.dimen._150sdp).toInt()
+
+        dialog = Dialog(requireContext())
+        dialog.apply {
+            setContentView(R.layout.dialog_submitting_listing)
+            window?.setLayout(dialogWidth, dialogHeight)
+            window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            setCancelable(false)
+            show()
+        }
     }
 
     private fun setUpSubmitButton() {
         binding.btnSubmit.tvButton.text = getString(R.string.add_listing_submit)
         binding.btnSubmit.root.setOnClickListener {
-            findNavController().navigate(R.id.action_global_myListingsFragment)
+            if (!apartmentPreviewViewModel.isConnectionAvailable()) {
+                Toast.makeText(requireContext(), getString(R.string.error_network), Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            apartmentPreviewViewModel.submitListing(
+                requireActivity().contentResolver,
+                resources.getDimension(R.dimen.listing_photo_height).toInt()
+            )
+            showLoadingDialog()
         }
     }
 
@@ -406,6 +538,6 @@ class ApartmentPreviewFragment : Fragment() {
     }
 
     companion object {
-        private const val TAG = "ApartmentPreviewFragmen"
+        private const val TAG = "ApartmentPreviewFragment"
     }
 }

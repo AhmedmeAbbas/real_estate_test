@@ -130,6 +130,7 @@ class PropertyAddressFragment : Fragment() {
             requireContext().resources.getDimension(com.intuit.sdp.R.dimen._250sdp).toInt()
         val dialogHeight =
             requireContext().resources.getDimension(com.intuit.sdp.R.dimen._400sdp).toInt()
+
         binding.tvSelectRegion.setOnClickListener {
             val dialog = Dialog(requireContext())
             dialog.apply {

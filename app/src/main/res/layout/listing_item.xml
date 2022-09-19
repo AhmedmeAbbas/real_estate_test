@@ -12,14 +12,37 @@
         android:layout_height="match_parent"
         android:paddingBottom="@dimen/_10sdp">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ivListingItem"
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/listingViewPager"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/listing_photo_height"
+            android:layout_height="@dimen/_200sdp"
+            android:background="?attr/colorOnBackground"
+            android:elevation="@dimen/_2sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="?attr/colorSecondary" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/listingTabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/listingViewPager"
+            app:tabBackground="@drawable/slider_indicator"
+            app:tabGravity="center"
+            app:tabIndicatorHeight="0dp" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivPlaceholderPhoto"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_200sdp"
+            android:background="?attr/colorOnBackground"
+            android:elevation="@dimen/_2sdp"
+            android:scaleType="fitCenter"
+            android:visibility="gone"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/house_for_sale" />
+            app:srcCompat="@drawable/ic_image" />
 
         <TextView
             android:id="@+id/tvPrice"
@@ -27,12 +50,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_5sdp"
             android:gravity="start"
             android:text="@string/listing_item_price"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ivListingItem" />
+            app:layout_constraintTop_toBottomOf="@id/listingTabLayout"
+            app:layout_goneMarginTop="@dimen/_230sdp" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivFavButton"
@@ -42,7 +66,8 @@
             android:layout_marginEnd="@dimen/_10sdp"
             app:layout_constraintBottom_toBottomOf="@id/tvPrice"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ivListingItem"
+            app:layout_constraintTop_toBottomOf="@id/listingTabLayout"
+            app:layout_goneMarginTop="@dimen/_230sdp"
             app:srcCompat="@drawable/ic_favorite" />
 
         <TextView

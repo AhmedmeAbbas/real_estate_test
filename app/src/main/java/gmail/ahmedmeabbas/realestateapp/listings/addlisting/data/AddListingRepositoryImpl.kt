@@ -2,11 +2,20 @@ package gmail.ahmedmeabbas.realestateapp.listings.addlisting.data
 
 import android.content.ContentResolver
 import android.net.Uri
+import android.security.keystore.UserNotAuthenticatedException
 import android.util.Log
+import com.google.firebase.FirebaseNetworkException
+import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageException
 import gmail.ahmedmeabbas.realestateapp.listings.addlisting.data.PhotoUtils.getImageByteArray
 import gmail.ahmedmeabbas.realestateapp.listings.models.*
+import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.asStateFlow
 
 class AddListingRepositoryImpl(
     private val db: FirebaseFirestore,
@@ -15,9 +24,13 @@ class AddListingRepositoryImpl(
 
     override val newListing = Listing()
     private var chosenPropertyType: String? = null
-    private var chosenPhotoUris = listOf<Uri?>()
+    private var chosenPhotoUris = listOf<Uri>()
     private val uploadedPhotoUrls = mutableListOf<String>()
-
+    private val _addListingMessagesFlow = MutableSharedFlow<String>()
+    override val addListingMessagesFlow = _addListingMessagesFlow.asSharedFlow()
+    private val _uploadPhotosProgress = MutableStateFlow(0)
+    override val uploadPhotosProgress = _uploadPhotosProgress.asStateFlow()
+    private val scope = CoroutineScope(Dispatchers.IO)
 
     override fun setPropertyType(propertyType: String) {
         chosenPropertyType = propertyType
@@ -68,11 +81,11 @@ class AddListingRepositoryImpl(
     }
 
     override fun addPreviewPhotos(photoUris: List<Uri?>) {
-        chosenPhotoUris = photoUris
+        chosenPhotoUris = photoUris.filterNotNull()
     }
 
     override fun getPreviewPhotos(): List<Uri> {
-        return chosenPhotoUris.filterNotNull()
+        return chosenPhotoUris
     }
 
     override fun addPrice(
@@ -129,46 +142,93 @@ class AddListingRepositoryImpl(
         Log.d(TAG, "logResults: property status: ${newListing.listingStatus}")
     }
 
-    override suspend fun getPhotoUrls(contentResolver: ContentResolver, height: Int) {
-        for ((index, photoUri) in chosenPhotoUris.filterNotNull().withIndex()) {
+    override suspend fun submitListing(contentResolver: ContentResolver, height: Int) {
+        val state = newListing.state?.lowercase()
+        val city = newListing.city?.lowercase()
+        val listingRef = db.collection("listings/$state/$city").document()
+
+        if (chosenPhotoUris.isEmpty()) {
+            uploadListingToFireStore(listingRef)
+            return
+        }
+
+        for ((index, photoUri) in chosenPhotoUris.withIndex()) {
             val imageByteArray = getImageByteArray(contentResolver, photoUri, height)
-            val filePath = "images/listing_id/${System.currentTimeMillis()}-$index.jpg"
+            val filePath = "images/${listingRef.id}/${System.currentTimeMillis()}-$index.jpg"
 
             val photoRef = storage.reference.child(filePath)
-            Log.d(TAG, "getPhotoUrls: ${photoRef.path}")
             photoRef.putBytes(imageByteArray)
-                .continueWithTask { photoUploadTask ->
-                    Log.d(TAG, "Uploaded bytes: ${photoUploadTask.result?.bytesTransferred}")
-                    photoRef.downloadUrl
-                }.addOnCompleteListener { downloadUrlTask ->
+                .continueWithTask { photoRef.downloadUrl }
+                .addOnCompleteListener { downloadUrlTask ->
                     if (!downloadUrlTask.isSuccessful) {
-                        Log.d(TAG, "Exception with firebase storage", downloadUrlTask.exception)
+                        when (downloadUrlTask.exception) {
+                            is FirebaseNetworkException -> sendMessage(NETWORK_ERROR)
+                            is UserNotAuthenticatedException -> sendMessage(UNAUTHENTICATED)
+                            else -> sendMessage(FAILURE)
+                        }
+                        clearPhotosProgress()
                         return@addOnCompleteListener
                     }
+
+                    sendMessage(UPLOADING_PHOTOS)
                     val downloadUrl = downloadUrlTask.result.toString()
                     uploadedPhotoUrls.add(downloadUrl)
-
-                    Log.d(
-                        TAG,
-                        "Finished uploading $photoUri, num uploads ${uploadedPhotoUrls.size}"
-                    )
+                    _uploadPhotosProgress.value =
+                        uploadedPhotoUrls.size * 100 / chosenPhotoUris.size
 
                     if (uploadedPhotoUrls.size == chosenPhotoUris.size) {
-                        for (i in uploadedPhotoUrls.indices) {
-                            Log.d(TAG, "getPhotoUrls: url$i: ${uploadedPhotoUrls[i]}")
-                        }
                         addPhotosToListing(uploadedPhotoUrls)
+                        uploadListingToFireStore(listingRef)
                     }
                 }
         }
-        Log.d(TAG, "getPhotoUrls: size after: ${uploadedPhotoUrls.size}")
+
+    }
+
+    private fun uploadListingToFireStore(listingRef: DocumentReference) {
+        sendMessage(SUBMITTING_LISTING)
+        newListing.id = listingRef.id
+        listingRef.set(newListing)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    sendMessage(SUCCESS)
+                    Log.d(TAG, "uploadListingToFireStore: uploaded to firestore")
+                } else {
+                    when (task.exception) {
+                        is FirebaseNetworkException -> sendMessage(NETWORK_ERROR)
+                        is StorageException -> {
+                            if ((task.exception as StorageException).errorCode == StorageException.ERROR_NOT_AUTHENTICATED)
+                            sendMessage(UNAUTHENTICATED)
+                        }
+                        else -> sendMessage(FAILURE)
+                    }
+                }
+                clearPhotosProgress()
+            }
     }
 
     private fun addPhotosToListing(photoUrls: MutableList<String>) {
-        newListing.photoUrls = photoUrls
+        newListing.photos = photoUrls
+    }
+
+    private fun clearPhotosProgress() {
+        _uploadPhotosProgress.value = 0
+        uploadedPhotoUrls.clear()
+    }
+
+    private fun sendMessage(message: String) {
+        scope.launch {
+            _addListingMessagesFlow.emit(message)
+        }
     }
 
     companion object {
+        const val UPLOADING_PHOTOS = "uploading_photos"
+        const val SUBMITTING_LISTING = "submitting_listing"
+        const val SUCCESS = "success"
+        const val FAILURE = "failure"
+        const val NETWORK_ERROR = "network_error"
+        const val UNAUTHENTICATED = "unauthenticated"
         private const val TAG = "AddListingRepositoryImpl"
     }
 }

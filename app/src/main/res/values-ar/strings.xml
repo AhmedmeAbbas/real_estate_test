@@ -20,6 +20,8 @@
     <string name="single_string">%1$s</string>
     <string name="double_string">%1$s%2$s</string>
     <string name="copied">تم النسخ</string>
+    <string name="cancel">إلغاء</string>
+    <string name="cancelling">جاري الإلغاء</string>
 
     <!-- Facebook -->
     <string name="facebook_app_id">585599636490913</string>
@@ -63,6 +65,10 @@
     <string name="photos_permission_denied">لكي تتمكن من إضافة صور لإعلانك التطبيق يحتاج إذن الوصول إلى الصور</string>
     <string name="error_invalid_number">الرقم غير صحيح</string>
     <string name="error_invalid">غير صحيح</string>
+    <string name="error_add_listing_unauthenticated">يتوجب عليك تسجيل الدخول لتضيف إعلانا</string>
+    <string name="error_something_went_wrong">حدث خطأ ما</string>
+    <string name="error_unauthenticated">تعذر التحقق من بياناتك. الرجاء تسجيل الدخول مجددا</string>
+    <string name="add_listing_submit_connecting">جاري الاتصال</string>
 
     <!-- Email sign in fragment -->
     <string name="email_sign_in_header">سجل دخولك بالبريد الإلكتروني</string>
@@ -166,6 +172,10 @@
     <string name="add_listing_usd_prefix">$</string>
     <string name="add_listing_sdg_suffix">جنيه</string>
     <string name="add_listing_month_suffix">شهر</string>
+    <string name="add_listing_uploading_photos">جاري رفع الصور</string>
+    <string name="add_listing_submitting_listing">جاري إضافة الإعلان</string>
+    <string name="add_listing_submit_success_header">تم إضافة إعلانك بنجاح</string>
+    <string name="add_listing_submit_success_sub">يمكنك متابعة وإدارة إعلانك في صفحة \"إعلاناتي\"</string>
 
     <!-- Listing preview -->
     <string name="listing_preview_title">معاينة الإعلان</string>

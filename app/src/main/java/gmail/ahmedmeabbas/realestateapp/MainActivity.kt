@@ -24,6 +24,7 @@ import gmail.ahmedmeabbas.realestateapp.databinding.ActivityMainBinding
 import gmail.ahmedmeabbas.realestateapp.splashscreen.SplashScreenViewModel
 import gmail.ahmedmeabbas.realestateapp.util.MyContextWrapper
 import gmail.ahmedmeabbas.realestateapp.userpreferences.UserPrefsEntryPoint
+import gmail.ahmedmeabbas.realestateapp.util.NetworkHelper
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
@@ -57,33 +58,12 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
         binding.bottomNavigation.setupWithNavController(navController)
 
-        //firestoreStuff()
         setUpBottomNavigationVisibilityListener()
         observeLanguageChange()
         observeNightModeChange()
         observeSignInState()
         observeNetworkState()
     }
-
-//    private fun firestoreStuff() {
-//        db.collection("listings")
-//            .whereEqualTo("type", "house")
-//            .get()
-//            .addOnSuccessListener { documents ->
-//                for (document in documents) {
-//                    Log.d(TAG, "firestoreStuff: address: ${document.data["address"]}")
-//                }
-//            }
-//            .addOnFailureListener { Log.d(TAG, "firestoreStuff: failed af") }
-//    }
-
-//    private fun firestoreStuff() {
-//            val listing = ListingRepositoryImpl().listings[1]
-//            db.collection("listings")
-//                .add(listing)
-//                .addOnSuccessListener { Log.d(TAG, "firestoreStuff: success") }
-//                .addOnFailureListener { Log.d(TAG, "firestoreStuff: failure") }
-//    }
 
     private fun observeNetworkState() {
         val connectivityManager =
@@ -92,6 +72,7 @@ class MainActivity : AppCompatActivity() {
             override fun onAvailable(network: Network) {
                 super.onAvailable(network)
                 scope.launch {
+                    NetworkHelper.isConnectionAvailable = true
                     binding.clNetwork.visibility = View.GONE
                 }
             }
@@ -99,6 +80,7 @@ class MainActivity : AppCompatActivity() {
             override fun onLost(network: Network) {
                 super.onLost(network)
                 scope.launch {
+                    NetworkHelper.isConnectionAvailable = false
                     binding.clNetwork.visibility = View.VISIBLE
                 }
             }

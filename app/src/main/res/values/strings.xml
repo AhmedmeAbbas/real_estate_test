@@ -19,6 +19,8 @@
     <string name="single_string">%1$s</string>
     <string name="double_string">%1$s%2$s</string>
     <string name="copied">Copied</string>
+    <string name="cancel">Cancel</string>
+    <string name="cancelling">Cancelling</string>
 
     <!-- Facebook -->
     <string name="facebook_app_id">585599636490913</string>
@@ -63,6 +65,9 @@
     <string name="photos_permission_denied">In order to add photos to your listing the app needs access to your photos</string>
     <string name="error_invalid_number">Invalid number</string>
     <string name="error_invalid">Invalid</string>
+    <string name="error_add_listing_unauthenticated">You must be signed in to add a listing</string>
+    <string name="error_something_went_wrong">Something went wrong</string>
+    <string name="error_unauthenticated">An error occurred while verifying your information. Please sign in again</string>
 
     <!-- Email sign in fragment -->
     <string name="email_sign_in_header">Sign in with email</string>
@@ -164,6 +169,11 @@
     <string name="add_listing_usd_prefix">$</string>
     <string name="add_listing_sdg_suffix">SDG</string>
     <string name="add_listing_month_suffix">Month</string>
+    <string name="add_listing_uploading_photos">Uploading photos</string>
+    <string name="add_listing_submitting_listing">Submitting listing</string>
+    <string name="add_listing_submit_success_header">Your listing has been successfully submitted</string>
+    <string name="add_listing_submit_success_sub">You can keep track and manage your listing in \"My listings\" tab</string>
+    <string name="add_listing_submit_connecting">Connecting</string>
 
     <!-- Listing preview -->
     <string name="listing_preview_title">Listing preview</string>
