@@ -2,7 +2,6 @@ package gmail.ahmedmeabbas.realestateapp.listings.addlisting.presentation.shared
 
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -216,7 +215,7 @@ class PriceFragment : Fragment() {
                 val downPayment = binding.etDownPayment.text.toString().toDoubleOrNull()
                 val monthlyInstallment =
                     binding.etMonthlyInstallment.text.toString().toDoubleOrNull()
-                val installmentPeriod = binding.etInstallmentPeriod.text.toString().toIntOrNull()
+                val installmentPeriod = binding.etInstallmentPeriod.text.toString().toLongOrNull()
                 priceViewModel.addPrice(
                     currency,
                     priceInput.toDouble(),

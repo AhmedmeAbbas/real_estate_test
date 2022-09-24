@@ -16,15 +16,15 @@ class ApartmentDetailsViewModel @Inject constructor(
 
     fun addApartmentDetails(
         area: Double?,
-        yearBuilt: Int?,
+        yearBuilt: Long?,
         finished: Boolean?,
         furnished: Boolean?,
-        bedrooms: Int?,
-        bathrooms: Int?,
+        bedrooms: Long?,
+        bathrooms: Long?,
         kitchen: Boolean?,
         livingRoom: Boolean?,
         balcony: Boolean?,
-        floorNumber: Int?,
+        floorNumber: Long?,
         moreInfo: String?
     ) {
         addApartmentUseCase.addApartmentDetails(

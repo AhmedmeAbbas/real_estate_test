@@ -17,7 +17,7 @@ class ConstructionDetailsViewModel @Inject constructor(
     fun addConstructionDetails(
         lotArea: Double?,
         builtArea: Double?,
-        yearBuilt: Int?,
+        yearBuilt: Long?,
         structureType: String?,
         finishing: String?,
         moreInfo: String?

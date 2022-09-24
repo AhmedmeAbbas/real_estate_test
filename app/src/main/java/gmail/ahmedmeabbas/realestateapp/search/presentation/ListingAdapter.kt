@@ -8,12 +8,10 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import gmail.ahmedmeabbas.realestateapp.R
 import gmail.ahmedmeabbas.realestateapp.databinding.ListingItemBinding
+import gmail.ahmedmeabbas.realestateapp.listings.models.PropertyType
 import gmail.ahmedmeabbas.realestateapp.search.data.ListingItem
-import gmail.ahmedmeabbas.realestateapp.search.data.ListingRepositoryImpl
 
 class ListingAdapter: ListAdapter<ListingItem, ListingAdapter.ListingViewHolder>(DiffCallback) {
-
-    private val listings = ListingRepositoryImpl().listings
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListingViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.listing_item, parent, false)
@@ -22,11 +20,9 @@ class ListingAdapter: ListAdapter<ListingItem, ListingAdapter.ListingViewHolder>
     }
 
     override fun onBindViewHolder(holder: ListingViewHolder, position: Int) {
-        val item = listings[position]
+        val item = getItem(position)
         holder.bind(item)
     }
-
-    override fun getItemCount() = listings.size
 
     private object DiffCallback: DiffUtil.ItemCallback<ListingItem>() {
         override fun areItemsTheSame(oldItem: ListingItem, newItem: ListingItem): Boolean {
@@ -52,11 +48,13 @@ class ListingAdapter: ListAdapter<ListingItem, ListingAdapter.ListingViewHolder>
                 }
 
                 when(listing.type) {
-                    "apartment" -> binding.tvType.text = binding.root.context.getString(R.string.property_type_apartment)
-                    "house" -> binding.tvType.text = binding.root.context.getString(R.string.property_type_house)
-                    "building" -> binding.tvType.text = binding.root.context.getString(R.string.property_type_building)
-                    "land" -> binding.tvType.text = binding.root.context.getString(R.string.property_type_land)
-                    "farm" -> binding.tvType.text = binding.root.context.getString(R.string.property_type_farm)
+                    PropertyType.APARTMENT -> binding.tvType.text = binding.root.context.getString(R.string.property_type_apartment)
+                    PropertyType.HOUSE -> binding.tvType.text = binding.root.context.getString(R.string.property_type_house)
+                    PropertyType.BUILDING -> binding.tvType.text = binding.root.context.getString(R.string.property_type_building)
+                    PropertyType.STORE -> binding.tvType.text = binding.root.context.getString(R.string.property_type_store)
+                    PropertyType.LAND -> binding.tvType.text = binding.root.context.getString(R.string.property_type_land)
+                    PropertyType.WAREHOUSE -> binding.tvType.text = binding.root.context.getString(R.string.property_type_warehouse)
+                    PropertyType.FARM -> binding.tvType.text = binding.root.context.getString(R.string.property_type_farm)
                     else -> binding.tvType.visibility = View.GONE
                 }
             }

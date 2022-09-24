@@ -18,7 +18,7 @@ class PriceViewModel @Inject constructor(
         installments: Boolean?,
         downPayment: Double?,
         monthlyInstallment: Double?,
-        installmentPeriod: Int?
+        installmentPeriod: Long?
     ) {
         addListingRepository.addPrice(
             currency,

@@ -16,8 +16,8 @@ class PropertyAddressViewModel @Inject constructor(
         state: String,
         city: String,
         region: String,
-        block: Int,
-        propertyNumber: Int
+        block: Long,
+        propertyNumber: Long
     ) {
         addListingRepository.addPropertyAddress(state, city, region, block, propertyNumber)
     }

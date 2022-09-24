@@ -12,7 +12,7 @@ class AddHouseUseCase (
     fun addConstructionDetails(
         lotArea: Double?,
         builtArea: Double?,
-        yearBuilt: Int?,
+        yearBuilt: Long?,
         structureType: String?,
         finishing: String?,
         moreInfo: String?
@@ -28,16 +28,16 @@ class AddHouseUseCase (
     }
 
     fun addHouseDetails(
-        bedrooms: Int?,
-        bathrooms: Int?,
-        kitchens: Int?,
-        halls: Int?,
-        floors: Int?,
+        bedrooms: Long?,
+        bathrooms: Long?,
+        kitchens: Long?,
+        halls: Long?,
+        floors: Long?,
         apartments: Boolean?,
-        numberApartments: Int?,
+        numberApartments: Long?,
         basement: Boolean?,
         garage: Boolean?,
-        numberCars: Int?,
+        numberCars: Long?,
         moreInfo: String?
     ) {
         house.apply {

@@ -85,7 +85,7 @@ class ConstructionDetailsFragment : Fragment() {
         binding.btnContinue.root.setOnClickListener {
             val lotArea = binding.etLotArea.text.toString().toDoubleOrNull()
             val builtArea = binding.etBuiltArea.text.toString().toDoubleOrNull()
-            val yearBuilt = binding.etYearBuilt.text.toString().toIntOrNull()
+            val yearBuilt = binding.etYearBuilt.text.toString().toLongOrNull()
             val structureType = getUserChoice(binding.cgStructureType)
             val finishing = getUserChoice(binding.cgFinishing)
             val moreInfo = binding.etConstructionDetailsMore.text.toString().ifEmpty { null }

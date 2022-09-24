@@ -138,7 +138,7 @@ class ApartmentDetailsFragment : Fragment() {
         binding.btnContinue.tvButton.text = getString(R.string.confirm_and_continue)
         binding.btnContinue.root.setOnClickListener {
             val area = binding.etArea.text.toString().toDoubleOrNull()
-            val yearBuilt = binding.etYearBuilt.text.toString().toIntOrNull()
+            val yearBuilt = binding.etYearBuilt.text.toString().toLongOrNull()
             val finished = getUserChoice(binding.cgFinishing)
             val furnished = getUserChoice(binding.cgFurniture)
             val bedrooms = getNumberFromChipGroup(binding.bedrooms.chipGroup, binding.bedrooms.editText)
@@ -166,14 +166,14 @@ class ApartmentDetailsFragment : Fragment() {
         }
     }
 
-    private fun getNumberFromChipGroup(chipGroup: ChipGroup, editText: TextInputEditText): Int? {
+    private fun getNumberFromChipGroup(chipGroup: ChipGroup, editText: TextInputEditText): Long? {
         return when (chipGroup.checkedChipId) {
             R.id.chip0 -> 0
             R.id.chip1 -> 1
             R.id.chip2 -> 2
             R.id.chip3 -> 3
             R.id.chip4 -> 4
-            R.id.chipOther -> editText.text.toString().toIntOrNull()
+            R.id.chipOther -> editText.text.toString().toLongOrNull()
             else -> null
         }
     }

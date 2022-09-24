@@ -24,6 +24,8 @@ import gmail.ahmedmeabbas.realestateapp.listings.addlisting.data.AddListingRepos
 import gmail.ahmedmeabbas.realestateapp.listings.addlisting.data.AddListingRepositoryImpl
 import gmail.ahmedmeabbas.realestateapp.listings.addlisting.domain.AddApartmentUseCase
 import gmail.ahmedmeabbas.realestateapp.listings.addlisting.domain.AddHouseUseCase
+import gmail.ahmedmeabbas.realestateapp.listings.getlisting.data.GetListingRepository
+import gmail.ahmedmeabbas.realestateapp.listings.getlisting.data.GetListingRepositoryImpl
 import gmail.ahmedmeabbas.realestateapp.listings.getlisting.data.ListingRepository
 import gmail.ahmedmeabbas.realestateapp.listings.getlisting.data.ListingRepositoryImpl
 import gmail.ahmedmeabbas.realestateapp.userpreferences.UserPreferencesRepository
@@ -113,6 +115,14 @@ object AppModule {
         addListingRepository: AddListingRepository
     ): AddHouseUseCase {
         return AddHouseUseCase(addListingRepository)
+    }
+
+    @Singleton
+    @Provides
+    fun provideGetListingRepository(
+        db: FirebaseFirestore
+    ): GetListingRepository {
+        return GetListingRepositoryImpl(db)
     }
 
     @Singleton

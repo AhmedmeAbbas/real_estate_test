@@ -160,16 +160,16 @@ class HouseDetailsFragment : Fragment() {
     private fun setUpContinueButton() {
         binding.btnContinue.tvButton.text = getString(R.string.confirm_and_continue)
         binding.btnContinue.root.setOnClickListener {
-            val bedrooms = binding.etBedrooms.text.toString().toIntOrNull()
-            val bathrooms = binding.etBathrooms.text.toString().toIntOrNull()
-            val kitchens = binding.etKitchens.text.toString().toIntOrNull()
-            val halls = binding.etHalls.text.toString().toIntOrNull()
-            val floors = binding.etFloors.text.toString().toIntOrNull()
+            val bedrooms = binding.etBedrooms.text.toString().toLongOrNull()
+            val bathrooms = binding.etBathrooms.text.toString().toLongOrNull()
+            val kitchens = binding.etKitchens.text.toString().toLongOrNull()
+            val halls = binding.etHalls.text.toString().toLongOrNull()
+            val floors = binding.etFloors.text.toString().toLongOrNull()
             val apartments = getUserChoice(binding.apartments.chipGroup)
-            val numberApartments = binding.etNumberApartments.text.toString().toIntOrNull()
+            val numberApartments = binding.etNumberApartments.text.toString().toLongOrNull()
             val basement = getUserChoice(binding.basement.chipGroup)
             val garage = getUserChoice(binding.carGarage.chipGroup)
-            val numberCars = binding.etNumberCars.text.toString().toIntOrNull()
+            val numberCars = binding.etNumberCars.text.toString().toLongOrNull()
             val moreInfo = binding.etHouseDetailsMore.text.toString().ifEmpty { null }
             houseDetailsViewModel.addHouseDetails(
                 bedrooms,

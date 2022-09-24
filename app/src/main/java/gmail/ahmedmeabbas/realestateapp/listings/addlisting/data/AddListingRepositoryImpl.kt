@@ -16,6 +16,8 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
+import java.text.SimpleDateFormat
+import java.util.*
 
 class AddListingRepositoryImpl(
     private val db: FirebaseFirestore,
@@ -60,8 +62,8 @@ class AddListingRepositoryImpl(
         state: String,
         city: String,
         region: String,
-        block: Int,
-        propertyNumber: Int
+        block: Long,
+        propertyNumber: Long
     ) {
         newListing.apply {
             this.state = state
@@ -94,17 +96,18 @@ class AddListingRepositoryImpl(
         installments: Boolean?,
         downPayment: Double?,
         monthlyInstallment: Double?,
-        installmentPeriod: Int?
+        installmentPeriod: Long?
     ) {
-        val newPrice = PriceModel(price = price)
+        val dateAdded = SimpleDateFormat("dd/MM/yyyy", Locale.US).format(Calendar.getInstance().time)
+
         newListing.apply {
             this.currency = currency
-            this.price = newPrice
+            this.price = price
             this.installments = installments
             this.downPayment = downPayment
             this.monthlyInstallment = monthlyInstallment
             this.installmentPeriod = installmentPeriod
-            this.priceHistory[0] = newPrice
+            this.history = mapOf(dateAdded to price)
         }
     }
 
@@ -130,7 +133,7 @@ class AddListingRepositoryImpl(
         Log.d(TAG, "logResults: property number: ${newListing.propertyNumber}")
         Log.d(TAG, "logResults: property: ${newListing.property}")
         Log.d(TAG, "logResults: property currency: ${newListing.currency}")
-        Log.d(TAG, "logResults: property price: ${newListing.price.price}")
+        Log.d(TAG, "logResults: property price: ${newListing.price}")
         Log.d(TAG, "logResults: property installments: ${newListing.installments}")
         Log.d(TAG, "logResults: property down payment: ${newListing.downPayment}")
         Log.d(TAG, "logResults: property monthly installment: ${newListing.monthlyInstallment}")
@@ -138,7 +141,7 @@ class AddListingRepositoryImpl(
         Log.d(TAG, "logResults: property lng: ${newListing.longitude}")
         Log.d(TAG, "logResults: property lat: ${newListing.latitude}")
         Log.d(TAG, "logResults: property additional info: ${newListing.additionalInfo}")
-        Log.d(TAG, "logResults: property price history: ${newListing.priceHistory[0]?.dateAdded}")
+        Log.d(TAG, "logResults: property price history: ${newListing.history}")
         Log.d(TAG, "logResults: property status: ${newListing.listingStatus}")
     }
 
@@ -182,12 +185,12 @@ class AddListingRepositoryImpl(
                     }
                 }
         }
-
     }
 
     private fun uploadListingToFireStore(listingRef: DocumentReference) {
         sendMessage(SUBMITTING_LISTING)
         newListing.id = listingRef.id
+        newListing.type = chosenPropertyType
         listingRef.set(newListing)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {

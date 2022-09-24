@@ -194,7 +194,7 @@ class HousePreviewFragment : Fragment() {
             binding.construction.tvBuiltAreaValue,
             property.builtArea
         )
-        setUpIntValues(
+        setUpLongValues(
             binding.construction.tvYearBuilt,
             binding.construction.tvYearBuiltValue,
             property.yearBuilt
@@ -313,27 +313,27 @@ class HousePreviewFragment : Fragment() {
     }
 
     private fun setUpHouseDetails() {
-        setUpIntValues(
+        setUpLongValues(
             binding.houseDetails.tvBedrooms,
             binding.houseDetails.tvBedroomsValue,
             property.bedrooms
         )
-        setUpIntValues(
+        setUpLongValues(
             binding.houseDetails.tvBathrooms,
             binding.houseDetails.tvBathroomsValue,
             property.bathrooms
         )
-        setUpIntValues(
+        setUpLongValues(
             binding.houseDetails.tvKitchens,
             binding.houseDetails.tvKitchensValue,
             property.kitchens
         )
-        setUpIntValues(
+        setUpLongValues(
             binding.houseDetails.tvHalls,
             binding.houseDetails.tvHallsValue,
             property.halls
         )
-        setUpIntValues(
+        setUpLongValues(
             binding.houseDetails.tvFloors,
             binding.houseDetails.tvFloorsValue,
             property.floors
@@ -351,7 +351,7 @@ class HousePreviewFragment : Fragment() {
             property.carGarage
         )
 
-        setUpIntValues(
+        setUpLongValues(
             binding.houseDetails.tvCars,
             binding.houseDetails.tvCarsValue,
             property.numberCars
@@ -370,7 +370,7 @@ class HousePreviewFragment : Fragment() {
             binding.houseDetails.tvUpperApartmentsValue.visibility = View.GONE
             return
         }
-        setUpIntValues(
+        setUpLongValues(
             binding.houseDetails.tvUpperApartments,
             binding.houseDetails.tvUpperApartmentsValue,
             property.numberApartments
@@ -386,7 +386,7 @@ class HousePreviewFragment : Fragment() {
         value.text = if (choice) getString(R.string.yes) else getString(R.string.no)
     }
 
-    private fun setUpIntValues(textView: TextView, value: TextView, detail: Int?) {
+    private fun setUpLongValues(textView: TextView, value: TextView, detail: Long?) {
         if (detail == null) {
             textView.visibility = View.GONE
             value.visibility = View.GONE
@@ -501,7 +501,7 @@ class HousePreviewFragment : Fragment() {
     }
 
     private fun setUpPrice() {
-        val price = formatDouble(house.price.price!!)
+        val price = formatDouble(house.price!!)
         setUpMoneyText(binding.houseHeader.tvPrice, price)
     }
 

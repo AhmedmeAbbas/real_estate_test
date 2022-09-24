@@ -185,8 +185,8 @@ class PropertyAddressFragment : Fragment() {
                 state,
                 city,
                 region,
-                blockInput.toInt(),
-                propertyNumberInput.toInt()
+                blockInput.toLong(),
+                propertyNumberInput.toLong()
             )
             navigateToNextScreen()
         }

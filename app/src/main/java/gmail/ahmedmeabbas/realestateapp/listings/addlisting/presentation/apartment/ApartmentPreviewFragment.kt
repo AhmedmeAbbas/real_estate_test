@@ -300,7 +300,7 @@ class ApartmentPreviewFragment : Fragment() {
 
     private fun setUpApartmentDetails() {
         setUpArea()
-        setUpIntValues(
+        setUpLongValues(
             binding.apartmentDetails.tvYearBuilt,
             binding.apartmentDetails.tvYearBuiltValue,
             property.yearBuilt
@@ -315,12 +315,12 @@ class ApartmentPreviewFragment : Fragment() {
             binding.apartmentDetails.tvFurnitureValue,
             property.furnished
         )
-        setUpIntValues(
+        setUpLongValues(
             binding.apartmentDetails.tvBedrooms,
             binding.apartmentDetails.tvBedroomsValue,
             property.bedrooms
         )
-        setUpIntValues(
+        setUpLongValues(
             binding.apartmentDetails.tvBathrooms,
             binding.apartmentDetails.tvBathroomsValue,
             property.bathrooms
@@ -340,14 +340,14 @@ class ApartmentPreviewFragment : Fragment() {
             binding.apartmentDetails.tvBalconyValue,
             property.balcony
         )
-        if (property.floorNumber == 0) {
+        if (property.floorNumber == 0L) {
             setUpStringValues(
                 binding.apartmentDetails.tvFloor,
                 binding.apartmentDetails.tvFloorValue,
                 getString(R.string.add_apartment_floor_ground)
             )
         } else {
-            setUpIntValues(
+            setUpLongValues(
                 binding.apartmentDetails.tvFloor,
                 binding.apartmentDetails.tvFloorValue,
                 property.floorNumber
@@ -370,7 +370,7 @@ class ApartmentPreviewFragment : Fragment() {
         value.text = if (choice) getString(R.string.yes) else getString(R.string.no)
     }
 
-    private fun setUpIntValues(textView: TextView, value: TextView, detail: Int?) {
+    private fun setUpLongValues(textView: TextView, value: TextView, detail: Long?) {
         if (detail == null) {
             textView.visibility = View.GONE
             value.visibility = View.GONE
@@ -456,7 +456,7 @@ class ApartmentPreviewFragment : Fragment() {
     }
 
     private fun setUpPrice() {
-        val price = formatDouble(apartment.price.price!!)
+        val price = formatDouble(apartment.price!!)
         setUpMoneyText(binding.apartmentHeader.tvPrice, price)
     }
 

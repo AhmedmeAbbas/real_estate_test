@@ -29,8 +29,8 @@ interface AddListingRepository {
         state: String,
         city: String,
         region: String,
-        block: Int,
-        propertyNumber: Int
+        block: Long,
+        propertyNumber: Long
     )
 
     fun addApartment(apartment: Property.Apartment)
@@ -47,7 +47,7 @@ interface AddListingRepository {
         installments: Boolean?,
         downPayment: Double?,
         monthlyInstallment: Double?,
-        installmentPeriod: Int?
+        installmentPeriod: Long?
     )
 
     fun addAdditionalInfo(additionalInfo: String?)
