@@ -47,13 +47,12 @@
         <TextView
             android:id="@+id/tvPrice"
             style="@style/HeaderText"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_5sdp"
             android:gravity="start"
             android:text="@string/listing_item_price"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/listingTabLayout"
             app:layout_goneMarginTop="@dimen/_230sdp" />
@@ -138,12 +137,12 @@
 
         <TextView
             android:id="@+id/tvAddress"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
+            android:maxWidth="@dimen/_220sdp"
             android:text="@string/listing_item_address"
             android:textSize="@dimen/_12ssp"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/llDetails" />
 

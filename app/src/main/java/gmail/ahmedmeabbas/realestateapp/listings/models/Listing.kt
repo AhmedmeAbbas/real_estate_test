@@ -55,7 +55,7 @@ sealed class Property {
         var backupGenerator: Boolean? = null,
         var security: Boolean? = null,
         var utilitiesMoreInfo: String? = null
-    ): Property()
+    ) : Property()
 
     data class House(
         var lotArea: Double? = null,
@@ -78,17 +78,17 @@ sealed class Property {
         var electricity: Boolean? = null,
         var water: Boolean? = null,
         var utilitiesMoreInfo: String? = null
-    ): Property()
+    ) : Property()
 }
 
-data class PriceModel(
-    val dateAdded: String? = SimpleDateFormat("dd/MM/yyyy", Locale.US).format(Calendar.getInstance().time),
-    val price: Double? = null
-)
+object Currency {
+    const val USD = "USD"
+    const val SDG = "SDG"
+}
 
 object Advertiser {
-        const val OWNER = "owner"
-        const val BROKER = "broker"
+    const val OWNER = "owner"
+    const val BROKER = "broker"
 }
 
 object ListingStatus {

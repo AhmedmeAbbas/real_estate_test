@@ -24,8 +24,9 @@ import com.google.android.material.tabs.TabLayoutMediator
 import gmail.ahmedmeabbas.realestateapp.R
 import gmail.ahmedmeabbas.realestateapp.databinding.FragmentApartmentPreviewBinding
 import gmail.ahmedmeabbas.realestateapp.listings.addlisting.data.AddListingRepositoryImpl
-import gmail.ahmedmeabbas.realestateapp.listings.addlisting.presentation.adapters.SliderAdapter
+import gmail.ahmedmeabbas.realestateapp.listings.addlisting.presentation.adapters.PreviewSliderAdapter
 import gmail.ahmedmeabbas.realestateapp.listings.models.Advertiser
+import gmail.ahmedmeabbas.realestateapp.listings.models.Currency
 import gmail.ahmedmeabbas.realestateapp.listings.models.Listing
 import gmail.ahmedmeabbas.realestateapp.listings.models.Property
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -185,7 +186,11 @@ class ApartmentPreviewFragment : Fragment() {
         binding.btnSubmit.tvButton.text = getString(R.string.add_listing_submit)
         binding.btnSubmit.root.setOnClickListener {
             if (!apartmentPreviewViewModel.isConnectionAvailable()) {
-                Toast.makeText(requireContext(), getString(R.string.error_network), Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.error_network),
+                    Toast.LENGTH_SHORT
+                ).show()
                 return@setOnClickListener
             }
             apartmentPreviewViewModel.submitListing(
@@ -440,7 +445,7 @@ class ApartmentPreviewFragment : Fragment() {
         photoUris = apartmentPreviewViewModel.getPhotoUris()
         setUpEmptyPhotos()
         binding.apartmentHeader.previewViewPager.adapter =
-            SliderAdapter(photoUris)
+            PreviewSliderAdapter(photoUris)
         TabLayoutMediator(
             binding.apartmentHeader.previewTabLayout,
             binding.apartmentHeader.previewViewPager
@@ -507,7 +512,15 @@ class ApartmentPreviewFragment : Fragment() {
             textView.text =
                 getString(R.string.double_string, getString(R.string.add_listing_usd_prefix), input)
         } else {
-            textView.text = getString(R.string.double_string, input, " ${apartment.currency}")
+            textView.text = getString(R.string.double_string, input, " ${getCurrencySuffix()}")
+        }
+    }
+
+    private fun getCurrencySuffix(): String {
+        return when (apartment.currency) {
+            Currency.USD -> getString(R.string.add_listing_currency_usd)
+            Currency.SDG -> getString(R.string.add_listing_currency_sdg)
+            else -> ""
         }
     }
 

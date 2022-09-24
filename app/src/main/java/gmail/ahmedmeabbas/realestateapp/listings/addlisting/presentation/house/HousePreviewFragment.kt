@@ -25,8 +25,9 @@ import com.google.android.material.tabs.TabLayoutMediator
 import gmail.ahmedmeabbas.realestateapp.R
 import gmail.ahmedmeabbas.realestateapp.databinding.FragmentHousePreviewBinding
 import gmail.ahmedmeabbas.realestateapp.listings.addlisting.data.AddListingRepositoryImpl
-import gmail.ahmedmeabbas.realestateapp.listings.addlisting.presentation.adapters.SliderAdapter
+import gmail.ahmedmeabbas.realestateapp.listings.addlisting.presentation.adapters.PreviewSliderAdapter
 import gmail.ahmedmeabbas.realestateapp.listings.models.*
+import gmail.ahmedmeabbas.realestateapp.listings.models.Currency
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
@@ -485,7 +486,7 @@ class HousePreviewFragment : Fragment() {
         photoUris = housePreviewViewModel.getPhotoUris()
         setUpEmptyPhotos()
         binding.houseHeader.previewViewPager.adapter =
-            SliderAdapter(photoUris)
+            PreviewSliderAdapter(photoUris)
         TabLayoutMediator(
             binding.houseHeader.previewTabLayout,
             binding.houseHeader.previewViewPager
@@ -552,7 +553,15 @@ class HousePreviewFragment : Fragment() {
             textView.text =
                 getString(R.string.double_string, getString(R.string.add_listing_usd_prefix), input)
         } else {
-            textView.text = getString(R.string.double_string, input, " ${house.currency}")
+            textView.text = getString(R.string.double_string, input, " ${getCurrencySuffix()}")
+        }
+    }
+
+    private fun getCurrencySuffix(): String {
+        return when (house.currency) {
+            Currency.USD -> getString(R.string.add_listing_currency_usd)
+            Currency.SDG -> getString(R.string.add_listing_currency_sdg)
+            else -> ""
         }
     }
 

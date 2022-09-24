@@ -26,8 +26,6 @@ import gmail.ahmedmeabbas.realestateapp.listings.addlisting.domain.AddApartmentU
 import gmail.ahmedmeabbas.realestateapp.listings.addlisting.domain.AddHouseUseCase
 import gmail.ahmedmeabbas.realestateapp.listings.getlisting.data.GetListingRepository
 import gmail.ahmedmeabbas.realestateapp.listings.getlisting.data.GetListingRepositoryImpl
-import gmail.ahmedmeabbas.realestateapp.listings.getlisting.data.ListingRepository
-import gmail.ahmedmeabbas.realestateapp.listings.getlisting.data.ListingRepositoryImpl
 import gmail.ahmedmeabbas.realestateapp.userpreferences.UserPreferencesRepository
 import gmail.ahmedmeabbas.realestateapp.userpreferences.UserPreferencesRepositoryImpl
 import kotlinx.coroutines.CoroutineScope
@@ -123,13 +121,5 @@ object AppModule {
         db: FirebaseFirestore
     ): GetListingRepository {
         return GetListingRepositoryImpl(db)
-    }
-
-    @Singleton
-    @Provides
-    fun provideListingRepository(
-        db: FirebaseFirestore
-    ): ListingRepository {
-        return ListingRepositoryImpl(db)
     }
 }

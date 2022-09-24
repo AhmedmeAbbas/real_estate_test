@@ -1,15 +1,15 @@
-package gmail.ahmedmeabbas.realestateapp.listings.addlisting.presentation.adapters
+package gmail.ahmedmeabbas.realestateapp.listings.getlisting.adapters
 
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import gmail.ahmedmeabbas.realestateapp.R
 import gmail.ahmedmeabbas.realestateapp.databinding.PhotoItemBinding
 
-class SliderAdapter(
-    private val photoUris: List<Uri>
-) : RecyclerView.Adapter<SliderAdapter.SliderViewHolder>() {
+class ItemSliderAdapter(
+    private val photos: List<String>
+) : RecyclerView.Adapter<ItemSliderAdapter.SliderViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SliderViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.photo_item, parent, false)
@@ -18,17 +18,21 @@ class SliderAdapter(
     }
 
     override fun onBindViewHolder(holder: SliderViewHolder, position: Int) {
-        holder.bind(photoUris[position])
+        holder.bind(photos[position])
     }
 
-    override fun getItemCount() = photoUris.size
+    override fun getItemCount() = photos.size
 
     class SliderViewHolder(
         private val binding: PhotoItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(uri: Uri) {
-            binding.ivPreviewPhoto.setImageURI(uri)
+        fun bind(url: String) {
+            Glide.with(itemView)
+                .load(url)
+                .placeholder(R.drawable.ic_image)
+                .error(R.drawable.ic_broken_image)
+                .into(binding.ivPreviewPhoto)
         }
     }
 }

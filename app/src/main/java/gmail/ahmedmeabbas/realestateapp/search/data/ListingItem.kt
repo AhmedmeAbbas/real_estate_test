@@ -1,12 +1,14 @@
 package gmail.ahmedmeabbas.realestateapp.search.data
 
-data class ListingItem (
-    val id: Int = -1,
+data class ListingItem(
+    val id: String? = null,
+    val photos: List<String> = listOf(),
     val price: String? = null,
+    val currency: String? = null,
     val type: String? = null,
-    val floors: Int? = null,
-    val bedrooms: Int? = null,
-    val bathrooms: Int? = null,
+    val floors: Long? = null,
+    val bedrooms: Long? = null,
+    val bathrooms: Long? = null,
     val area: Double? = null,
     val address: String? = null
 )

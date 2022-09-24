@@ -16,6 +16,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import gmail.ahmedmeabbas.realestateapp.R
 import gmail.ahmedmeabbas.realestateapp.databinding.FragmentPriceBinding
+import gmail.ahmedmeabbas.realestateapp.listings.models.Currency
 import gmail.ahmedmeabbas.realestateapp.listings.models.PropertyType
 import gmail.ahmedmeabbas.realestateapp.util.ColorUtils.getColorFromAttr
 
@@ -207,7 +208,7 @@ class PriceFragment : Fragment() {
     private fun setUpContinueButton() {
         binding.btnContinue.tvButton.text = getString(R.string.confirm_and_continue)
         binding.btnContinue.root.setOnClickListener {
-            val currency = binding.spinnerCurrency.selectedItem.toString()
+            val currency = getCurrency()
             val priceInput = binding.etPrice.text.toString()
             val installments = getInstallments()
 
@@ -227,6 +228,13 @@ class PriceFragment : Fragment() {
                 findNavController().navigate(R.id.action_priceFragment_to_additionalInfoFragment)
             }
         }
+    }
+
+    private fun getCurrency(): String {
+        return if (
+            binding.spinnerCurrency.selectedItem.toString() == getString(R.string.add_listing_currency_usd)
+        )
+            Currency.USD else Currency.SDG
     }
 
     private fun validateInstallments(installments: Boolean?): Boolean {

@@ -114,7 +114,7 @@ class GetListingRepositoryImpl(
             listing.property = property
             listing.photos = photos
             listing.currency = it["currency"] as String?
-            listing.price = it["listingPrice"] as Double?
+            listing.price = it["price"] as Double?
             listing.installments = it["installments"] as Boolean?
             listing.downPayment = it["downPayment"] as Double?
             listing.monthlyInstallment = it["monthlyInstallment"] as Double?

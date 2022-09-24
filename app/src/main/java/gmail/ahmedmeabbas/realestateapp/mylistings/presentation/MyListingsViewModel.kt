@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import gmail.ahmedmeabbas.realestateapp.authentication.data.AuthRepository
-import gmail.ahmedmeabbas.realestateapp.listings.getlisting.data.ListingModel
+import gmail.ahmedmeabbas.realestateapp.listings.models.Listing
 import javax.inject.Inject
 
 @HiltViewModel
@@ -15,5 +15,5 @@ class MyListingsViewModel @Inject constructor(
 
     val isUserSignedIn: LiveData<Boolean> = authRepository.isUserSignedInFlow.asLiveData()
 
-    val myListingModels = listOf(ListingModel())
+    val myListingModels = listOf(Listing())
 }
