@@ -401,7 +401,7 @@ class ApartmentPreviewFragment : Fragment() {
             return
         }
         binding.apartmentDetails.tvAreaValue.text =
-            getString(R.string.listing_item_area_m2, property.area.toString())
+            getString(R.string.listing_item_area_m2, formatDouble(property.area!!))
     }
 
     private fun setUpAbout() {
