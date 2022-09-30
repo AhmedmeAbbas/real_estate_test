@@ -7,7 +7,15 @@
     <fragment
         android:id="@+id/searchFragment"
         android:name="gmail.ahmedmeabbas.realestateapp.search.presentation.SearchFragment"
-        android:label="SearchFragment" />
+        android:label="SearchFragment" >
+        <action
+            android:id="@+id/action_searchFragment_to_apartmentListingFragment"
+            app:destination="@id/apartmentListingFragment"
+            app:enterAnim="@anim/slide_in_end"
+            app:exitAnim="@anim/slide_out_start"
+            app:popEnterAnim="@anim/slide_in_start"
+            app:popExitAnim="@anim/slide_out_end"/>
+    </fragment>
     <fragment
         android:id="@+id/savedFragment"
         android:name="gmail.ahmedmeabbas.realestateapp.saved.presentation.SavedFragment"
@@ -382,4 +390,12 @@
         app:popExitAnim="@anim/fade_out"
         app:popUpTo="@id/myListingsFragment"
         app:popUpToInclusive="true"/>
+    <fragment
+        android:id="@+id/apartmentListingFragment"
+        android:name="gmail.ahmedmeabbas.realestateapp.listings.getlisting.presentation.ApartmentListingFragment"
+        android:label="ApartmentListingFragment" >
+        <argument
+            android:name="listingId"
+            app:argType="string" />
+    </fragment>
 </navigation>

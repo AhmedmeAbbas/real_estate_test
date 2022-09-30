@@ -5,15 +5,21 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.navigation.fragment.findNavController
+import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.tabs.TabLayout
 import gmail.ahmedmeabbas.realestateapp.R
 import gmail.ahmedmeabbas.realestateapp.databinding.FragmentSearchBinding
 import gmail.ahmedmeabbas.realestateapp.listings.getlisting.domain.mapToApartmentItem
 import gmail.ahmedmeabbas.realestateapp.listings.getlisting.domain.mapToHouseItem
+import gmail.ahmedmeabbas.realestateapp.listings.getlisting.presentation.ApartmentListingFragmentDirections
 import gmail.ahmedmeabbas.realestateapp.listings.models.Listing
 import gmail.ahmedmeabbas.realestateapp.listings.models.PropertyType
 import gmail.ahmedmeabbas.realestateapp.search.data.ListingItem
@@ -84,7 +90,21 @@ class SearchFragment : Fragment() {
     }
 
     private fun setUpRecyclerView() {
-        listingAdapter = ListingAdapter()
+        listingAdapter = ListingAdapter(object : ListingAdapter.ListingClickListener {
+            override fun onItemClicked(view: View, listingItem: ListingItem) {
+                when (listingItem.type) {
+                    PropertyType.APARTMENT -> {
+                        findNavController().navigate(
+                            SearchFragmentDirections.actionSearchFragmentToApartmentListingFragment(
+                                listingItem.id!!
+                            )
+                        )
+                    }
+                    PropertyType.HOUSE -> {}
+                    else -> {}
+                }
+            }
+        })
         binding.rvSearchListings.adapter = listingAdapter
     }
 

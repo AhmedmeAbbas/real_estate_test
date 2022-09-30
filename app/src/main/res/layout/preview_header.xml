@@ -24,6 +24,7 @@
         android:layout_marginTop="@dimen/_10sdp"
         android:background="?attr/colorOnBackground"
         android:elevation="@dimen/_2sdp"
+        android:transitionName="viewPager_details"
         app:layout_constraintTop_toBottomOf="@id/tvPreviewSub"
         app:tint="?attr/colorSecondary" />
 
@@ -32,6 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
+        android:transitionName="tabLayout_details"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/previewViewPager"

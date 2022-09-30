@@ -6,23 +6,33 @@ import com.google.firebase.firestore.*
 import gmail.ahmedmeabbas.realestateapp.listings.models.Listing
 import gmail.ahmedmeabbas.realestateapp.listings.models.Property
 import gmail.ahmedmeabbas.realestateapp.listings.models.PropertyType
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.channels.awaitClose
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.callbackFlow
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 
 class GetListingRepositoryImpl(
     private val db: FirebaseFirestore
 ) : GetListingRepository {
 
     override val listingsFlow = getAllListings()
+    private val _listingByIdFlow = MutableSharedFlow<Listing?>()
+    override val listingByIdFlow = _listingByIdFlow.asSharedFlow()
+
+    override suspend fun getListingById(listingId: String) {
+        CoroutineScope(IO).launch {
+            listingsFlow.collect { listings ->
+                Log.d(TAG, "getListingById: size: ${listings.filter { it?.id == listingId }.size}")
+                _listingByIdFlow.emit(listings.filter { it?.id == listingId }[0])
+            }
+        }
+    }
 
     override fun getAllListings(): Flow<List<Listing?>> {
-        Log.d(TAG, "getAllListings: triggered")
         return db.collection("listings/khartoum/khartoum")
             .snapshotFlow()
             .map { querySnapshot ->
-                Log.d(TAG, "getAllListings: collection triggered")
                 querySnapshot.documents.map { documentSnapshot ->
                     if (documentSnapshot.getString("type") == PropertyType.APARTMENT) {
                         mapResultToApartment(documentSnapshot)
@@ -34,7 +44,6 @@ class GetListingRepositoryImpl(
     }
 
     private fun mapResultToApartment(document: DocumentSnapshot?): Listing {
-        Log.d(TAG, "mapResultToApartment: triggered")
         val propertyMap = document?.data?.get("property") as Map<*, *>
         val property = Property.Apartment()
 
@@ -62,7 +71,6 @@ class GetListingRepositoryImpl(
     }
 
     private fun mapResultToHouse(document: DocumentSnapshot?): Listing {
-        Log.d(TAG, "mapResultToApartment: triggered")
         val propertyMap = document?.data?.get("property") as Map<*, *>
         val property = Property.House()
 
@@ -123,7 +131,6 @@ class GetListingRepositoryImpl(
             listing.additionalInfo = it["additionalInfo"] as String?
             listing.listingStatus = it["listingStatus"] as String
         }
-        Log.d(TAG, "mapToListing: listing: $listing")
         return listing
     }
 

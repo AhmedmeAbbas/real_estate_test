@@ -10,13 +10,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.tabs.TabLayoutMediator
 import gmail.ahmedmeabbas.realestateapp.R
 import gmail.ahmedmeabbas.realestateapp.databinding.ListingItemBinding
-import gmail.ahmedmeabbas.realestateapp.listings.getlisting.adapters.ItemSliderAdapter
+import gmail.ahmedmeabbas.realestateapp.listings.getlisting.presentation.adapters.ItemSliderAdapter
 import gmail.ahmedmeabbas.realestateapp.listings.models.Currency
 import gmail.ahmedmeabbas.realestateapp.listings.models.PropertyType
 import gmail.ahmedmeabbas.realestateapp.search.data.ListingItem
 import java.util.*
 
-class ListingAdapter : ListAdapter<ListingItem, ListingAdapter.ListingViewHolder>(DiffCallback) {
+class ListingAdapter(
+    private val listingClickListener: ListingClickListener
+) : ListAdapter<ListingItem, ListingAdapter.ListingViewHolder>(DiffCallback) {
+
+    interface ListingClickListener {
+        fun onItemClicked(view: View, listingItem: ListingItem)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListingViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.listing_item, parent, false)
@@ -41,7 +47,7 @@ class ListingAdapter : ListAdapter<ListingItem, ListingAdapter.ListingViewHolder
         }
     }
 
-    class ListingViewHolder(private val binding: ListingItemBinding) :
+    inner class ListingViewHolder(private val binding: ListingItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(listingItem: ListingItem) {
@@ -96,6 +102,10 @@ class ListingAdapter : ListAdapter<ListingItem, ListingAdapter.ListingViewHolder
                 PropertyType.FARM -> binding.tvType.text =
                     binding.root.context.getString(R.string.property_type_farm)
                 else -> binding.tvType.visibility = View.GONE
+            }
+
+            binding.cvListingItem.setOnClickListener {
+                listingClickListener.onItemClicked(itemView, listingItem)
             }
         }
 

@@ -1,34 +1,29 @@
-package gmail.ahmedmeabbas.realestateapp.listings.addlisting.presentation.apartment
+package gmail.ahmedmeabbas.realestateapp.listings.getlisting.presentation
 
-import android.app.Dialog
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
-import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.google.android.material.tabs.TabLayoutMediator
 import gmail.ahmedmeabbas.realestateapp.R
-import gmail.ahmedmeabbas.realestateapp.databinding.FragmentApartmentPreviewBinding
-import gmail.ahmedmeabbas.realestateapp.listings.addlisting.data.AddListingRepositoryImpl
-import gmail.ahmedmeabbas.realestateapp.listings.addlisting.presentation.adapters.PreviewSliderAdapter
-import gmail.ahmedmeabbas.realestateapp.listings.models.Advertiser
+import gmail.ahmedmeabbas.realestateapp.databinding.FragmentApartmentListingBinding
+import gmail.ahmedmeabbas.realestateapp.listings.getlisting.presentation.adapters.ItemSliderAdapter
+import gmail.ahmedmeabbas.realestateapp.listings.models.*
 import gmail.ahmedmeabbas.realestateapp.listings.models.Currency
-import gmail.ahmedmeabbas.realestateapp.listings.models.Listing
-import gmail.ahmedmeabbas.realestateapp.listings.models.Property
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
@@ -37,168 +32,64 @@ import java.text.DecimalFormatSymbols
 import java.text.SimpleDateFormat
 import java.util.*
 
-class ApartmentPreviewFragment : Fragment() {
+class ApartmentListingFragment : Fragment() {
 
-    private var _binding: FragmentApartmentPreviewBinding? = null
+    private var _binding: FragmentApartmentListingBinding? = null
     private val binding get() = _binding!!
-    private val apartmentPreviewViewModel: ApartmentPreviewViewModel by activityViewModels()
-    private var apartment = Listing()
+    private val apartmentListingViewModel: ApartmentListingViewModel by activityViewModels()
+    private val args: ApartmentListingFragmentArgs by navArgs()
+    private var listing = Listing()
     private var property = Property.Apartment()
-    private var photoUris = listOf<Uri>()
-    private lateinit var dialog: Dialog
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        apartmentListingViewModel.getListingById(args.listingId)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentApartmentPreviewBinding.inflate(inflater, container, false)
+        _binding = FragmentApartmentListingBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        hidePreviewViews()
         setUpToolbar()
-        getApartment()
-        setUpHeader()
-        setUpInstallments()
-        setUpAbout()
-        setUpApartmentDetails()
-        setUpUtilities()
-        setUpContact()
-        setUpSubmitButton()
-        setUpBackToStartButton()
-        observeUserMessages()
-        observeUploadPhotosProgress()
+        observeListing()
+        observeLoading()
     }
 
-    private fun observeUploadPhotosProgress() {
+    private fun observeLoading() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                apartmentPreviewViewModel.uiState
-                    .map { it.uploadPhotosProgress }
+                apartmentListingViewModel.uiState
+                    .map { it.isLoading }
                     .distinctUntilChanged()
-                    .collect { progress ->
-                        if (progress > 0)
-                            updatePhotosProgressBar(progress)
+                    .collect {
+                        Log.d(TAG, "observeLoading: loading: $it")
+                        updateViews(it)
                     }
             }
         }
     }
 
-    private fun updatePhotosProgressBar(progress: Int) {
-        dialog.findViewById<ProgressBar>(R.id.pbUploadProgress).progress = progress
-    }
+    private fun updateViews(isLoading: Boolean) {
+        val pbVisibility = if (isLoading) View.VISIBLE else View.GONE
+        val viewsVisibility = if (isLoading) View.GONE else View.VISIBLE
 
-    private fun observeUserMessages() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                apartmentPreviewViewModel.uiState
-                    .map { it.userMessage }
-                    .distinctUntilChanged()
-                    .collect { userMessage ->
-                        when (userMessage) {
-                            AddListingRepositoryImpl.UPLOADING_PHOTOS -> {
-                                dialog.findViewById<TextView>(R.id.tvLoadingInfo).text =
-                                    getString(R.string.add_listing_uploading_photos)
-                                dialog.findViewById<ProgressBar>(R.id.pbUploadProgress).visibility =
-                                    View.VISIBLE
-                            }
-                            AddListingRepositoryImpl.SUBMITTING_LISTING -> {
-                                dialog.findViewById<TextView>(R.id.tvLoadingInfo).text =
-                                    getString(R.string.add_listing_submitting_listing)
-                            }
-                            AddListingRepositoryImpl.SUCCESS -> showSuccessDialog()
-                            AddListingRepositoryImpl.NETWORK_ERROR -> showErrorDialog(getString(R.string.error_network))
-                            AddListingRepositoryImpl.UNAUTHENTICATED -> showErrorDialog(getString(R.string.error_unauthenticated))
-                            AddListingRepositoryImpl.FAILURE -> showErrorDialog(getString(R.string.error_occurred))
-                            else -> return@collect
-                        }
-                        apartmentPreviewViewModel.clearMessages()
-                    }
-            }
-        }
-    }
-
-    private fun showSuccessDialog() {
-        dialog.dismiss()
-
-        val dialogWidth =
-            requireContext().resources.getDimension(com.intuit.sdp.R.dimen._250sdp).toInt()
-        val dialogHeight =
-            requireContext().resources.getDimension(com.intuit.sdp.R.dimen._250sdp).toInt()
-
-        dialog = Dialog(requireContext())
-        dialog.apply {
-            setContentView(R.layout.dialog_upload_success)
-            window?.setLayout(dialogWidth, dialogHeight)
-            window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-
-            findViewById<TextView>(R.id.btnSuccessOk).setOnClickListener {
-                findNavController().navigate(R.id.action_global_myListingsFragment)
-                dialog.dismiss()
-            }
-            setCancelable(false)
-            show()
-        }
-    }
-
-    private fun showErrorDialog(errorMessage: String) {
-        dialog.dismiss()
-
-        val dialogWidth =
-            requireContext().resources.getDimension(com.intuit.sdp.R.dimen._250sdp).toInt()
-        val dialogHeight =
-            requireContext().resources.getDimension(com.intuit.sdp.R.dimen._250sdp).toInt()
-
-        dialog = Dialog(requireContext())
-        dialog.apply {
-            setContentView(R.layout.dialog_upload_error)
-            window?.setLayout(dialogWidth, dialogHeight)
-            window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-
-            findViewById<TextView>(R.id.tvErrorSub).text = errorMessage
-            findViewById<TextView>(R.id.btnErrorOk).setOnClickListener {
-                dialog.dismiss()
-            }
-            setCancelable(false)
-            show()
-        }
-    }
-
-    private fun showLoadingDialog() {
-        val dialogWidth =
-            requireContext().resources.getDimension(com.intuit.sdp.R.dimen._250sdp).toInt()
-        val dialogHeight =
-            requireContext().resources.getDimension(com.intuit.sdp.R.dimen._150sdp).toInt()
-
-        dialog = Dialog(requireContext())
-        dialog.apply {
-            setContentView(R.layout.dialog_submitting_listing)
-            window?.setLayout(dialogWidth, dialogHeight)
-            window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            setCancelable(false)
-            show()
-        }
-    }
-
-    private fun setUpSubmitButton() {
-        binding.btnSubmit.tvButton.text = getString(R.string.add_listing_submit)
-        binding.btnSubmit.root.setOnClickListener {
-            if (!apartmentPreviewViewModel.isConnectionAvailable()) {
-                Toast.makeText(
-                    requireContext(),
-                    getString(R.string.error_network),
-                    Toast.LENGTH_SHORT
-                ).show()
-                return@setOnClickListener
-            }
-            apartmentPreviewViewModel.submitListing(
-                requireActivity().contentResolver,
-                resources.getDimension(R.dimen.listing_photo_height).toInt()
-            )
-            showLoadingDialog()
+        with(binding) {
+            pbLoadingListing.visibility = pbVisibility
+            apartmentHeader.root.visibility = viewsVisibility
+            apartmentInstallments.root.visibility = viewsVisibility
+            apartmentAbout.root.visibility = viewsVisibility
+            apartmentDetails.root.visibility = viewsVisibility
+            apartmentUtilities.root.visibility = viewsVisibility
+            contactAdvertiser.root.visibility = viewsVisibility
         }
     }
 
@@ -210,23 +101,23 @@ class ApartmentPreviewFragment : Fragment() {
     }
 
     private fun setUpName() {
-        if (apartment.name == null) {
+        if (listing.name == null) {
             binding.contactAdvertiser.tvName.visibility = View.GONE
             return
         }
-        binding.contactAdvertiser.tvName.text = getString(R.string.single_string, apartment.name)
+        binding.contactAdvertiser.tvName.text = getString(R.string.single_string, listing.name)
     }
 
     private fun setUpEmail() {
         setUpStringValues(
             binding.contactAdvertiser.tvEmail,
             binding.contactAdvertiser.tvEmailValue,
-            apartment.email
+            listing.email
         )
         binding.contactAdvertiser.tvEmailValue.setOnLongClickListener {
             val clipboard =
                 requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-            val clip = ClipData.newPlainText(getString(R.string.add_listing_email), apartment.email)
+            val clip = ClipData.newPlainText(getString(R.string.add_listing_email), listing.email)
             clipboard.setPrimaryClip(clip)
             Toast.makeText(requireContext(), getString(R.string.copied), Toast.LENGTH_SHORT).show()
             true
@@ -234,7 +125,7 @@ class ApartmentPreviewFragment : Fragment() {
     }
 
     private fun setUpPhoneNumber() {
-        var phoneNumber = apartment.phoneNumber.toString()
+        var phoneNumber = listing.phoneNumber.toString()
         if (phoneNumber.length == 9) phoneNumber = "0$phoneNumber"
         if (phoneNumber.length == 12) phoneNumber = "+$phoneNumber"
         setUpStringValues(
@@ -256,7 +147,7 @@ class ApartmentPreviewFragment : Fragment() {
     private fun setUpContactHeader() {
         val owner = getString(R.string.listing_preview_contact_owner)
         val broker = getString(R.string.listing_preview_contact_broker)
-        if (apartment.advertiser == Advertiser.OWNER) {
+        if (listing.advertiser == Advertiser.OWNER) {
             binding.contactAdvertiser.tvContactHeader.text =
                 getString(R.string.listing_preview_contact, owner)
         } else {
@@ -401,34 +292,34 @@ class ApartmentPreviewFragment : Fragment() {
             return
         }
         binding.apartmentDetails.tvAreaValue.text =
-            getString(R.string.listing_item_area_m2, property.area.toString())
+            getString(R.string.listing_item_area_m2, formatDouble(property.area!!))
     }
 
     private fun setUpAbout() {
-        if (apartment.additionalInfo.isNullOrEmpty()) {
+        if (listing.additionalInfo.isNullOrEmpty()) {
             binding.apartmentAbout.root.visibility = View.GONE
             return
         }
         binding.apartmentAbout.tvAboutHeader.text =
             getString(R.string.listing_preview_about_apartment)
-        binding.apartmentAbout.tvAboutBody.text = apartment.additionalInfo
+        binding.apartmentAbout.tvAboutBody.text = listing.additionalInfo
     }
 
     private fun setUpInstallments() {
-        val hideInstallments = apartment.installments == null || apartment.installments == false
-        if (hideInstallments) {
+        if (listing.installments == null || listing.installments == false) {
             binding.apartmentInstallments.root.visibility = View.GONE
+            Log.d(TAG, "setUpInstallments: ${binding.apartmentInstallments.root.isVisible}")
             return
         }
-        val downPayment = formatDouble(apartment.downPayment!!)
+        val downPayment = formatDouble(listing.downPayment!!)
         setUpMoneyText(binding.apartmentInstallments.tvDownPaymentValue, downPayment)
 
-        val monthlyInstallment = formatDouble(apartment.monthlyInstallment!!)
+        val monthlyInstallment = formatDouble(listing.monthlyInstallment!!)
         setUpMoneyText(binding.apartmentInstallments.tvMonthlyInstallmentValue, monthlyInstallment)
 
         binding.apartmentInstallments.tvInstallmentPeriodValue.text = getString(
             R.string.listing_preview_installment_period_value,
-            apartment.installmentPeriod.toString()
+            listing.installmentPeriod.toString()
         )
     }
 
@@ -442,44 +333,22 @@ class ApartmentPreviewFragment : Fragment() {
         setUpStatus()
     }
 
-    private fun setUpPhotos() {
-        photoUris = apartmentPreviewViewModel.getPhotoUris()
-        setUpEmptyPhotos()
-        binding.apartmentHeader.previewViewPager.adapter =
-            PreviewSliderAdapter(photoUris)
-        TabLayoutMediator(
-            binding.apartmentHeader.previewTabLayout,
-            binding.apartmentHeader.previewViewPager
-        ) { _, _ -> }.attach()
-    }
-
-    private fun setUpEmptyPhotos() {
-        if (photoUris.isEmpty()) {
-            binding.apartmentHeader.previewTabLayout.visibility = View.GONE
-            binding.apartmentHeader.previewViewPager.visibility = View.GONE
-            binding.apartmentHeader.ivPlaceholderPhoto.visibility = View.VISIBLE
-        }
-    }
-
-    private fun setUpPrice() {
-        val price = formatDouble(apartment.price!!)
-        setUpMoneyText(binding.apartmentHeader.tvPrice, price)
-    }
-
     private fun setUpStatus() {
         binding.apartmentHeader.tvStatusValue.text =
-            getString(R.string.listing_preview_status_for_sale)
+            if (listing.listingStatus == ListingStatus.FOR_SALE) getString(
+                R.string.listing_preview_status_for_sale
+            ) else getString(R.string.listing_preview_status_sold)
     }
 
     private fun setUpDateAdded() {
-        binding.apartmentHeader.tvDateAddedValue.text =
-            SimpleDateFormat("dd/MM/yyyy", Locale.US).format(Calendar.getInstance().time)
+        binding.apartmentHeader.tvDateAddedValue.text = SimpleDateFormat("dd/MM/yyyy", Locale.US).format(listing.dateAdded?.toDate()?.time)
     }
+
 
     private fun setUpAdvertiser() {
         val owner = getString(R.string.listing_preview_for_sale_by_owner)
         val broker = getString(R.string.listing_preview_for_sale_by_broker)
-        if (apartment.advertiser == Advertiser.OWNER) {
+        if (listing.advertiser == Advertiser.OWNER) {
             binding.apartmentHeader.tvAdvertiser.text = owner
         } else {
             binding.apartmentHeader.tvAdvertiser.text = broker
@@ -492,14 +361,14 @@ class ApartmentPreviewFragment : Fragment() {
 
     private fun setUpAddress() {
         val address: String
-        val city = apartment.city
-        val region = apartment.region
+        val city = listing.city
+        val region = listing.region
         val block = getString(
             R.string.double_string,
             getString(R.string.listing_preview_block),
-            apartment.block.toString()
+            listing.block.toString()
         )
-        val propertyNumber = apartment.propertyNumber.toString()
+        val propertyNumber = listing.propertyNumber.toString()
         address = if (Locale.getDefault().language == "en") {
             "$propertyNumber, $block, $region, $city"
         } else {
@@ -508,8 +377,49 @@ class ApartmentPreviewFragment : Fragment() {
         binding.apartmentHeader.tvAddress.text = address
     }
 
+    private fun setUpPhotos() {
+        setUpEmptyPhotos()
+        binding.apartmentHeader.previewViewPager.adapter =
+            ItemSliderAdapter(listing.photos)
+        TabLayoutMediator(
+            binding.apartmentHeader.previewTabLayout,
+            binding.apartmentHeader.previewViewPager
+        ) { _, _ -> }.attach()
+    }
+
+    private fun setUpEmptyPhotos() {
+        if (listing.photos.isEmpty()) {
+            binding.apartmentHeader.previewTabLayout.visibility = View.GONE
+            binding.apartmentHeader.previewViewPager.visibility = View.GONE
+            binding.apartmentHeader.ivPlaceholderPhoto.visibility = View.VISIBLE
+        }
+    }
+
+    private fun setUpPrice() {
+        val price = formatDouble(listing.price!!)
+        setUpMoneyText(binding.apartmentHeader.tvPrice, price)
+    }
+
+    private fun observeListing() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                apartmentListingViewModel.uiState
+                    .map { it.listing }
+                    .distinctUntilChanged()
+                    .collect {
+                        Log.d(TAG, "observeListing: $it")
+                        it?.let {
+                            listing = it
+                            property = it.property as Property.Apartment
+                            setUpViews()
+                        }
+                    }
+            }
+        }
+    }
+
     private fun setUpMoneyText(textView: TextView, input: String) {
-        if (Locale.getDefault().language == "en" && apartment.currency == getString(R.string.add_listing_currency_usd)) {
+        if (Locale.getDefault().language == "en" && listing.currency == getString(R.string.add_listing_currency_usd)) {
             textView.text =
                 getString(R.string.double_string, getString(R.string.add_listing_usd_prefix), input)
         } else {
@@ -518,27 +428,10 @@ class ApartmentPreviewFragment : Fragment() {
     }
 
     private fun getCurrencySuffix(): String {
-        return when (apartment.currency) {
+        return when (listing.currency) {
             Currency.USD -> getString(R.string.add_listing_currency_usd)
             Currency.SDG -> getString(R.string.add_listing_currency_sdg)
             else -> ""
-        }
-    }
-
-    private fun getApartment() {
-        apartment = apartmentPreviewViewModel.getApartment()
-        property = apartment.property as Property.Apartment
-    }
-
-    private fun setUpBackToStartButton() {
-        binding.tvBackToStart.setOnClickListener {
-            findNavController().navigate(R.id.action_global_myListingsFragment)
-        }
-    }
-
-    private fun setUpToolbar() {
-        binding.toolbarApartmentPreview.setNavigationOnClickListener {
-            findNavController().navigateUp()
         }
     }
 
@@ -546,12 +439,37 @@ class ApartmentPreviewFragment : Fragment() {
         return DecimalFormat("0.##", DecimalFormatSymbols(Locale.US)).format(d)
     }
 
+    private fun setUpViews() {
+        setUpHeader()
+        setUpInstallments()
+        setUpAbout()
+        setUpApartmentDetails()
+        setUpUtilities()
+        setUpContact()
+    }
+
+    private fun hidePreviewViews() {
+        binding.apartmentHeader.tvPreviewSub.visibility = View.GONE
+    }
+
+    private fun setUpToolbar() {
+        binding.toolbarApartmentListing.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d(TAG, "onDestroy: triggered")
+        apartmentListingViewModel.clearListing()
+    }
+
     companion object {
-        private const val TAG = "ApartmentPreviewFragment"
+        private const val TAG = "ApartmentListingFragment"
     }
 }

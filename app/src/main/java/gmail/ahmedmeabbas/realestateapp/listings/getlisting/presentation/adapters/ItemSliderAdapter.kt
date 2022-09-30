@@ -1,4 +1,4 @@
-package gmail.ahmedmeabbas.realestateapp.listings.getlisting.adapters
+package gmail.ahmedmeabbas.realestateapp.listings.getlisting.presentation.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
