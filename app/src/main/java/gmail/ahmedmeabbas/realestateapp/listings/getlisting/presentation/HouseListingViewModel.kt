@@ -12,17 +12,17 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-data class ApartmentListingUiState(
-    val listing: Listing? = null,
-    val isLoading: Boolean = true
+data class HouseListingUiState(
+    val isLoading: Boolean = true,
+    val listing: Listing? = null
 )
 
 @HiltViewModel
-class ApartmentListingViewModel @Inject constructor(
+class HouseListingViewModel @Inject constructor(
     private val getListingRepository: GetListingRepository
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow(ApartmentListingUiState())
+    private val _uiState = MutableStateFlow(HouseListingUiState())
     val uiState = _uiState.asStateFlow()
 
     fun getListingById(listingId: String) {
@@ -31,7 +31,7 @@ class ApartmentListingViewModel @Inject constructor(
             getListingRepository.getListingById(listingId)
             getListingRepository.listingByIdFlow.collect { listing ->
                 listing?.let {
-                    if (listing.property !is Property.Apartment) return@collect
+                    if (listing.property !is Property.House) return@collect
                     _uiState.update {
                         it.copy(
                             listing = listing,

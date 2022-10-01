@@ -1,6 +1,5 @@
 package gmail.ahmedmeabbas.realestateapp.search.presentation
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -69,11 +68,11 @@ class ListingAdapter(
 
                 tvBedrooms.text = binding.root.context.getString(
                     R.string.listing_item_bedrooms,
-                    listingItem.bedrooms.toString()
+                    listingItem.bedrooms?.toString() ?: "0"
                 )
                 tvBathrooms.text = binding.root.context.getString(
                     R.string.listing_item_bathrooms,
-                    listingItem.bathrooms.toString()
+                    listingItem.bathrooms?.toString() ?: "0"
                 )
                 tvArea.text = binding.root.context.getString(
                     R.string.listing_item_area_m2,
@@ -110,7 +109,6 @@ class ListingAdapter(
         }
 
         private fun setUpPrice(listingItem: ListingItem) {
-            Log.d(TAG, "setUpPrice: ${listingItem.price}")
             if (Locale.getDefault().language == "en" && listingItem.currency == itemView.context.getString(
                     R.string.add_listing_currency_usd
                 )
@@ -137,9 +135,5 @@ class ListingAdapter(
                 else -> ""
             }
         }
-    }
-
-    companion object {
-        private const val TAG = "ListingAdapter"
     }
 }

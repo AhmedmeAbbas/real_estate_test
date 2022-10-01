@@ -15,6 +15,13 @@
             app:exitAnim="@anim/slide_out_start"
             app:popEnterAnim="@anim/slide_in_start"
             app:popExitAnim="@anim/slide_out_end"/>
+        <action
+            android:id="@+id/action_searchFragment_to_houseListingFragment"
+            app:destination="@id/houseListingFragment"
+            app:enterAnim="@anim/slide_in_end"
+            app:exitAnim="@anim/slide_out_start"
+            app:popEnterAnim="@anim/slide_in_start"
+            app:popExitAnim="@anim/slide_out_end"/>
     </fragment>
     <fragment
         android:id="@+id/savedFragment"
@@ -394,6 +401,14 @@
         android:id="@+id/apartmentListingFragment"
         android:name="gmail.ahmedmeabbas.realestateapp.listings.getlisting.presentation.ApartmentListingFragment"
         android:label="ApartmentListingFragment" >
+        <argument
+            android:name="listingId"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/houseListingFragment"
+        android:name="gmail.ahmedmeabbas.realestateapp.listings.getlisting.presentation.HouseListingFragment"
+        android:label="HouseListingFragment" >
         <argument
             android:name="listingId"
             app:argType="string" />

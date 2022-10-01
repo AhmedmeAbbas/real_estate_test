@@ -9,6 +9,6 @@ data class ListingItem(
     val floors: Long? = null,
     val bedrooms: Long? = null,
     val bathrooms: Long? = null,
-    val area: Double? = null,
+    val area: String? = null,
     val address: String? = null
 )
